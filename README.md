@@ -12,7 +12,7 @@ Alexander Fay, Helmut Schmidt University Hamburg<br>
 ### Version
 Version 1, 20 September 2022
 
-## Section 1 - Purpose of this Repository
+## 1 Purpose of this Repository
 Modular plants are gaining more and more importance in the process and manufacturing industries for creating flexible and adaptable production systems. In order not to restrict this flexibility, an equally modular and thus flexible and adaptable production-related logistics system is required. Here, the Module Type Package (MTP) concept, which is already familiar in the area of modular production, can be applied to the area of production-related logistics [1,2].
 
 In this context, this document describes interpretations and necessary extensions of the Module Type Package concept for the field of modular production-related logistics facilities. It serves as a technical specification to describe the basic concepts of modular logistics systems and to specify necessary new MTP interfaces and model definitions. Its structure is oriented along the structure of the MTP standard with its different specification aspects.

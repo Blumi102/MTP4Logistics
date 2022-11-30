@@ -1,4 +1,4 @@
-## Modular Logistics Systems
+## 2 Modular Logistics Systems
 Figure 2.1 shows an exemplary Modular Logistic System (MLS), which is used for filling and palletizing bags and octabins.
 
 [<img src="./MLS.png"/>](./MLS.png)
