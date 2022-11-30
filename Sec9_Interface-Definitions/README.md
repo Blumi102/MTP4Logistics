@@ -3,9 +3,10 @@ This section defines necessary data assembly definitions for Logistics Equipment
 
 This version of the document only contains the interface definitions of StructuredServParam in Section 9.1 and ArrayServParam in Section 9.2. Further definitions will follow in future versions of this document.
 
-### StructuredServParam
+### 9.1 StructuredServParam
 The StructuredServParam interface is intended to transfer parameters of a user-defined structured data type from a higher-level system (here: LOL) to a MTP-based module (here: LEA). The corresponding inter-face definition can be found in Table 9.1.
 
+*Table 9.1: Interface Definition of StructuredServParam*
 [<img src="./StructServParam.JPG"/>](./StructServParam.JPG)
 
 The data assembly definition SUC StructuredServParam is derived from the SUC ParameterElement and represents a generic parameter interface for complex data types. The used complex data type has to be derived from the AT StructuredDataType defined in VDI/VDE/NAMUR 2658-1 [7].
@@ -13,14 +14,16 @@ The data assembly definition SUC StructuredServParam is derived from the SUC Par
 When using this interface a user-defined ATL, like “CompanyAAttributeLib” must be created. Within this ATL the structured data type that should be later used in the instance of the StructuredServParam inter-face must be specified. An example of this modelling is shown in Figure 9.1.
 
 [<img src="./StructServParam.png"/>](./StructServParam.png)
+*Figure 9.1: Exemplary definition of a StructuredDataType base on the definitions for modeling complex data types according to VDI/VDE/NAMUR 2658-1 [7]*
 
 With the assignment of this user-defined AT to the Attribute VType of the StructuredServParam interface the used structured data type is defined. This data type is then expected behind the VExt, VInt, VOp, VReq and VOut variables shown in the specification in Table 9.1.
 
 With the variables VExt, VInt, VOp three access channels to the structured parameter are offered, which are also provided in VDI/VDE/NAMUR 2658-4 [3]. The current operation mode of the parameter defines which of these channels is currently in use. Consequently, the data to be set can be passed to the corre-sponding variable (VExt, VInt or VOp). After the processing of the controller the input data is transferred to the attribute VReq to indicate the successful data transfer. If the value of VReq is equal to the active access channel variable (VExt, VInt or VOp), the values are consistent and can be applied. After applying has been successful, the active parameter value is transferred to the variable VOut. This procedure of applying parameter is equal to all other parameter element derivations of VDI/VDE/NAMUR 2658-4 [3].
 
-### ArrayServParam
+### 9.2 ArrayServParam
 The ArrayServParam interface is intended to manage an array located in a module (here: LEA) using a higher-level system (here: LOL). The corresponding interface definition can be found in Table 9.2.
 
+*Table 9.2: Interface Definition of ArrayServParam*
 [<img src="./ArrayServParam.JPG"/>](./ArrayServParam.JPG)
 
 The data assembly definition SUC ArrayServParam is derived from the SUC ParameterElement and repre-sents a generic parameter interface for an derivation of the AT BaseDataType defined in VDI/VDE/NAMUR 2658-1 [7].

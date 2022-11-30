@@ -2,6 +2,7 @@
 Due to the origin of the MTP concept in the process industry, the concept for vendor-neutral Human Machine Interface (HMI) modelling described in the VDI/VDE/NAMUR 2658-2 [6] is designed for P&ID-like HMIs. For the field of logistics, however, machine-oriented HMIs, as shown in Figure 4.1 for a palletizer, are more appropriate.
 
 [<img src="./HMI.png"/>](./HMI.png)
+*Figure 4.1: Human Machine Interface of a Layer Palletizer based on a Custom ECLASS Element*
 
 This HMI contains an image of the LEA as a static HMI object and several dynamic objects for parameters and report values. The latter can be implemented with the mechanisms from VDI/VDE/NAMUR 2658-2 [4].
 
