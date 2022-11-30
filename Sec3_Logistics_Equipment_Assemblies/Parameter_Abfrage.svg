@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="505px" preserveAspectRatio="none" style="width:381px;height:505px;background:#FFFFFF;" version="1.1" viewBox="0 0 381 505" width="381px" zoomAndPan="magnify"><defs/><g><line style="stroke:#8A0808;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="85" x2="85" y1="37.6094" y2="469.2344"/><line style="stroke:#8A0808;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="243" x2="243" y1="37.6094" y2="469.2344"/><rect fill="#585858" height="31.6094" rx="2.5" ry="2.5" style="stroke:#8A0808;stroke-width:0.5;" width="41" x="65" y="5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="27" x="72" y="26.5332">LOL</text><rect fill="#585858" height="31.6094" rx="2.5" ry="2.5" style="stroke:#8A0808;stroke-width:0.5;" width="41" x="65" y="468.2344"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="27" x="72" y="489.7676">LOL</text><rect fill="#585858" height="31.6094" rx="2.5" ry="2.5" style="stroke:#8A0808;stroke-width:0.5;" width="91" x="198" y="5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="205" y="26.5332">LEA Service</text><rect fill="#585858" height="31.6094" rx="2.5" ry="2.5" style="stroke:#8A0808;stroke-width:0.5;" width="91" x="198" y="468.2344"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="205" y="489.7676">LEA Service</text><path d="M112,52.6094 L112,167.6094 L374,167.6094 L374,62.6094 L364,52.6094 L112,52.6094 " fill="#E6E6E6" style="stroke:#181818;stroke-width:0.5;"/><path d="M364,52.6094 L364,62.6094 L374,62.6094 L364,52.6094 " fill="#E6E6E6" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="102" x="118" y="71.1045">ServiceInteraction</text><line style="stroke:#181818;stroke-width:1.0;" x1="113" x2="373" y1="73.9609" y2="73.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="237" x="118" y="91.4561">QuestionID[1]: Parameterization Demand</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="113" x2="373" y1="98.3125" y2="98.3125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="108" x="118" y="115.8076">AnswerID[1]: Done</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="106" x="118" y="132.1592">AnswerID[2]: Error</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="113" x2="373" y1="139.0156" y2="139.0156"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="93" x="118" y="156.5107">AdditionalInfo: ' '</text><line style="stroke:#8A0808;stroke-width:1.0;" x1="86.5" x2="96.5" y1="212.0703" y2="208.0703"/><line style="stroke:#8A0808;stroke-width:1.0;" x1="86.5" x2="96.5" y1="212.0703" y2="216.0703"/><line style="stroke:#8A0808;stroke-width:1.0;" x1="85.5" x2="242.5" y1="212.0703" y2="212.0703"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="79" x="102.5" y="190.8623">QuestionID: 1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="134" x="102.5" y="207.2139">AdditionalInfo: 'LO0815'</text><polygon fill="#E6E6E6" points="15,225.0703,157,225.0703,167,245.0703,157,265.0703,15,265.0703,5,245.0703,15,225.0703" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="116" x="17" y="242.5654">Determination of the</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="138" x="17" y="258.917">Parameters for LO 0815</text><line style="stroke:#8A0808;stroke-width:1.0;" x1="241.5" x2="231.5" y1="293.125" y2="289.125"/><line style="stroke:#8A0808;stroke-width:1.0;" x1="241.5" x2="231.5" y1="293.125" y2="297.125"/><line style="stroke:#8A0808;stroke-width:1.0;" x1="85.5" x2="242.5" y1="293.125" y2="293.125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="92.5" y="288.2686">Parametrization</text><line style="stroke:#8A0808;stroke-width:1.0;" x1="241.5" x2="231.5" y1="323.4766" y2="319.4766"/><line style="stroke:#8A0808;stroke-width:1.0;" x1="241.5" x2="231.5" y1="323.4766" y2="327.4766"/><line style="stroke:#8A0808;stroke-width:1.0;" x1="85.5" x2="242.5" y1="323.4766" y2="323.4766"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="124" x="92.5" y="318.6201">AnswerID := 1 (Done)</text><polygon fill="#E6E6E6" points="180,336.4766,307,336.4766,317,356.4766,307,376.4766,180,376.4766,170,356.4766,180,336.4766" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="123" x="182" y="353.9717">Parameterization has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="97" x="182" y="370.3232">been successfull</text><line style="stroke:#8A0808;stroke-width:1.0;" x1="86.5" x2="96.5" y1="420.8828" y2="416.8828"/><line style="stroke:#8A0808;stroke-width:1.0;" x1="86.5" x2="96.5" y1="420.8828" y2="424.8828"/><line style="stroke:#8A0808;stroke-width:1.0;" x1="85.5" x2="242.5" y1="420.8828" y2="420.8828"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="102.5" y="399.6748">QuestionID := 0</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="105" x="102.5" y="416.0264">AdditionalInfo := ' '</text><line style="stroke:#8A0808;stroke-width:1.0;" x1="241.5" x2="231.5" y1="451.2344" y2="447.2344"/><line style="stroke:#8A0808;stroke-width:1.0;" x1="241.5" x2="231.5" y1="451.2344" y2="455.2344"/><line style="stroke:#8A0808;stroke-width:1.0;" x1="85.5" x2="242.5" y1="451.2344" y2="451.2344"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82" x="92.5" y="446.3779">AnswerID := 0</text><!--MD5=[7184c414c8ceb91244b34e104b326a8a]
+@startuml Parameter_Abfrage
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "LOL" as DZ order 1
+participant "LEA Service" as Service order 2
+
+note over Service
+ServiceInteraction
+- -
+QuestionID[1]: Parameterization Demand 
+..
+AnswerID[1]: Done 
+AnswerID[2]: Error
+..
+AdditionalInfo: ' '
+end note 
+
+DZ <<- Service: QuestionID: 1\nAdditionalInfo: 'LO0815'
+
+hnote over DZ
+Determination of the 
+Parameters for LO 0815
+end hnote
+
+DZ ->> Service: Parametrization
+DZ ->> Service: AnswerID := 1 (Done)
+
+hnote over Service
+Parameterization has
+been successfull 
+end hnote
+
+DZ <<- Service: QuestionID := 0\nAdditionalInfo := ' '
+DZ ->> Service: AnswerID := 0
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 19:01:30 CEST 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: de
+Country: DE
+--></g></svg>
