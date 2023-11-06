@@ -63,7 +63,7 @@ Like all other MTP process value inputs, these are defined in the MTPDataObjectS
 
 ### 10.5 Extension of Process Value Outputs
 
-For the process value outputs of structured data types, the associated *IndicatorElement* (*StructView*, see Section 10.2) can be used as for all other MTP data types. For process value outputs of the array data type, a separate *ArrayProcessValueOutput* must be modelled since this is different from the associated *IndicatorElement* (*ArrayView*, see Section 10.2).
+For the process value outputs of structured data types, the associated *IndicatorElement* (*StructView*, see Section 10.2) can be used as for all other MTP data types. For process value outputs of the array data type, a separate *ArrayProcessValueOutput* must be modelled (see Figure 10.9 and Figure 10.10) since this is different from the associated *IndicatorElement* (*ArrayView*, see Section 10.2).
 
 [<img src="./Fig_10.9_SUCs_PVOut.svg" width="50%"/>](./Fig_10.9_SUCs_PVOut.svg)
 
