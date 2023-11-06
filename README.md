@@ -29,7 +29,12 @@ Since the work on the concepts for modular logistic systems is still ongoing, th
 Please find all references [here](13_References/README.md).
 
 ## PDF Document of the Technical Report
+
+### Current Version
 The current version of the Technical Report can be downloaded as a PDF file [here](Technical_Report_MTP_Logistics_v2_Submitted.pdf).
+
+### Previous Versions
+- [Version 1](./99_Archive/Technical_Report_MTP_Logistics_v1_Submitted.pdf) (Release Date: 20 September 2022)
 
 
 [Next >](./02_Modular_Logistics_System/README.md)
