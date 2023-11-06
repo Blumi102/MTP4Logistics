@@ -7,7 +7,7 @@
 
 For the parameterization of logistics services, two new interface definitions are necessary in addition to the existing interface definitions for service parameters – *StructServParam* and *ArrayServParam* (see Figure 10.1 and Figure 10.2). 
 
-[<img src="./Fig_10.1_SUCs_Parameters.png" width="50%"/>](./Fig_10.1_SUCs_Parameters.png)
+[<img src="./Fig_10.1_SUCs_Parameters.svg" width="50%"/>](./Fig_10.1_SUCs_Parameters.svg)
 
 *Figure 10.1: SUCs of the logistics aspect for extending the service parameters*
 
@@ -23,7 +23,7 @@ In addition, an extension of the *ServiceParameter* model definition with semant
 
 *StructView* and *ArrayView* are conceivable, similar to the indicator element interfaces for all existing MTP data types (see Figure 10.3 and Figure 10.4).
 
-[<img src="./Fig_10.3_SUCs_Indicator_Elements.png" width="50%"/>](./Fig_10.3_SUCs_Indicator_Elements.png)
+[<img src="./Fig_10.3_SUCs_Indicator_Elements.svg" width="50%"/>](./Fig_10.3_SUCs_Indicator_Elements.svg)
 
 *Figure 10.3: SUCs of the logistics aspect for extending the indicator elements*
 
@@ -37,7 +37,7 @@ Like all other MTP indicator elements, these are defined in the MTPDataObjectSUC
 
 *StructMan*, *StructManInt*, *ArrayMan* and *ArrayManInt* are conceivable, similar to the operation element interfaces for all existing MTP data types (see Figure 10.5 and Figure 10.6).
 
-[<img src="./Fig_10.5_SUCs_Operation_Elements.png" width="70%"/>](./Fig_10.5_SUCs_Operation_Elements.png)
+[<img src="./Fig_10.5_SUCs_Operation_Elements.svg" width="70%"/>](./Fig_10.5_SUCs_Operation_Elements.svg)
 
 *Figure 10.5: SUCs of the logistics aspect for extending the operation elements*
 
@@ -51,7 +51,7 @@ Like all other MTP operation elements, these are defined in the MTPDataObjectSUC
 
 *StructProcessValueInputs* and *ArrayProcessValueInputs* are conceivable, similar to the process value input interfaces for all existing MTP data types (see Figure 10.7 and Figure 10.8). 
 
-[<img src="./Fig_10.7_SUCs_PVIn.png" width="50%"/>](./Fig_10.7_SUCs_PVIn.png)
+[<img src="./Fig_10.7_SUCs_PVIn.svg" width="50%"/>](./Fig_10.7_SUCs_PVIn.svg)
 
 *Figure 10.7: SUCs of the logistics aspect for extending the process value inputs*
 
@@ -65,7 +65,7 @@ Like all other MTP process value inputs, these are defined in the MTPDataObjectS
 
 For the process value outputs of structured data types, the associated *IndicatorElement* (*StructView*, see Section 10.2) can be used as for all other MTP data types. For process value outputs of the array data type, a separate *ArrayProcessValueOutput* must be modelled since this is different from the associated *IndicatorElement* (*ArrayView*, see Section 10.2).
 
-[<img src="./Fig_10.9_SUCs_PVOut.png" width="50%"/>](./Fig_10.9_SUCs_PVOut.png)
+[<img src="./Fig_10.9_SUCs_PVOut.svg" width="50%"/>](./Fig_10.9_SUCs_PVOut.svg)
 
 *Figure 10.9: SUCs of the logistics aspect for introducing the ArrayProcessValueOutput*
 
@@ -79,7 +79,7 @@ The ArrayProcessValueOutput is defined in the MTPDataObjectSUCLib and derived fr
 
 The logistics interactions between a LEA and a LOL described in Section 3.2.3 are based on the principle of service interaction described in VDI/VDE/NAMUR 2658-4 [3]. However, new SUCs and RCs are required to represent the logistics interactions in the IH of an MTP, which are shown in Figure 10.11.
 
-[<img src="./Fig_10.11_SUCs_Logistics_Interaction.png" width="80%"/>](./Fig_10.11_SUCs_Logistics_Interaction.png)
+[<img src="./Fig_10.11_SUCs_Logistics_Interaction.svg" width="80%"/>](./Fig_10.11_SUCs_Logistics_Interaction.svg)
 
 *Figure 10.11: SUCs of the logistics aspect for the implementation of the logistics interaction*
 

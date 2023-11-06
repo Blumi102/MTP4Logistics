@@ -5,7 +5,7 @@
 
 For mapping the choreography aspect in the IH of an MTP, the SUCs shown in Figure 11.1 have been developed. 
 
-[<img src="./Fig_11.1_SUCs_ChoreographySet.png" width="90%"/>](./Fig_11.1_SUCs_ChoreographySet.png)
+[<img src="./Fig_11.1_SUCs_ChoreographySet.svg" width="90%"/>](./Fig_11.1_SUCs_ChoreographySet.svg)
 
 *Figure 11.1: SUCs of the choreography aspect*
 
@@ -13,13 +13,13 @@ The *ChoreographySet* is derived from the abstract SUC *MTPSet*, which is specif
 
 These model definitions are based on the types of MTPChoreographySUCLib shown in Figure 11.2.
 
-[<img src="./Fig_11.2_Model_ChoreographySet.png" width="50%"/>](./Fig_11.2_Model_ChoreographySet.png)
+[<img src="./Fig_11.2_Model_ChoreographySet.png" width="40%"/>](./Fig_11.2_Model_ChoreographySet.png)
 
 *Figure 11.2: Model definitions of the choreography aspect in MTPChoreographySUCLib*
 
 In addition, new interface definitions are required for the implementation of choreographies, which are to be specified in the MTPDataObjectSUCLib (see Figure 11.1 and Figure 11.3). The *UnionElement* and the *ChoreographyElement* are directly derived from the *DataAssembly*, which is specified in VDI/VDE/NAMUR 2658-1 [8]. The *ChoreographyParticipantManager* and the *CommunicationManager* are in turn derived from the *ChoreographyElement*. As a specific derivation of the *CommunicationManager*, only the *OpcUaClientServerManager* has been implemented so far; others are conceivable. Especially for *WritableInputLements*, a *WritableUnionElement* is foreseen, which is derived from *UnionElement*. Interface definitions and their associated model definitions are linked by RefID relations.
 
-[<img src="./Fig_11.3_Interfaces_ChoreographySet.png" width="60%"/>](./Fig_11.3_Interfaces_ChoreographySet.png)
+[<img src="./Fig_11.3_Interfaces_ChoreographySet.png" width="50%"/>](./Fig_11.3_Interfaces_ChoreographySet.png)
 
 *Figure 11.3: Interface definitions of the choreography aspect in MTPDataObjectSUCLib*
 
@@ -33,7 +33,7 @@ The SUC *ChoreographySet* (see Table 11.1) as a new aspect set of the MTP specif
 
 *Table 11.1: Model definition of ChoreographySet*
 
-[<img src="./Tab_11.1_Model_ChoreographySet.png" width="90%"/>](./Tab_11.1_Model_ChoreographySet.png)
+[<img src="./Tab_11.1_Model_ChoreographySet.png" width="80%"/>](./Tab_11.1_Model_ChoreographySet.png)
 
 #### 11.1.2	ChoreographyParticipant
 
@@ -41,7 +41,7 @@ The SUC *ChoreographyParticipant* (see Table 11.2) describes a LEA a choreograph
 
 *Table 11.2: Model definition of ChoreographyParticipant*
 
-[<img src="./Tab_11.2_Model_ChoreographyParticipant.png" width="90%"/>](./Tab_11.2_Model_ChoreographyParticipant.png)
+[<img src="./Tab_11.2_Model_ChoreographyParticipant.png" width="80%"/>](./Tab_11.2_Model_ChoreographyParticipant.png)
 
 #### 11.1.3	InputList
 
@@ -49,7 +49,7 @@ The SUC *InputList* (see Table 11.3) organizes all incoming system variables tha
 
 *Table 11.3: Model definition of InputList*
 
-[<img src="./Tab_11.3_Model_InputList.png" width="90%"/>](./Tab_11.3_Model_InputList.png)
+[<img src="./Tab_11.3_Model_InputList.png" width="80%"/>](./Tab_11.3_Model_InputList.png)
 
 #### 11.1.4	InputElement
 
@@ -57,7 +57,7 @@ The SUC *InputElement* (see Table 11.4) describes an incoming system variable th
 
 *Table 11.4: Model definition of InputElement*
 
-[<img src="./Tab_11.4_Model_InputElement.png" width="90%"/>](./Tab_11.4_Model_InputElement.png)
+[<img src="./Tab_11.4_Model_InputElement.png" width="80%"/>](./Tab_11.4_Model_InputElement.png)
 
 #### 11.1.5	FixedInputElement
 
@@ -65,7 +65,7 @@ The SUC *FixedInputElement* (see Table 11.5) is derived from the *InputElement* 
 
 *Table 11.5: Model definition of FixedInputElement*
 
-[<img src="./Tab_11.5_Model_FixedInputElement.png" width="90%"/>](./Tab_11.5_Model_FixedInputElement.png)
+[<img src="./Tab_11.5_Model_FixedInputElement.png" width="80%"/>](./Tab_11.5_Model_FixedInputElement.png)
 
 #### 11.1.6	ConfigurableInputElement
 
@@ -73,7 +73,7 @@ The SUC *ConfigurableInputElement* (see Table 11.6) is derived from the *InputEl
 
 *Table 11.6: Model definition of ConfigurableInputElement*
 
-[<img src="./Tab_11.6_Model_ConfigurableInputElement.png" width="90%"/>](./Tab_11.6_Model_ConfigurableInputElement.png)
+[<img src="./Tab_11.6_Model_ConfigurableInputElement.png" width="80%"/>](./Tab_11.6_Model_ConfigurableInputElement.png)
 
 #### 11.1.7	WritableInputElement
 
@@ -81,7 +81,7 @@ The SUC *WritableInputElement* (see Table 11.7) is derived from the *InputElemen
 
 *Table 11.7: Model definition of WritableInputElement*
 
-[<img src="./Tab_11.7_Model_WritableInputElement.png" width="90%"/>](./Tab_11.7_Model_WritableInputElement.png)
+[<img src="./Tab_11.7_Model_WritableInputElement.png" width="80%"/>](./Tab_11.7_Model_WritableInputElement.png)
 
 #### 11.1.8	OutputList
 
@@ -89,7 +89,7 @@ The SUC *OutputList* (see Table 11.8) organizes all outgoing system variables of
 
 *Table 11.8: Model definition of OutputList*
 
-[<img src="./Tab_11.8_Model_OutputList.png" width="90%"/>](./Tab_11.8_Model_OutputList.png)
+[<img src="./Tab_11.8_Model_OutputList.png" width="80%"/>](./Tab_11.8_Model_OutputList.png)
 
 #### 11.1.9	OutputElement
 
@@ -97,7 +97,7 @@ The SUC *OutputElement* (see Table 11.9) describes an outgoing system variable f
 
 *Table 11.9: Model definition of OutputElement*
 
-[<img src="./Tab_11.9_Model_OutputElement.png" width="90%"/>](./Tab_11.9_Model_OutputElement.png)
+[<img src="./Tab_11.9_Model_OutputElement.png" width="80%"/>](./Tab_11.9_Model_OutputElement.png)
 
 #### 11.1.10 FixedOutputElement
 
@@ -105,7 +105,7 @@ The SUC *FixedOutputElement* (see Table 11.10) is derived from the *OutputElemen
 
 *Table 11.10: Model definition of FixedOutputElement*
 
-[<img src="./Tab_11.10_Model_FixedOutputElement.png" width="90%"/>](./Tab_11.9_Model_OutputElement.png)
+[<img src="./Tab_11.10_Model_FixedOutputElement.png" width="80%"/>](./Tab_11.9_Model_OutputElement.png)
 
 #### 11.1.11 ConfigurableOutputElement
 
@@ -113,7 +113,7 @@ The SUC *ConfigurableOutputElement* (see Table 11.11) is derived from the *Outpu
 
 *Table 11.11: Model definition of ConfigurableOutputElement*
 
-[<img src="./Tab_11.11_Model_ConfigurableOutputElement.png" width="90%"/>](./Tab_11.9_Model_OutputElement.png)
+[<img src="./Tab_11.11_Model_ConfigurableOutputElement.png" width="80%"/>](./Tab_11.9_Model_OutputElement.png)
 
 ### 11.2 Interface Definitions
 
@@ -123,7 +123,7 @@ The SUC *ChoreographyElement* (see Table 11.12) is an abstract class derived fro
 
 *Table 11.12: Interface definition of ChoreographyElement*
 
-[<img src="./Tab_11.12_Interface_ChoreographyElement.png" width="90%"/>](./Tab_11.9_Model_OutputElement.png)
+[<img src="./Tab_11.12_Interface_ChoreographyElement.png" width="80%"/>](./Tab_11.9_Model_OutputElement.png)
 
 
 #### 11.2.2	ChoreographyParticipantManager
@@ -132,7 +132,7 @@ The SUC *ChoreographyParticipantManager* (see Table 11.13) is derived from the *
 
 *Table 11.13: Interface definition of ChoreographyParticipantManager*
 
-[<img src="./Tab_11.13_Interface_ChoreographyParticipantManager.png" width="90%"/>](./Tab_11.13_Interface_ChoreographyParticipantManager.png)
+[<img src="./Tab_11.13_Interface_ChoreographyParticipantManager.png" width="80%"/>](./Tab_11.13_Interface_ChoreographyParticipantManager.png)
 
 #### 11.2.3	CommunicationManager
 
@@ -140,7 +140,7 @@ The SUC *CommunicationManager* (see Table 11.14) is an abstract class derived fr
 
 *Table 11.14: Interface definition of CommunicationManager*
 
-[<img src="./Tab_11.14_Interface_CommunicationManager.png" width="90%"/>](./Tab_11.14_Interface_CommunicationManager.png)
+[<img src="./Tab_11.14_Interface_CommunicationManager.png" width="80%"/>](./Tab_11.14_Interface_CommunicationManager.png)
 
 
 #### 11.2.4	OpcUaClientServerManager
@@ -149,7 +149,7 @@ The SUC *OpcUaClientServerManager* (see Table 11.15) is derived from the abstrac
 
 *Table 11.15: Interface definition of OpcUaClientServerManager*
 
-[<img src="./Tab_11.15_Interface_OpcUaClientServerManager.png" width="90%"/>](./Tab_11.15_Interface_OpcUaClientServerManager.png)
+[<img src="./Tab_11.15_Interface_OpcUaClientServerManager.png" width="80%"/>](./Tab_11.15_Interface_OpcUaClientServerManager.png)
 
 #### 11.2.5	UnionElement
 
@@ -157,7 +157,7 @@ The SUC *UnionElement* (see Table 11.16) is used to display the value of an *Inp
 
 *Table 11.16: Interface definition of UnionElement*
 
-[<img src="./Tab_11.16_Interface_UnionElement.png" width="90%"/>](./Tab_11.16_Interface_UnionElement.png)
+[<img src="./Tab_11.16_Interface_UnionElement.png" width="80%"/>](./Tab_11.16_Interface_UnionElement.png)
 
 *VReal*, *VDInt*, *VDWord*, *VBool* and *VString* variables are used to display the desired value. *DataType* variable specifies which data type is activated at the moment and as a consequence which of the previously mentioned variables shall be interpreted. Thus, the *UnionElement* can only display one value of a defined data type at a time. *VQC* provides information about the quality code of the displayed value.
 
@@ -167,7 +167,7 @@ The SUC *WritableUnionElement* (see Table 11.17) is derived from *UnionElement* 
 
 *Table 11.17: Interface definition of WritableUnionElement*
 
-[<img src="./Tab_11.17_Interface_WritableUnionElement.png" width="90%"/>](./Tab_11.17_Interface_WritableUnionElement.png)
+[<img src="./Tab_11.17_Interface_WritableUnionElement.png" width="80%"/>](./Tab_11.17_Interface_WritableUnionElement.png)
 
 *VReal*, *VDInt*, *VDWord*, *VBool* and *VString* variables are used to enter the desired value. *DataType* variable specifies which data type is activated at the moment and as a consequence which of the previously mentioned variables shall be used in the LEA program. Thus, the *WritableUnionElement* only accepts one value of a defined data type at a time. *VQC* can be used to enter information about the quality code of the entered value.
 
