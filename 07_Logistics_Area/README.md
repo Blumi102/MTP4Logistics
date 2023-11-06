@@ -57,7 +57,7 @@ The resulting procedures of a transport service are shown in Table 7.1.
 
 From the phases of a transport order, it becomes clear that a transport service must interact with various LEAs during its execution. Figure 7.4 shows this using the example of the palletizing LEA, which has completed a pallet that shall now be transported to a stretch hood machine.
 
-[<img src="./Fig_7.4_Transport_Interaction.png" width="60%"/>](./Fig_7.4_Transport_Interaction.png)
+[<img src="./Fig_7.4_Transport_Interaction.png" width="50%"/>](./Fig_7.4_Transport_Interaction.png)
 
 *Figure 7.4: Interaction between a transport service and different LEAs in the course of a transport process*
 
