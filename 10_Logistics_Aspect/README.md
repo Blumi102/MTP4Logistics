@@ -7,11 +7,11 @@
 
 For the parameterization of logistics services, two new interface definitions are necessary in addition to the existing interface definitions for service parameters – *StructServParam* and *ArrayServParam* (see Figure 10.1 and Figure 10.2). 
 
-[<img src="./Fig_10.1_SUCs_Parameters.png" width="60%"/>](./Fig_10.1_SUCs_Parameters.png)
+[<img src="./Fig_10.1_SUCs_Parameters.png" width="50%"/>](./Fig_10.1_SUCs_Parameters.png)
 
 *Figure 10.1: SUCs of the logistics aspect for extending the service parameters*
 
-[<img src="./Fig_10.2_Interfaces_Parameters.png" width="50%"/>](./Fig_10.2_Interfaces_Parameters.png)
+[<img src="./Fig_10.2_Interfaces_Parameters.png" width="40%"/>](./Fig_10.2_Interfaces_Parameters.png)
 
 *Figure 10.2: Interface definitions of the logistics aspect to extend the services parameters in the MTPDataObjectSUCLib*
 
@@ -23,11 +23,11 @@ In addition, an extension of the *ServiceParameter* model definition with semant
 
 *StructView* and *ArrayView* are conceivable, similar to the indicator element interfaces for all existing MTP data types (see Figure 10.3 and Figure 10.4).
 
-[<img src="./Fig_10.3_SUCs_Indicator_Elements.png" width="60%"/>](./Fig_10.3_SUCs_Indicator_Elements.png)
+[<img src="./Fig_10.3_SUCs_Indicator_Elements.png" width="50%"/>](./Fig_10.3_SUCs_Indicator_Elements.png)
 
 *Figure 10.3: SUCs of the logistics aspect for extending the indicator elements*
 
-[<img src="./Fig_10.4_Interfaces_Indicator_Elements.png" width="50%"/>](./Fig_10.4_Interfaces_Indicator_Elements.png)
+[<img src="./Fig_10.4_Interfaces_Indicator_Elements.png" width="40%"/>](./Fig_10.4_Interfaces_Indicator_Elements.png)
 
 *Figure 10.4: Interface definitions of the logistics aspect to extend the indicator elements in the MTPDataObjectSUCLib*
 
@@ -37,11 +37,11 @@ Like all other MTP indicator elements, these are defined in the MTPDataObjectSUC
 
 *StructMan*, *StructManInt*, *ArrayMan* and *ArrayManInt* are conceivable, similar to the operation element interfaces for all existing MTP data types (see Figure 10.5 and Figure 10.6).
 
-[<img src="./Fig_10.5_SUCs_Operation_Elements.png" width="80%"/>](./Fig_10.5_SUCs_Operation_Elements.png)
+[<img src="./Fig_10.5_SUCs_Operation_Elements.png" width="70%"/>](./Fig_10.5_SUCs_Operation_Elements.png)
 
 *Figure 10.5: SUCs of the logistics aspect for extending the operation elements*
 
-[<img src="./Fig_10.6_Interfaces_Operation_Elements.png" width="50%"/>](./Fig_10.6_Interfaces_Operation_Elements.png)
+[<img src="./Fig_10.6_Interfaces_Operation_Elements.png" width="40%"/>](./Fig_10.6_Interfaces_Operation_Elements.png)
 
 *Figure 10.6: Interface definitions of the logistics aspect to extend the operation elements in the MTPDataObjectSUCLib*
 
@@ -51,11 +51,11 @@ Like all other MTP operation elements, these are defined in the MTPDataObjectSUC
 
 *StructProcessValueInputs* and *ArrayProcessValueInputs* are conceivable, similar to the process value input interfaces for all existing MTP data types (see Figure 10.7 and Figure 10.8). 
 
-[<img src="./Fig_10.7_SUCs_PVIn.png" width="60%"/>](./Fig_10.7_SUCs_PVIn.png)
+[<img src="./Fig_10.7_SUCs_PVIn.png" width="50%"/>](./Fig_10.7_SUCs_PVIn.png)
 
 *Figure 10.7: SUCs of the logistics aspect for extending the process value inputs*
 
-[<img src="./Fig_10.8_Interfaces_PVIn.png" width="50%"/>](./Fig_10.8_Interfaces_PVIn.png)
+[<img src="./Fig_10.8_Interfaces_PVIn.png" width="40%"/>](./Fig_10.8_Interfaces_PVIn.png)
 
 *Figure 10.8: Interface definitions of the logistics aspect to extend the process value inputs in the MTPDataObjectSUCLib*
 
@@ -65,11 +65,11 @@ Like all other MTP process value inputs, these are defined in the MTPDataObjectS
 
 For the process value outputs of structured data types, the associated *IndicatorElement* (*StructView*, see Section 10.2) can be used as for all other MTP data types. For process value outputs of the array data type, a separate *ArrayProcessValueOutput* must be modelled since this is different from the associated *IndicatorElement* (*ArrayView*, see Section 10.2).
 
-[<img src="./Fig_10.9_SUCs_PVOut.png" width="60%"/>](./Fig_10.9_SUCs_PVOut.png)
+[<img src="./Fig_10.9_SUCs_PVOut.png" width="50%"/>](./Fig_10.9_SUCs_PVOut.png)
 
 *Figure 10.9: SUCs of the logistics aspect for introducing the ArrayProcessValueOutput*
 
-[<img src="./Fig_10.10_Interfaces_PVOut.png" width="50%"/>](./Fig_10.10_Interfaces_PVOut.png)
+[<img src="./Fig_10.10_Interfaces_PVOut.png" width="40%"/>](./Fig_10.10_Interfaces_PVOut.png)
 
 *Figure 10.10: Interface definitions of the logistics aspect to introducing the ArrayProcessValueOutputs in the MTPDataObjectSUCLib*
 
@@ -79,7 +79,7 @@ The ArrayProcessValueOutput is defined in the MTPDataObjectSUCLib and derived fr
 
 The logistics interactions between a LEA and a LOL described in Section 3.2.3 are based on the principle of service interaction described in VDI/VDE/NAMUR 2658-4 [3]. However, new SUCs and RCs are required to represent the logistics interactions in the IH of an MTP, which are shown in Figure 10.11.
 
-[<img src="./Fig_10.11_SUCs_Logistics_Interaction.png" width="90%"/>](./Fig_10.11_SUCs_Logistics_Interaction.png)
+[<img src="./Fig_10.11_SUCs_Logistics_Interaction.png" width="80%"/>](./Fig_10.11_SUCs_Logistics_Interaction.png)
 
 *Figure 10.11: SUCs of the logistics aspect for the implementation of the logistics interaction*
 
@@ -87,7 +87,7 @@ The SUC *LogisticsInteraction* derived from the SUC *TextDefinition* specified i
 
 These model definitions are based on the types of MTPLogisticsSUCLib shown in Figure 10.12.
 
-[<img src="./Fig_10.12_Model_Logistics_Interaction.png" width="60%"/>](./Fig_10.12_Model_Logistics_Interaction.png)
+[<img src="./Fig_10.12_Model_Logistics_Interaction.png" width="50%"/>](./Fig_10.12_Model_Logistics_Interaction.png)
 
 *Figure 10.12: Model definitions of the logistics aspect for the implementation of the logistics interaction in the MTPLogisticsSUCLib*
 
@@ -109,7 +109,7 @@ The SUC *ServiceParameter* (see Table 10.1) defines the base class for MTP servi
 
 *Table 10.1: Model definition of ServiceParameter*
 
-[<img src="./Tab_10.1_Model_Service_Parameter.png" width="90%"/>](./Tab_10.1_Model_Service_Parameter.png)
+[<img src="./Tab_10.1_Model_Service_Parameter.png" width="80%"/>](./Tab_10.1_Model_Service_Parameter.png)
 
 #### 10.7.2 LogisticsInteraction
 
@@ -117,7 +117,7 @@ The SUC *LogisticsInteraction* (see Table 10.2) organizes all necessary model de
 
 *Table 10.2: Model definition of LogisticsInteraction*
 
-[<img src="./Tab_10.2_Model_Logistics_Interaction.png" width="90%"/>](./Tab_10.2_Model_Logistics_Interaction.png)
+[<img src="./Tab_10.2_Model_Logistics_Interaction.png" width="80%"/>](./Tab_10.2_Model_Logistics_Interaction.png)
 
 #### 10.7.3	LogisticsQuestion
 
@@ -125,7 +125,7 @@ The SUC *LogisticsQuestion* (see Table 10.3) is an abstract class derived from t
 
 *Table 10.3: Model definition of LogisticsQuestion*
 
-[<img src="./Tab_10.3_Model_Logistics_Question.png" width="90%"/>](./Tab_10.3_Model_Logistics_Question.png)
+[<img src="./Tab_10.3_Model_Logistics_Question.png" width="80%"/>](./Tab_10.3_Model_Logistics_Question.png)
 
 #### 10.7.4	ParameterRequest
 
@@ -133,7 +133,7 @@ The SUC *ParameterRequest* (see Table 10.4) is derived from *LogisticsQuestion* 
 
 *Table 10.4: Model definition of ParameterRequest*
 
-[<img src="./Tab_10.4_Model_Parameter_Request.png" width="90%"/>](./Tab_10.4_Model_Parameter_Request.png)
+[<img src="./Tab_10.4_Model_Parameter_Request.png" width="80%"/>](./Tab_10.4_Model_Parameter_Request.png)
 
 #### 10.7.5	ParameterUpdatedInfo
 
@@ -141,7 +141,7 @@ The SUC *ParameterUpdatedInfo* (see Table 10.5) is derived from the *LogisticsQu
 
 *Table 10.5: Model definition of ParameterUpdatedInfo*
 
-[<img src="./Tab_10.5_Model_Parameter_Updated.png" width="90%"/>](./Tab_10.5_Model_Parameter_Updated.png)
+[<img src="./Tab_10.5_Model_Parameter_Updated.png" width="80%"/>](./Tab_10.5_Model_Parameter_Updated.png)
 
 #### 10.7.6	TransportNodeRequest
 
@@ -149,7 +149,7 @@ The SUC *TransportNodeRequest* (see Table 10.6) is derived from the *LogisticsQu
 
 *Table 10.6: Model definition of TransportNodeRequest*
 
-[<img src="./Tab_10.6_Model_Transport_Node_Request.png" width="90%"/>](./Tab_10.6_Model_Transport_Node_Request.png)
+[<img src="./Tab_10.6_Model_Transport_Node_Request.png" width="80%"/>](./Tab_10.6_Model_Transport_Node_Request.png)
 
 #### 10.7.7	HasLogisticsInteraction
 
@@ -157,7 +157,7 @@ The RC *HasLogisticsInteraction* (see Table 10.7) is derived from the RC *HasTex
 
 *Table 10.7: Model definition of HasLogisticsInteraction*
 
-[<img src="./Tab_10.7_Model_Has_Logistics_Interaction.png" width="90%"/>](./Tab_10.7_Model_Has_Logistics_Interaction.png)
+[<img src="./Tab_10.7_Model_Has_Logistics_Interaction.png" width="80%"/>](./Tab_10.7_Model_Has_Logistics_Interaction.png)
 
 ### 10.8 Interface Definitions
 
@@ -167,7 +167,7 @@ The SUC *StructServParam* (see Table 10.8) is used to pass parameters of a user-
 
 *Table 10.8: Interface definition of StructServParam*
 
-[<img src="./Tab_10.8_Interface_StructServParam.png" width="90%"/>](./Tab_10.8_Interface_StructServParam.png)
+[<img src="./Tab_10.8_Interface_StructServParam.png" width="80%"/>](./Tab_10.8_Interface_StructServParam.png)
 
 The special characteristic of this interface definition is the use of a user-defined data type. Figure 10.14 shows how such a data type can be modelled. The rules for modelling complex data types from VDI/VDE/NAMUR 2658-1 [8] are used.
 
@@ -183,7 +183,7 @@ The SUC *ArrayServParam* (see Table 10.9) is used for the LOL to manage an array
 
 *Table 10.9: Interface definition of ArrayServParam*
 
-[<img src="./Tab_10.9_Interface_ArrayServParam.png" width="90%"/>](./Tab_10.9_Interface_ArrayServParam.png)
+[<img src="./Tab_10.9_Interface_ArrayServParam.png" width="80%"/>](./Tab_10.9_Interface_ArrayServParam.png)
 
 The challenge with this interface definition is the management of an array of variables with undefined length. This is often not possible in common automation solutions or only under certain conditions. Therefore, a multiplexer mechanism is used, which can access an array of arbitrary length via a structurally static interface. 
 
@@ -199,7 +199,7 @@ The SUC StructView (see Table 10.10) is used for a LOL to display a LEA variable
 
 *Table 10.10: Interface definition of StructView*
 
-[<img src="./Tab_10.10_Interface_StructView.png" width="90%"/>](./Tab_10.10_Interface_StructView.png)
+[<img src="./Tab_10.10_Interface_StructView.png" width="80%"/>](./Tab_10.10_Interface_StructView.png)
 
 The special feature of this interface is the use of a user-defined data type. The modelling and use of such a type has already been described in Section 10.8.1 in the context of the *StructServParam* and shall be done in the same way for the *StructView* interface.
 
@@ -209,7 +209,7 @@ The SUC *ArrayView* (see Table 10.11) is used for the LOL to view the value at a
 
 *Table 10.11: Interface definition of ArrayView*
 
-[<img src="./Tab_10.11_Interface_ArrayView.png" width="90%"/>](./Tab_10.11_Interface_ArrayView.png)
+[<img src="./Tab_10.11_Interface_ArrayView.png" width="80%"/>](./Tab_10.11_Interface_ArrayView.png)
 
 Similar to the description in Section 10.8.2 for the *ArrayServParam*, the challenge for this interface is to access an array within a LEA, which can have an arbitrary length. As described in Section 10.8.2, access to this array should also be done in an index-based manner in case of the *ArrayView* interface.
 
@@ -221,7 +221,7 @@ The SUC *StructMan* (see Table 10.12) is used for the LOL to manipulate a LEA va
 
 *Table 10.12: Interface definition of StructMan*
 
-[<img src="./Tab_10.12_Interface_StructMan.png" width="90%"/>](./Tab_10.12_Interface_StructMan.png)
+[<img src="./Tab_10.12_Interface_StructMan.png" width="80%"/>](./Tab_10.12_Interface_StructMan.png)
 
 *VMan* is used to enter the desired value of the variable. Following the concept specified in VDI/VDE/NAMUR 2658-3 [5], *VRbk* is used to verify the communication between a LOL and the StructMan interface within a LEA and displays the raw value communicated to the LEA. *VOut* displays the value given to a further LEA internal block possibly with limitations applied. *VFbk* variable is used to display the current value of the structure affected by the *StructMan* interface. The special feature of this interface is the use of a user-defined data type. The modelling and use of such a type has already been described in Section 10.8.1 in the context of the *StructServParam* and shall be done in the same way for the *StructMan* interface.
 
@@ -231,7 +231,7 @@ The SUC *StructManInt* (see Table 10.13) is used for manipulating a LEA variable
 
 *Table 10.13: Interface definition of StructManInt[^1]*
 
-[<img src="./Tab_10.13_Interface_StructManInt.png" width="90%"/>](./Tab_10.12_Interface_StructManInt.png)
+[<img src="./Tab_10.13_Interface_StructManInt.png" width="80%"/>](./Tab_10.12_Interface_StructManInt.png)
 
 The *StructManInt* interface extends the *StructMan* interface, described in Section 10.8.5, by the internal value specification and a source mode in accordance with VDI/VDE/NAMUR 2658-3 [5]. If the internal access channel is selected, a LEA internal value is used instead of the external value setting. Apart from that, the function of this interface is the same as that of the *StructMan* interface.
 
@@ -241,7 +241,7 @@ The SUC *ArrayMan* (see Table 10.14) is used for the LOL to manipulate a value a
 
 *Table 10.14: Interface definition of ArrayMan*
 
-[<img src="./Tab_10.14_Interface_ArrayMan.png" width="90%"/>](./Tab_10.12_Interface_StructManInt.png)
+[<img src="./Tab_10.14_Interface_ArrayMan.png" width="80%"/>](./Tab_10.12_Interface_StructManInt.png)
 
 Similar to the description in Section 10.8.2 for the *ArrayServParam*, the challenge for this interface is to access an array within a LEA, which can have an arbitrary length. As described in Section 10.8.2, access to this array should also be done in an index-based manner in the case of the *ArrayMan* interface.
 
@@ -253,7 +253,7 @@ The SUC *ArrayManInt* (see Table 10.15) is used for the LOL or for a LEA interna
 
 *Table 10.15: Interface definition of ArrayManInt[^2]*
 
-[<img src="./Tab_10.15_Interface_ArrayManInt.png" width="90%"/>](./Tab_10.12_Interface_StructManInt.png)
+[<img src="./Tab_10.15_Interface_ArrayManInt.png" width="80%"/>](./Tab_10.12_Interface_StructManInt.png)
 
 The *ArrayManInt* interface extends the *ArrayMan* interface, described in Section 10.8.7, by the internal value specification and a source mode in accordance with VDI/VDE/NAMUR 2658-3 [5]. If the internal access channel is selected, a LEA internal value is used instead of the external value setting. Apart from that, the function of this interface is the same as that of the *ArrayMan* interface.
 
@@ -273,7 +273,7 @@ The SUC *StructProcessValueIn* (see Table 10.16) is used for a LEA to access the
 
 *Table 10.16: Interface definition of StructProcessValueIn*
 
-[<img src="./Tab_10.16_Interface_StructPVIn.png" width="90%"/>](./Tab_10.16_Interface_StructPVIn.png)
+[<img src="./Tab_10.16_Interface_StructPVIn.png" width="80%"/>](./Tab_10.16_Interface_StructPVIn.png)
 
 In the *V* variable the desired value is transferred. The special feature of this interface is the use of a user-defined data type. The modelling and use of such a type has already been described in Section 10.8.1 in the context of the *StructServParam* and shall be done in the same way for the *StructProcessValueIn* interface.
 
@@ -287,7 +287,7 @@ The SUC *ArrayProcessValueIn* (see Table 10.17) is used for a LEA to access a va
 
 *Table 10.17: Interface definition of ArrayProcessValueIn*
 
-[<img src="./Tab_10.17_Interface_ArrayPVIn.png" width="90%"/>](./Tab_10.17_Interface_ArrayPVIn.png)
+[<img src="./Tab_10.17_Interface_ArrayPVIn.png" width="80%"/>](./Tab_10.17_Interface_ArrayPVIn.png)
 
 Similar to the description in Section 10.8.2 for the *ArrayServParam*, the challenge for this interface is to access an array within a LEA, which can have an arbitrary length. As described in Section 10.8.2, access to this array should also be done in an index-based manner in case of the *ArrayProcessValueIn* interface.
 
@@ -303,7 +303,7 @@ The SUC *OutputElement* (see Table 10.18) is an abstract interface from which sp
 
 *Table 10.18: Interface definition of OutputElement*
 
-[<img src="./Tab_10.18_Interface_OutputElement.png" width="90%"/>](./Tab_10.18_Interface_OutputElement.png)
+[<img src="./Tab_10.18_Interface_OutputElement.png" width="80%"/>](./Tab_10.18_Interface_OutputElement.png)
 
 ***Note:*** Although the *IndicatorElements* of all other MTP data types and of the structured data type have the same interface definitions as the corresponding process value outputs, it may be useful to model separate process value output interfaces in the interest of unambiguous semantics. These should then also be derived from this newly specified *OutputElement*.
 
@@ -313,7 +313,7 @@ The SUC *ArrayProcessValueOut* (see Table 10.19) is used for a LEA to make the v
 
 *Table 10.19: Interface definition of ArrayProcessValueOut*
 
-[<img src="./Tab_10.19_Interface_ArrayPVOut.png" width="90%"/>](./Tab_10.19_Interface_ArrayPVOut.png)
+[<img src="./Tab_10.19_Interface_ArrayPVOut.png" width="80%"/>](./Tab_10.19_Interface_ArrayPVOut.png)
 
 The *ArrayProcessValueOut* interface definition works nearly the same as the *ArrayView* interface definition (see Section 10.8.4). The only difference is that the *ArrayProcessValueOut* interface definition does not contain an *OSLevel* variable as it is always controlled by another LEA. When considering the use of the *ArrayProcessValueOut* interface the notes on the *ArrayProcessValueIn* (see Section 10.8.13) also shall be taken into account.
 
@@ -323,7 +323,7 @@ The RC *LogisticsInteractionExtension* (see Table 10.20) extends the *ServiceCon
 
 *Table 10.20: Interface definition of LogisticsInteractionExtension*
 
-[<img src="./Tab_10.20_RC_LogisticsInteractionExtension.png" width="90%"/>](./Tab_10.20_RC_LogisticsInteractionExtension.png)
+[<img src="./Tab_10.20_RC_LogisticsInteractionExtension.png" width="80%"/>](./Tab_10.20_RC_LogisticsInteractionExtension.png)
 
 A logistics interaction follows a similar principle to the service interaction described in VDI/VDE/NAMUR 2658-4 [3]. However, values in the value range of DINT (instead of DWORD) are provided for the IDs of the questions (*LogisticsQuestionID*) and answers (*LogisticsAnswerID*), whereby the value 0 and also negative values can be valid IDs. The value -1 signals that currently no question or no answer is pending. By means of the *LogisticsQuestionParam* (in the same way as by means of the *InteractAddInfo* from the VDI/VDE/NAMUR 2658-4 [3]) an additional information can be added to a request. The variable *LogisticsAnswerTimeout* allows the input of a time period, which the LEA should wait for the answer of a LOL. After this time has elapsed, the LEA can execute an alternative program sequence without the response of the LOL, if necessary. Setting the timeout to the value 0 is interpreted as deactivating the timeout function.
 
