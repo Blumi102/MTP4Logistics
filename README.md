@@ -14,7 +14,7 @@ Alexander Fay, Helmut Schmidt University Hamburg<br>
 ### Version
 Version 2, 06 November 2023
 
-DOI: 10.13140/RG.2.2.12531.71204
+DOI: 10.13140/RG.2.2.36019.81440
 
 ## 1 Purpose of this Repository
 Modular plants are gaining more and more importance in the process and manufacturing industries for creating flexible and adaptable production systems. In order not to restrict this flexibility, an equally modu-lar and thus flexible and adaptable production-related logistics system is required. Here, the Module Type Package (MTP) concept, which is already known in the area of modular production, can be applied to the area of production-related logistics [1, 2].
