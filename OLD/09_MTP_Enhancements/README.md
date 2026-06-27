@@ -2,7 +2,7 @@
 
 ## 9 Enhancements of the Module Type Package Concept
 
-The Module Type Package concept has originally been developed for the process industry. For a purposeful application in the context of production-related logistics, a further development is necessary, which is presented in the following sections. In course of this development, care has been taken not to change the state machine or any other existing constructs (interface definitions, model definitions and mechanisms) of the MTP concept. However, reinterpretations and reasonable specifications of new MTP constructs have been developed. This section summarizes the identified and partly already implemented reinterpretations and further developments structured according to the different sheets of VDI/VDE/NAMUR 2658 [19].
+
 
 Necessary new model and interface definitions are specified in [Sections 10](../10_Logistics_Aspect/README.md), [11](../11_Choreography_Aspect/README.md) and [12](../12_Transport_Aspect/README.md). For this, the notations used in the MTP guideline are applied. The modelling of the contents of an MTP follows IEC 62714-1:2018 [20] (AutomationML standard). The newly specified model and interface definitions are marked with a red border in the corresponding figures.
 
