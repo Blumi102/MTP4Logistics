@@ -25,116 +25,110 @@ For version verification, the variable *ComposedTypeRevision* of *SUC ComposedMo
 <a id="tab:SucComposedModuleTypePackage"></a>
 **Table: Model Definition of *SUC ComposedModuleTypePackage***
 
-<table style="border-collapse: collapse; width: 100%;">
-	<tbody>
-		<tr style="background-color: #E0E0E0;">
-			<th colspan="4" style="border: 1px solid #000; padding: 8px; text-align: left; background-color: #E0E0E0; color: #000;">Module Type Package - Model Definition</th>
-		</tr>
-		<tr>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Name</th>
-			<td colspan="3" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;"><strong>ComposedModuleTypePackage</strong></td>
-		</tr>
-		<tr>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Type</th>
-			<td colspan="3" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">SystemUnitClass (SUC)</td>
-		</tr>
-		<tr>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Modifier</th>
-			<td colspan="3" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">sealed</td>
-		</tr>
-		<tr>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Description</th>
-			<td colspan="3" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">model definition for the entry point of a Composed Module Type Package</td>
-		</tr>
-		<tr>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">AutomationML Path</th>
-			<td colspan="3" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">MTPSUCLib/ComposedModuleTypePackage</td>
-		</tr>
-		<tr>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">AutomationML BaseRef</th>
-			<td colspan="3" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">-</td>
-		</tr>
-		<tr>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">RoleClasses</th>
-			<td colspan="3" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">[1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)</td>
-		</tr>
-		<tr>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Version</th>
-			<td colspan="3" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">ModuleTypePackage:Manifest.Composed V2.0.0</td>
-		</tr>
-
-		<tr style="background-color: #E0E0E0;">
-			<th colspan="4" style="border: 1px solid #000; padding: 8px; text-align: left; background-color: #E0E0E0; color: #000;">AutomationML Properties</th>
-		</tr>
-		<tr style="background-color: #E0E0E0;">
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Name</th>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Type</th>
-			<th colspan="2" style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Description</th>
-		</tr>
-		<tr>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">ID</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">xs:string</td>
-			<td colspan="2" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">GUID-formatted ID of the object</td>
-		</tr>
-		<tr>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">Name</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">xs:string</td>
-			<td colspan="2" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">name of the composed type (e.g., name of the choreography type)</td>
-		</tr>
-
-		<tr style="background-color: #E0E0E0;">
-			<th colspan="4" style="border: 1px solid #000; padding: 8px; text-align: left; background-color: #E0E0E0; color: #000;">AutomationML Attributes</th>
-		</tr>
-		<tr style="background-color: #E0E0E0;">
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Name</th>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Type</th>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Description</th>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">AttributeType Reference</th>
-		</tr>
-		<tr>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">Version</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">xs:string</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">Composed Module Type Package version</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">ModuleType-PackageRevision-Type</td>
-		</tr>
-		<tr>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">ManufacturerUri</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">xs:string</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">creator of the composed type</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">-</td>
-		</tr>
-		<tr>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">ComposedType-Code</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">xs:string</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">identifier of the composed type</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">-</td>
-		</tr>
-		<tr>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">ComposedType-Revision</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">xs:string</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">version of the composed type</td>
-			<td style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">ComposedType-RevisionType</td>
-		</tr>
-
-		<tr style="background-color: #E0E0E0;">
-			<th colspan="4" style="border: 1px solid #000; padding: 8px; text-align: left; background-color: #E0E0E0; color: #000;">Comment</th>
-		</tr>
-		<tr>
-			<td colspan="4" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">-</td>
-		</tr>
-
-		<tr style="background-color: #E0E0E0;">
-			<th colspan="4" style="border: 1px solid #000; padding: 8px; text-align: left; background-color: #E0E0E0; color: #000;">AutomationML Object - Instance Constraints</th>
-		</tr>
-		<tr>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Allowed Parents</th>
-			<td colspan="3" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">IH ModuleTypePackage</td>
-		</tr>
-		<tr>
-			<th style="border: 1px solid #000; padding: 8px; background-color: #E0E0E0; color: #000;">Allowed Children</th>
-			<td colspan="3" style="border: 1px solid #000; padding: 8px; background-color: #FFFFFF; color: #000;">[0..1] IE of each derivation of SUC MTPSet<br>[1] IE of SUC AttachmentSet</td>
-		</tr>
-	</tbody>
+<table>
+  <tr style="background-color: #E0E0E0;">
+    <th colspan="4">Module Type Package - Model Definition</th>
+  </tr>
+  <tr>
+    <th style="background-color: #E0E0E0; width: 28%;">Name</th>
+    <td colspan="3">**ComposedModuleTypePackage**</td>
+  </tr>
+  <tr>
+    <th style="background-color: #E0E0E0;">Type</th>
+    <td colspan="3">SystemUnitClass (SUC)</td>
+  </tr>
+  <tr>
+    <th style="background-color: #E0E0E0;">Modifier</th>
+    <td colspan="3">sealed</td>
+  </tr>
+  <tr>
+    <th style="background-color: #E0E0E0;">Description</th>
+    <td colspan="3">model definition for the entry point of a Composed Module Type Package</td>
+  </tr>
+  <tr>
+    <th style="background-color: #E0E0E0;">AutomationML Path</th>
+    <td colspan="3">MTPSUCLib/ComposedModuleTypePackage</td>
+  </tr>
+  <tr>
+    <th style="background-color: #E0E0E0;">AutomationML BaseRef</th>
+    <td colspan="3">-</td>
+  </tr>
+  <tr>
+    <th style="background-color: #E0E0E0;">RoleClasses</th>
+    <td colspan="3">[1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)</td>
+  </tr>
+  <tr>
+    <th style="background-color: #E0E0E0;">Version</th>
+    <td colspan="3">ModuleTypePackage:Manifest.Composed V2.0.0</td>
+  </tr>
+  <tr style="background-color: #E0E0E0;">
+    <th colspan="4">AutomationML Properties</th>
+  </tr>
+  <tr style="background-color: #E0E0E0;">
+    <th>Name</th>
+    <th style="width: 30%;">Type</th>
+    <th colspan="2">Description</th>
+  </tr>
+  <tr>
+    <td>ID</td>
+    <td>xs:string</td>
+    <td colspan="2">GUID-formatted ID of the object</td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td>xs:string</td>
+    <td colspan="2">name of the composed type (e.g., name of the choreography type)</td>
+  </tr>
+  <tr style="background-color: #E0E0E0;">
+    <th colspan="4">AutomationML Attributes</th>
+  </tr>
+  <tr style="background-color: #E0E0E0;">
+    <th>Name</th>
+    <th>Type</th>
+    <th style="width: 54%;">Description</th>
+    <th style="width: 31%;">AttributeType Reference</th>
+  </tr>
+  <tr>
+    <td>Version</td>
+    <td>xs:string</td>
+    <td>Composed Module Type Package version</td>
+    <td>ModuleType-PackageRevision-Type</td>
+  </tr>
+  <tr>
+    <td>ManufacturerUri</td>
+    <td>xs:string</td>
+    <td>creator of the composed type</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>ComposedType-Code</td>
+    <td>xs:string</td>
+    <td>identifier of the composed type</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>ComposedType-Revision</td>
+    <td>xs:string</td>
+    <td>version of the composed type</td>
+    <td>ComposedType-RevisionType</td>
+  </tr>
+  <tr style="background-color: #E0E0E0;">
+    <th colspan="4">Comment</th>
+  </tr>
+  <tr>
+    <td colspan="4">-</td>
+  </tr>
+  <tr style="background-color: #E0E0E0;">
+    <th colspan="4">AutomationML Object - Instance Constraints</th>
+  </tr>
+  <tr>
+    <th style="background-color: #E0E0E0;">Allowed Parents</th>
+    <td colspan="3">IH ModuleTypePackage</td>
+  </tr>
+  <tr>
+    <th style="background-color: #E0E0E0;">Allowed Children</th>
+    <td colspan="3">[0..1] IE of each derivation of SUC MTPSet<br>[1] IE of SUC AttachmentSet</td>
+  </tr>
 </table>
 
 #### Specification of the Attribute Type ComposedTypeRevisionType
