@@ -22,199 +22,179 @@ For version verification, the variable *ComposedTypeRevision* of *SUC ComposedMo
 #### Specification of the System Unit Class ComposedModuleTypePackage
 *SUC ComposedModuleTypePackage* (Table~[Suc Composed Module Type Package](#tab:SucComposedModuleTypePackage)) is the entry point to the information model of a Composed MTP. It contains the table of contents of the Composed MTP, from which all contained aspects are referenced according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). A *SUC ComposedModuleTypePackage* always contains an *AttachmentSet* that references the MTP files on which the Composed MTP is based. *SUC ComposedModuleTypePackage* contains AutomationML properties and attributes used for type, version, and instance verification of choreographed types (see Appendix~[Workflows](#subsec:AnhangManifestWorkflows), type, version, and instance verification of choreographies). In addition, the variable *Version* specifies the version of the Composed MTP itself. In contrast to *ComposedTypeRevision*, *Version* also indicates non-communication-relevant changes that affect only the Composed MTP itself, for example changes to the line process picture.
 
-% Modelldefinition SUC ComposedModuleTypePackage
-\begin{footnotesize}
-	\begin{longtable}{|
-		>{\columncolor[HTML]{E0E0E0}}l 
-		>{\columncolor[HTML]{FFFFFF}}l 
-		>{\columncolor[HTML]{FFFFFF}}l
-		>{\columncolor[HTML]{FFFFFF}}l |}
+<a id="tab:SucComposedModuleTypePackage"></a>
+**Table: Model Definition of *SUC ComposedModuleTypePackage***
 
-		\caption{Model Definition of *SUC ComposedModuleTypePackage*}
-		{#tab:SucComposedModuleTypePackage}\\
-		\hline
-
-		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **ComposedModuleTypePackage**} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} sealed}
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for the entry point of a Composed Module Type Package} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPSUCLib/ComposedModuleTypePackage} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} [1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:Manifest.Composed V2.0.0} 
-		\\ \hline
-		
-		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
-		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
-		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} ID}                     & 
-		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &                                              
-		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} GUID-formatted ID of the object}              
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Name}                     & 
-		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &                                              
-		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} name of the composed type (e.g., name of the choreography type)}              
-		\\ \hline
-
-		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
-		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
-		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
-		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Version}                     & 
-		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &      
-		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Composed Module Type Package version}              &   
-		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} ModuleType-PackageRevision-Type}              
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} ManufacturerUri}                     & 
-		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &      
-		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} creator of the composed type}              &                                             
-		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} ComposedType-Code}                     & 
-		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &      
-		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} identifier of the composed type}              &
-		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} ComposedType-Revision}                     & 
-		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &      
-		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} version of the composed type}              &
-		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} ComposedType-RevisionType}              
-		\\ \hline
-
-
-		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
-		\\ \hline
-		
-		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
-		\\ \hline
-
-		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} IH ModuleTypePackage} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} 	[0..1] IE of each derivation of SUC MTPSet \newline
-																[1] IE of SUC AttachmentSet} 
-		\\ \hline
-
-	\end{longtable}
-\end{footnotesize}
+<table>
+  <tr>
+    <td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td colspan="3"><strong>ComposedModuleTypePackage</strong></td>
+  </tr>
+  <tr>
+    <th>Type</th>
+    <td colspan="3">SystemUnitClass (SUC)</td>
+  </tr>
+  <tr>
+    <th>Modifier</th>
+    <td colspan="3">sealed</td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td colspan="3">model definition for the entry point of a Composed Module Type Package</td>
+  </tr>
+  <tr>
+    <th>AutomationML Path</th>
+    <td colspan="3">MTPSUCLib/ComposedModuleTypePackage</td>
+  </tr>
+  <tr>
+    <th>AutomationML BaseRef</th>
+    <td colspan="3">-</td>
+  </tr>
+  <tr>
+    <th>RoleClasses</th>
+    <td colspan="3">[1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)</td>
+  </tr>
+  <tr>
+    <th>Version</th>
+    <td colspan="3">ModuleTypePackage:Manifest.Composed V2.0.0</td>
+  </tr>
+  <tr>
+    <td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th colspan="2">Description</th>
+  </tr>
+  <tr>
+    <td>ID</td>
+    <td>xs:string</td>
+    <td colspan="2">GUID-formatted ID of the object</td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td>xs:string</td>
+    <td colspan="2">name of the composed type (e.g., name of the choreography type)</td>
+  </tr>
+  <tr>
+    <td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>AttributeType Reference</th>
+  </tr>
+  <tr>
+    <td>Version</td>
+    <td>xs:string</td>
+    <td>Composed Module Type Package version</td>
+    <td>ModuleType-PackageRevision-Type</td>
+  </tr>
+  <tr>
+    <td>ManufacturerUri</td>
+    <td>xs:string</td>
+    <td>creator of the composed type</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>ComposedType-Code</td>
+    <td>xs:string</td>
+    <td>identifier of the composed type</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>ComposedType-Revision</td>
+    <td>xs:string</td>
+    <td>version of the composed type</td>
+    <td>ComposedType-RevisionType</td>
+  </tr>
+  <tr>
+    <td colspan="4"><strong>📌 Comment</strong></td>
+  </tr>
+  <tr>
+    <td colspan="4">-</td>
+  </tr>
+  <tr>
+    <td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+  </tr>
+  <tr>
+    <th>Allowed Parents</th>
+    <td colspan="3">IH ModuleTypePackage</td>
+  </tr>
+  <tr>
+    <th>Allowed Children</th>
+    <td colspan="3">[0..1] IE of each derivation of SUC MTPSet<br>[1] IE of SUC AttachmentSet</td>
+  </tr>
+</table>
 
 #### Specification of the Attribute Type ComposedTypeRevisionType
 *AT ComposedTypeRevisionType* (Table~[At Composed Type Revision Type](#tab:AtComposedTypeRevisionType)) defines the version information of the communication-relevant interface content of a Composed MTP according to the rules of *Semantic Versioning*. This AT is derived from *AT SemanticVersionAttributeType*.
 
-% Modelldefinition AT ComposedTypeRevisionType
-\begin{footnotesize}
-	\begin{longtable}{|
-		>{\columncolor[HTML]{E0E0E0}}l 
-		>{\columncolor[HTML]{FFFFFF}}l 
-		>{\columncolor[HTML]{FFFFFF}}l
-		>{\columncolor[HTML]{FFFFFF}}l |}
+<a id="tab:AtComposedTypeRevisionType"></a>
+**Table: Model Definition of *AT ComposedTypeRevisionType***
 
-		\caption{Model Definition of *AT ComposedTypeRevisionType*}
-		{#tab:AtComposedTypeRevisionType}\\
-		\hline
-
-		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **ComposedTypeRevisionType**} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} Attribute Type (AT)}
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} sealed}
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition of a composed type revision information} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPATLib/SemanticVersionAttributeType/ComposedTypeRevisionType} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPATLib/SemanticVersionAttributeType} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Data Type**} & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} xs:string} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
-		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:Manifest.Composed V2.0.0} 
-		\\ \hline
-		
-		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
-		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
-		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
-		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
-		\\ \hline
-
-		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF}-}                     & 
-		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF}-}              &      
-		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF}-}              &                                             
-		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF}-}              
-		\\ \hline
-
-
-		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**}  \\ \hline
-		
-		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}-}   
-		\\ \hline
-
-	\end{longtable}
-\end{footnotesize}
+<table>
+	<tr>
+		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+	</tr>
+	<tr>
+		<th>Name</th>
+		<td colspan="3"><strong>ComposedTypeRevisionType</strong></td>
+	</tr>
+	<tr>
+		<th>Type</th>
+		<td colspan="3">Attribute Type (AT)</td>
+	</tr>
+	<tr>
+		<th>Modifier</th>
+		<td colspan="3">sealed</td>
+	</tr>
+	<tr>
+		<th>Description</th>
+		<td colspan="3">model definition of a composed type revision information</td>
+	</tr>
+	<tr>
+		<th>AutomationML Path</th>
+		<td colspan="3">MTPATLib/SemanticVersionAttributeType/ComposedTypeRevisionType</td>
+	</tr>
+	<tr>
+		<th>AutomationML BaseRef</th>
+		<td colspan="3">MTPATLib/SemanticVersionAttributeType</td>
+	</tr>
+	<tr>
+		<th>Data Type</th>
+		<td colspan="3">xs:string</td>
+	</tr>
+	<tr>
+		<th>Version</th>
+		<td colspan="3">ModuleTypePackage:Manifest.Composed V2.0.0</td>
+	</tr>
+	<tr>
+		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+	</tr>
+	<tr>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Description</th>
+		<th>AttributeType Reference</th>
+	</tr>
+	<tr>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+	</tr>
+	<tr>
+		<td colspan="4"><strong>📌 Comment</strong></td>
+	</tr>
+	<tr>
+		<td colspan="4">-</td>
+	</tr>
+</table>
 
 #### Specification of the Role Class Library MTPRCLib
 *RCL MTPRCLib* (Table~[Rcl MTPRC Lib](#tab:RclMTPRCLib)) contains the basic role classes for the *Manifest* of a Module Type Package. 

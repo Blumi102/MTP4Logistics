@@ -3396,95 +3396,108 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 #### Specification of the System Unit Class CommunicationManager
 *SUC CommunicationManager* (Table~[Data Assembly Suc Communication Manager](#tab:DataAssemblySucCommunicationManager)) is an abstract class derived from *SUC ChoreographyElement*. It is to be understood as a generic interface definition for configuring the configurable communication of a choreography participant. To use this interface definition, a concrete manager for a specific communication technology must be derived from it. So far, only *OpcUaClientServerManager* has been implemented for configuring OPC~UA client/server connections; additional derivations can be developed in the future. The derivations of *SUC CommunicationManager* are assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation, variable *ManagerLink*. In addition, each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*.
 
-<a id="tab:DataAssemblySucCommunicationManager"></a>
-**Table: Interface Definition of *SUC CommunicationManager***
-
-<table>
-	<tr>
-		<td colspan="6"><strong>▶ Module Type Package - DataAssembly Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="5"><strong>CommunicationManager</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="5">System Unit Class (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="5">abstract</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="5">abstract interface definition for the communication between different choreography participants</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement/Commu-nicationManager</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement</td>
-	</tr>
-	<tr>
-		<th>Role Classes</th>
-		<td colspan="5">-</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="5">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="6"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="4">Description</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="6"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Access</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>Attribute-Type Reference</th>
-		<th>Base Function</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="6"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="6">-</td>
-	</tr>
-	<tr>
-		<td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="5">(no further constraints given)</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="5">(no further constraints given)</td>
-	</tr>
-</table>
+% Schnittstellendefinition SUC CommunicationManager
+\begin{footnotesize}
+	\begin{longtable}
+		{
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l }
+	
+		\caption{Interface Definition of *SUC CommunicationManager*}
+		{#tab:DataAssemblySucCommunicationManager}\\
+	
+		\hline
+	
+		\multicolumn{6}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - DataAssembly Definition**} 
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{5}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **CommunicationManager**} 
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{5}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} System Unit Class (SUC)}
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{5}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} abstract}
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{5}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} abstract interface definition for the communication between different choreography participants } 
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{5}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement/Commu-nicationManager} 
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{5}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement} 
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Role Classes**} & 
+		\multicolumn{5}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{5}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+	
+		\multicolumn{6}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{2.1cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{4}{L{9.6cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{2.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                              
+		\multicolumn{4}{L{9.6cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+	
+	
+		\multicolumn{6}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{2.1cm}|}{\cellcolor[HTML]{E0E0E0}**Access**}        	& 
+		\multicolumn{1}{L{1.9cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{3.01cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{2.1cm}|}{\cellcolor[HTML]{E0E0E0}**Attribute-Type Reference**} 			& 
+		\multicolumn{1}{L{2.1cm}|}{\cellcolor[HTML]{E0E0E0}**Base Function**} 
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}               & 
+		\multicolumn{1}{L{2.1cm}|}{\cellcolor[HTML]{FFFFFF} -}                &      
+		\multicolumn{1}{L{1.9cm}|}{\cellcolor[HTML]{FFFFFF} -}                &                                             
+		\multicolumn{1}{L{3.01cm}|}{\cellcolor[HTML]{FFFFFF} -}               &
+		\multicolumn{1}{L{2.1cm}|}{\cellcolor[HTML]{FFFFFF} -}                &                                             
+		\multicolumn{1}{L{2.1cm}|}{\cellcolor[HTML]{FFFFFF} -}            
+		\\ \hline
+	
+		\multicolumn{6}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**}  \\ \hline
+		
+		\multicolumn{6}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+	
+		\multicolumn{6}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{5}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{5}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+	
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class OpcUaClientServerManager
 *SUC OpcUaClientServerManager* (Table~[Data Assembly Suc Opc Ua Client Server Manager](#tab:DataAssemblySucOpcUaClientServerManager)) is derived from the abstract *SUC CommunicationManager*. It is used to configure OPC~UA client/server communication of an LEA with other LEAs participating in a choreography. *SUC OpcUaClientServerManager* is assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation, variable *ManagerLink*. Each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*. In the case of *OpcUaClientServerManager*, these communication elements are the *UaReader* and *UaWriter* managed by the manager, which are referenced via their index. The *UaReader* are each assigned to a *ConfigurableInputElement*, and the *UaWriter* are each assigned to a *ConfigurableOutputElement*. For the communication variant of active writing, *SUC OpcUaClientServerManager* manages the existing *ValueFields* of an LEA that can be written by other LEAs. 
@@ -4464,1100 +4477,1227 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 #### Specification of the Instance Hierarchy Choreography
 *IH Choreography* (Table~[Ih Choreography](#tab:IhChoreography)) is the entry point for the choreography-related information model in the instance hierarchy of an MTP.
 
-<a id="tab:IhChoreography"></a>
-**Table: Model Definition of *IH Choreography***
+% Modelldefinition IH Choreography
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="3"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="2"><strong>Choreography</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="2">Instance Hierarchy (IH)</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="2">root element for the choreography-related information model of n MTP</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="2">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="3"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-	</tr>
-	<tr>
-		<td>ID</td>
-		<td>xs:string</td>
-		<td>Identifier of the Instance Hierarchy</td>
-	</tr>
-	<tr>
-		<td colspan="3"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<td colspan="3"><strong>📌 AutomationML Object - Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="2">[1] IE of SUC ChoreographyParticipant</td>
-	</tr>
-</table>
+		\caption{Model Definition of *IH Choreography*}
+		{#tab:IhChoreography}\\
+		\hline
+
+		\multicolumn{3}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{2}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **Choreography**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{2}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} Instance Hierarchy (IH)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{2}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} root element for the choreography-related information model of n MTP} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{2}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{3}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} ID}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &                                              
+		\multicolumn{1}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} Identifier of the Instance Hierarchy}              
+		\\ \hline
+
+
+		\multicolumn{3}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**}      
+		\\ \hline
+		
+		\multicolumn{3}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{3}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{2}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} [1] IE of SUC ChoreographyParticipant} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class Library MTPChoreographySUCLib
 *SUCL MTPChoreographySUCLib* (Table~[Sucl MTP Choreography SUC Lib](#tab:SuclMTPChoreographySUCLib)) contains the System Unit Classes of the *ChoreographySet* of a Module Type Package.
 
-<a id="tab:SuclMTPChoreographySUCLib"></a>
-**Table: Library Definition of *SUCL MTPChoreographySUCLib***
+% Bibliothek SUCL MTPChoreographySUCLib
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="3"><strong>▶ Module Type Package - Library Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="2"><strong>MTPChoreographySUCLib</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="2">SystemUnitClassLibrary (SUCL)</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="2">Library containing the Choreography-related SUC model definitions of an MTP</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="2">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="3"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="3"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="3">-</td>
-	</tr>
-</table>
+		\caption{Library Definition of *SUCL MTPChoreographySUCLib*}
+		{#tab:SuclMTPChoreographySUCLib}\\
+		\hline
+
+		\multicolumn{3}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Library Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{2}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **MTPChoreographySUCLib**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{2}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClassLibrary (SUCL)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{2}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} Library containing the Choreography-related SUC model definitions of an MTP} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{2}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{3}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF}-}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF}-}              &                                              
+		\multicolumn{1}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF}-}              
+		\\ \hline
+
+
+		\multicolumn{3}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{3}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}-}   
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class ChoreographySet
 The *SUC ChoreographySet* (Table~[Suc Choreography Set](#tab:SucChoreographySet)), as a new aspect set of the MTP specification, is derived from *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) and organizes all model definitions required to describe an LEA as a participant in a choreography.
 
-<a id="tab:SucChoreographySet"></a>
-**Table: Model Definition of *SUC ChoreographySet***
+% Modelldefinition SUC ChoreographySet
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>ChoreographySet</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for choreography aspect set</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/ChoreographySet</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPSUCLib/MTPSet</td>
-	</tr>
-	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">[1] EI of IC AspectSetReference which refers via ID to an IH containing [1]~IE of SUC ChoreographyParticipant</td>
-	</tr>
-</table>
+		\caption{Model Definition of *SUC ChoreographySet*}
+		{#tab:SucChoreographySet}\\
+		\hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **ChoreographySet**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} sealed}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for choreography aspect set} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/ChoreographySet} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPSUCLib/MTPSet} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                              
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} [1] EI of IC AspectSetReference which refers via ID to an IH containing [1]~IE of SUC ChoreographyParticipant} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class ChoreographyParticipant
 *SUC ChoreographyParticipant* (Table~[Suc Choreography Participant](#tab:SucChoreographyParticipant)) describes an LEA as a choreography participant. The interface definition *SUC ChoreographyParticipantManager* is assigned to this model definition via a LinkedObject relation.
 
-<a id="tab:SucChoreographyParticipant"></a>
-**Table: Model Definition of *SUC ChoreographyParticipant***
+% Modelldefinition SUC ChoreographyParticipant
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>ChoreographyParticipant</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for choreography participant</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/ChoreographyParticipant</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPSUCLib/LinkedObject</td>
-	</tr>
-	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">IH to which an IE of SUC ChoreographySet relates via EI of IC AspectSet-Reference</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">[1] IE of SUC InputList<br>[1] IE of SUC OutputList</td>
-	</tr>
-</table>
+		\caption{Model Definition of *SUC ChoreographyParticipant*}
+		{#tab:SucChoreographyParticipant}\\
+		\hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **ChoreographyParticipant**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for choreography participant} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/ChoreographyParticipant} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPSUCLib/LinkedObject} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                              
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} IH to which an IE of SUC ChoreographySet relates via EI of IC AspectSet-Reference} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} 	[1] IE of SUC InputList \newline
+																[1] IE of SUC OutputList } 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class InputList
 *SUC InputList* (Table~[Suc Input List](#tab:SucInputList)) organizes all incoming system variables relevant to the configurable logic of a choreography participant. The MTP of a choreography participant always contains exactly one *InputList*.
 
-<a id="tab:SucInputList"></a>
-**Table: Model Definition of *SUC InputList***
+% Modelldefinition SUC InputList
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>InputList</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for the list of input elements of a choreography participant</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/ChoreographyParticipant/InputList</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">[1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">IE of SUC ChoreographyParticipant</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">[0..*] IE of SUC InputElement</td>
-	</tr>
-</table>
+		\caption{Model Definition of *SUC InputList*}
+		{#tab:SucInputList}\\
+		\hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **InputList**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} sealed}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for the list of input elements of a choreography participant} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/ChoreographyParticipant/InputList} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} [1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                              
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} IE of SUC ChoreographyParticipant} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} [0..*] IE of SUC InputElement} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class InputElement
 *SUC InputElement* (Table~[Suc Input Element](#tab:SucInputElement)) describes an incoming system variable relevant to the configurable logic of a choreography participant. This may be a statically defined internal process variable of the participant or a process variable received by the participant from another participant.
 
-<a id="tab:SucInputElement"></a>
-**Table: Model Definition of *SUC InputElement***
+% Modelldefinition SUC InputElement
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>InputElement</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="3">abstract</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for an input element of a choreography participant</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPSUCLib/LinkedObject</td>
-	</tr>
-	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
-	</tr>
-	<tr>
-		<td>Name</td>
-		<td>xs:string</td>
-		<td colspan="2">unique Number as index in the InputList (beginning at 0)</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">IE of SUC InputList</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no children allowed)</td>
-	</tr>
-</table>
+		\caption{Model Definition of *SUC InputElement*}
+		{#tab:SucInputElement}\\
+		\hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **InputElement**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} abstract}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for an input element of a choreography participant} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/InputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPSUCLib/LinkedObject} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Name}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &                                              
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} unique Number as index in the InputList (beginning at 0)}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} IE of SUC InputList} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no children allowed)} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class FixedInputElement
 *SUC FixedInputElement* (Table~[Suc Fixed Input Element](#tab:SucFixedInputElement)) is derived from *SUC InputElement* and describes a statically defined incoming system variable provided by the choreography participant itself. A *FixedInputElement* is assigned to a *UnionElement* interface via a LinkedObject relation.
 
-<a id="tab:SucFixedInputElement"></a>
-**Table: Model Definition of *SUC FixedInputElement***
+% Modelldefinition SUC FixedInputElement
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>FixedInputElement</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for a statically defined input element</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement/FixedInputElement</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement</td>
-	</tr>
-	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no further constraints given)</td>
-	</tr>
-</table>
+		\caption{Model Definition of *SUC FixedInputElement*}
+		{#tab:SucFixedInputElement}\\
+		\hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **FixedInputElement**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} sealed}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for a statically defined input element} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/InputElement/FixedInputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/InputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                              
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class ConfigurableInputElement
 *SUC ConfigurableInputElement* (Table~[Suc Configurable Input Element](#tab:SucConfigurableInputElement)) is derived from *SUC InputElement* and describes a configurable incoming system variable received by the choreography participant from another choreography participant. A *ConfigurableInputElement* is assigned to a derivation of the *CommunicationManager* interface via an ID link relation using the variable *ManagerLink*. A *ManagerIndex* is used to refer to a specific communication element within the *CommunicationManager*. In this way, the communication is configured such that the required system variable is exchanged. The interpretation of *ManagerIndex* depends on the derivation of *CommunicationManager* used. In the case of *OpcUaClientServerManager*, this is the index of the reader used.
 
-<a id="tab:SucConfigurableInputElement"></a>
-**Table: Model Definition of *SUC ConfigurableInputElement***
+% Modelldefinition SUC ConfigurableInputElement
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>ConfigurableInputElement</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for a configurable input element</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement/ConfigurableInputElement</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement</td>
-	</tr>
-	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
-	</tr>
-	<tr>
-		<td>ManagerLink</td>
-		<td>xs:string</td>
-		<td>object identifier of the associated CommunicationManager interface</td>
-		<td>IDLinkAttribute-Type</td>
-	</tr>
-	<tr>
-		<td>ManagerIndex</td>
-		<td>xs:unsignedInt</td>
-		<td>index of the incoming configurable communication entity within the communication manager</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no further constraints given)</td>
-	</tr>
-</table>
+		\caption{Model Definition of *SUC ConfigurableInputElement*}
+		{#tab:SucConfigurableInputElement}\\
+		\hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **ConfigurableInputElement**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} sealed}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for a configurable input element} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/InputElement/ConfigurableInputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/InputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                      & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                              
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} ManagerLink}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} object identifier of the associated CommunicationManager interface}   &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} IDLinkAttribute-Type}              
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} ManagerIndex}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:unsignedInt}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} index of the incoming configurable communication entity within the communication manager}  &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class WritableInputElement
 *SUC WritableInputElement* (Table~[Suc Writable Input Element](#tab:SucWritableInputElement)) is derived from *SUC InputElement* and describes an incoming system variable into which values can be written by another choreography participant. A *WritableInputElement* is assigned to a *WritableUnionElement* interface definition via a LinkedObject relation.
 
-<a id="tab:SucWritableInputElement"></a>
-**Table: Model Definition of *SUC WritableInputElement***
+% Modelldefinition SUC WritableInputElement
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>WritableInputElement</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for a writable input element</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement/WritableInputElement</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement</td>
-	</tr>
-	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
-	</tr>
-	<tr>
-		<td>ManagerLink</td>
-		<td>xs:string</td>
-		<td>object identifier of the associated CommunicationManager interface</td>
-		<td>IDLinkAttribute-Type</td>
-	</tr>
-	<tr>
-		<td>ManagerIndex</td>
-		<td>xs:unsignedInt</td>
-		<td>index of the field the value is written to within the communication manager</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no further constraints given)</td>
-	</tr>
-</table>
+		\caption{Model Definition of *SUC WritableInputElement*}
+		{#tab:SucWritableInputElement}\\
+		\hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **WritableInputElement**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} sealed}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for a writable input element} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/InputElement/WritableInputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/InputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                              
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} ManagerLink}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} object identifier of the associated CommunicationManager interface}   &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} IDLinkAttribute-Type}              
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} ManagerIndex}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:unsignedInt}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} index of the field the value is written to within the communication manager}  &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class OutputList
 *SUC OutputList* (Table~[Suc Output List](#tab:SucOutputList)) organizes all outgoing system variables relevant to the configurable logic of a choreography participant. The MTP of a choreography participant always contains exactly one *OutputList*.
 
-<a id="tab:SucOutputList"></a>
-**Table: Model Definition of *SUC OutputList***
+% Modelldefinition SUC OutputList
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>OutputList</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for the list of output elements of a choreography participant</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/ChoreographyParticipant/OutputList</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">[1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">IE of SUC ChoreographyParticipant</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">[0..*] IE of SUC OutputElement</td>
-	</tr>
-</table>
+		\caption{Model Definition of *SUC OutputList*}
+		{#tab:SucOutputList}\\
+		\hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **OutputList**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} sealed}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for the list of output elements of a choreography participant} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/ChoreographyParticipant/OutputList} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} [1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                              
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} IE of SUC ChoreographyParticipant} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} [0..*] IE of SUC OutputElement} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class OutputElement
 *SUC OutputElement* (Table~[Suc Output Element](#tab:SucOutputElement)) describes an outgoing system variable relevant to the configurable logic of a choreography participant. This may be a statically defined internal process variable of the participant or a configurable process variable received by the participant from another participant. An *OutputElement* is always assigned to a *UnionElement* interface via a LinkedObject relation.
 
-<a id="tab:SucOutputElement"></a>
-**Table: Model Definition of *SUC OutputElement***
+% Modelldefinition SUC OutputElement
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>OutputElement</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="3">abstract</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for an output element of a choreography participant</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/OutputElement</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPSUCLib/LinkedObject</td>
-	</tr>
-	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
-	</tr>
-	<tr>
-		<td>Name</td>
-		<td>xs:string</td>
-		<td colspan="2">unique Number as Index in the Output List (beginning at 0)</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">IE of SUC OutputList</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no children allowed)</td>
-	</tr>
-</table>
+		\caption{Model Definition of *SUC OutputElement*}
+		{#tab:SucOutputElement}\\
+		\hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **OutputElement**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} abstract}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for an output element of a choreography participant} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/OutputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPSUCLib/LinkedObject} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Name}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &                                              
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} unique Number as Index in the Output List (beginning at 0)}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} IE of SUC OutputList} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no children allowed)} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class FixedOutputElement
 *SUC FixedOutputElement* (Table~[Suc Fixed Output Element](#tab:SucFixedOutputElement)) is derived from *SUC OutputElement* and describes a statically defined outgoing system variable used by the internal program of the choreography participant.
 
-<a id="tab:SucFixedOutputElement"></a>
-**Table: Model Definition of *SUC FixedOutputElement***
+% Modelldefinition SUC FixedOutputElement
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>FixedOutputElement</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for a statically defined output element</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/OutputElement/FixedOutputElement</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPChoreographySUCLib/OutputElement</td>
-	</tr>
-	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no further constraints given)</td>
-	</tr>
-</table>
+		\caption{Model Definition of *SUC FixedOutputElement*}
+		{#tab:SucFixedOutputElement}\\
+		\hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **FixedOutputElement**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} sealed}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for a statically defined output element} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/OutputElement/FixedOutputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/OutputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                              
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 #### Specification of the System Unit Class ConfigurableOutputElement
 *SUC ConfigurableOutputElement* (Table~[Suc Configurable Output Element](#tab:SucConfigurableOutputElement)) is derived from *SUC OutputElement* and describes a configurable outgoing system variable sent by the choreography participant to another choreography participant. A *ConfigurableOutputElement* is assigned to a derivation of the *CommunicationManager* interface via an ID link relation using the variable *ManagerLink*. A *ManagerIndex* is used to refer to a specific communication element within the *CommunicationManager*. In this way, the communication is configured such that the required system variable is exchanged. The interpretation of *ManagerIndex* depends on the derivation of *CommunicationManager* used. In the case of *OpcUaClientServerManager*, this is the index of the writer used.
 
-<a id="tab:SucConfigurableOutputElement"></a>
-**Table: Model Definition of *SUC ConfigurableOutputElement***
+% Modelldefinition SUC ConfigurableOutputElement
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l
+		>{\columncolor[HTML]{FFFFFF}}l |}
 
-<table>
-	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>ConfigurableOutputElement</strong></td>
-	</tr>
-	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
-	</tr>
-	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
-	</tr>
-	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for a configurable output element</td>
-	</tr>
-	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/OutputElement/ConfigurableOutputElement</td>
-	</tr>
-	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPChoreographySUCLib/OutputElement</td>
-	</tr>
-	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
-	</tr>
-	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
-	</tr>
-	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
-	</tr>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
-	</tr>
-	<tr>
-		<td>ManagerLink</td>
-		<td>xs:string</td>
-		<td>object identifier of the associated CommunicationManager interface</td>
-		<td>IDLinkAttribute-Type</td>
-	</tr>
-	<tr>
-		<td>ManagerIndex</td>
-		<td>xs:unsignedInt</td>
-		<td>index of the outcoming configurable communication entity within the CommunicationManager</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="4">-</td>
-	</tr>
-	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
-	</tr>
-	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
-	</tr>
-	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no further constraints given)</td>
-	</tr>
-</table>
+		\caption{Model Definition of *SUC ConfigurableOutputElement*}
+		{#tab:SucConfigurableOutputElement}\\
+		\hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Module Type Package - Model Definition**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} **ConfigurableOutputElement**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Type**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} SystemUnitClass (SUC)}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Modifier**}        & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} sealed}
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} model definition for a configurable output element} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Path**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/OutputElement/ConfigurableOutputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML BaseRef**} & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} MTPChoreographySUCLib/OutputElement} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**RoleClasses**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} -} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Version**}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage:ChoreographySet.Base V2.0.0} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Properties**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} -}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} -}              &                                              
+		\multicolumn{2}{L{8.69cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Attributes**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}**Name**}        	& 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{E0E0E0}**Type**} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}**Description**} 			& 
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{E0E0E0}**AttributeType Reference**} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} ManagerLink}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:string}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} object identifier of the associated CommunicationManager interface}              &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} IDLinkAttribute-Type}              
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} ManagerIndex}                     & 
+		\multicolumn{1}{L{3cm}|}{\cellcolor[HTML]{FFFFFF} xs:unsignedInt}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} index of the outcoming configurable communication entity within the CommunicationManager}              &                                             
+		\multicolumn{1}{L{3.1cm}|}{\cellcolor[HTML]{FFFFFF} -}              
+		\\ \hline
+
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**Comment**} 
+		\\ \hline
+		
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF} -}   
+		\\ \hline
+
+		\multicolumn{4}{|C{14.8cm}|}{\cellcolor[HTML]{E0E0E0}**AutomationML Object - Instance Constraints**}  
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Parents}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Allowed Children}     & 
+		\multicolumn{3}{L{11.83cm}|}{\cellcolor[HTML]{FFFFFF} (no further constraints given)} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
 
 
 ## MTP Specification of the TransportSet {#sec:AnhangTransportAspekt}
