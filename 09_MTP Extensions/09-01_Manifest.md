@@ -28,107 +28,107 @@ For version verification, the variable *ComposedTypeRevision* of *SUC ComposedMo
 
 <table>
   <tr>
-    <td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+    <td colspan="4" style="text-align:left"><strong>▶ Module Type Package - Model Definition</strong></td>
   </tr>
   <tr>
-    <th>Name</th>
-    <td colspan="3"><strong>ComposedModuleTypePackage</strong></td>
+    <th style="text-align:left">Name</th>
+    <td colspan="3" style="text-align:left"><strong>ComposedModuleTypePackage</strong></td>
   </tr>
   <tr>
-    <th>Type</th>
-    <td colspan="3">SystemUnitClass (SUC)</td>
+    <th style="text-align:left">Type</th>
+    <td colspan="3" style="text-align:left">SystemUnitClass (SUC)</td>
   </tr>
   <tr>
-    <th>Modifier</th>
-    <td colspan="3">sealed</td>
+    <th style="text-align:left">Modifier</th>
+    <td colspan="3" style="text-align:left">sealed</td>
   </tr>
   <tr>
-    <th>Description</th>
-    <td colspan="3">model definition for the entry point of a Composed Module Type Package</td>
+    <th style="text-align:left">Description</th>
+    <td colspan="3" style="text-align:left">model definition for the entry point of a Composed Module Type Package</td>
   </tr>
   <tr>
-    <th>AutomationML Path</th>
-    <td colspan="3">MTPSUCLib/ComposedModuleTypePackage</td>
+    <th style="text-align:left">AutomationML Path</th>
+    <td colspan="3" style="text-align:left">MTPSUCLib/ComposedModuleTypePackage</td>
   </tr>
   <tr>
-    <th>AutomationML BaseRef</th>
-    <td colspan="3">-</td>
+    <th style="text-align:left">AutomationML BaseRef</th>
+    <td colspan="3" style="text-align:left">-</td>
   </tr>
   <tr>
-    <th>RoleClasses</th>
-    <td colspan="3">[1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)</td>
+    <th style="text-align:left">RoleClasses</th>
+    <td colspan="3" style="text-align:left">[1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)</td>
   </tr>
   <tr>
-    <th>Version</th>
-    <td colspan="3">ModuleTypePackage:Manifest.Composed V2.0.0</td>
+    <th style="text-align:left">Version</th>
+    <td colspan="3" style="text-align:left">ModuleTypePackage:Manifest.Composed V2.0.0</td>
   </tr>
   <tr>
-    <td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+    <td colspan="4" style="text-align:left"><strong>📌 AutomationML Properties</strong></td>
   </tr>
   <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th colspan="2">Description</th>
+    <th style="text-align:left">Name</th>
+    <th style="text-align:left">Type</th>
+    <th colspan="2" style="text-align:left">Description</th>
   </tr>
   <tr>
-    <td>ID</td>
-    <td>xs:string</td>
-    <td colspan="2">GUID-formatted ID of the object</td>
+    <td style="text-align:left">ID</td>
+    <td style="text-align:left">xs:string</td>
+    <td colspan="2" style="text-align:left">GUID-formatted ID of the object</td>
   </tr>
   <tr>
-    <td>Name</td>
-    <td>xs:string</td>
-    <td colspan="2">name of the composed type (e.g., name of the choreography type)</td>
+    <td style="text-align:left">Name</td>
+    <td style="text-align:left">xs:string</td>
+    <td colspan="2" style="text-align:left">name of the composed type (e.g., name of the choreography type)</td>
   </tr>
   <tr>
-    <td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+    <td colspan="4" style="text-align:left"><strong>📌 AutomationML Attributes</strong></td>
   </tr>
   <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>AttributeType Reference</th>
+    <th style="text-align:left">Name</th>
+    <th style="text-align:left">Type</th>
+    <th style="text-align:left">Description</th>
+    <th style="text-align:left">AttributeType Reference</th>
   </tr>
   <tr>
-    <td>Version</td>
-    <td>xs:string</td>
-    <td>Composed Module Type Package version</td>
-    <td>ModuleType-PackageRevision-Type</td>
+    <td style="text-align:left">Version</td>
+    <td style="text-align:left">xs:string</td>
+    <td style="text-align:left">Composed Module Type Package version</td>
+    <td style="text-align:left">ModuleType-PackageRevision-Type</td>
   </tr>
   <tr>
-    <td>ManufacturerUri</td>
-    <td>xs:string</td>
-    <td>creator of the composed type</td>
-    <td>-</td>
+    <td style="text-align:left">ManufacturerUri</td>
+    <td style="text-align:left">xs:string</td>
+    <td style="text-align:left">creator of the composed type</td>
+    <td style="text-align:left">-</td>
   </tr>
   <tr>
-    <td>ComposedType-Code</td>
-    <td>xs:string</td>
-    <td>identifier of the composed type</td>
-    <td>-</td>
+    <td style="text-align:left">ComposedType-Code</td>
+    <td style="text-align:left">xs:string</td>
+    <td style="text-align:left">identifier of the composed type</td>
+    <td style="text-align:left">-</td>
   </tr>
   <tr>
-    <td>ComposedType-Revision</td>
-    <td>xs:string</td>
-    <td>version of the composed type</td>
-    <td>ComposedType-RevisionType</td>
+    <td style="text-align:left">ComposedType-Revision</td>
+    <td style="text-align:left">xs:string</td>
+    <td style="text-align:left">version of the composed type</td>
+    <td style="text-align:left">ComposedType-RevisionType</td>
   </tr>
   <tr>
-    <td colspan="4"><strong>📌 Comment</strong></td>
+    <td colspan="4" style="text-align:left"><strong>📌 Comment</strong></td>
   </tr>
   <tr>
-    <td colspan="4">-</td>
+    <td colspan="4" style="text-align:left">-</td>
   </tr>
   <tr>
-    <td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+    <td colspan="4" style="text-align:left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
   </tr>
   <tr>
-    <th>Allowed Parents</th>
-    <td colspan="3">IH ModuleTypePackage</td>
+    <th style="text-align:left">Allowed Parents</th>
+    <td colspan="3" style="text-align:left">IH ModuleTypePackage</td>
   </tr>
   <tr>
-    <th>Allowed Children</th>
-    <td colspan="3">[0..1] IE of each derivation of SUC MTPSet<br>[1] IE of SUC AttachmentSet</td>
+    <th style="text-align:left">Allowed Children</th>
+    <td colspan="3" style="text-align:left">[0..1] IE of each derivation of SUC MTPSet<br>[1] IE of SUC AttachmentSet</td>
   </tr>
 </table>
 
@@ -139,60 +139,60 @@ For version verification, the variable *ComposedTypeRevision* of *SUC ComposedMo
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" style="text-align:left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>ComposedTypeRevisionType</strong></td>
+		<th style="text-align:left">Name</th>
+		<td colspan="3" style="text-align:left"><strong>ComposedTypeRevisionType</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">Attribute Type (AT)</td>
+		<th style="text-align:left">Type</th>
+		<td colspan="3" style="text-align:left">Attribute Type (AT)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
+		<th style="text-align:left">Modifier</th>
+		<td colspan="3" style="text-align:left">sealed</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition of a composed type revision information</td>
+		<th style="text-align:left">Description</th>
+		<td colspan="3" style="text-align:left">model definition of a composed type revision information</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPATLib/SemanticVersionAttributeType/ComposedTypeRevisionType</td>
+		<th style="text-align:left">AutomationML Path</th>
+		<td colspan="3" style="text-align:left">MTPATLib/SemanticVersionAttributeType/ComposedTypeRevisionType</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPATLib/SemanticVersionAttributeType</td>
+		<th style="text-align:left">AutomationML BaseRef</th>
+		<td colspan="3" style="text-align:left">MTPATLib/SemanticVersionAttributeType</td>
 	</tr>
 	<tr>
-		<th>Data Type</th>
-		<td colspan="3">xs:string</td>
+		<th style="text-align:left">Data Type</th>
+		<td colspan="3" style="text-align:left">xs:string</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:Manifest.Composed V2.0.0</td>
+		<th style="text-align:left">Version</th>
+		<td colspan="3" style="text-align:left">ModuleTypePackage:Manifest.Composed V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" style="text-align:left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th style="text-align:left">Name</th>
+		<th style="text-align:left">Type</th>
+		<th style="text-align:left">Description</th>
+		<th style="text-align:left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td style="text-align:left">-</td>
+		<td style="text-align:left">-</td>
+		<td style="text-align:left">-</td>
+		<td style="text-align:left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" style="text-align:left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" style="text-align:left">-</td>
 	</tr>
 </table>
 
@@ -203,42 +203,42 @@ For version verification, the variable *ComposedTypeRevision* of *SUC ComposedMo
 
 <table>
 	<tr>
-		<td colspan="3"><strong>▶ Module Type Package - Library Definition</strong></td>
+		<td colspan="3" style="text-align:left"><strong>▶ Module Type Package - Library Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="2"><strong>MTPRCLib</strong></td>
+		<th style="text-align:left">Name</th>
+		<td colspan="2" style="text-align:left"><strong>MTPRCLib</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="2">RoleClassLibrary (RCL)</td>
+		<th style="text-align:left">Type</th>
+		<td colspan="2" style="text-align:left">RoleClassLibrary (RCL)</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="2">Library containing the Manifest RC model definitions of an MTP</td>
+		<th style="text-align:left">Description</th>
+		<td colspan="2" style="text-align:left">Library containing the Manifest RC model definitions of an MTP</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="2">ModuleTypePackage:Manifest.Composed V2.0.0</td>
+		<th style="text-align:left">Version</th>
+		<td colspan="2" style="text-align:left">ModuleTypePackage:Manifest.Composed V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="3"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="3" style="text-align:left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
+		<th style="text-align:left">Name</th>
+		<th style="text-align:left">Type</th>
+		<th style="text-align:left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td style="text-align:left">-</td>
+		<td style="text-align:left">-</td>
+		<td style="text-align:left">-</td>
 	</tr>
 	<tr>
-		<td colspan="3"><strong>📌 Comment</strong></td>
+		<td colspan="3" style="text-align:left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="3">-</td>
+		<td colspan="3" style="text-align:left">-</td>
 	</tr>
 </table>
 
@@ -249,76 +249,76 @@ For version verification, the variable *ComposedTypeRevision* of *SUC ComposedMo
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" style="text-align:left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>HasExternalMtpContext</strong></td>
+		<th style="text-align:left">Name</th>
+		<td colspan="3" style="text-align:left"><strong>HasExternalMtpContext</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">Role Class (RC)</td>
+		<th style="text-align:left">Type</th>
+		<td colspan="3" style="text-align:left">Role Class (RC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
+		<th style="text-align:left">Modifier</th>
+		<td colspan="3" style="text-align:left">sealed</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">Role Class for defining a referenced object originates from an external MTP context</td>
+		<th style="text-align:left">Description</th>
+		<td colspan="3" style="text-align:left">Role Class for defining a referenced object originates from an external MTP context</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPRCLib/HasExternalMtpContext</td>
+		<th style="text-align:left">AutomationML Path</th>
+		<td colspan="3" style="text-align:left">MTPRCLib/HasExternalMtpContext</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">-</td>
+		<th style="text-align:left">AutomationML BaseRef</th>
+		<td colspan="3" style="text-align:left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:Manifest.Composed V2.0.0</td>
+		<th style="text-align:left">Version</th>
+		<td colspan="3" style="text-align:left">ModuleTypePackage:Manifest.Composed V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" style="text-align:left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th style="text-align:left">Name</th>
+		<th style="text-align:left">Type</th>
+		<th colspan="2" style="text-align:left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
+		<td style="text-align:left">-</td>
+		<td style="text-align:left">-</td>
+		<td colspan="2" style="text-align:left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" style="text-align:left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th style="text-align:left">Name</th>
+		<th style="text-align:left">Type</th>
+		<th style="text-align:left">Description</th>
+		<th style="text-align:left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>ContextLink</td>
-		<td>xs:string (GUID-formatted)</td>
-		<td>object identifier of the referenced MTP in the attachment</td>
-		<td>IDLinkAttribute-Type</td>
+		<td style="text-align:left">ContextLink</td>
+		<td style="text-align:left">xs:string (GUID-formatted)</td>
+		<td style="text-align:left">object identifier of the referenced MTP in the attachment</td>
+		<td style="text-align:left">IDLinkAttribute-Type</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" style="text-align:left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" style="text-align:left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" style="text-align:left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Annotations</th>
-		<td colspan="3">IE of SUC LinkedObject as SRC<br>IE of SUC PictureFrame as SRC<br>IE of SUC ReferencedPicture as SRC</td>
+		<th style="text-align:left">Allowed Annotations</th>
+		<td colspan="3" style="text-align:left">IE of SUC LinkedObject as SRC<br>IE of SUC PictureFrame as SRC<br>IE of SUC ReferencedPicture as SRC</td>
 	</tr>
 </table>
 

@@ -4,6 +4,7 @@
 <!-- TODO: Nummerierung der Sections glatt ziehen -->
 <!-- TODO: Texte lesen -->
 <!-- TODO: Tabellen prüfen -->
+<!-- TODO: Tabellenzellen linksbündig -->
 
 ## 9 Enhancements of the Module Type Package Concept
 
