@@ -1,136 +1,134 @@
 ## Conformity Declaration for Logistics Equipment Assemblies
-Based on the findings of this work, Table~[Konformitätsbeschreibung](#tab:Konformitätsbeschreibung) provides an overview of the existing and newly introduced profiles required for applying the MTP concept in production-related logistics. A distinction is made between profiles that are generally relevant for LEA automation, profiles that LEAs must fulfill in order to participate in a logistics line, and profiles required for connecting LEAs to flexible transport systems.
+Based on the findings of this work, [Table 9.76](#table-976-profiles-to-be-implemented-for-applying-the-mtp-concept-in-production-related-logistics) provides an overview of the existing and newly introduced profiles required for applying the MTP concept in production-related logistics. A distinction is made between profiles that are generally relevant for LEA automation, profiles that LEAs must fulfill in order to participate in a logistics line, and profiles required for connecting LEAs to flexible transport systems.
 
-% Konformitätsbeschreibung
-<a id="tab:Konformitätsbeschreibung"></a>
-**Table: Profiles to Be Implemented for Applying the MTP Concept in Production-Related Logistics; &times; - profile is required; (&times;) - profile is optional; empty - profile is not required**
+##### Table 9.76: Profiles to Be Implemented for Applying the MTP Concept in Production-Related Logistics; &times; - profile is required; (&times;) - profile is optional; empty - profile is not required
 
 <table>
 	<tr>
-		<th>Profil</th>
-		<th>LEA-Automati-sierung</th>
-		<th>Teilnahme Logistics Line</th>
-		<th>Anbindung Transportsystem</th>
+		<th align="left">Profil</th>
+		<th align="left">LEA-Automati-sierung</th>
+		<th align="left">Teilnahme Logistics Line</th>
+		<th align="left">Anbindung Transportsystem</th>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>Manifest</strong></td>
+		<td colspan="4" align="left"><strong>Manifest</strong></td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:Manifest.Base</td>
-		<td>&times;</td>
-		<td>&times;</td>
-		<td>&times;</td>
+		<td align="left">ModuleTypePackage:Manifest.Base</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:Manifest.Composed (neu)</td>
-		<td></td>
-		<td>&times;</td>
-		<td></td>
+		<td align="left">ModuleTypePackage:Manifest.Composed (neu)</td>
+		<td align="left"></td>
+		<td align="left">&times;</td>
+		<td align="left"></td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>AttachmentSet</strong></td>
+		<td colspan="4" align="left"><strong>AttachmentSet</strong></td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:AttachmentSet.Base</td>
-		<td>(&times;)</td>
-		<td>&times;</td>
-		<td>(&times;)</td>
+		<td align="left">ModuleTypePackage:AttachmentSet.Base</td>
+		<td align="left">(&times;)</td>
+		<td align="left">&times;</td>
+		<td align="left">(&times;)</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>TextSet</strong></td>
+		<td colspan="4" align="left"><strong>TextSet</strong></td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:TextSet.Base</td>
-		<td>&times;</td>
-		<td>&times;</td>
-		<td>&times;</td>
+		<td align="left">ModuleTypePackage:TextSet.Base</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>HMISet</strong></td>
+		<td colspan="4" align="left"><strong>HMISet</strong></td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:HMISet.Base</td>
-		<td>&times;</td>
-		<td>&times;</td>
-		<td>&times;</td>
+		<td align="left">ModuleTypePackage:HMISet.Base</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:HMISet.Composed (neu)</td>
-		<td></td>
-		<td>&times;</td>
-		<td></td>
+		<td align="left">ModuleTypePackage:HMISet.Composed (neu)</td>
+		<td align="left"></td>
+		<td align="left">&times;</td>
+		<td align="left"></td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>DataAssemblySet</strong></td>
+		<td colspan="4" align="left"><strong>DataAssemblySet</strong></td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:DataAssemblySet.Base</td>
-		<td>&times;</td>
-		<td>&times;</td>
-		<td>&times;</td>
+		<td align="left">ModuleTypePackage:DataAssemblySet.Base</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:DataAssemblySet. ComplexTypes (neu)</td>
-		<td>&times;</td>
-		<td>&times;</td>
-		<td>&times;</td>
+		<td align="left">ModuleTypePackage:DataAssemblySet. ComplexTypes (neu)</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:DataAssemblySet. Time (neu)</td>
-		<td>(&times;)</td>
-		<td>(&times;)</td>
-		<td>&times;</td>
+		<td align="left">ModuleTypePackage:DataAssemblySet. Time (neu)</td>
+		<td align="left">(&times;)</td>
+		<td align="left">(&times;)</td>
+		<td align="left">&times;</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>ServiceSet</strong></td>
+		<td colspan="4" align="left"><strong>ServiceSet</strong></td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:ServiceSet.Base</td>
-		<td>&times;</td>
-		<td>&times;</td>
-		<td>&times;</td>
+		<td align="left">ModuleTypePackage:ServiceSet.Base</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:ServiceSet. ComplexTypes (neu)</td>
-		<td>&times;</td>
-		<td>&times;</td>
-		<td>&times;</td>
+		<td align="left">ModuleTypePackage:ServiceSet. ComplexTypes (neu)</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:ServiceSet.Logistics (neu)</td>
-		<td>&times;</td>
-		<td>&times;</td>
-		<td>&times;</td>
+		<td align="left">ModuleTypePackage:ServiceSet.Logistics (neu)</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>ProcessValueSet</strong></td>
+		<td colspan="4" align="left"><strong>ProcessValueSet</strong></td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:ProcessValueSet.Base</td>
-		<td>(&times;)</td>
-		<td>(&times;)</td>
-		<td>(&times;)</td>
+		<td align="left">ModuleTypePackage:ProcessValueSet.Base</td>
+		<td align="left">(&times;)</td>
+		<td align="left">(&times;)</td>
+		<td align="left">(&times;)</td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:ProcessValueSet. ComplexTypes (neu)</td>
-		<td>(&times;)</td>
-		<td>(&times;)</td>
-		<td>(&times;)</td>
+		<td align="left">ModuleTypePackage:ProcessValueSet. ComplexTypes (neu)</td>
+		<td align="left">(&times;)</td>
+		<td align="left">(&times;)</td>
+		<td align="left">(&times;)</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>ServerAssemblySet</strong></td>
+		<td colspan="4" align="left"><strong>ServerAssemblySet</strong></td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:ServerAssemblySet. Base</td>
-		<td>&times;</td>
-		<td>&times;</td>
-		<td>&times;</td>
+		<td align="left">ModuleTypePackage:ServerAssemblySet. Base</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
 	</tr>
 	<tr>
-		<td>ModuleTypePackage:ServerAssemblySet. OPCUA</td>
-		<td>&times;</td>
-		<td>&times;</td>
-		<td>&times;</td>
+		<td align="left">ModuleTypePackage:ServerAssemblySet. OPCUA</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
+		<td align="left">&times;</td>
 	</tr>
 </table>
 
