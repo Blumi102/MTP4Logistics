@@ -1,4 +1,4 @@
-﻿## MTP Extension of the Manifest {#sec:AnhangManifest}
+﻿## MTP Extension of the Manifest
 This chapter specifies all identified extensions of the *Manifest* and integrates them into the existing MTP specification [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1).
 
 ### Overview {#subsec:AnhangManifestUebersicht}
