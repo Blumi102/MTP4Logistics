@@ -1,11 +1,11 @@
-## MTP Specification of the ChoreographySet
+## 9.7 MTP Specification of the ChoreographySet
 This chapter specifies the *ChoreographySet* as a new aspect of the MTP specification that contains all elements identified in the conceptual chapter~[Art2 LL](#chap:Art2LL).
  
-### Übersicht
-According to Chapter~[Art2 LL](#chap:Art2LL), a series of new model and interface definitions is required to represent choreography-relevant information in the MTP of an LEA. Figure~[Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines](#fig:AnhangUebersichtChoreoAspekt) provides an overview of these newly specified definitions.
+### 9.7.1 Overview
+According to Chapter~[Art2 LL](#chap:Art2LL), a series of new model and interface definitions is required to represent choreography-relevant information in the MTP of an LEA. [Figure 9.18](#figure-918-specification-of-the-choreographyset-for-implementing-choreography-based-logistics-lines) provides an overview of these newly specified definitions.
 
-![Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines](Inhalt/Abbildungen/99_Anhang/Spezifikation_Choreografie/Klassendiagramm.drawio.png)
-*Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines*
+##### Figure 9.18: Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines
+![Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines](./images/07_ChoreographySet.drawio.svg)
 
 #### Interface Definitions
 On the interface-definition side, *SUC ChoreographyParticipantManager* is introduced as an interface for configuring configurable logic, and *SUC CommunicationManager* is introduced as an interface for configurable communication. *SUC CommunicationManager* is an abstract interface definition that fundamentally allows the use of different communication technologies through different derivations. For implementation based on OPC~UA client/server, the derived *SUC OpcUaClientServerManager* is introduced. A convention in the MTP specifications provides that interface definitions belonging together in terms of content are derived from a common interface definition with the suffix **Element*. Accordingly, in this case *SUC ChoreographyElement*, derived from *SUC DataAssembly* [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3), is introduced, from which *SUC ChoreographyParticipantManager* and *SUC CommunicationManager* are derived.
@@ -19,1557 +19,1550 @@ On the model-definition side, *SUC ChoreographySet* is introduced as a new aspec
 
 All model and interface definitions required for the *ChoreographySet* are assigned to the new profile *ModuleTypePackage:ChoreographySet.Base V2.0.0*.[^2]
 
-### Interface Definitions
+### 9.7.2 Interface Definitions
 #### Specification of the System Unit Class UnionElement
-*SUC UnionElement* (Table~[Data Assembly Suc Union Element](#tab:DataAssemblySucUnionElement)) is used to display the value of an *InputElement* or an *OutputElement*. Accordingly, a *UnionElement* interface is assigned to these model definitions via a LinkedObject relation.
+*SUC UnionElement* ([Table 9.43](#table-943-interface-definition-of-suc-unionelement)) is used to display the value of an *InputElement* or an *OutputElement*. Accordingly, a *UnionElement* interface is assigned to these model definitions via a LinkedObject relation.
 
-% Schnittstellendefinition SUC UnionElement
-<a id="tab:DataAssemblySucUnionElement"></a>
-**Table: Interface Definition of *SUC UnionElement***
+##### Table 9.43: Interface Definition of *SUC UnionElement*
 
 <table>
-	<tr><td colspan="6"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="5"><strong>UnionElement</strong></td></tr>
-	<tr><th>Type</th><td colspan="5">System Unit Class (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="5">-<sup>a)</sup></td></tr>
-	<tr><th>Description</th><td colspan="5">interface for displaying a value with datatype defined at runtime</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly/UnionElement</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly</td></tr>
-	<tr><th>Role Classes</th><td colspan="5">-</td></tr>
-	<tr><th>Version</th><td colspan="5">ModuleTypePackage:ChoreographySet.Base V2.0.0</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="4">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>VQC</td><td>LOL <- LEA</td><td>BYTE</td><td>quality Code of the value</td><td>-</td><td>-</td></tr>
-	<tr><td>DataType</td><td>LOL <- LEA</td><td>BYTE</td><td>identifier of selected data type<br/>(0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td>-</td><td>-</td></tr>
-	<tr><td>VReal</td><td>LOL <- LEA</td><td>REAL</td><td>Real Value<br/>(Type: 1)</td><td>-</td><td>-</td></tr>
-	<tr><td>VDInt</td><td>LOL <- LEA</td><td>DINT</td><td>Double Integer Value (Type: 2)</td><td>-</td><td>-</td></tr>
-	<tr><td>VDWord</td><td>LOL <- LEA</td><td>DWORD</td><td>Double Word Value (Type: 3)</td><td>-</td><td>-</td></tr>
-	<tr><td>VBool</td><td>LOL <- LEA</td><td>BOOL</td><td>Boolean Value (Type: 4)</td><td>-</td><td>-</td></tr>
-	<tr><td>VString</td><td>LOL <- LEA</td><td>STRING</td><td>String Value<br/>(Type: 5)</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="6"><sup>a)</sup> Bei der <em>SUC UnionElement</em> könnten zukünftig noch andere Datentypen ergänzt werden. Alle weiteren Schnittstellen, die die <em>SUC UnionElement</em> nutzen, sollte folglich auch Erweiterungen erlauben und nicht <em>sealed</em> sein.</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="5">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="5">(no further constraints given)</td></tr>
+	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="5" align="left"><strong>UnionElement</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="5" align="left">System Unit Class (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="5" align="left">-<sup>a)</sup></td></tr>
+	<tr><th align="left">Description</th><td colspan="5" align="left">interface for displaying a value with datatype defined at runtime</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/UnionElement</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly</td></tr>
+	<tr><th align="left">Role Classes</th><td colspan="5" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="5" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="4" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
+	<tr><td align="left">VQC</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">quality Code of the value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">DataType</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">identifier of selected data type<br/>(0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VReal</td><td align="left">LOL <- LEA</td><td align="left">REAL</td><td align="left">Real Value<br/>(Type: 1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VDInt</td><td align="left">LOL <- LEA</td><td align="left">DINT</td><td align="left">Double Integer Value (Type: 2)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VDWord</td><td align="left">LOL <- LEA</td><td align="left">DWORD</td><td align="left">Double Word Value (Type: 3)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VBool</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">Boolean Value (Type: 4)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VString</td><td align="left">LOL <- LEA</td><td align="left">STRING</td><td align="left">String Value<br/>(Type: 5)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="6" align="left"><sup>a)</sup> Bei der <em>SUC UnionElement</em> könnten zukünftig noch andere Datentypen ergänzt werden. Alle weiteren Schnittstellen, die die <em>SUC UnionElement</em> nutzen, sollte folglich auch Erweiterungen erlauben und nicht <em>sealed</em> sein.</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="5" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="5" align="left">(no further constraints given)</td></tr>
 </table>
 
 The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString * are used to display the desired value. The variable *DataType* indicates which data type is currently active and which of the previously mentioned variables is therefore to be interpreted. *UnionElement* can thus display only one value of one defined data type at a time. *VQC* provides information about the quality and trustworthiness of the displayed value.
 
 #### Specification of the System Unit Class WritableUnionElement
-*SUC WritableUnionElement* (Table~[Data Assembly Suc Writable Union Element](#tab:DataAssemblySucWritableUnionElement)) is derived from *UnionElement* and is used to write a value into a *WritableInputElement*. Accordingly, a *WritableUnionElement* interface is always assigned to a *WritableInputElement* via a LinkedObject relation. 
+*SUC WritableUnionElement* ([Table 9.44](#table-944-interface-definition-of-suc-writableunionElement)) is derived from *UnionElement* and is used to write a value into a *WritableInputElement*. Accordingly, a *WritableUnionElement* interface is always assigned to a *WritableInputElement* via a LinkedObject relation. 
 
-% Schnittstellendefinition SUC WritableUnionElement
-<a id="tab:DataAssemblySucWritableUnionElement"></a>
-**Table: Interface Definition of *SUC WritableUnionElement***
+##### Table 9.44: Interface Definition of *SUC WritableUnionElement*
 
 <table>
-	<tr><td colspan="6"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="5"><strong>WritableUnionElement</strong></td></tr>
-	<tr><th>Type</th><td colspan="5">System Unit Class (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="5">-</td></tr>
-	<tr><th>Description</th><td colspan="5">interface for writing a value with datatype defined at runtime</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly/UnionElement/WritableUnionElement</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly/UnionElement</td></tr>
-	<tr><th>Role Classes</th><td colspan="5">-</td></tr>
-	<tr><th>Version</th><td colspan="5">ModuleTypePackage:ChoreographySet.Base V2.0.0</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="4">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>quality Code of the value</td><td>-</td><td>-</td></tr>
-	<tr><td>DataType</td><td>LOL -> LEA</td><td>BYTE</td><td>identifier of selected data type (0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td>-</td><td>-</td></tr>
-	<tr><td>VReal</td><td>LOL -> LEA</td><td>REAL</td><td>Real Value (Type: 1)</td><td>-</td><td>-</td></tr>
-	<tr><td>VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>Double Integer Value (Type: 2)</td><td>-</td><td>-</td></tr>
-	<tr><td>VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>Double Word Value (Type: 3)</td><td>-</td><td>-</td></tr>
-	<tr><td>VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>Boolean Value (Type: 4)</td><td>-</td><td>-</td></tr>
-	<tr><td>VString</td><td>LOL -> LEA</td><td>STRING</td><td>String Value (Type: 5)</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="6">-</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="5">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="5">(no further constraints given)</td></tr>
+	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="5" align="left"><strong>WritableUnionElement</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="5" align="left">System Unit Class (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="5" align="left">-</td></tr>
+	<tr><th align="left">Description</th><td colspan="5" align="left">interface for writing a value with datatype defined at runtime</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/UnionElement/WritableUnionElement</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/UnionElement</td></tr>
+	<tr><th align="left">Role Classes</th><td colspan="5" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="5" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="4" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
+	<tr><td align="left">VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">quality Code of the value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">DataType</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">identifier of selected data type (0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">Real Value (Type: 1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">Double Integer Value (Type: 2)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">Double Word Value (Type: 3)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">Boolean Value (Type: 4)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">String Value (Type: 5)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="6" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="5" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="5" align="left">(no further constraints given)</td></tr>
 </table>
 
 The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to enter the desired value. The variable *DataType* indicates which data type is currently active and which of the previously mentioned variables is to be used in the LEA program. *WritableUnionElement* thus accepts only one value of one defined data type at a time. *VQC* can be used to transmit information about the quality and trustworthiness of the entered value.
 
 #### Specification of the System Unit Class ChoreographyElement
-*SUC ChoreographyElement* (Table~[Data Assembly Suc Choreography Element](#tab:DataAssemblySucChoreographyElement)) is an abstract class derived from *SUC DataAssembly* specified in [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3). The choreography-relevant interface definitions *ChoreographyParticipantManager* and *CommunicationManager* are derived from *ChoreographyElement*.
+*SUC ChoreographyElement* ([Table 9.45](#table-945-interface-definition-of-suc-choreographyelement)) is an abstract class derived from *SUC DataAssembly* specified in [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3). The choreography-relevant interface definitions *ChoreographyParticipantManager* and *CommunicationManager* are derived from *ChoreographyElement*.
 
-% Schnittstellendefinition SUC ChoreographyElement
-<a id="tab:DataAssemblySucChoreographyElement"></a>
-**Table: Interface Definition of *SUC ChoreographyElement***
+##### Table 9.45: Interface Definition of *SUC ChoreographyElement*
 
 <table>
-	<tr><td colspan="6"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="5"><strong>ChoreographyElement</strong></td></tr>
-	<tr><th>Type</th><td colspan="5">System Unit Class (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="5">abstract</td></tr>
-	<tr><th>Description</th><td colspan="5">root interface class for choreography-related interface definitions</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly</td></tr>
-	<tr><th>Role Classes</th><td colspan="5">-</td></tr>
-	<tr><th>Version</th><td colspan="5">ModuleTypePackage:ChoreographySet.Base V2.0.0</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="4">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>WQC</td><td>LOL <- LEA</td><td>BYTE</td><td>Worst Quality Code</td><td>-</td><td>WQC</td></tr>
-	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="6">-</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="5">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="5">(no further constraints given)</td></tr>
+	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="5" align="left"><strong>ChoreographyElement</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="5" align="left">System Unit Class (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="5" align="left">abstract</td></tr>
+	<tr><th align="left">Description</th><td colspan="5" align="left">root interface class for choreography-related interface definitions</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly</td></tr>
+	<tr><th align="left">Role Classes</th><td colspan="5" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="5" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="4" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
+	<tr><td align="left">WQC</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">Worst Quality Code</td><td align="left">-</td><td align="left">WQC</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="6" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="5" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="5" align="left">(no further constraints given)</td></tr>
 </table>
 
 #### Specification of the System Unit Class ChoreographyParticipantManager
-*SUC ChoreographyParticipantManager* (Table~[Data Assembly Suc Choreography Participant Manager](#tab:DataAssemblySucChoreographyParticipantManager)) is derived from *SUC ChoreographyElement* and is used to configure the configurable logic of a choreography participant. In addition, it provides information for type, version, and instance verification of choreographed logistics lines, see also Appendix~[Workflows](#subsec:AnhangManifestWorkflows). This interface definition is assigned to an *SUC ChoreographyParticipant* in the *ChoreographySet* via a LinkedObject relation.
+*SUC ChoreographyParticipantManager* ([Table 9.46](#table-946-interface-definition-of-suc-choreographyparticipantmanager)) is derived from *SUC ChoreographyElement* and is used to configure the configurable logic of a choreography participant. In addition, it provides information for type, version, and instance verification of choreographed logistics lines, see also Appendix~[Workflows](#subsec:AnhangManifestWorkflows). This interface definition is assigned to an *SUC ChoreographyParticipant* in the *ChoreographySet* via a LinkedObject relation.
 
-% Schnittstellendefinition SUC ChoreographyParticipantManager
-<a id="tab:DataAssemblySucChoreographyParticipantManager"></a>
-**Table: Interface Definition of *SUC ChoreographyParticipantManager***
+##### Table 9.46: Interface Definition of *SUC ChoreographyParticipantManager*
 
 <table>
-	<tr><td colspan="6"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="5"><strong>ChoreographyParticipantManager</strong></td></tr>
-	<tr><th>Type</th><td colspan="5">System Unit Class (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="5">-</td></tr>
-	<tr><th>Description</th><td colspan="5">configuration interface for a choreography participant</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement/ChoreographyParticipantManager</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement</td></tr>
-	<tr><th>Role Classes</th><td colspan="5">-</td></tr>
-	<tr><th>Version</th><td colspan="5">ModuleTypePackage:ChoreographySet.Base V2.0.0</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="4">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>ComposedTypeCode</td><td>LOL -> LEA</td><td>STRING</td><td>identifier of the choreography type</td><td>-</td><td>-</td></tr>
-	<tr><td>ComposedTypeRevision</td><td>LOL -> LEA</td><td>STRING</td><td>version of the choreography type</td><td>-</td><td>-</td></tr>
-	<tr><td>RoleIdent</td><td>LOL -> LEA</td><td>STRING</td><td>identifier of the participant role within the choreography</td><td>-</td><td>-</td></tr>
-	<tr><td>ViewSel</td><td>LOL -> LEA</td><td>BOOL</td><td>selection to view prepared configuration (false) or active configuration (true)</td><td>-</td><td>-</td></tr>
-	<tr><td>ViewCur</td><td>LOL <- LEA</td><td>BOOL</td><td>currently selected view: false = prepared, true = active</td><td>-</td><td>-</td></tr>
-	<tr><td>RestoreDefaultEn</td><td>LOL <- LEA</td><td>BOOL</td><td>enable flag to restore default configuration</td><td>-</td><td>-</td></tr>
-	<tr><td>RestoreDefault</td><td>LOL -> LEA</td><td>BOOL</td><td>restores the default config of all inputs, logics, and outputs</td><td>-</td><td>-</td></tr>
-	<tr><td>ExecuteEn</td><td>LOL <- LEA</td><td>BOOL</td><td>enable flag to execute the configurable logic</td><td>-</td><td>-</td></tr>
-	<tr><td>ExecuteOn</td><td>LOL -> LEA</td><td>BOOL</td><td>trigger to apply the current configuration and start the execution</td><td>-</td><td>-</td></tr>
-	<tr><td>ExecuteOff</td><td>LOL -> LEA</td><td>BOOL</td><td>trigger to quit the execution, outputs are set to default value</td><td>-</td><td>-</td></tr>
-	<tr><td>ExecuteAct</td><td>LOL <- LEA</td><td>BOOL</td><td>flag which indicates the active execution</td><td>-</td><td>-</td></tr>
-	<tr><td>ExecuteErr</td><td>LOL <- LEA</td><td>BOOL</td><td>flag which indicates min. one processing error</td><td>-</td><td>-</td></tr>
-	<tr><td>InputCnt</td><td>LOL <- LEA</td><td>UINT</td><td>number of input configurations (maximum index of input configurations = InputCnt-1)</td><td>-</td><td>-</td></tr>
-	<tr><td>InputIndexSel</td><td>LOL -> LEA</td><td>UINT</td><td>index of the desired input configuration to be shown</td><td>-</td><td>-</td></tr>
-	<tr><td>InputIndexCur</td><td>LOL <- LEA</td><td>UINT</td><td>index of the currently selected input configuration</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VQC</td><td>LOL <- LEA</td><td>BYTE</td><td>value quality code of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_DataType</td><td>LOL <- LEA</td><td>BYTE</td><td>data type of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VReal</td><td>LOL <- LEA</td><td>REAL</td><td>real value of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VDInt</td><td>LOL <- LEA</td><td>DINT</td><td>double Integer value of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VDWord</td><td>LOL <- LEA</td><td>DWORD</td><td>double Word value of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VBool</td><td>LOL <- LEA</td><td>BOOL</td><td>boolean value of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VString</td><td>LOL <- LEA</td><td>STRING</td><td>string value of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>LogicCnt</td><td>LOL <- LEA</td><td>UINT</td><td>number of logic configurations (maximum index of logic configurations = LogicCnt-1)</td><td>-</td><td>-</td></tr>
-	<tr><td>LogicIndexSel</td><td>LOL -> LEA</td><td>UINT</td><td>index of the desired logic configuration to be shown</td><td>-</td><td>-</td></tr>
-	<tr><td>LogicIndexCur</td><td>LOL <- LEA</td><td>UINT</td><td>index of the currently selected logic configuration</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_FuncTypeSel</td><td>LOL -> LEA</td><td>UINT</td><td>function type selector of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Source</td><td>LOL -> LEA</td><td>SINT</td><td>source of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Index</td><td>LOL -> LEA</td><td>UINT</td><td>index of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>constant value quality code of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>constant data type of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>constant Real value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>constant Double Integer value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>constant double word value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>constant boolean value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VString</td><td>LOL -> LEA</td><td>STRING</td><td>constant String value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Source</td><td>LOL -> LEA</td><td>SINT</td><td>source of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Index</td><td>LOL -> LEA</td><td>UINT</td><td>index of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>constant value quality code of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>constant data type of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>constant Real value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>constant Double Integer value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>constant double word value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>constant boolean value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VString</td><td>LOL -> LEA</td><td>STRING</td><td>constant String value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Source</td><td>LOL -> LEA</td><td>SINT</td><td>source of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Index</td><td>LOL -> LEA</td><td>UINT</td><td>index of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>constant value quality code of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>constant data type of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>constant Real value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>constant Double Integer value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>constant double word value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>constant boolean value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VString</td><td>LOL -> LEA</td><td>STRING</td><td>constant String value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Source</td><td>LOL -> LEA</td><td>SINT</td><td>source of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Index</td><td>LOL -> LEA</td><td>UINT</td><td>index of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>constant value quality code of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>constant data type of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>constant Real value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>constant Double Integer value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>constant double word value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>constant boolean value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VString</td><td>LOL -> LEA</td><td>STRING</td><td>constant String value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VQC</td><td>LOL <- LEA</td><td>BYTE</td><td>constant value quality code of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_DataType</td><td>LOL <- LEA</td><td>BYTE</td><td>constant data type of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VReal</td><td>LOL <- LEA</td><td>REAL</td><td>constant Real value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VDInt</td><td>LOL <- LEA</td><td>DINT</td><td>constant Double Integer value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VDWord</td><td>LOL <- LEA</td><td>DWORD</td><td>constant Double Word value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VBool</td><td>LOL <- LEA</td><td>BOOL</td><td>constant Boolean value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VString</td><td>LOL <- LEA</td><td>STRING</td><td>constant String value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Ret</td><td>LOL <- LEA</td><td>UINT</td><td>return value of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>OutputCnt</td><td>LOL <- LEA</td><td>UINT</td><td>number of output configurations (maximum index of output configurations = OutputCnt-1)</td><td>-</td><td>-</td></tr>
-	<tr><td>OutputIndexSel</td><td>LOL -> LEA</td><td>UINT</td><td>index of the desired output configuration to be shown</td><td>-</td><td>-</td></tr>
-	<tr><td>OutputIndexCur</td><td>LOL <- LEA</td><td>UINT</td><td>index of the currently selected output configuration</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Source</td><td>LOL -> LEA</td><td>SINT</td><td>source of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Index</td><td>LOL -> LEA</td><td>UINT</td><td>index of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_DataType</td><td>LOL -> LEA</td><td>BYTE</td><td>data type of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>constant value quality code of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>constant data type of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>constant Real value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>constant Double Integer value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>constant Double Word value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>constant Boolean value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VString</td><td>LOL -> LEA</td><td>STRING</td><td>constant String value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>value quality code of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>data type of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>real value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>double integer value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>double word value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>boolean value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VString</td><td>LOL -> LEA</td><td>STRING</td><td>string value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Ret</td><td>LOL <- LEA</td><td>UINT</td><td>return value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="6">-</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="5">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="5">(no further constraints given)</td></tr>
+	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="5" align="left"><strong>ChoreographyParticipantManager</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="5" align="left">System Unit Class (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="5" align="left">-</td></tr>
+	<tr><th align="left">Description</th><td colspan="5" align="left">configuration interface for a choreography participant</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement/ChoreographyParticipantManager</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement</td></tr>
+	<tr><th align="left">Role Classes</th><td colspan="5" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="5" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="4" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
+	<tr><td align="left">ComposedTypeCode</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">identifier of the choreography type</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ComposedTypeRevision</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">version of the choreography type</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">RoleIdent</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">identifier of the participant role within the choreography</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ViewSel</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">selection to view prepared configuration (false) or active configuration (true)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ViewCur</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">currently selected view: false = prepared, true = active</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">RestoreDefaultEn</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">enable flag to restore default configuration</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">RestoreDefault</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">restores the default config of all inputs, logics, and outputs</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ExecuteEn</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">enable flag to execute the configurable logic</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ExecuteOn</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">trigger to apply the current configuration and start the execution</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ExecuteOff</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">trigger to quit the execution, outputs are set to default value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ExecuteAct</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">flag which indicates the active execution</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ExecuteErr</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">flag which indicates min. one processing error</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">InputCnt</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">number of input configurations (maximum index of input configurations = InputCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">InputIndexSel</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of the desired input configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">InputIndexCur</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">index of the currently selected input configuration</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VQC</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">value quality code of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_DataType</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VReal</td><td align="left">LOL <- LEA</td><td align="left">REAL</td><td align="left">real value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VDInt</td><td align="left">LOL <- LEA</td><td align="left">DINT</td><td align="left">double Integer value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VDWord</td><td align="left">LOL <- LEA</td><td align="left">DWORD</td><td align="left">double Word value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VBool</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">boolean value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VString</td><td align="left">LOL <- LEA</td><td align="left">STRING</td><td align="left">string value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">LogicCnt</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">number of logic configurations (maximum index of logic configurations = LogicCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">LogicIndexSel</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of the desired logic configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">LogicIndexCur</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">index of the currently selected logic configuration</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_FuncTypeSel</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">function type selector of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Source</td><td align="left">LOL -> LEA</td><td align="left">SINT</td><td align="left">source of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Index</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">constant String value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Source</td><td align="left">LOL -> LEA</td><td align="left">SINT</td><td align="left">source of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Index</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">constant String value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Source</td><td align="left">LOL -> LEA</td><td align="left">SINT</td><td align="left">source of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Index</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">constant String value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Source</td><td align="left">LOL -> LEA</td><td align="left">SINT</td><td align="left">source of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Index</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">constant String value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VQC</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_DataType</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">constant data type of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VReal</td><td align="left">LOL <- LEA</td><td align="left">REAL</td><td align="left">constant Real value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VDInt</td><td align="left">LOL <- LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VDWord</td><td align="left">LOL <- LEA</td><td align="left">DWORD</td><td align="left">constant Double Word value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VBool</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">constant Boolean value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VString</td><td align="left">LOL <- LEA</td><td align="left">STRING</td><td align="left">constant String value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Ret</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">return value of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">OutputCnt</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">number of output configurations (maximum index of output configurations = OutputCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">OutputIndexSel</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of the desired output configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">OutputIndexCur</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">index of the currently selected output configuration</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Source</td><td align="left">LOL -> LEA</td><td align="left">SINT</td><td align="left">source of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Index</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_DataType</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant data type of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">constant Real value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">constant Double Word value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">constant Boolean value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">constant String value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">value quality code of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">real value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">double integer value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">double word value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">boolean value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">string value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Ret</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">return value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="6" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="5" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="5" align="left">(no further constraints given)</td></tr>
 </table>
 
 #### Specification of the System Unit Class CommunicationManager
-*SUC CommunicationManager* (Table~[Data Assembly Suc Communication Manager](#tab:DataAssemblySucCommunicationManager)) is an abstract class derived from *SUC ChoreographyElement*. It is to be understood as a generic interface definition for configuring the configurable communication of a choreography participant. To use this interface definition, a concrete manager for a specific communication technology must be derived from it. So far, only *OpcUaClientServerManager* has been implemented for configuring OPC~UA client/server connections; additional derivations can be developed in the future. The derivations of *SUC CommunicationManager* are assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation, variable *ManagerLink*. In addition, each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*.
+*SUC CommunicationManager* ([Table 9.47](#table-947-interface-definition-of-suc-communicationmanager)) is an abstract class derived from *SUC ChoreographyElement*. It is to be understood as a generic interface definition for configuring the configurable communication of a choreography participant. To use this interface definition, a concrete manager for a specific communication technology must be derived from it. So far, only *OpcUaClientServerManager* has been implemented for configuring OPC~UA client/server connections; additional derivations can be developed in the future. The derivations of *SUC CommunicationManager* are assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation, variable *ManagerLink*. In addition, each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*.
 
 <a id="tab:DataAssemblySucCommunicationManager"></a>
-**Table: Interface Definition of *SUC CommunicationManager***
+##### Table 9.47: Interface Definition of *SUC CommunicationManager*
 
 <table>
 	<tr>
-		<td colspan="6"><strong>▶ Module Type Package - DataAssembly Definition</strong></td>
+		<td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="5"><strong>CommunicationManager</strong></td>
+		<th align="left">Name</th>
+		<td colspan="5" align="left"><strong>CommunicationManager</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="5">System Unit Class (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="5" align="left">System Unit Class (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="5">abstract</td>
+		<th align="left">Modifier</th>
+		<td colspan="5" align="left">abstract</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="5">abstract interface definition for the communication between different choreography participants</td>
+		<th align="left">Description</th>
+		<td colspan="5" align="left">abstract interface definition for the communication between different choreography participants</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement/Commu-nicationManager</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement/Commu-nicationManager</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement</td>
 	</tr>
 	<tr>
-		<th>Role Classes</th>
-		<td colspan="5">-</td>
+		<th align="left">Role Classes</th>
+		<td colspan="5" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="5">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="5" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="6"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="6" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="4">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="4" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="4">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="6"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Access</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>Attribute-Type Reference</th>
-		<th>Base Function</th>
+		<th align="left">Name</th>
+		<th align="left">Access</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">Attribute-Type Reference</th>
+		<th align="left">Base Function</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="6"><strong>📌 Comment</strong></td>
+		<td colspan="6" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="6">-</td>
+		<td colspan="6" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="5">(no further constraints given)</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="5" align="left">(no further constraints given)</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="5">(no further constraints given)</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="5" align="left">(no further constraints given)</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class OpcUaClientServerManager
-*SUC OpcUaClientServerManager* (Table~[Data Assembly Suc Opc Ua Client Server Manager](#tab:DataAssemblySucOpcUaClientServerManager)) is derived from the abstract *SUC CommunicationManager*. It is used to configure OPC~UA client/server communication of an LEA with other LEAs participating in a choreography. *SUC OpcUaClientServerManager* is assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation, variable *ManagerLink*. Each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*. In the case of *OpcUaClientServerManager*, these communication elements are the *UaReader* and *UaWriter* managed by the manager, which are referenced via their index. The *UaReader* are each assigned to a *ConfigurableInputElement*, and the *UaWriter* are each assigned to a *ConfigurableOutputElement*. For the communication variant of active writing, *SUC OpcUaClientServerManager* manages the existing *ValueFields* of an LEA that can be written by other LEAs. 
+*SUC OpcUaClientServerManager* ([Table 9.48](#table-948-interface-definition-of-suc-opcuaclientservermanager)) is derived from the abstract *SUC CommunicationManager*. It is used to configure OPC~UA client/server communication of an LEA with other LEAs participating in a choreography. *SUC OpcUaClientServerManager* is assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation, variable *ManagerLink*. Each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*. In the case of *OpcUaClientServerManager*, these communication elements are the *UaReader* and *UaWriter* managed by the manager, which are referenced via their index. The *UaReader* are each assigned to a *ConfigurableInputElement*, and the *UaWriter* are each assigned to a *ConfigurableOutputElement*. For the communication variant of active writing, *SUC OpcUaClientServerManager* manages the existing *ValueFields* of an LEA that can be written by other LEAs. 
 
-<!-- Start Table -->
+<a id="tab:DataAssemblySucOpcUaClientServerManager"></a>
+##### Table 9.48: Interface Definition of *SUC OpcUaClientServerManager*
 
 <table>
-	<tr><td colspan="6"><strong>&#9654; Module Type Package - DataAssembly Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="5"><strong>OpcUaClientServerManager</strong></td></tr>
-	<tr><th>Type</th><td colspan="5">System Unit Class (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="5">-</td></tr>
-	<tr><th>Description</th><td colspan="5">interface for managing the OPC UA connections, readers, writers and value fields of a choreography participant</td></tr>
-	<tr><td colspan="6"><strong>&#128204; AutomationML Properties</strong></td></tr>
-	<tr><th>AutomationML Path</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement/CommunicationManager/OpcUaClientServerManager</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement/CommunicationManager</td></tr>
-	<tr><th>Role Classes</th><td colspan="5">-</td></tr>
-	<tr><th>Version</th><td colspan="5">ModuleTypePackage:ChoreographySet.Base V2.0.0</td></tr>
-	<tr><td colspan="6"><strong>&#128204; AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>ConnectionViewSel</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>selection to view prepared configuration (false) or active configuration (true)</td><td>-</td><td>-</td></tr>
-	<tr><td>ConnectionViewCur</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>currently selected view: false = prepared, true = active</td><td>-</td><td>-</td></tr>
-	<tr><td>ConnectionCnt</td><td>LOL &lt;- LEA</td><td>BYTE</td><td>number of connection configurations (maximum index = ConnectionCnt-1)</td><td>-</td><td>-</td></tr>
-	<tr><td>ConnectionCntActive</td><td>LOL &lt;- LEA</td><td>BYTE</td><td>number of active connections</td><td>-</td><td>-</td></tr>
-	<tr><td>ConnectionCntInactive</td><td>LOL &lt;- LEA</td><td>BYTE</td><td>number of inactive but configured connections</td><td>-</td><td>-</td></tr>
-	<tr><td>ConnectionCntError</td><td>LOL &lt;- LEA</td><td>BYTE</td><td>number of failed connections</td><td>-</td><td>-</td></tr>
-	<tr><td>ConnectionIndexSel</td><td>LOL -&gt; LEA</td><td>BYTE</td><td>index of the desired connection configuration to be shown</td><td>-</td><td>-</td></tr>
-	<tr><td>ConnectionIndexCur</td><td>LOL &lt;- LEA</td><td>BYTE</td><td>index of the currently selected connection configuration</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_RestoreDefaultEn</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>enable flag to restore default configuration of the currently selected connection</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_RestoreDefault</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>restore default configuration of the currently selected connection</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_ConnectEn</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>enable flag to connect the currently selected connection</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_Connect</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>apply the configuration and establish the currently selected connection</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_ConnectAct</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>indication whether the currently selected connection is established</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_ConnectErr</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>indication whether the currently selected connection has an error</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_DisconnectEn</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>enable flag to disconnect the currently selected connection</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_Disconnect</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>disconnect the currently selected connection</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_Reset</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>reset the currently selected connection</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_Active</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>indicates that the selected connection is activated to be used</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_ServerUrl</td><td>LOL -&gt; LEA</td><td>STRING</td><td>server URL for the connection</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_NamespaceUriCnt</td><td>LOL -&gt; LEA</td><td>BYTE</td><td>number of namespace URIs</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_NamespaceUri_1</td><td>LOL -&gt; LEA</td><td>STRING</td><td>namespace URI 1</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_NamespaceUri_2</td><td>LOL -&gt; LEA</td><td>STRING</td><td>namespace URI 2</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_NamespaceUri_3</td><td>LOL -&gt; LEA</td><td>STRING</td><td>namespace URI 3</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_NamespaceUri_4</td><td>LOL -&gt; LEA</td><td>STRING</td><td>namespace URI 4</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_NamespaceUri_5</td><td>LOL -&gt; LEA</td><td>STRING</td><td>namespace URI 5</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_SessionName</td><td>LOL -&gt; LEA</td><td>STRING</td><td>name of the session assigned by the client (when empty, then generated by the server)</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_ApplicationName</td><td>LOL -&gt; LEA</td><td>STRING</td><td>readable name of the OPC UA client application</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_SecurityMsgMode</td><td>LOL -&gt; LEA</td><td>UDINT</td><td>enum UASecurityMsgMode</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_SecurityPolicy</td><td>LOL -&gt; LEA</td><td>UDINT</td><td>enum UASecurityPolicy</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_ServerUri</td><td>LOL -&gt; LEA</td><td>STRING</td><td>defines the URI of the server, coded in ASCII</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_CheckServerCertificate</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>flag indicating if the server certificate should be checked</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_TransportProfile</td><td>LOL -&gt; LEA</td><td>UDINT</td><td>enum UATransportProfile</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_UserIdentityTokenType</td><td>LOL -&gt; LEA</td><td>UDINT</td><td>enum UAUserIdentityTokenType</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_UserTokenParam1</td><td>LOL -&gt; LEA</td><td>STRING</td><td>meaning according to UserIdentityTokenType, e.g., username</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_UserTokenParam2</td><td>LOL -&gt; LEA</td><td>STRING</td><td>meaning according to UserIdentityTokenType, e.g., password</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_CertificateID</td><td>LOL -&gt; LEA</td><td>UDINT</td><td>certificate identifier</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_SessionTimeout</td><td>LOL -&gt; LEA</td><td>TIME</td><td>timeout for the session in case of connection loss</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_MonitorConnection</td><td>LOL -&gt; LEA</td><td>TIME</td><td>interval time to check the connection</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_LocaleID_1</td><td>LOL -&gt; LEA</td><td>STRING</td><td>optional language and regional identifier acc. to RFC 3066. 0 = no or unknown LocaleID.</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_LocaleID_2</td><td>LOL -&gt; LEA</td><td>STRING</td><td>optional language and regional identifier acc. to RFC 3066. 0 = no or unknown LocaleID.</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_LocaleID_3</td><td>LOL -&gt; LEA</td><td>STRING</td><td>optional language and regional identifier acc. to RFC 3066. 0 = no or unknown LocaleID.</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_LocaleID_4</td><td>LOL -&gt; LEA</td><td>STRING</td><td>optional language and regional identifier acc. to RFC 3066. 0 = no or unknown LocaleID.</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_SessionInfo_LocaleID_5</td><td>LOL -&gt; LEA</td><td>STRING</td><td>optional language and regional identifier acc. to RFC 3066. 0 = no or unknown LocaleID.</td><td>-</td><td>-</td></tr>
-	<tr><td>Connection_Status</td><td>LOL &lt;- LEA</td><td>DWORD</td><td>status of current connection</td><td>-</td><td>-</td></tr>
-	<tr><td>ReaderViewSel</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>selection to view prepared configuration (false) or active configuration (true)</td><td>-</td><td>-</td></tr>
-	<tr><td>ReaderViewCur</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>currently selected view: false = prepared, true = active</td><td>-</td><td>-</td></tr>
-	<tr><td>ReaderCnt</td><td>LOL &lt;- LEA</td><td>UINT</td><td>number of reader configurations (maximum index of reader configurations = ReaderCnt-1)</td><td>-</td><td>-</td></tr>
-	<tr><td>ReaderCntInUse</td><td>LOL &lt;- LEA</td><td>UINT</td><td>number of readers in use</td><td>-</td><td>-</td></tr>
-	<tr><td>ReaderCntError</td><td>LOL &lt;- LEA</td><td>UINT</td><td>number of readers with failures</td><td>-</td><td>-</td></tr>
-	<tr><td>ReaderIndexSel</td><td>LOL -&gt; LEA</td><td>UINT</td><td>index of the desired reader configuration to be shown</td><td>-</td><td>-</td></tr>
-	<tr><td>ReaderIndexCur</td><td>LOL &lt;- LEA</td><td>UINT</td><td>index of the currently selected reader configuration</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_RestoreDefaultEn</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>enable Flag to restore the default configuration of the currently selected reader</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_RestoreDefault</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>restore the default configuration of the currently selected reader</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_Reset</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>reset the reader</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_ConnectionIndex</td><td>LOL -&gt; LEA</td><td>INT</td><td>connection index the currently selected reader should use</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_InputIndex</td><td>LOL &lt;- LEA</td><td>UINT</td><td>indicates the index of the Input List the reader refers to</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_DataTypeSel</td><td>LOL -&gt; LEA</td><td>BYTE</td><td>data type of the currently selected reader</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_Timeout</td><td>LOL -&gt; LEA</td><td>TIME</td><td>timeout for the used OPC UA operations</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_MaxTryCount</td><td>LOL -&gt; LEA</td><td>BYTE</td><td>number of tries for an OPC UA operation until the Reader transitions into the error state</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_CycleSel</td><td>LOL -&gt; LEA</td><td>TIME</td><td>target cycle for the read operation</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_CycleCur</td><td>LOL &lt;- LEA</td><td>TIME</td><td>actual read cycle</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_Error</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>true, if the reader is in the error state</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_Status</td><td>LOL &lt;- LEA</td><td>DWORD</td><td>status of the Reader (e.g., status codes of OPC UA operations in case of an error)</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_Value_NamespaceIndex</td><td>LOL -&gt; LEA</td><td>UINT</td><td>namespace index of the value of the currently selected reader</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_Value_Identifier</td><td>LOL -&gt; LEA</td><td>STRING</td><td>identifier of the value of the currently selected reader</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_Value_IdentifierType</td><td>LOL -&gt; LEA</td><td>UDINT</td><td>identifier type of the value of the currently selected reader</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_QC_NamespaceIndex</td><td>LOL -&gt; LEA</td><td>UINT</td><td>namespace index of the quality code of the currently selected reader</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_QC_Identifier</td><td>LOL -&gt; LEA</td><td>STRING</td><td>identifier of the quality code of the currently selected reader</td><td>-</td><td>-</td></tr>
-	<tr><td>Reader_QC_IdentifierType</td><td>LOL -&gt; LEA</td><td>UDINT</td><td>identifier type of the quality code of the currently selected reader</td><td>-</td><td>-</td></tr>
-	<tr><td>WriterViewSel</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>selection to view prepared configuration (false) or active configuration (true)</td><td>-</td><td>-</td></tr>
-	<tr><td>WriterViewCur</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>currently selected view: false = prepared, true = active</td><td>-</td><td>-</td></tr>
-	<tr><td>WriterCnt</td><td>LOL &lt;- LEA</td><td>UINT</td><td>number of writer configurations (maximum index of writer configurations = WriterCnt-1)</td><td>-</td><td>-</td></tr>
-	<tr><td>WriterCntInUse</td><td>LOL &lt;- LEA</td><td>UINT</td><td>number of writers in use</td><td>-</td><td>-</td></tr>
-	<tr><td>WriterCntError</td><td>LOL &lt;- LEA</td><td>UINT</td><td>number of writers with failures</td><td>-</td><td>-</td></tr>
-	<tr><td>WriterIndexSel</td><td>LOL -&gt; LEA</td><td>UINT</td><td>index of the desired writer configuration to be shown</td><td>-</td><td>-</td></tr>
-	<tr><td>WriterIndexCur</td><td>LOL &lt;- LEA</td><td>UINT</td><td>index of the currently selected writer configuration</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_RestoreDefaultEn</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>enable Flag to restore the default configuration of the currently selected writer</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_RestoreDefault</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>restore the default configuration of the currently selected writer</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_Reset</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>reset the writer</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_ConnectionIndex</td><td>LOL -&gt; LEA</td><td>INT</td><td>connection index the currently selected writer should use</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_OutputIndex</td><td>LOL &lt;- LEA</td><td>UINT</td><td>indicates the index of the Output List the writer refers to</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_DataTypeSel</td><td>LOL -&gt; LEA</td><td>BYTE</td><td>data type of the currently selected writer</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_Timeout</td><td>LOL -&gt; LEA</td><td>TIME</td><td>timeout for the used OPC UA operations</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_MaxTryCount</td><td>LOL -&gt; LEA</td><td>BYTE</td><td>number of tries for an OPC UA operation until the writer transitions into the error state</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_CycleSel</td><td>LOL -&gt; LEA</td><td>TIME</td><td>target cycle for the write operation</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_CycleCur</td><td>LOL &lt;- LEA</td><td>TIME</td><td>actual write cycle</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_Error</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>true, if the writer is in the error state</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_Status</td><td>LOL &lt;- LEA</td><td>DWORD</td><td>status of the Writer (e.g., status codes of OPC UA operations in case of an error)</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_Value_NamespaceIndex</td><td>LOL -&gt; LEA</td><td>UINT</td><td>namespace index of the value of the currently selected writer</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_Value_Identifier</td><td>LOL -&gt; LEA</td><td>STRING</td><td>identifier of the value of the currently selected writer</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_Value_IdentifierType</td><td>LOL -&gt; LEA</td><td>UDINT</td><td>identifier type of the value of the currently selected writer</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_QC_NamespaceIndex</td><td>LOL -&gt; LEA</td><td>UINT</td><td>namespace index of the quality code of the currently selected writer</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_QC_Identifier</td><td>LOL -&gt; LEA</td><td>STRING</td><td>identifier of the quality code of the currently selected writer</td><td>-</td><td>-</td></tr>
-	<tr><td>Writer_QC_IdentifierType</td><td>LOL -&gt; LEA</td><td>UDINT</td><td>identifier type of the quality code of the currently selected writer</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueFieldViewSel</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>selection to view prepared configuration (false) or active configuration (true)</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueFieldViewCur</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>currently selected view: false = prepared, true = active</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueFieldApply</td><td>LOL -&gt; LEA</td><td>BOOL</td><td>variable for applying the data type configuration of all value fields</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueFieldCnt</td><td>LOL &lt;- LEA</td><td>UINT</td><td>number of value fields (maximum index of value fields = ValueFieldCnt-1)</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueFieldIndexSel</td><td>LOL -&gt; LEA</td><td>UINT</td><td>index of the desired value field to be shown</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueFieldIndexCur</td><td>LOL &lt;- LEA</td><td>UINT</td><td>index of the currently selected value field</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueField_InputIndex</td><td>LOL &lt;- LEA</td><td>UINT</td><td>indicates the index of the Input List the selected value field refers to</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueField_DataTypeSel</td><td>LOL -&gt; LEA</td><td>BYTE</td><td>data type of the currently selected value field</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueField_VQC</td><td>LOL &lt;- LEA</td><td>BYTE</td><td>value quality code of the currently selected value field</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueField_VReal</td><td>LOL &lt;- LEA</td><td>REAL</td><td>Real value of the currently selected value field</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueField_VDInt</td><td>LOL &lt;- LEA</td><td>DINT</td><td>Double Integer value of the currently selected value field</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueField_VDWord</td><td>LOL &lt;- LEA</td><td>DWORD</td><td>Double Word value of the currently selected value field</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueField_VBool</td><td>LOL &lt;- LEA</td><td>BOOL</td><td>Boolean value of the currently selected value field</td><td>-</td><td>-</td></tr>
-	<tr><td>ValueField_VString</td><td>LOL &lt;- LEA</td><td>STRING</td><td>String value of the currently selected value field</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="6"><strong>&#128204; Comment</strong></td></tr>
-	<tr><td colspan="6">-</td></tr>
-	<tr><td colspan="6"><strong>&#128204; AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="5">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="5">(no further constraints given)</td></tr>
+	<tr><td colspan="6" align="left"><strong>&#9654; Module Type Package - DataAssembly Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="5" align="left"><strong>OpcUaClientServerManager</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="5" align="left">System Unit Class (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="5" align="left">-</td></tr>
+	<tr><th align="left">Description</th><td colspan="5" align="left">interface for managing the OPC UA connections, readers, writers and value fields of a choreography participant</td></tr>
+	<tr><td colspan="6" align="left"><strong>&#128204; AutomationML Properties</strong></td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement/CommunicationManager/OpcUaClientServerManager</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement/CommunicationManager</td></tr>
+	<tr><th align="left">Role Classes</th><td colspan="5" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="5" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td></tr>
+	<tr><td colspan="6" align="left"><strong>&#128204; AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
+	<tr><td align="left">ConnectionViewSel</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">selection to view prepared configuration (false) or active configuration (true)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ConnectionViewCur</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">currently selected view: false = prepared, true = active</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ConnectionCnt</td><td align="left">LOL &lt;- LEA</td><td align="left">BYTE</td><td align="left">number of connection configurations (maximum index = ConnectionCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ConnectionCntActive</td><td align="left">LOL &lt;- LEA</td><td align="left">BYTE</td><td align="left">number of active connections</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ConnectionCntInactive</td><td align="left">LOL &lt;- LEA</td><td align="left">BYTE</td><td align="left">number of inactive but configured connections</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ConnectionCntError</td><td align="left">LOL &lt;- LEA</td><td align="left">BYTE</td><td align="left">number of failed connections</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ConnectionIndexSel</td><td align="left">LOL -&gt; LEA</td><td align="left">BYTE</td><td align="left">index of the desired connection configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ConnectionIndexCur</td><td align="left">LOL &lt;- LEA</td><td align="left">BYTE</td><td align="left">index of the currently selected connection configuration</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_RestoreDefaultEn</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">enable flag to restore default configuration of the currently selected connection</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_RestoreDefault</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">restore default configuration of the currently selected connection</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_ConnectEn</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">enable flag to connect the currently selected connection</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_Connect</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">apply the configuration and establish the currently selected connection</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_ConnectAct</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">indication whether the currently selected connection is established</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_ConnectErr</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">indication whether the currently selected connection has an error</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_DisconnectEn</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">enable flag to disconnect the currently selected connection</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_Disconnect</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">disconnect the currently selected connection</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_Reset</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">reset the currently selected connection</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_Active</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">indicates that the selected connection is activated to be used</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_ServerUrl</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">server URL for the connection</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_NamespaceUriCnt</td><td align="left">LOL -&gt; LEA</td><td align="left">BYTE</td><td align="left">number of namespace URIs</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_NamespaceUri_1</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">namespace URI 1</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_NamespaceUri_2</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">namespace URI 2</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_NamespaceUri_3</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">namespace URI 3</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_NamespaceUri_4</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">namespace URI 4</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_NamespaceUri_5</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">namespace URI 5</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_SessionName</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">name of the session assigned by the client (when empty, then generated by the server)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_ApplicationName</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">readable name of the OPC UA client application</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_SecurityMsgMode</td><td align="left">LOL -&gt; LEA</td><td align="left">UDINT</td><td align="left">enum UASecurityMsgMode</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_SecurityPolicy</td><td align="left">LOL -&gt; LEA</td><td align="left">UDINT</td><td align="left">enum UASecurityPolicy</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_ServerUri</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">defines the URI of the server, coded in ASCII</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_CheckServerCertificate</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">flag indicating if the server certificate should be checked</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_TransportProfile</td><td align="left">LOL -&gt; LEA</td><td align="left">UDINT</td><td align="left">enum UATransportProfile</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_UserIdentityTokenType</td><td align="left">LOL -&gt; LEA</td><td align="left">UDINT</td><td align="left">enum UAUserIdentityTokenType</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_UserTokenParam1</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">meaning according to UserIdentityTokenType, e.g., username</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_UserTokenParam2</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">meaning according to UserIdentityTokenType, e.g., password</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_CertificateID</td><td align="left">LOL -&gt; LEA</td><td align="left">UDINT</td><td align="left">certificate identifier</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_SessionTimeout</td><td align="left">LOL -&gt; LEA</td><td align="left">TIME</td><td align="left">timeout for the session in case of connection loss</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_MonitorConnection</td><td align="left">LOL -&gt; LEA</td><td align="left">TIME</td><td align="left">interval time to check the connection</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_LocaleID_1</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">optional language and regional identifier acc. to RFC 3066. 0 = no or unknown LocaleID.</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_LocaleID_2</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">optional language and regional identifier acc. to RFC 3066. 0 = no or unknown LocaleID.</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_LocaleID_3</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">optional language and regional identifier acc. to RFC 3066. 0 = no or unknown LocaleID.</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_LocaleID_4</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">optional language and regional identifier acc. to RFC 3066. 0 = no or unknown LocaleID.</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_SessionInfo_LocaleID_5</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">optional language and regional identifier acc. to RFC 3066. 0 = no or unknown LocaleID.</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Connection_Status</td><td align="left">LOL &lt;- LEA</td><td align="left">DWORD</td><td align="left">status of current connection</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ReaderViewSel</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">selection to view prepared configuration (false) or active configuration (true)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ReaderViewCur</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">currently selected view: false = prepared, true = active</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ReaderCnt</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">number of reader configurations (maximum index of reader configurations = ReaderCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ReaderCntInUse</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">number of readers in use</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ReaderCntError</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">number of readers with failures</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ReaderIndexSel</td><td align="left">LOL -&gt; LEA</td><td align="left">UINT</td><td align="left">index of the desired reader configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ReaderIndexCur</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">index of the currently selected reader configuration</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_RestoreDefaultEn</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">enable Flag to restore the default configuration of the currently selected reader</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_RestoreDefault</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">restore the default configuration of the currently selected reader</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_Reset</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">reset the reader</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_ConnectionIndex</td><td align="left">LOL -&gt; LEA</td><td align="left">INT</td><td align="left">connection index the currently selected reader should use</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_InputIndex</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">indicates the index of the Input List the reader refers to</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_DataTypeSel</td><td align="left">LOL -&gt; LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected reader</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_Timeout</td><td align="left">LOL -&gt; LEA</td><td align="left">TIME</td><td align="left">timeout for the used OPC UA operations</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_MaxTryCount</td><td align="left">LOL -&gt; LEA</td><td align="left">BYTE</td><td align="left">number of tries for an OPC UA operation until the Reader transitions into the error state</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_CycleSel</td><td align="left">LOL -&gt; LEA</td><td align="left">TIME</td><td align="left">target cycle for the read operation</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_CycleCur</td><td align="left">LOL &lt;- LEA</td><td align="left">TIME</td><td align="left">actual read cycle</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_Error</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">true, if the reader is in the error state</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_Status</td><td align="left">LOL &lt;- LEA</td><td align="left">DWORD</td><td align="left">status of the Reader (e.g., status codes of OPC UA operations in case of an error)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_Value_NamespaceIndex</td><td align="left">LOL -&gt; LEA</td><td align="left">UINT</td><td align="left">namespace index of the value of the currently selected reader</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_Value_Identifier</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">identifier of the value of the currently selected reader</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_Value_IdentifierType</td><td align="left">LOL -&gt; LEA</td><td align="left">UDINT</td><td align="left">identifier type of the value of the currently selected reader</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_QC_NamespaceIndex</td><td align="left">LOL -&gt; LEA</td><td align="left">UINT</td><td align="left">namespace index of the quality code of the currently selected reader</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_QC_Identifier</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">identifier of the quality code of the currently selected reader</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Reader_QC_IdentifierType</td><td align="left">LOL -&gt; LEA</td><td align="left">UDINT</td><td align="left">identifier type of the quality code of the currently selected reader</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">WriterViewSel</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">selection to view prepared configuration (false) or active configuration (true)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">WriterViewCur</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">currently selected view: false = prepared, true = active</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">WriterCnt</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">number of writer configurations (maximum index of writer configurations = WriterCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">WriterCntInUse</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">number of writers in use</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">WriterCntError</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">number of writers with failures</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">WriterIndexSel</td><td align="left">LOL -&gt; LEA</td><td align="left">UINT</td><td align="left">index of the desired writer configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">WriterIndexCur</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">index of the currently selected writer configuration</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_RestoreDefaultEn</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">enable Flag to restore the default configuration of the currently selected writer</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_RestoreDefault</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">restore the default configuration of the currently selected writer</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_Reset</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">reset the writer</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_ConnectionIndex</td><td align="left">LOL -&gt; LEA</td><td align="left">INT</td><td align="left">connection index the currently selected writer should use</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_OutputIndex</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">indicates the index of the Output List the writer refers to</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_DataTypeSel</td><td align="left">LOL -&gt; LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected writer</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_Timeout</td><td align="left">LOL -&gt; LEA</td><td align="left">TIME</td><td align="left">timeout for the used OPC UA operations</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_MaxTryCount</td><td align="left">LOL -&gt; LEA</td><td align="left">BYTE</td><td align="left">number of tries for an OPC UA operation until the writer transitions into the error state</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_CycleSel</td><td align="left">LOL -&gt; LEA</td><td align="left">TIME</td><td align="left">target cycle for the write operation</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_CycleCur</td><td align="left">LOL &lt;- LEA</td><td align="left">TIME</td><td align="left">actual write cycle</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_Error</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">true, if the writer is in the error state</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_Status</td><td align="left">LOL &lt;- LEA</td><td align="left">DWORD</td><td align="left">status of the Writer (e.g., status codes of OPC UA operations in case of an error)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_Value_NamespaceIndex</td><td align="left">LOL -&gt; LEA</td><td align="left">UINT</td><td align="left">namespace index of the value of the currently selected writer</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_Value_Identifier</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">identifier of the value of the currently selected writer</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_Value_IdentifierType</td><td align="left">LOL -&gt; LEA</td><td align="left">UDINT</td><td align="left">identifier type of the value of the currently selected writer</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_QC_NamespaceIndex</td><td align="left">LOL -&gt; LEA</td><td align="left">UINT</td><td align="left">namespace index of the quality code of the currently selected writer</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_QC_Identifier</td><td align="left">LOL -&gt; LEA</td><td align="left">STRING</td><td align="left">identifier of the quality code of the currently selected writer</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Writer_QC_IdentifierType</td><td align="left">LOL -&gt; LEA</td><td align="left">UDINT</td><td align="left">identifier type of the quality code of the currently selected writer</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueFieldViewSel</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">selection to view prepared configuration (false) or active configuration (true)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueFieldViewCur</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">currently selected view: false = prepared, true = active</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueFieldApply</td><td align="left">LOL -&gt; LEA</td><td align="left">BOOL</td><td align="left">variable for applying the data type configuration of all value fields</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueFieldCnt</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">number of value fields (maximum index of value fields = ValueFieldCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueFieldIndexSel</td><td align="left">LOL -&gt; LEA</td><td align="left">UINT</td><td align="left">index of the desired value field to be shown</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueFieldIndexCur</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">index of the currently selected value field</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueField_InputIndex</td><td align="left">LOL &lt;- LEA</td><td align="left">UINT</td><td align="left">indicates the index of the Input List the selected value field refers to</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueField_DataTypeSel</td><td align="left">LOL -&gt; LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected value field</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueField_VQC</td><td align="left">LOL &lt;- LEA</td><td align="left">BYTE</td><td align="left">value quality code of the currently selected value field</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueField_VReal</td><td align="left">LOL &lt;- LEA</td><td align="left">REAL</td><td align="left">Real value of the currently selected value field</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueField_VDInt</td><td align="left">LOL &lt;- LEA</td><td align="left">DINT</td><td align="left">Double Integer value of the currently selected value field</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueField_VDWord</td><td align="left">LOL &lt;- LEA</td><td align="left">DWORD</td><td align="left">Double Word value of the currently selected value field</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueField_VBool</td><td align="left">LOL &lt;- LEA</td><td align="left">BOOL</td><td align="left">Boolean value of the currently selected value field</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ValueField_VString</td><td align="left">LOL &lt;- LEA</td><td align="left">STRING</td><td align="left">String value of the currently selected value field</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>&#128204; Comment</strong></td></tr>
+	<tr><td colspan="6" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>&#128204; AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="5" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="5" align="left">(no further constraints given)</td></tr>
 </table>
 
 <!-- End Table -->
 
-### Model Definitions
+### 9.7.3 Model Definitions
 #### Specification of the Instance Hierarchy Choreography
-*IH Choreography* (Table~[Ih Choreography](#tab:IhChoreography)) is the entry point for the choreography-related information model in the instance hierarchy of an MTP.
+*IH Choreography* ([Table 9.49](#table-949-model-definition-of-ih-choreography)) is the entry point for the choreography-related information model in the instance hierarchy of an MTP.
 
 <a id="tab:IhChoreography"></a>
-**Table: Model Definition of *IH Choreography***
+##### Table 9.49: Model Definition of *IH Choreography*
 
 <table>
 	<tr>
-		<td colspan="3"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="3" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="2"><strong>Choreography</strong></td>
+		<th align="left">Name</th>
+		<td colspan="2" align="left"><strong>Choreography</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="2">Instance Hierarchy (IH)</td>
+		<th align="left">Type</th>
+		<td colspan="2" align="left">Instance Hierarchy (IH)</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="2">root element for the choreography-related information model of n MTP</td>
+		<th align="left">Description</th>
+		<td colspan="2" align="left">root element for the choreography-related information model of n MTP</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="2">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="2" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="3"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="3" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
 	</tr>
 	<tr>
-		<td>ID</td>
-		<td>xs:string</td>
-		<td>Identifier of the Instance Hierarchy</td>
+		<td align="left">ID</td>
+		<td align="left">xs:string</td>
+		<td align="left">Identifier of the Instance Hierarchy</td>
 	</tr>
 	<tr>
-		<td colspan="3"><strong>📌 Comment</strong></td>
+		<td colspan="3" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="3">-</td>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="3"><strong>📌 AutomationML Object - Constraints</strong></td>
+		<td colspan="3" align="left"><strong>📌 AutomationML Object - Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="2">[1] IE of SUC ChoreographyParticipant</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="2" align="left">[1] IE of SUC ChoreographyParticipant</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class Library MTPChoreographySUCLib
-*SUCL MTPChoreographySUCLib* (Table~[Sucl MTP Choreography SUC Lib](#tab:SuclMTPChoreographySUCLib)) contains the System Unit Classes of the *ChoreographySet* of a Module Type Package.
+*SUCL MTPChoreographySUCLib* ([Table 9.50](#table-950-library-definition-of-sucl-mtpchoreographysuclib)) contains the System Unit Classes of the *ChoreographySet* of a Module Type Package.
 
 <a id="tab:SuclMTPChoreographySUCLib"></a>
-**Table: Library Definition of *SUCL MTPChoreographySUCLib***
+##### Table 9.50: Library Definition of *SUCL MTPChoreographySUCLib*
 
 <table>
 	<tr>
-		<td colspan="3"><strong>▶ Module Type Package - Library Definition</strong></td>
+		<td colspan="3" align="left"><strong>▶ Module Type Package - Library Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="2"><strong>MTPChoreographySUCLib</strong></td>
+		<th align="left">Name</th>
+		<td colspan="2" align="left"><strong>MTPChoreographySUCLib</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="2">SystemUnitClassLibrary (SUCL)</td>
+		<th align="left">Type</th>
+		<td colspan="2" align="left">SystemUnitClassLibrary (SUCL)</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="2">Library containing the Choreography-related SUC model definitions of an MTP</td>
+		<th align="left">Description</th>
+		<td colspan="2" align="left">Library containing the Choreography-related SUC model definitions of an MTP</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="2">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="2" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="3"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="3" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="3"><strong>📌 Comment</strong></td>
+		<td colspan="3" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="3">-</td>
+		<td colspan="3" align="left">-</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class ChoreographySet
-The *SUC ChoreographySet* (Table~[Suc Choreography Set](#tab:SucChoreographySet)), as a new aspect set of the MTP specification, is derived from *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) and organizes all model definitions required to describe an LEA as a participant in a choreography.
+The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-choreographyset)), as a new aspect set of the MTP specification, is derived from *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) and organizes all model definitions required to describe an LEA as a participant in a choreography.
 
 <a id="tab:SucChoreographySet"></a>
-**Table: Model Definition of *SUC ChoreographySet***
+##### Table 9.51: Model Definition of *SUC ChoreographySet*
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>ChoreographySet</strong></td>
+		<th align="left">Name</th>
+		<td colspan="3" align="left"><strong>ChoreographySet</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="3" align="left">SystemUnitClass (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
+		<th align="left">Modifier</th>
+		<td colspan="3" align="left">sealed</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for choreography aspect set</td>
+		<th align="left">Description</th>
+		<td colspan="3" align="left">model definition for choreography aspect set</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/ChoreographySet</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/ChoreographySet</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPSUCLib/MTPSet</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="3" align="left">MTPSUCLib/MTPSet</td>
 	</tr>
 	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
+		<th align="left">RoleClasses</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="3" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="2" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="2" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="3" align="left">(no further constraints given)</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">[1] EI of IC AspectSetReference which refers via ID to an IH containing [1]~IE of SUC ChoreographyParticipant</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="3" align="left">[1] EI of IC AspectSetReference which refers via ID to an IH containing [1]~IE of SUC ChoreographyParticipant</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class ChoreographyParticipant
-*SUC ChoreographyParticipant* (Table~[Suc Choreography Participant](#tab:SucChoreographyParticipant)) describes an LEA as a choreography participant. The interface definition *SUC ChoreographyParticipantManager* is assigned to this model definition via a LinkedObject relation.
+*SUC ChoreographyParticipant* ([Table 9.52](#table-952-model-definition-of-suc-choreographyparticipant)) describes an LEA as a choreography participant. The interface definition *SUC ChoreographyParticipantManager* is assigned to this model definition via a LinkedObject relation.
 
 <a id="tab:SucChoreographyParticipant"></a>
-**Table: Model Definition of *SUC ChoreographyParticipant***
+##### Table 9.52: Model Definition of *SUC ChoreographyParticipant*
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>ChoreographyParticipant</strong></td>
+		<th align="left">Name</th>
+		<td colspan="3" align="left"><strong>ChoreographyParticipant</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="3" align="left">SystemUnitClass (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">-</td>
+		<th align="left">Modifier</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for choreography participant</td>
+		<th align="left">Description</th>
+		<td colspan="3" align="left">model definition for choreography participant</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/ChoreographyParticipant</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/ChoreographyParticipant</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPSUCLib/LinkedObject</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="3" align="left">MTPSUCLib/LinkedObject</td>
 	</tr>
 	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
+		<th align="left">RoleClasses</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="3" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="2" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="2" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">IH to which an IE of SUC ChoreographySet relates via EI of IC AspectSet-Reference</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="3" align="left">IH to which an IE of SUC ChoreographySet relates via EI of IC AspectSet-Reference</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">[1] IE of SUC InputList<br>[1] IE of SUC OutputList</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="3" align="left">[1] IE of SUC InputList<br>[1] IE of SUC OutputList</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class InputList
-*SUC InputList* (Table~[Suc Input List](#tab:SucInputList)) organizes all incoming system variables relevant to the configurable logic of a choreography participant. The MTP of a choreography participant always contains exactly one *InputList*.
+*SUC InputList* ([Table 9.53](#table-953-model-definition-of-suc-inputlist)) organizes all incoming system variables relevant to the configurable logic of a choreography participant. The MTP of a choreography participant always contains exactly one *InputList*.
 
 <a id="tab:SucInputList"></a>
-**Table: Model Definition of *SUC InputList***
+##### Table 9.53: Model Definition of *SUC InputList*
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>InputList</strong></td>
+		<th align="left">Name</th>
+		<td colspan="3" align="left"><strong>InputList</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="3" align="left">SystemUnitClass (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
+		<th align="left">Modifier</th>
+		<td colspan="3" align="left">sealed</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for the list of input elements of a choreography participant</td>
+		<th align="left">Description</th>
+		<td colspan="3" align="left">model definition for the list of input elements of a choreography participant</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/ChoreographyParticipant/InputList</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/ChoreographyParticipant/InputList</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">-</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">[1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)</td>
+		<th align="left">RoleClasses</th>
+		<td colspan="3" align="left">[1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="3" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="2" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="2" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">IE of SUC ChoreographyParticipant</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="3" align="left">IE of SUC ChoreographyParticipant</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">[0..*] IE of SUC InputElement</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="3" align="left">[0..*] IE of SUC InputElement</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class InputElement
-*SUC InputElement* (Table~[Suc Input Element](#tab:SucInputElement)) describes an incoming system variable relevant to the configurable logic of a choreography participant. This may be a statically defined internal process variable of the participant or a process variable received by the participant from another participant.
+*SUC InputElement* ([Table 9.54](#table-954-model-definition-of-suc-inputelement)) describes an incoming system variable relevant to the configurable logic of a choreography participant. This may be a statically defined internal process variable of the participant or a process variable received by the participant from another participant.
 
 <a id="tab:SucInputElement"></a>
-**Table: Model Definition of *SUC InputElement***
+##### Table 9.54: Model Definition of *SUC InputElement*
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>InputElement</strong></td>
+		<th align="left">Name</th>
+		<td colspan="3" align="left"><strong>InputElement</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="3" align="left">SystemUnitClass (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">abstract</td>
+		<th align="left">Modifier</th>
+		<td colspan="3" align="left">abstract</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for an input element of a choreography participant</td>
+		<th align="left">Description</th>
+		<td colspan="3" align="left">model definition for an input element of a choreography participant</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/InputElement</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPSUCLib/LinkedObject</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="3" align="left">MTPSUCLib/LinkedObject</td>
 	</tr>
 	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
+		<th align="left">RoleClasses</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="3" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="2" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>Name</td>
-		<td>xs:string</td>
-		<td colspan="2">unique Number as index in the InputList (beginning at 0)</td>
+		<td align="left">Name</td>
+		<td align="left">xs:string</td>
+		<td colspan="2" align="left">unique Number as index in the InputList (beginning at 0)</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">IE of SUC InputList</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="3" align="left">IE of SUC InputList</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no children allowed)</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="3" align="left">(no children allowed)</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class FixedInputElement
-*SUC FixedInputElement* (Table~[Suc Fixed Input Element](#tab:SucFixedInputElement)) is derived from *SUC InputElement* and describes a statically defined incoming system variable provided by the choreography participant itself. A *FixedInputElement* is assigned to a *UnionElement* interface via a LinkedObject relation.
+*SUC FixedInputElement* ([Table 9.55](#table-955-model-definition-of-suc-fixedinputelement)) is derived from *SUC InputElement* and describes a statically defined incoming system variable provided by the choreography participant itself. A *FixedInputElement* is assigned to a *UnionElement* interface via a LinkedObject relation.
 
 <a id="tab:SucFixedInputElement"></a>
-**Table: Model Definition of *SUC FixedInputElement***
+##### Table 9.55: Model Definition of *SUC FixedInputElement*
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>FixedInputElement</strong></td>
+		<th align="left">Name</th>
+		<td colspan="3" align="left"><strong>FixedInputElement</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="3" align="left">SystemUnitClass (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
+		<th align="left">Modifier</th>
+		<td colspan="3" align="left">sealed</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for a statically defined input element</td>
+		<th align="left">Description</th>
+		<td colspan="3" align="left">model definition for a statically defined input element</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement/FixedInputElement</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/InputElement/FixedInputElement</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/InputElement</td>
 	</tr>
 	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
+		<th align="left">RoleClasses</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="3" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="2" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="2" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="3" align="left">(no further constraints given)</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no further constraints given)</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="3" align="left">(no further constraints given)</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class ConfigurableInputElement
-*SUC ConfigurableInputElement* (Table~[Suc Configurable Input Element](#tab:SucConfigurableInputElement)) is derived from *SUC InputElement* and describes a configurable incoming system variable received by the choreography participant from another choreography participant. A *ConfigurableInputElement* is assigned to a derivation of the *CommunicationManager* interface via an ID link relation using the variable *ManagerLink*. A *ManagerIndex* is used to refer to a specific communication element within the *CommunicationManager*. In this way, the communication is configured such that the required system variable is exchanged. The interpretation of *ManagerIndex* depends on the derivation of *CommunicationManager* used. In the case of *OpcUaClientServerManager*, this is the index of the reader used.
+*SUC ConfigurableInputElement* ([Table 9.56](#table-956-model-definition-of-suc-configurableinputelement)) is derived from *SUC InputElement* and describes a configurable incoming system variable received by the choreography participant from another choreography participant. A *ConfigurableInputElement* is assigned to a derivation of the *CommunicationManager* interface via an ID link relation using the variable *ManagerLink*. A *ManagerIndex* is used to refer to a specific communication element within the *CommunicationManager*. In this way, the communication is configured such that the required system variable is exchanged. The interpretation of *ManagerIndex* depends on the derivation of *CommunicationManager* used. In the case of *OpcUaClientServerManager*, this is the index of the reader used.
 
 <a id="tab:SucConfigurableInputElement"></a>
-**Table: Model Definition of *SUC ConfigurableInputElement***
+##### Table 9.56: Model Definition of *SUC ConfigurableInputElement*
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>ConfigurableInputElement</strong></td>
+		<th align="left">Name</th>
+		<td colspan="3" align="left"><strong>ConfigurableInputElement</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="3" align="left">SystemUnitClass (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
+		<th align="left">Modifier</th>
+		<td colspan="3" align="left">sealed</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for a configurable input element</td>
+		<th align="left">Description</th>
+		<td colspan="3" align="left">model definition for a configurable input element</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement/ConfigurableInputElement</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/InputElement/ConfigurableInputElement</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/InputElement</td>
 	</tr>
 	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
+		<th align="left">RoleClasses</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="3" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="2" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="2" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>ManagerLink</td>
-		<td>xs:string</td>
-		<td>object identifier of the associated CommunicationManager interface</td>
-		<td>IDLinkAttribute-Type</td>
+		<td align="left">ManagerLink</td>
+		<td align="left">xs:string</td>
+		<td align="left">object identifier of the associated CommunicationManager interface</td>
+		<td align="left">IDLinkAttribute-Type</td>
 	</tr>
 	<tr>
-		<td>ManagerIndex</td>
-		<td>xs:unsignedInt</td>
-		<td>index of the incoming configurable communication entity within the communication manager</td>
-		<td>-</td>
+		<td align="left">ManagerIndex</td>
+		<td align="left">xs:unsignedInt</td>
+		<td align="left">index of the incoming configurable communication entity within the communication manager</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="3" align="left">(no further constraints given)</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no further constraints given)</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="3" align="left">(no further constraints given)</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class WritableInputElement
-*SUC WritableInputElement* (Table~[Suc Writable Input Element](#tab:SucWritableInputElement)) is derived from *SUC InputElement* and describes an incoming system variable into which values can be written by another choreography participant. A *WritableInputElement* is assigned to a *WritableUnionElement* interface definition via a LinkedObject relation.
+*SUC WritableInputElement* ([Table 9.57](#table-957-model-definition-of-suc-writableinputelement)) is derived from *SUC InputElement* and describes an incoming system variable into which values can be written by another choreography participant. A *WritableInputElement* is assigned to a *WritableUnionElement* interface definition via a LinkedObject relation.
 
 <a id="tab:SucWritableInputElement"></a>
-**Table: Model Definition of *SUC WritableInputElement***
+##### Table 9.57: Model Definition of *SUC WritableInputElement*
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>WritableInputElement</strong></td>
+		<th align="left">Name</th>
+		<td colspan="3" align="left"><strong>WritableInputElement</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="3" align="left">SystemUnitClass (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
+		<th align="left">Modifier</th>
+		<td colspan="3" align="left">sealed</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for a writable input element</td>
+		<th align="left">Description</th>
+		<td colspan="3" align="left">model definition for a writable input element</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement/WritableInputElement</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/InputElement/WritableInputElement</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPChoreographySUCLib/InputElement</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/InputElement</td>
 	</tr>
 	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
+		<th align="left">RoleClasses</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="3" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="2" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="2" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>ManagerLink</td>
-		<td>xs:string</td>
-		<td>object identifier of the associated CommunicationManager interface</td>
-		<td>IDLinkAttribute-Type</td>
+		<td align="left">ManagerLink</td>
+		<td align="left">xs:string</td>
+		<td align="left">object identifier of the associated CommunicationManager interface</td>
+		<td align="left">IDLinkAttribute-Type</td>
 	</tr>
 	<tr>
-		<td>ManagerIndex</td>
-		<td>xs:unsignedInt</td>
-		<td>index of the field the value is written to within the communication manager</td>
-		<td>-</td>
+		<td align="left">ManagerIndex</td>
+		<td align="left">xs:unsignedInt</td>
+		<td align="left">index of the field the value is written to within the communication manager</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="3" align="left">(no further constraints given)</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no further constraints given)</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="3" align="left">(no further constraints given)</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class OutputList
-*SUC OutputList* (Table~[Suc Output List](#tab:SucOutputList)) organizes all outgoing system variables relevant to the configurable logic of a choreography participant. The MTP of a choreography participant always contains exactly one *OutputList*.
+*SUC OutputList* ([Table 9.58](#table-958-model-definition-of-suc-outputlist)) organizes all outgoing system variables relevant to the configurable logic of a choreography participant. The MTP of a choreography participant always contains exactly one *OutputList*.
 
 <a id="tab:SucOutputList"></a>
-**Table: Model Definition of *SUC OutputList***
+##### Table 9.58: Model Definition of *SUC OutputList*
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>OutputList</strong></td>
+		<th align="left">Name</th>
+		<td colspan="3" align="left"><strong>OutputList</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="3" align="left">SystemUnitClass (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
+		<th align="left">Modifier</th>
+		<td colspan="3" align="left">sealed</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for the list of output elements of a choreography participant</td>
+		<th align="left">Description</th>
+		<td colspan="3" align="left">model definition for the list of output elements of a choreography participant</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/ChoreographyParticipant/OutputList</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/ChoreographyParticipant/OutputList</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">-</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">[1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)</td>
+		<th align="left">RoleClasses</th>
+		<td colspan="3" align="left">[1] AutomationMLBaseRoleClassLib/AutomationMLBaseRole (SRC)</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="3" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="2" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="2" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">IE of SUC ChoreographyParticipant</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="3" align="left">IE of SUC ChoreographyParticipant</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">[0..*] IE of SUC OutputElement</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="3" align="left">[0..*] IE of SUC OutputElement</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class OutputElement
-*SUC OutputElement* (Table~[Suc Output Element](#tab:SucOutputElement)) describes an outgoing system variable relevant to the configurable logic of a choreography participant. This may be a statically defined internal process variable of the participant or a configurable process variable received by the participant from another participant. An *OutputElement* is always assigned to a *UnionElement* interface via a LinkedObject relation.
+*SUC OutputElement* ([Table 9.59](#table-959-model-definition-of-suc-outputelement)) describes an outgoing system variable relevant to the configurable logic of a choreography participant. This may be a statically defined internal process variable of the participant or a configurable process variable received by the participant from another participant. An *OutputElement* is always assigned to a *UnionElement* interface via a LinkedObject relation.
 
 <a id="tab:SucOutputElement"></a>
-**Table: Model Definition of *SUC OutputElement***
+##### Table 9.59: Model Definition of *SUC OutputElement*
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>OutputElement</strong></td>
+		<th align="left">Name</th>
+		<td colspan="3" align="left"><strong>OutputElement</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="3" align="left">SystemUnitClass (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">abstract</td>
+		<th align="left">Modifier</th>
+		<td colspan="3" align="left">abstract</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for an output element of a choreography participant</td>
+		<th align="left">Description</th>
+		<td colspan="3" align="left">model definition for an output element of a choreography participant</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/OutputElement</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/OutputElement</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPSUCLib/LinkedObject</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="3" align="left">MTPSUCLib/LinkedObject</td>
 	</tr>
 	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
+		<th align="left">RoleClasses</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="3" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="2" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>Name</td>
-		<td>xs:string</td>
-		<td colspan="2">unique Number as Index in the Output List (beginning at 0)</td>
+		<td align="left">Name</td>
+		<td align="left">xs:string</td>
+		<td colspan="2" align="left">unique Number as Index in the Output List (beginning at 0)</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">IE of SUC OutputList</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="3" align="left">IE of SUC OutputList</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no children allowed)</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="3" align="left">(no children allowed)</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class FixedOutputElement
-*SUC FixedOutputElement* (Table~[Suc Fixed Output Element](#tab:SucFixedOutputElement)) is derived from *SUC OutputElement* and describes a statically defined outgoing system variable used by the internal program of the choreography participant.
+*SUC FixedOutputElement* ([Table 9.60](#table-960-model-definition-of-suc-fixedoutputelement)) is derived from *SUC OutputElement* and describes a statically defined outgoing system variable used by the internal program of the choreography participant.
 
 <a id="tab:SucFixedOutputElement"></a>
-**Table: Model Definition of *SUC FixedOutputElement***
+##### Table 9.60: Model Definition of *SUC FixedOutputElement*
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>FixedOutputElement</strong></td>
+		<th align="left">Name</th>
+		<td colspan="3" align="left"><strong>FixedOutputElement</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="3" align="left">SystemUnitClass (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
+		<th align="left">Modifier</th>
+		<td colspan="3" align="left">sealed</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for a statically defined output element</td>
+		<th align="left">Description</th>
+		<td colspan="3" align="left">model definition for a statically defined output element</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/OutputElement/FixedOutputElement</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/OutputElement/FixedOutputElement</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPChoreographySUCLib/OutputElement</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/OutputElement</td>
 	</tr>
 	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
+		<th align="left">RoleClasses</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="3" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="2" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="2" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="3" align="left">(no further constraints given)</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no further constraints given)</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="3" align="left">(no further constraints given)</td>
 	</tr>
 </table>
 
 #### Specification of the System Unit Class ConfigurableOutputElement
-*SUC ConfigurableOutputElement* (Table~[Suc Configurable Output Element](#tab:SucConfigurableOutputElement)) is derived from *SUC OutputElement* and describes a configurable outgoing system variable sent by the choreography participant to another choreography participant. A *ConfigurableOutputElement* is assigned to a derivation of the *CommunicationManager* interface via an ID link relation using the variable *ManagerLink*. A *ManagerIndex* is used to refer to a specific communication element within the *CommunicationManager*. In this way, the communication is configured such that the required system variable is exchanged. The interpretation of *ManagerIndex* depends on the derivation of *CommunicationManager* used. In the case of *OpcUaClientServerManager*, this is the index of the writer used.
+*SUC ConfigurableOutputElement* ([Table 9.61](#table-961-model-definition-of-suc-configurableoutputelement)) is derived from *SUC OutputElement* and describes a configurable outgoing system variable sent by the choreography participant to another choreography participant. A *ConfigurableOutputElement* is assigned to a derivation of the *CommunicationManager* interface via an ID link relation using the variable *ManagerLink*. A *ManagerIndex* is used to refer to a specific communication element within the *CommunicationManager*. In this way, the communication is configured such that the required system variable is exchanged. The interpretation of *ManagerIndex* depends on the derivation of *CommunicationManager* used. In the case of *OpcUaClientServerManager*, this is the index of the writer used.
 
 <a id="tab:SucConfigurableOutputElement"></a>
-**Table: Model Definition of *SUC ConfigurableOutputElement***
+##### Table 9.61: Model Definition of *SUC ConfigurableOutputElement*
 
 <table>
 	<tr>
-		<td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td>
+		<td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="3"><strong>ConfigurableOutputElement</strong></td>
+		<th align="left">Name</th>
+		<td colspan="3" align="left"><strong>ConfigurableOutputElement</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="3">SystemUnitClass (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="3" align="left">SystemUnitClass (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="3">sealed</td>
+		<th align="left">Modifier</th>
+		<td colspan="3" align="left">sealed</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="3">model definition for a configurable output element</td>
+		<th align="left">Description</th>
+		<td colspan="3" align="left">model definition for a configurable output element</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="3">MTPChoreographySUCLib/OutputElement/ConfigurableOutputElement</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/OutputElement/ConfigurableOutputElement</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="3">MTPChoreographySUCLib/OutputElement</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="3" align="left">MTPChoreographySUCLib/OutputElement</td>
 	</tr>
 	<tr>
-		<th>RoleClasses</th>
-		<td colspan="3">-</td>
+		<th align="left">RoleClasses</th>
+		<td colspan="3" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="3">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="3" align="left">ModuleTypePackage:ChoreographySet.Base V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="2">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="2" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="2">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="2" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>AttributeType Reference</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">AttributeType Reference</th>
 	</tr>
 	<tr>
-		<td>ManagerLink</td>
-		<td>xs:string</td>
-		<td>object identifier of the associated CommunicationManager interface</td>
-		<td>IDLinkAttribute-Type</td>
+		<td align="left">ManagerLink</td>
+		<td align="left">xs:string</td>
+		<td align="left">object identifier of the associated CommunicationManager interface</td>
+		<td align="left">IDLinkAttribute-Type</td>
 	</tr>
 	<tr>
-		<td>ManagerIndex</td>
-		<td>xs:unsignedInt</td>
-		<td>index of the outcoming configurable communication entity within the CommunicationManager</td>
-		<td>-</td>
+		<td align="left">ManagerIndex</td>
+		<td align="left">xs:unsignedInt</td>
+		<td align="left">index of the outcoming configurable communication entity within the CommunicationManager</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 Comment</strong></td>
+		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="4">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="3">(no further constraints given)</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="3" align="left">(no further constraints given)</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="3">(no further constraints given)</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="3" align="left">(no further constraints given)</td>
 	</tr>
 </table>
 
