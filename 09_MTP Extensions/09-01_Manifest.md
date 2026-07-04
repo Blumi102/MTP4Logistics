@@ -1,5 +1,5 @@
 ﻿## 9.1 MTP Extension of the Manifest
-This chapter specifies all identified extensions of the *Manifest* and integrates them into the existing MTP specification [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1).
+This chapter specifies all identified extensions of the *Manifest* and integrates them into the existing [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1).
 
 ### 9.1.1 Overview
 #### Extension of the Manifest for Modeling Composed MTPs

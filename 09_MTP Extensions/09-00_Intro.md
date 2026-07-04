@@ -29,7 +29,7 @@ The specifications follow the structure and style of the MTP specification. Each
 
 The class diagrams follow the style of those in the MTP specification, showing only the content related to the introduced MTP extensions for production-related logistics. Newly introduced definitions are highlighted with a red border. Attributes are not shown in the diagrams but are documented in the subsequent specification tables. Italicized definitions denote abstract classes.
 
-The specification tables follow the style of those in the MTP specification. Some have already been adopted in the MTP specification. Tables extended relative to the original MTP specification highlight the additions in red text.
+The specification tables follow the style of those in the MTP specification. Some have already been adopted in the MTP specification.
 
 The specifications use AutomationML constructs according to [[IEC 62714-1](../98_References/README.md#iec-62714-1)]. The following table provides an overview of common abbreviations used throughout the specification.
 

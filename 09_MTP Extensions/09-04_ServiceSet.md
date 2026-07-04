@@ -1,498 +1,467 @@
-## MTP Extension of the ServiceSet
+## 9.4 MTP Extension of the ServiceSet
 This chapter specifies all identified extensions of the *ServiceSet* and integrates them into the existing MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
-### Übersicht
+### 9.4.1 Overview
 #### Semantic Description of LEA Services
-To distinguish the CES and SES procedures introduced in Section~[Lea Dienste](#sec:LeaDienste) for an LOL, a semantic identifier in the form of *FunctionClassificationAttributes* is added to them. Tables~[Function Classification Ces](#tab:FunctionClassificationCes) and [Function Classification Ses](#tab:FunctionClassificationSes) specify the corresponding *FunctionClassificationAttributes*. "2.0" denotes the version in major-minor format and can be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.  
+To distinguish the CES and SES procedures introduced in Section~[Lea Dienste](#sec:LeaDienste) for an LOL, a semantic identifier in the form of *FunctionClassificationAttributes* is added to them. [Table 9.17](#table-917-functionclassificationattribute-of-a-cyclic-execution-service-procedure) and [Table 9.18](#table-918-functionclassificationattribute-of-a-single-execution-service-procedure) specify the corresponding *FunctionClassificationAttributes*. "2.0" denotes the version in major-minor format and can be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
 
-% FunctionClassificationAttribute CES
-<a id="tab:FunctionClassificationCes"></a>
-**Table: FunctionClassificationAttribute of a Cyclic Execution Service Procedure**
+##### Table 9.17: FunctionClassificationAttribute of a Cyclic Execution Service Procedure
 
 <table>
 	<tr>
-		<td colspan="2"><strong>FunctionClassificationAttribute for CES</strong></td>
+		<td colspan="2" align="left"><strong>FunctionClassificationAttribute for CES</strong></td>
 	</tr>
 	<tr>
-		<th>Standard</th>
-		<td>ModuleTypePackage:Logistics</td>
+		<th align="left">Standard</th>
+		<td align="left">ModuleTypePackage:Logistics</td>
 	</tr>
 	<tr>
-		<th>Level</th>
-		<td>Machine</td>
+		<th align="left">Level</th>
+		<td align="left">Machine</td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td>CES</td>
+		<th align="left">Type</th>
+		<td align="left">CES</td>
 	</tr>
 	<tr>
-		<th>IRDI</th>
-		<td>ModuleTypePackage:Logistics:CES:2.0</td>
+		<th align="left">IRDI</th>
+		<td align="left">ModuleTypePackage:Logistics:CES:2.0</td>
 	</tr>
 </table>
 
-% FunctionClassificationAttribute SES
-<a id="tab:FunctionClassificationSes"></a>
-**Table: FunctionClassificationAttribute of a Single Execution Service Procedure**
+##### Table 9.18: FunctionClassificationAttribute of a Single Execution Service Procedure
 
 <table>
 	<tr>
-		<td colspan="2"><strong>FunctionClassificationAttribute for SES</strong></td>
+		<td colspan="2" align="left"><strong>FunctionClassificationAttribute for SES</strong></td>
 	</tr>
 	<tr>
-		<th>Standard</th>
-		<td>ModuleTypePackage:Logistics</td>
+		<th align="left">Standard</th>
+		<td align="left">ModuleTypePackage:Logistics</td>
 	</tr>
 	<tr>
-		<th>Level</th>
-		<td>Machine</td>
+		<th align="left">Level</th>
+		<td align="left">Machine</td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td>SES</td>
+		<th align="left">Type</th>
+		<td align="left">SES</td>
 	</tr>
 	<tr>
-		<th>IRDI</th>
-		<td>ModuleTypePackage:Logistics:SES:2.0</td>
+		<th align="left">IRDI</th>
+		<td align="left">ModuleTypePackage:Logistics:SES:2.0</td>
 	</tr>
 </table>
 
 #### Semantic Description of Service Parameters
-To enable a semantic description of service parameters, the model definition *ServiceParameter* is extended by the capability to append *FunctionClassificationAttributes*. The detailed specification is provided in Appendix~[Model Definitions](#subsec:AnhangServiceSetModelle). This extension, as a result of this dissertation, has already been adopted into the base profile *ModuleTypePackage:ServiceSet.Base V2.0.0* of the MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
+To enable a semantic description of service parameters, the model definition *ServiceParameter* is extended by the capability to append *FunctionClassificationAttributes*. The detailed specification is provided in Appendix~[Model Definitions](#subsec:AnhangServiceSetModelle). This extension, as a result of this work, has already been adopted into the base profile *ModuleTypePackage:ServiceSet.Base V2.0.0* of the MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
-Tables~[Function Classification Product Id](#tab:FunctionClassificationProductId) to [Function Classification Packaging Data Set](#tab:FunctionClassificationPackagingDataSet) specify *FunctionClassificationAttributes* for the parameters *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* introduced in Section~[Parametrierngsmech](#subsec:Parametrierngsmech). "2.0" denotes the version in major-minor format and can be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
+[Table 9.19](#table-919-functionclassificationattribute-of-a-procedure-parameter-for-setting-a-productid) to [Table 9.23](#table-923-functionclassificationattribute-of-a-configuration-parameter-for-accessing-a-packagingdataset) specify *FunctionClassificationAttributes* for the parameters *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* introduced in Section~[Parametrierngsmech](#subsec:Parametrierngsmech). "2.0" denotes the version in major-minor format and can be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
 
-% FunctionClassificationAttribute ProductId
-<a id="tab:FunctionClassificationProductId"></a>
-**Table: FunctionClassificationAttribute of a Procedure Parameter for Setting a ProductId**
+##### Table 9.19: FunctionClassificationAttribute of a Procedure Parameter for Setting a ProductId
 
 <table>
 	<tr>
-		<td colspan="2"><strong>FunctionClassificationAttribute for ProductId</strong></td>
+		<td colspan="2" align="left"><strong>FunctionClassificationAttribute for ProductId</strong></td>
 	</tr>
 	<tr>
-		<th>Standard</th>
-		<td>ModuleTypePackage:Logistics</td>
+		<th align="left">Standard</th>
+		<td align="left">ModuleTypePackage:Logistics</td>
 	</tr>
 	<tr>
-		<th>Level</th>
-		<td>Service Parameter</td>
+		<th align="left">Level</th>
+		<td align="left">Service Parameter</td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td>ProductId Procedure Parameter</td>
+		<th align="left">Type</th>
+		<td align="left">ProductId Procedure Parameter</td>
 	</tr>
 	<tr>
-		<th>IRDI</th>
-		<td>ModuleTypePackage:Logistics:ProductId:2.0</td>
+		<th align="left">IRDI</th>
+		<td align="left">ModuleTypePackage:Logistics:ProductId:2.0</td>
 	</tr>
 </table>
 
-% FunctionClassificationAttribute LogisticsObjectStatus
-<a id="tab:FunctionClassificationLogisticsObjectStatus"></a>
-**Table: FunctionClassificationAttribute of a Procedure Parameter for Setting a LogisticsObjectStatus**
+##### Table 9.20: FunctionClassificationAttribute of a Procedure Parameter for Setting a LogisticsObjectStatus
 
 <table>
 	<tr>
-		<td colspan="2"><strong>FunctionClassificationAttribute for LogisticsObjectStatussObjectStatus</strong></td>
+		<td colspan="2" align="left"><strong>FunctionClassificationAttribute for LogisticsObjectStatussObjectStatus</strong></td>
 	</tr>
 	<tr>
-		<th>Standard</th>
-		<td>ModuleTypePackage:Logistics</td>
+		<th align="left">Standard</th>
+		<td align="left">ModuleTypePackage:Logistics</td>
 	</tr>
 	<tr>
-		<th>Level</th>
-		<td>Service Parameter</td>
+		<th align="left">Level</th>
+		<td align="left">Service Parameter</td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td>LogisticsObjectStatussObjectStatus Procedure Parameter</td>
+		<th align="left">Type</th>
+		<td align="left">LogisticsObjectStatussObjectStatus Procedure Parameter</td>
 	</tr>
 	<tr>
-		<th>IRDI</th>
-		<td>ModuleTypePackage:Logistics:LogisticsObjectStatus:2.0</td>
+		<th align="left">IRDI</th>
+		<td align="left">ModuleTypePackage:Logistics:LogisticsObjectStatus:2.0</td>
 	</tr>
 </table>
 
-% FunctionClassificationAttribute ProductDataSet
-<a id="tab:FunctionClassificationProductDataSet"></a>
-**Table: FunctionClassificationAttribute of a Configuration Parameter for Accessing a ProductDataSet**
+##### Table 9.21: FunctionClassificationAttribute of a Configuration Parameter for Accessing a ProductDataSet
 
 <table>
 	<tr>
-		<td colspan="2"><strong>FunctionClassificationAttribute for ProductDataSet</strong></td>
+		<td colspan="2" align="left"><strong>FunctionClassificationAttribute for ProductDataSet</strong></td>
 	</tr>
 	<tr>
-		<th>Standard</th>
-		<td>ModuleTypePackage:Logistics</td>
+		<th align="left">Standard</th>
+		<td align="left">ModuleTypePackage:Logistics</td>
 	</tr>
 	<tr>
-		<th>Level</th>
-		<td>Service Parameter</td>
+		<th align="left">Level</th>
+		<td align="left">Service Parameter</td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td>ProductDataSet Configuration Parameter</td>
+		<th align="left">Type</th>
+		<td align="left">ProductDataSet Configuration Parameter</td>
 	</tr>
 	<tr>
-		<th>IRDI</th>
-		<td>ModuleTypePackage:Logistics:ProductDataSet:2.0</td>
+		<th align="left">IRDI</th>
+		<td align="left">ModuleTypePackage:Logistics:ProductDataSet:2.0</td>
 	</tr>
 </table>
 
-% FunctionClassificationAttribute PackagingId
-<a id="tab:FunctionClassificationPackagingId"></a>
-**Table: FunctionClassificationAttribute of a Procedure Parameter for Setting a PackagingId**
+##### Table 9.22: FunctionClassificationAttribute of a Procedure Parameter for Setting a PackagingId
 
 <table>
 	<tr>
-		<td colspan="2"><strong>FunctionClassificationAttribute for PackagingId</strong></td>
+		<td colspan="2" align="left"><strong>FunctionClassificationAttribute for PackagingId</strong></td>
 	</tr>
 	<tr>
-		<th>Standard</th>
-		<td>ModuleTypePackage:Logistics</td>
+		<th align="left">Standard</th>
+		<td align="left">ModuleTypePackage:Logistics</td>
 	</tr>
 	<tr>
-		<th>Level</th>
-		<td>Service Parameter</td>
+		<th align="left">Level</th>
+		<td align="left">Service Parameter</td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td>PackagingId Procedure Parameter</td>
+		<th align="left">Type</th>
+		<td align="left">PackagingId Procedure Parameter</td>
 	</tr>
 	<tr>
-		<th>IRDI</th>
-		<td>ModuleTypePackage:Logistics:PackagingId:2.0</td>
+		<th align="left">IRDI</th>
+		<td align="left">ModuleTypePackage:Logistics:PackagingId:2.0</td>
 	</tr>
 </table>
 
-% FunctionClassificationAttribute PackagingDataSet
-<a id="tab:FunctionClassificationPackagingDataSet"></a>
-**Table: FunctionClassificationAttribute of a Configuration Parameter for Accessing a PackagingDataSet**
+##### Table 9.23: FunctionClassificationAttribute of a Configuration Parameter for Accessing a PackagingDataSet
 
 <table>
 	<tr>
-		<td colspan="2"><strong>FunctionClassificationAttribute for PackagingDataSet</strong></td>
+		<td colspan="2" align="left"><strong>FunctionClassificationAttribute for PackagingDataSet</strong></td>
 	</tr>
 	<tr>
-		<th>Standard</th>
-		<td>ModuleTypePackage:Logistics</td>
+		<th align="left">Standard</th>
+		<td align="left">ModuleTypePackage:Logistics</td>
 	</tr>
 	<tr>
-		<th>Level</th>
-		<td>Service Parameter</td>
+		<th align="left">Level</th>
+		<td align="left">Service Parameter</td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td>PackagingDataSet Configuration Parameter</td>
+		<th align="left">Type</th>
+		<td align="left">PackagingDataSet Configuration Parameter</td>
 	</tr>
 	<tr>
-		<th>IRDI</th>
-		<td>ModuleTypePackage:Logistics:PackagingDataSet:2.0</td>
+		<th align="left">IRDI</th>
+		<td align="left">ModuleTypePackage:Logistics:PackagingDataSet:2.0</td>
 	</tr>
 </table>
 
 #### Extension of the ParameterElements
-According to Section~[Lea Parameter](#sec:LeaParameter), the two new interface definitions *SUC StructServParam* and *SUC ArrayServParam* are required for the parameterization of LEA services. As shown in Figure~[Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters](#fig:ErweiterungParam), *SUC StructServParam* and *SUC ArrayServParam*, together with all other interface definitions for service parameters, are derived from the interface definition *SUC ParameterElement* according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) and organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in Appendix~[Anhang Service Set Schnittstellen](#subsec:AnhangServiceSetSchnittstellen). This extension, as a result of this dissertation, has already been adopted into the profile *ModuleTypePackage:ServiceSet.ComplexTypes V2.0.0* of the MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
+According to Section~[Lea Parameter](#sec:LeaParameter), the two new interface definitions *SUC StructServParam* and *SUC ArrayServParam* are required for the parameterization of LEA services. As shown in [Figure 9.8](#figure-98-extension-of-the-serviceset-for-implementing-structured-and-array-based-service-parameters), *SUC StructServParam* and *SUC ArrayServParam*, together with all other interface definitions for service parameters, are derived from the interface definition *SUC ParameterElement* according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) and organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in Appendix~[Anhang Service Set Schnittstellen](#subsec:AnhangServiceSetSchnittstellen). This extension, as a result of this work, has already been adopted into the profile *ModuleTypePackage:ServiceSet.ComplexTypes V2.0.0* of the MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
-![Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Parameter/Klassendiagramm.drawio.png)
-*Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters*
+##### Figure 9.8: Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters
+![Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters](./images/04_Parameter.drawio.svg)
 
 #### Specification of the LogisticsInteraction
-Section~[Lea Parameter](#sec:LeaParameter) and Section~[Ermittlung Next Node](#subsec:ErmittlungNextNode) introduce the LEA requests to an LOL shown in Table~[Arten Logistics Interaction](#tab:ArtenLogisticsInteraction).
+Section~[Lea Parameter](#sec:LeaParameter) and Section~[Ermittlung Next Node](#subsec:ErmittlungNextNode) introduce the LEA requests to an LOL shown in [Table 9.24](#table-924-possible-requests-from-an-lea-to-a-logistics-orchestration-layer).
 
-% Arten der LogisticsInteraction
-<a id="tab:ArtenLogisticsInteraction"></a>
-**Table: Possible Requests from an LEA to a Logistics Orchestration Layer**
+##### Table 9.24: Possible Requests from an LEA to a Logistics Orchestration Layer
 
 <table>
 	<tr>
-		<th>Name</th>
-		<th>Beschreibung</th>
+		<th align="left">Name</th>
+		<th align="left">Beschreibung</th>
 	</tr>
 	<tr>
-		<td>ProductParameter-Request</td>
-		<td>Mit dieser Anfrage bezieht eine LEA unter Angabe einer *ProductId* und eines *LogisticsObjectStatus* einen produktspezifischen Parametersatz vom LOL.</td>
+		<td align="left">ProductParameter-Request</td>
+		<td align="left">Mit dieser Anfrage bezieht eine LEA unter Angabe einer *ProductId* und eines *LogisticsObjectStatus* einen produktspezifischen Parametersatz vom LOL.</td>
 	</tr>
 	<tr>
-		<td>Packaging-ParameterRequest</td>
-		<td>Mit dieser Anfrage bezieht eine LEA unter Angabe einer *PackagingId* einen verpackungsspezifischen Parametersatz vom LOL.</td>
+		<td align="left">Packaging-ParameterRequest</td>
+		<td align="left">Mit dieser Anfrage bezieht eine LEA unter Angabe einer *PackagingId* einen verpackungsspezifischen Parametersatz vom LOL.</td>
 	</tr>
 	<tr>
-		<td>ProductParameter-UpdatedInfo</td>
-		<td>Mit dieser Anfrage informiert eine LEA den LOL, dass sich der produktspezifische Parametersatz an einem definierten Arrayindex seines *ProductDataSet* geändert hat.</td>
+		<td align="left">ProductParameter-UpdatedInfo</td>
+		<td align="left">Mit dieser Anfrage informiert eine LEA den LOL, dass sich der produktspezifische Parametersatz an einem definierten Arrayindex seines *ProductDataSet* geändert hat.</td>
 	</tr>
 	<tr>
-		<td>Packaging-ParameterUpdated-Info</td>
-		<td>Mit dieser Anfrage informiert eine LEA den LOL, dass sich der verpackungsspezifische Parametersatz an einem definierten Arrayindex seines *PackagingDataSet* geändert hat.</td>
+		<td align="left">Packaging-ParameterUpdated-Info</td>
+		<td align="left">Mit dieser Anfrage informiert eine LEA den LOL, dass sich der verpackungsspezifische Parametersatz an einem definierten Arrayindex seines *PackagingDataSet* geändert hat.</td>
 	</tr>
 	<tr>
-		<td>TransportNode-Request</td>
-		<td>Mit dieser Anfrage bezieht eine LEA unter Angabe einer *TransportId* den nächsten anzufahrenden Transportknoten für einen Transportauftrag vom LOL.</td>
+		<td align="left">TransportNode-Request</td>
+		<td align="left">Mit dieser Anfrage bezieht eine LEA unter Angabe einer *TransportId* den nächsten anzufahrenden Transportknoten für einen Transportauftrag vom LOL.</td>
 	</tr>
 </table>
 
 These requests are implemented on the basis of service-operator interaction according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) and may occur once or not at all in an LEA. If they occur, they always follow the same sequence and always allow the same responses by an LOL. It is therefore appropriate to standardize these concrete service-operator interactions as logistics-specific interactions, hereafter called *LogisticsInteractions*. This allows an LEA MTP to model whether the corresponding *LogisticsInteractions* occur, while the structure of the *Questions* and *Answers* is standardized and does not need to be remodeled for every specific LEA type.
- 
-Figure~[Extension of the ServiceSet for Implementing Logistics Interactions](#fig:LogisticsInteractionKonzept) shows the interface and model definitions newly introduced for *LogisticsInteraction*.
 
-![Extension of the ServiceSet for Implementing Logistics Interactions](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Logistics_Interaction/Klassendiagramm.drawio.png)
-*Extension of the ServiceSet for Implementing Logistics Interactions*
+[Figure 9.9](#figure-99-extension-of-the-serviceset-for-implementing-logistics-interactions) shows the interface and model definitions newly introduced for *LogisticsInteraction*.
 
-<!-- Als Grundlage für die Standardisierung wird die Struktur der Dienst-Bediener-Interaktion gemäß \cite{PNO.2025.Part4} übernommen. Die Basis bildet die \emph{SUC LogisticsInteraction}, die mittels einer \emph{RC HasLogisticsInteraction} der \emph{SUC Service} einer LEA zugeordnet werden kann. Die \emph{RC HasLogisticsInteraction} ist abgeleitet von der in der \cite{PNO.2025.Part1} spezifizierten \emph{RC HasTextReference} und verweist mittels \emph{TextReference} auf die \emph{LogisticsInteraction}. Sie wird der \emph{SUC Service} als RR annotiert, da einem Dienst mehrere von der \emph{RC HasTextReference} abgeleitete RCs zugeordnet werden können. 
+##### Figure 9.9: Extension of the ServiceSet for Implementing Logistics Interactions
+![Extension of the ServiceSet for Implementing Logistics Interactions](./images/04_LogisticsInteraction.drawio.svg)
 
-Die \emph{SUC LogisticsInteraction} ist von der \emph{SUC Text Definition} gemäß \cite{PNO.2025.Part4} abgeleitet und organisiert alle logistikspezifischen Fragen (\emph{SUC LogisticsQuestions}) einer LEA. Die \emph{SUC LogisticsQuestion} ist eine abstrakte Klasse, die von der in der \cite{PNO.2025.Part1} spezifizierten \emph{SUC Text} abgeleitet ist. Als konkrete Ausprägungen werden die \emph{SUC ProductParameterRequest}, die \emph{SUC PackagingParameterRequest}, die \emph{SUC ProductParameterUpdatedInfo}, die \emph{SUC PackagingParameterUpdatedInfo} und die \emph{SUC TransportNodeRequest} spezifiziert. Eine LEA kann jede dieser \emph{LogisticsQuestions} entweder gar nicht oder genau einmal untergeordnet zu seiner \emph{SUC LogisticsInteraction} bereitstellen. Die Charakteristik dieser Anfragen wird im Anhang~\ref{subsec:AnhangServiceSetModelle} beschrieben. Aus dieser Beschreibung geht auch hervor, dass für die Interaktion eine \emph{LogisticsQuestionId}, zwei \emph{LogisticsQuestionParams}, eine \emph{LogisticsAnswerId} und ein \emph{LogisticsAnswerTimeout} an der \emph{ServiceControl}-Schnittstelle verwendet werden. Diese werden der \emph{SUC ServiceControl} \cite{PNO.2025.Part4} mittels der \emph{RC LogisticsInteractionExtension} hinzugefügt. Diese RC wird als SRC modelliert, da sie der \emph{SUC ServiceControl} nur maximal einmal zugeordnet werden kann.
+### 9.4.2 Interface Definitions
+#### Specification of the System Unit Class StructServParam
+*SUC StructServParam* ([Table 9.25](#table-925-interface-definition-of-suc-structservparam)) is used to transfer parameters of a user-defined structured data type from an LOL to an LEA.
 
-Die \emph{SUC LogisticsInteraction} und die \emph{SUC LogisticsQuestion} (inkl. ihrer Ableitungen) werden in der \emph{SUCL MTPTextSUCLib} organisiert. Die \emph{RC HasLogisticsInteraction} ist Teil der \emph{RCL MTPTextRCLib} und die \emph{RC LogisticsInteractionExtension} ist Teil der \emph{RCL MTPServiceRCLib}. Die Detailspezifikation erfolgt im Anhang~\ref{subsec:AnhangServiceSetModelle}.
-
-Diese Definitionen werden einem neuen Profil \emph{ModuleTypePackage:ServiceSet.Logistics V2.0.0} zugeordnet.
-
-\subsection{Schnittstellendefinitionen}
-\label{subsec:AnhangServiceSetSchnittstellen}
-
-\subsubsection{Spezifikation der System Unit Class StructServParam}
-
-Die \emph{SUC StructServParam} (Tabelle~\ref{tab:DataAssemblySucStructServParam}) wird verwendet, um Parameter eines benutzerdefinierten strukturierten Datentyps von einem LOL an eine LEA zu übertragen. -->
-
-% Schnittstellendefinition SUC StructServParam
-<a id="tab:DataAssemblySucStructServParam"></a>
-**Table: Interface Definition of *SUC StructServParam***
+##### Table 9.25: Interface Definition of *SUC StructServParam*
 
 <table>
 	<tr>
-		<td colspan="6"><strong>▶ Module Type Package - DataAssembly Definition</strong></td>
+		<td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="5"><strong>StructServParam</strong></td>
+		<th align="left">Name</th>
+		<td colspan="5" align="left"><strong>StructServParam</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="5">System Unit Class (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="5" align="left">System Unit Class (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="5">-</td>
+		<th align="left">Modifier</th>
+		<td colspan="5" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="5">generic parameter interface for a structured data type following the rules of modelling complex data types</td>
+		<th align="left">Description</th>
+		<td colspan="5" align="left">generic parameter interface for a structured data type following the rules of modelling complex data types</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ServiceElement/ParameterElement/StructServParam</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ServiceElement/ParameterElement/StructServParam</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ServiceElement/ParameterElement</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ServiceElement/ParameterElement</td>
 	</tr>
 	<tr>
-		<th>Role Classes</th>
-		<td colspan="5">-</td>
+		<th align="left">Role Classes</th>
+		<td colspan="5" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="5">ModuleTypePackage:ServiceSet.ComplexTypes V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="5" align="left">ModuleTypePackage:ServiceSet.ComplexTypes V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="6"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="6" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="4">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="4" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="4">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="6"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Access</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>Attribute-Type Reference</th>
-		<th>Base Function</th>
+		<th align="left">Name</th>
+		<th align="left">Access</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">Attribute-Type Reference</th>
+		<th align="left">Base Function</th>
 	</tr>
 	<tr>
-		<td>VExt</td>
-		<td>LOL -> LEA</td>
-		<td>{VType}</td>
-		<td>External Value</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">VExt</td>
+		<td align="left">LOL -> LEA</td>
+		<td align="left">{VType}</td>
+		<td align="left">External Value</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td>VInt</td>
-		<td>LOL <- LEA</td>
-		<td>{VType}</td>
-		<td>Internal Value</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">VInt</td>
+		<td align="left">LOL <- LEA</td>
+		<td align="left">{VType}</td>
+		<td align="left">Internal Value</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td>VOp</td>
-		<td>LOL -> LEA</td>
-		<td>{VType}</td>
-		<td>Operator Value</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">VOp</td>
+		<td align="left">LOL -> LEA</td>
+		<td align="left">{VType}</td>
+		<td align="left">Operator Value</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td>VReq</td>
-		<td>LOL <- LEA</td>
-		<td>{VType}</td>
-		<td>Requested Value</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">VReq</td>
+		<td align="left">LOL <- LEA</td>
+		<td align="left">{VType}</td>
+		<td align="left">Requested Value</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td>VOut</td>
-		<td>LOL <- LEA</td>
-		<td>{VType}</td>
-		<td>Output Value</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">VOut</td>
+		<td align="left">LOL <- LEA</td>
+		<td align="left">{VType}</td>
+		<td align="left">Output Value</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td>VFbk</td>
-		<td>LOL <- LEA</td>
-		<td>{VType}</td>
-		<td>Feedback Value</td>
-		<td>-</td>
-		<td>-</td>
+		<td align="left">VFbk</td>
+		<td align="left">LOL <- LEA</td>
+		<td align="left">{VType}</td>
+		<td align="left">Feedback Value</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
 	</tr>
 	<tr>
-		<td>VType</td>
-		<td>MTP</td>
-		<td>&lt;empty&gt;</td>
-		<td>Type Definition of the Values</td>
-		<td>{AT of Structured-DataType}</td>
-		<td>Complex-Type</td>
+		<td align="left">VType</td>
+		<td align="left">MTP</td>
+		<td align="left">&lt;empty&gt;</td>
+		<td align="left">Type Definition of the Values</td>
+		<td align="left">{AT of Structured-DataType}</td>
+		<td align="left">Complex-Type</td>
 	</tr>
 	<tr>
-		<td colspan="6"><strong>📌 Comment</strong></td>
+		<td colspan="6" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="6">-</td>
+		<td colspan="6" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="5">(no further constraints given)</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="5" align="left">(no further constraints given)</td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="5">(no further constraints given)</td>
+		<th align="left">Allowed Children</th>
+		<td colspan="5" align="left">(no further constraints given)</td>
 	</tr>
 </table>
 
 The setting of a parameter of *SUC StructServParam* is performed via the access channels *Automatic Internal*, *Automatic External*, or *Operator* in the same way as for all other service parameters defined in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
-The distinctive feature of this interface definition is the use of a user-defined structured data type. The modeling and use of such a type have already been described in connection with *SUC StructView* and are applied in the same way for *SUC StructServParam*. This data type is then expected behind the variables *VExt*, *VInt*, *VOp*, *VReq*, and *VOut*. 
+The distinctive feature of this interface definition is the use of a user-defined structured data type. The modeling and use of such a type have already been described in connection with *SUC StructView* and are applied in the same way for *SUC StructServParam*. This data type is then expected behind the variables *VExt*, *VInt*, *VOp*, *VReq*, and *VOut*.
 
 #### Specification of the System Unit Class ArrayServParam
-*SUC ArrayServParam* (Table~[Data Assembly Suc Array Serv Param](#tab:DataAssemblySucArrayServParam)) is used by the LOL to write data to an array or read data from an array managed in an LEA.
+*SUC ArrayServParam* ([Table 9.26](#table-926-interface-definition-of-suc-arrayservparam)) is used by the LOL to write data to an array or read data from an array managed in an LEA.
 
-% Schnittstellendefinition SUC ArrayServParam
-<a id="tab:DataAssemblySucArrayServParam"></a>
-**Table: Interface Definition of *SUC ArrayServParam***
+##### Table 9.26: Interface Definition of *SUC ArrayServParam*
 
 <table>
 	<tr>
-		<td colspan="6"><strong>▶ Module Type Package - DataAssembly Definition</strong></td>
+		<td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<td colspan="5"><strong>ArrayServParam</strong></td>
+		<th align="left">Name</th>
+		<td colspan="5" align="left"><strong>ArrayServParam</strong></td>
 	</tr>
 	<tr>
-		<th>Type</th>
-		<td colspan="5">System Unit Class (SUC)</td>
+		<th align="left">Type</th>
+		<td colspan="5" align="left">System Unit Class (SUC)</td>
 	</tr>
 	<tr>
-		<th>Modifier</th>
-		<td colspan="5">-</td>
+		<th align="left">Modifier</th>
+		<td colspan="5" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Description</th>
-		<td colspan="5">generic parameter interface for an array data type following the rules of modelling complex data types</td>
+		<th align="left">Description</th>
+		<td colspan="5" align="left">generic parameter interface for an array data type following the rules of modelling complex data types</td>
 	</tr>
 	<tr>
-		<th>AutomationML Path</th>
-		<td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ServiceElement/ParameterElement/ArrayServParam</td>
+		<th align="left">AutomationML Path</th>
+		<td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ServiceElement/ParameterElement/ArrayServParam</td>
 	</tr>
 	<tr>
-		<th>AutomationML BaseRef</th>
-		<td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ServiceElement/ParameterElement</td>
+		<th align="left">AutomationML BaseRef</th>
+		<td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ServiceElement/ParameterElement</td>
 	</tr>
 	<tr>
-		<th>Role Classes</th>
-		<td colspan="5">-</td>
+		<th align="left">Role Classes</th>
+		<td colspan="5" align="left">-</td>
 	</tr>
 	<tr>
-		<th>Version</th>
-		<td colspan="5">ModuleTypePackage:ServiceSet.ComplexTypes V2.0.0</td>
+		<th align="left">Version</th>
+		<td colspan="5" align="left">ModuleTypePackage:ServiceSet.ComplexTypes V2.0.0</td>
 	</tr>
 	<tr>
-		<td colspan="6"><strong>📌 AutomationML Properties</strong></td>
+		<td colspan="6" align="left"><strong>📌 AutomationML Properties</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th colspan="4">Description</th>
+		<th align="left">Name</th>
+		<th align="left">Type</th>
+		<th colspan="4" align="left">Description</th>
 	</tr>
 	<tr>
-		<td>-</td>
-		<td>-</td>
-		<td colspan="4">-</td>
+		<td align="left">-</td>
+		<td align="left">-</td>
+		<td colspan="4" align="left">-</td>
 	</tr>
 	<tr>
-		<td colspan="6"><strong>📌 AutomationML Attributes</strong></td>
+		<td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td>
 	</tr>
 	<tr>
-		<th>Name</th>
-		<th>Access</th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>Attribute-Type Reference</th>
-		<th>Base Function</th>
+		<th align="left">Name</th>
+		<th align="left">Access</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+		<th align="left">Attribute-Type Reference</th>
+		<th align="left">Base Function</th>
 	</tr>
-	<tr><td>IndexExt</td><td>LOL -> LEA</td><td>DINT</td><td>External Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexInt</td><td>LOL <- LEA</td><td>DINT</td><td>Internal Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexOp</td><td>LOL -> LEA</td><td>DINT</td><td>Operator Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexMin</td><td>LOL <- LEA</td><td>DINT</td><td>Low Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexMax</td><td>LOL <- LEA</td><td>DINT</td><td>High Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexCur</td><td>LOL <- LEA</td><td>DINT</td><td>Current Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>VExt</td><td>LOL -> LEA</td><td>{VType}</td><td>External Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VInt</td><td>LOL <- LEA</td><td>{VType}</td><td>Internal Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VOp</td><td>LOL -> LEA</td><td>{VType}</td><td>Operator Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VReq</td><td>LOL <- LEA</td><td>{VType}</td><td>Requested Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VOut</td><td>LOL <- LEA</td><td>{VType}</td><td>Output Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VFbk</td><td>LOL <- LEA</td><td>{VType}</td><td>Feedback Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VType</td><td>MTP</td><td><sup>a)</sup></td><td>Type Definition of the Values</td><td>{AT of BaseDataType}</td><td>Complex-Type</td></tr>
+	<tr><td align="left">IndexExt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">External Index Value</td><td align="left">-</td><td align="left">Multiplexing for Arrays</td></tr>
+	<tr><td align="left">IndexInt</td><td align="left">LOL <- LEA</td><td align="left">DINT</td><td align="left">Internal Index Value</td><td align="left">-</td><td align="left">Multiplexing for Arrays</td></tr>
+	<tr><td align="left">IndexOp</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">Operator Index Value</td><td align="left">-</td><td align="left">Multiplexing for Arrays</td></tr>
+	<tr><td align="left">IndexMin</td><td align="left">LOL <- LEA</td><td align="left">DINT</td><td align="left">Low Limit of the Index</td><td align="left">-</td><td align="left">Multiplexing for Arrays</td></tr>
+	<tr><td align="left">IndexMax</td><td align="left">LOL <- LEA</td><td align="left">DINT</td><td align="left">High Limit of the Index</td><td align="left">-</td><td align="left">Multiplexing for Arrays</td></tr>
+	<tr><td align="left">IndexCur</td><td align="left">LOL <- LEA</td><td align="left">DINT</td><td align="left">Current Index Value</td><td align="left">-</td><td align="left">Multiplexing for Arrays</td></tr>
+	<tr><td align="left">VExt</td><td align="left">LOL -> LEA</td><td align="left">{VType}</td><td align="left">External Value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VInt</td><td align="left">LOL <- LEA</td><td align="left">{VType}</td><td align="left">Internal Value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VOp</td><td align="left">LOL -> LEA</td><td align="left">{VType}</td><td align="left">Operator Value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VReq</td><td align="left">LOL <- LEA</td><td align="left">{VType}</td><td align="left">Requested Value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VOut</td><td align="left">LOL <- LEA</td><td align="left">{VType}</td><td align="left">Output Value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VFbk</td><td align="left">LOL <- LEA</td><td align="left">{VType}</td><td align="left">Feedback Value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VType</td><td align="left">MTP</td><td align="left"><sup>a)</sup></td><td align="left">Type Definition of the Values</td><td align="left">{AT of BaseDataType}</td><td align="left">Complex-Type</td></tr>
 	<tr>
-		<td colspan="6"><strong>📌 Comment</strong></td>
-	</tr>
-	<tr>
-		<td colspan="6"><sup>a)</sup> Type shall be &lt;empty&gt; in case of a StructuredDataType and shall be set to the defined type in case of a PrimitiveDataType.</td>
+		<td colspan="6" align="left"><strong>📌 Comment</strong></td>
 	</tr>
 	<tr>
-		<td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
+		<td colspan="6" align="left"><sup>a)</sup> Type shall be &lt;empty&gt; in case of a StructuredDataType and shall be set to the defined type in case of a PrimitiveDataType.</td>
 	</tr>
 	<tr>
-		<th>Allowed Parents</th>
-		<td colspan="5">(no further constraints given)</td>
+		<td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td>
 	</tr>
 	<tr>
-		<th>Allowed Children</th>
-		<td colspan="5">(no further constraints given)</td>
+		<th align="left">Allowed Parents</th>
+		<td colspan="5" align="left">(no further constraints given)</td>
+	</tr>
+	<tr>
+		<th align="left">Allowed Children</th>
+		<td colspan="5" align="left">(no further constraints given)</td>
 	</tr>
 </table>
 
@@ -505,400 +474,374 @@ According to the value of the variable *IndexCur*, the array element at the corr
 *VType* defines the data type shared by all array elements. This may be a primitive data type or a user-defined structured data type according to the description of *SUC StructView*.
 
 #### Specification of the Role Class LogisticsInteractionExtension
-*RC LogisticsInteractionExtension* (Table~[Data Assembly Rc Logistics Interaction Extension](#tab:DataAssemblyRcLogisticsInteractionExtension)) extends the *ServiceControl* interface definition according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) by the variables required for logistics interactions. If a *LogisticsInteraction* is provided in the LEA, exactly one *LogisticsInteractionExtension* must be assigned as an SRC to the *ServiceControl* interface; otherwise none.
+*RC LogisticsInteractionExtension* ([Table 9.27](#table-927-interface-definition-of-rc-logisticsinteractionextension)) extends the *ServiceControl* interface definition according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) by the variables required for logistics interactions. If a *LogisticsInteraction* is provided in the LEA, exactly one *LogisticsInteractionExtension* must be assigned as an SRC to the *ServiceControl* interface; otherwise none.
 
-% Schnittstellendefinition RC LogisticsInteractionExtension
-<a id="tab:DataAssemblyRcLogisticsInteractionExtension"></a>
-**Table: Interface Definition of *RC LogisticsInteractionExtension***
+##### Table 9.27: Interface Definition of *RC LogisticsInteractionExtension*
 
 <table>
-	<tr><td colspan="6"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="5"><strong>LogisticsInteractionExtension</strong></td></tr>
-	<tr><th>Type</th><td colspan="5">Role Class (RC)</td></tr>
-	<tr><th>Modifier</th><td colspan="5">sealed</td></tr>
-	<tr><th>Description</th><td colspan="5">interface definition extending the ServiceControl interface for logistice interaction</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="5">MTPServiceRCLib/LogisticsInteractionExtension</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="5">AutomationMLBaseRoleClassLib/AutomationMLBaseRole</td></tr>
-	<tr><th>Version</th><td colspan="5">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="4">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>Logistics-QuestionID</td><td>LOL <- LEA</td><td>DINT</td><td>Identifier of a currently pending logistics question</td><td>-</td><td></td></tr>
-	<tr><td>Logistics-QuestionParam1</td><td>LOL <- LEA</td><td>STRING</td><td>Question parameter 1 of a currently pending logistics question (e.g., ProductId)</td><td>-</td><td></td></tr>
-	<tr><td>Logistics-QuestionParam2</td><td>LOL <- LEA</td><td>STRING</td><td>Question parameter 2 of a currently pending logistics question (e.g., LogisticsObjectStatus)</td><td>-</td><td></td></tr>
-	<tr><td>Logistics-AnswerID</td><td>LOL -> LEA</td><td>DINT</td><td>Identifier of a currently given answer to a pending question</td><td>-</td><td></td></tr>
-	<tr><td>Logistics-AnswerTimeout</td><td>LOL -> LEA</td><td>TIME_OF_DAY</td><td>Timeout for a LEA to wait for an answer from a LOL; 0: timeout function deactivated; &gt; 0: timeout in s</td><td>-</td><td></td></tr>
-	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="6">-</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Annotations</th><td colspan="5">IE of SUC ServiceControl as SRC</td></tr>
+	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="5" align="left"><strong>LogisticsInteractionExtension</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="5" align="left">Role Class (RC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="5" align="left">sealed</td></tr>
+	<tr><th align="left">Description</th><td colspan="5" align="left">interface definition extending the ServiceControl interface for logistice interaction</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="5" align="left">MTPServiceRCLib/LogisticsInteractionExtension</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="5" align="left">AutomationMLBaseRoleClassLib/AutomationMLBaseRole</td></tr>
+	<tr><th align="left">Version</th><td colspan="5" align="left">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="4" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
+	<tr><td align="left">Logistics-QuestionID</td><td align="left">LOL <- LEA</td><td align="left">DINT</td><td align="left">Identifier of a currently pending logistics question</td><td align="left">-</td><td align="left"></td></tr>
+	<tr><td align="left">Logistics-QuestionParam1</td><td align="left">LOL <- LEA</td><td align="left">STRING</td><td align="left">Question parameter 1 of a currently pending logistics question (e.g., ProductId)</td><td align="left">-</td><td align="left"></td></tr>
+	<tr><td align="left">Logistics-QuestionParam2</td><td align="left">LOL <- LEA</td><td align="left">STRING</td><td align="left">Question parameter 2 of a currently pending logistics question (e.g., LogisticsObjectStatus)</td><td align="left">-</td><td align="left"></td></tr>
+	<tr><td align="left">Logistics-AnswerID</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">Identifier of a currently given answer to a pending question</td><td align="left">-</td><td align="left"></td></tr>
+	<tr><td align="left">Logistics-AnswerTimeout</td><td align="left">LOL -> LEA</td><td align="left">TIME_OF_DAY</td><td align="left">Timeout for a LEA to wait for an answer from a LOL; 0: timeout function deactivated; &gt; 0: timeout in s</td><td align="left">-</td><td align="left"></td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="6" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Annotations</th><td colspan="5" align="left">IE of SUC ServiceControl as SRC</td></tr>
 </table>
 
 A *LogisticsInteraction* follows a principle similar to the service-operator interaction described in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4). However, for the IDs of the questions, *LogisticsQuestionID*, and answers, *LogisticsAnswerID*, values from the DINT range, instead of DWORD, are used, where the value 0 and negative values may also be valid IDs. The value "-1" indicates that currently no question or answer is pending. By means of *LogisticsQuestionParam1* and *LogisticsQuestionParam2*, analogous to *InteractAddInfo* from [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), additional information can be attached to a request, for example *ProductId* and *LogisticsObjectStatus* for *ProductParameterRequest*. The variable *LogisticsAnswerTimeout* allows the entry of a time period that specifies how long an LEA should wait for the response of an LOL. After this time has elapsed, the LEA may execute an alternative program flow without the LOL response. Setting the timeout to 0 is interpreted as deactivation of the timeout function.
 
 #### Extension of the System Unit Class ServiceControl
-*SUC ServiceControl* (Table~[Data Assembly Suc Service Control](#tab:DataAssemblySucServiceControl)) defines the base class for controlling MTP services. This interface definition was already defined in the MTP specification and is extended in this dissertation by the capability to connect a RoleClass of type *RC LogisticsInteractionExtension* as an SRC.
+*SUC ServiceControl* ([Table 9.28](#table-928-interface-definition-of-suc-servicecontrol)) defines the base class for controlling MTP services. This interface definition was already defined in the MTP specification and is extended in this work by the capability to connect a RoleClass of type *RC LogisticsInteractionExtension* as an SRC.
 
-% Schnittstellendefinition SUC ServiceControl
-<a id="tab:DataAssemblySucServiceControl"></a>
-**Table: Interface Definition of *SUC ServiceControl***
+##### Table 9.28: Interface Definition of *SUC ServiceControl*
 
 <table>
-	<tr><td colspan="6"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="5"><strong>ServiceControl</strong></td></tr>
-	<tr><th>Type</th><td colspan="5">System Unit Class (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="5">-</td></tr>
-	<tr><th>Description</th><td colspan="5">service control interface definition</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ServiceElement/ServiceControl</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="5">MTPDataAssemblySUCLib/DataAssembly/ServiceElement</td></tr>
-	<tr><th>Role Classes</th><td colspan="5">[0..1] MTPServiceRCLib/LogisticsInteractionExtension (SRC)</td></tr>
-	<tr><th>Version</th><td colspan="5">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="4">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><td colspan="6"><em>The list of AutomationML Attributes is left out here. Please refer to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) for the complete specification.</em></td></tr>
-	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="6">-</td></tr>
-	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="5">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="5">(no further constraints given)</td></tr>
+	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="5" align="left"><strong>ServiceControl</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="5" align="left">System Unit Class (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="5" align="left">-</td></tr>
+	<tr><th align="left">Description</th><td colspan="5" align="left">service control interface definition</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ServiceElement/ServiceControl</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ServiceElement</td></tr>
+	<tr><th align="left">Role Classes</th><td colspan="5" align="left">[0..1] MTPServiceRCLib/LogisticsInteractionExtension (SRC)</td></tr>
+	<tr><th align="left">Version</th><td colspan="5" align="left">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="4" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><td colspan="6" align="left"><em>The list of AutomationML Attributes is left out here. Please refer to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) for the complete specification.</em></td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="6" align="left">-</td></tr>
+	<tr><td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="5" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="5" align="left">(no further constraints given)</td></tr>
 </table>
 
-### Model Definitions
+### 9.4.3 Model Definitions
 #### Extension of the System Unit Class ServiceParameter
-*SUC ServiceParameter* (Table~[Suc Service Parameter](#tab:SucServiceParameter)) defines the base class for MTP service parameters of all data types. This model definition was already defined in the MTP specification and is extended in this dissertation by the attribute *Classification* for representing semantic information in the form of *FunctionClassificationAttributes*.
+*SUC ServiceParameter* ([Table 9.29](#table-929-model-definition-of-suc-serviceparameter)) defines the base class for MTP service parameters of all data types. This model definition was already defined in the MTP specification and is extended in this work by the attribute *Classification* for representing semantic information in the form of *FunctionClassificationAttributes*.
 
-% Modelldefinition SUC ServiceParameter
-<a id="tab:SucServiceParameter"></a>
-**Table: Model Definition of *SUC ServiceParameter***
+##### Table 9.29: Model Definition of *SUC ServiceParameter*
 
 <table>
-	<tr><td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="3"><strong>ServiceParameter</strong></td></tr>
-	<tr><th>Type</th><td colspan="3">SystemUnitClass (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="3">abstract</td></tr>
-	<tr><th>Description</th><td colspan="3">base model definition of service parameter</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="3">MTPServiceSUCLib/ServiceParameter</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="3">MTPSUCLib/LinkedObject</td></tr>
-	<tr><th>RoleClasses</th><td colspan="3">-</td></tr>
-	<tr><th>Version</th><td colspan="3">ModuleTypePackage:ServiceSet.Base V2.0.0</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="2">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="2">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th>Description</th><th>AttributeType Reference</th></tr>
-	<tr><td>Classification</td><td>&lt;empty&gt;</td><td>list of child attributes of AttributeType FunctionClassificationAttribute</td><td>OrderedListType</td></tr>
-	<tr><td colspan="4"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="4">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="3">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="3">(no children allowed)</td></tr>
+	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="3" align="left"><strong>ServiceParameter</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="3" align="left">SystemUnitClass (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="3" align="left">abstract</td></tr>
+	<tr><th align="left">Description</th><td colspan="3" align="left">base model definition of service parameter</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="3" align="left">MTPServiceSUCLib/ServiceParameter</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="3" align="left">MTPSUCLib/LinkedObject</td></tr>
+	<tr><th align="left">RoleClasses</th><td colspan="3" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="3" align="left">ModuleTypePackage:ServiceSet.Base V2.0.0</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="2" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="2" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th></tr>
+	<tr><td align="left">Classification</td><td align="left">&lt;empty&gt;</td><td align="left">list of child attributes of AttributeType FunctionClassificationAttribute</td><td align="left">OrderedListType</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="3" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="3" align="left">(no children allowed)</td></tr>
 </table>
 
 #### Specification of the System Unit Class LogisticsInteraction
-*SUC LogisticsInteraction* (Table~[Suc Logistics Interaction](#tab:SucLogisticsInteraction)) organizes all model definitions required for the logistics interaction between an LEA and an LOL. It is derived from *SUC TextDefinition* specified in [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). *SUC LogisticsInteraction* is linked to the model definition *SUC HasLogisticsInteraction* via a *TextRef*. *SUC LogisticsInteraction* follows a principle similar to *SUC ServiceInteraction* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), with the difference that it contains predefined *LogisticsQuestions*, which are specified below.
+*SUC LogisticsInteraction* ([Table 9.30](#table-930-model-definition-of-suc-logisticsinteraction)) organizes all model definitions required for the logistics interaction between an LEA and an LOL. It is derived from *SUC TextDefinition* specified in [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). *SUC LogisticsInteraction* is linked to the model definition *SUC HasLogisticsInteraction* via a *TextRef*. *SUC LogisticsInteraction* follows a principle similar to *SUC ServiceInteraction* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), with the difference that it contains predefined *LogisticsQuestions*, which are specified below.
 
-% Modelldefinition SUC LogisticsInteraction
-<a id="tab:SucLogisticsInteraction"></a>
-**Table: Model Definition of *SUC LogisticsInteraction***
+##### Table 9.30: Model Definition of *SUC LogisticsInteraction*
 
 <table>
-	<tr><td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="3"><strong>LogisticsInteraction</strong></td></tr>
-	<tr><th>Type</th><td colspan="3">SystemUnitClass (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="3">-</td></tr>
-	<tr><th>Description</th><td colspan="3">model definition for logistics-specific service interaction</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="3">MTPTextSUCLib/TextDefinition/LogisticsInteraction</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="3">MTPTextSUCLib/TextDefinition</td></tr>
-	<tr><th>RoleClasses</th><td colspan="3">-</td></tr>
-	<tr><th>Version</th><td colspan="3">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="2">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="2">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th>Description</th><th>AttributeType Reference</th></tr>
-	<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="4"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="4">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="3">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="3">[1..*] IEs of SUC LogisticsQuestion</td></tr>
+	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="3" align="left"><strong>LogisticsInteraction</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="3" align="left">SystemUnitClass (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="3" align="left">-</td></tr>
+	<tr><th align="left">Description</th><td colspan="3" align="left">model definition for logistics-specific service interaction</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="3" align="left">MTPTextSUCLib/TextDefinition/LogisticsInteraction</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="3" align="left">MTPTextSUCLib/TextDefinition</td></tr>
+	<tr><th align="left">RoleClasses</th><td colspan="3" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="3" align="left">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="2" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="2" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="3" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="3" align="left">[1..*] IEs of SUC LogisticsQuestion</td></tr>
 </table>
 
 #### Specification of the System Unit Class LogisticsQuestion
-*SUC LogisticsQuestion* (Table~[Suc Logistics Question](#tab:SucLogisticsQuestion)) is an abstract class derived from *SUC Text* from [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) and represents a logistics-specific question that an LEA can ask an LOL. Five specific questions have so far been derived from *LogisticsQuestion*: *ProductParameterRequest*, *PackagingParameterRequest*, *ProductParameterUpdatedInfo*, *PackagingParameterUpdatedInfo*, and *TransportNodeRequest*. Each of these questions may occur either not at all or exactly once in an LEA.
+*SUC LogisticsQuestion* ([Table 9.31](#table-931-model-definition-of-suc-logisticsquestion)) is an abstract class derived from *SUC Text* from [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) and represents a logistics-specific question that an LEA can ask an LOL. Five specific questions have so far been derived from *LogisticsQuestion*: *ProductParameterRequest*, *PackagingParameterRequest*, *ProductParameterUpdatedInfo*, *PackagingParameterUpdatedInfo*, and *TransportNodeRequest*. Each of these questions may occur either not at all or exactly once in an LEA.
 
-% Modelldefinition SUC LogisticsQuestion
-<a id="tab:SucLogisticsQuestion"></a>
-**Table: Model Definition of *SUC LogisticsQuestion***
+##### Table 9.31: Model Definition of *SUC LogisticsQuestion*
 
 <table>
-	<tr><td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="3"><strong>LogisticsQuestion</strong></td></tr>
-	<tr><th>Type</th><td colspan="3">SystemUnitClass (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="3">abstract</td></tr>
-	<tr><th>Description</th><td colspan="3">model definition for an abstract question for logistics-specific service interactions</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="3">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="3">MTPTextSUCLib/Text</td></tr>
-	<tr><th>RoleClasses</th><td colspan="3">-</td></tr>
-	<tr><th>Version</th><td colspan="3">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="2">Description</th></tr>
-	<tr><td>Name</td><td>xs:string</td><td colspan="2">unique number of the question (&gt;0)</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th>Description</th><th>AttributeType Reference</th></tr>
-	<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="4"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="4">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="3">IE of SUC LogisticsInteraction</td></tr>
-	<tr><th>Allowed Children</th><td colspan="3">(no children allowed)</td></tr>
+	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="3" align="left"><strong>LogisticsQuestion</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="3" align="left">SystemUnitClass (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="3" align="left">abstract</td></tr>
+	<tr><th align="left">Description</th><td colspan="3" align="left">model definition for an abstract question for logistics-specific service interactions</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="3" align="left">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="3" align="left">MTPTextSUCLib/Text</td></tr>
+	<tr><th align="left">RoleClasses</th><td colspan="3" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="3" align="left">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="2" align="left">Description</th></tr>
+	<tr><td align="left">Name</td><td align="left">xs:string</td><td colspan="2" align="left">unique number of the question (&gt;0)</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="3" align="left">IE of SUC LogisticsInteraction</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="3" align="left">(no children allowed)</td></tr>
 </table>
 
 #### Specification of the System Unit Class ProductParameterRequest
-*SUC ProductParameterRequest* (Table~[Suc Product Parameter Request](#tab:SucProductParameterRequest)) is derived from *SUC LogisticsQuestion* and is used to request product-specific parameter sets from an LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC ProductParameterRequest*. Instead, a value in the DINT range is expected as the response. Values greater than or equal to 0 specify the index at which the LOL has written the requested parameter set into the *ProductDataSet* of the LEA. The array limits, minimum and maximum index, must not be exceeded or undershot. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
+*SUC ProductParameterRequest* ([Table 9.32](#table-932-model-definition-of-suc-productparameterrequest)) is derived from *SUC LogisticsQuestion* and is used to request product-specific parameter sets from an LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC ProductParameterRequest*. Instead, a value in the DINT range is expected as the response. Values greater than or equal to 0 specify the index at which the LOL has written the requested parameter set into the *ProductDataSet* of the LEA. The array limits, minimum and maximum index, must not be exceeded or undershot. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
 
-% Modelldefinition SUC ProductParameterRequest
-<a id="tab:SucProductParameterRequest"></a>
-**Table: Model Definition of *SUC ProductParameterRequest***
+##### Table 9.32: Model Definition of *SUC ProductParameterRequest*
 
 <table>
-	<tr><td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="3"><strong>ProductParameterRequest</strong></td></tr>
-	<tr><th>Type</th><td colspan="3">SystemUnitClass (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="3">sealed</td></tr>
-	<tr><th>Description</th><td colspan="3">model definition for requesting product parameter sets from a Logistics Orchestration Layer</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="3">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion/ProductParameterRequest</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="3">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion</td></tr>
-	<tr><th>RoleClasses</th><td colspan="3">-</td></tr>
-	<tr><th>Version</th><td colspan="3">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="2">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="2">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th>Description</th><th>AttributeType Reference</th></tr>
-	<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="4"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="4">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="3">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="3">(no further constraints given)</td></tr>
+	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="3" align="left"><strong>ProductParameterRequest</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="3" align="left">SystemUnitClass (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="3" align="left">sealed</td></tr>
+	<tr><th align="left">Description</th><td colspan="3" align="left">model definition for requesting product parameter sets from a Logistics Orchestration Layer</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="3" align="left">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion/ProductParameterRequest</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="3" align="left">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion</td></tr>
+	<tr><th align="left">RoleClasses</th><td colspan="3" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="3" align="left">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="2" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="2" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="3" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="3" align="left">(no further constraints given)</td></tr>
 </table>
 
-The standard sequence of a *ProductParameterRequest* is shown in Figure~[Sequence of the Logistics Interaction of a ProductParameterRequest](#fig:ProductParameterRequest).
+The standard sequence of a *ProductParameterRequest* is shown in [Figure 9.10](#figure-910-sequence-of-the-logistics-interaction-of-a-productparameterrequest).
 
+##### Figure 9.10: Sequence of the Logistics Interaction of a ProductParameterRequest
 ![Sequence of the Logistics Interaction of a ProductParameterRequest](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Logistics_Interaction/ProductParameterRequest.png)
-*Sequence of the Logistics Interaction of a ProductParameterRequest*
 
-Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 1$, the LEA sends a *ProductParameterRequest* to the LOL and transfers *ProductId* as *LogisticsQuestionParam1* and *LogisticsObjectStatus* as *LogisticsQuestionParam2*. The LOL then determines the required parameter set and writes it into the *ProductDataSet* of the LEA via the corresponding *ArrayServParm* interface. If the parameterization is successful, the LOL returns a *LogisticsAnswer-ID* $>= 0$, here: *LogisticsAnswerID* $= 3$, to the LEA, reflecting the index of the *ProductDateSet* to which the new parameter set was written. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "$-1$", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* and *LogisticsQuestionParam2* are reset.
+Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 1$, the LEA sends a *ProductParameterRequest* to the LOL and transfers *ProductId* as *LogisticsQuestionParam1* and *LogisticsObjectStatus* as *LogisticsQuestionParam2*. The LOL then determines the required parameter set and writes it into the *ProductDataSet* of the LEA via the corresponding *ArrayServParm* interface. If the parameterization is successful, the LOL returns a *LogisticsAnswerID* $>= 0$, here: *LogisticsAnswerID* $= 3$, to the LEA, reflecting the index of the *ProductDateSet* to which the new parameter set was written. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "$-1$", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* and *LogisticsQuestionParam2* are reset.
 
 #### Specification of the System Unit Class PackagingParameterRequest
-*SUC PackagingParameterRequest* (Table~[Suc Packaging Parameter Request](#tab:SucPackagingParameterRequest)) is derived from *SUC LogisticsQuestion* and is used to request packaging-specific parameter sets from an LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC PackagingParameterRequest*. Instead, a value in the DINT range is expected as the response. Values greater than or equal to 0 specify the index at which the LOL has written the requested parameter set into the *PackagingDataSet* of the LEA. The array limits, minimum and maximum index, must not be exceeded or undershot. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
+*SUC PackagingParameterRequest* ([Table 9.33](#table-933-model-definition-of-suc-packagingparameterrequest)) is derived from *SUC LogisticsQuestion* and is used to request packaging-specific parameter sets from an LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC PackagingParameterRequest*. Instead, a value in the DINT range is expected as the response. Values greater than or equal to 0 specify the index at which the LOL has written the requested parameter set into the *PackagingDataSet* of the LEA. The array limits, minimum and maximum index, must not be exceeded or undershot. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
 
-% Modelldefinition SUC PackagingParameterRequest
-<a id="tab:SucPackagingParameterRequest"></a>
-**Table: Model Definition of *SUC PackagingParameterRequest***
+##### Table 9.33: Model Definition of *SUC PackagingParameterRequest*
 
 <table>
-	<tr><td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="3"><strong>PackagingParameterRequest</strong></td></tr>
-	<tr><th>Type</th><td colspan="3">SystemUnitClass (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="3">sealed</td></tr>
-	<tr><th>Description</th><td colspan="3">model definition for requesting packaging parameter sets from a Logistics Orchestration Layer</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="3">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion/PackagingParameterRequest</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="3">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion</td></tr>
-	<tr><th>RoleClasses</th><td colspan="3">-</td></tr>
-	<tr><th>Version</th><td colspan="3">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="2">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="2">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th>Description</th><th>AttributeType Reference</th></tr>
-	<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="4"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="4">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="3">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="3">(no further constraints given)</td></tr>
+	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="3" align="left"><strong>PackagingParameterRequest</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="3" align="left">SystemUnitClass (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="3" align="left">sealed</td></tr>
+	<tr><th align="left">Description</th><td colspan="3" align="left">model definition for requesting packaging parameter sets from a Logistics Orchestration Layer</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="3" align="left">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion/PackagingParameterRequest</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="3" align="left">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion</td></tr>
+	<tr><th align="left">RoleClasses</th><td colspan="3" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="3" align="left">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="2" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="2" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="3" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="3" align="left">(no further constraints given)</td></tr>
 </table>
 
-The standard sequence of a *PackagingParameterRequest* is shown in Figure~[Sequence of the Logistics Interaction of a PackagingParameterRequest](#fig:PackagingParameterRequest).
- 
+The standard sequence of a *PackagingParameterRequest* is shown in [Figure 9.11](#figure-911-sequence-of-the-logistics-interaction-of-a-packagingparameterrequest).
+
+##### Figure 9.11: Sequence of the Logistics Interaction of a PackagingParameterRequest
 ![Sequence of the Logistics Interaction of a PackagingParameterRequest](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Logistics_Interaction/PackagingParameterRequest.png)
-*Sequence of the Logistics Interaction of a PackagingParameterRequest*
 
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 2$, the LEA sends a *PackagingParameterRequest* to the LOL and transfers *PackagingId* as *LogisticsQuestionParam1*. The LOL then determines the required parameter set and writes it into the *PackagingDataSet* of the LEA via the corresponding *ArrayServParm* interface. If the parameterization is successful, the LOL returns a *LogisticsAnswerID* $>= 0$, here: *LogisticsAnswerID* $= 2$, to the LEA, reflecting the index of the *PackagingDateSet* to which the new parameter set was written. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "$-1$", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* is reset.
 
 #### Specification of the System Unit Class ProductParameterUpdatedInfo
-*SUC ProductParameterUpdatedInfo* (Table~[Suc Product Parameter Updated Info](#tab:SucProductParameterUpdatedInfo)) is derived from *SUC LogisticsQuestion* and is used to inform an LOL that a parameter set in the *ProductDataSet* of an LEA has changed. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC ProductParameterUpdatedInfo*. Instead, the value "1" is expected as confirmation that the LOL has acknowledged the parameter change. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
+*SUC ProductParameterUpdatedInfo* ([Table 9.34](#table-934-model-definition-of-suc-productparameterupdatedinfo)) is derived from *SUC LogisticsQuestion* and is used to inform an LOL that a parameter set in the *ProductDataSet* of an LEA has changed. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC ProductParameterUpdatedInfo*. Instead, the value "1" is expected as confirmation that the LOL has acknowledged the parameter change. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
 
-% Modelldefinition SUC ProductParameterUpdatedInfo
-<a id="tab:SucProductParameterUpdatedInfo"></a>
-**Table: Model Definition of *SUC ProductParameterUpdatedInfo***
+##### Table 9.34: Model Definition of *SUC ProductParameterUpdatedInfo*
 
 <table>
-	<tr><td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="3"><strong>ProductParameterUpdatedInfo</strong></td></tr>
-	<tr><th>Type</th><td colspan="3">SystemUnitClass (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="3">sealed</td></tr>
-	<tr><th>Description</th><td colspan="3">model definition for informing a LOL of a change in a product parameter set</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="3">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion/ProductParameterUpdatedInfo</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="3">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion</td></tr>
-	<tr><th>RoleClasses</th><td colspan="3">-</td></tr>
-	<tr><th>Version</th><td colspan="3">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="2">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="2">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th>Description</th><th>AttributeType Reference</th></tr>
-	<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="4"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="4">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="3">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="3">(no further constraints given)</td></tr>
+	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="3" align="left"><strong>ProductParameterUpdatedInfo</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="3" align="left">SystemUnitClass (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="3" align="left">sealed</td></tr>
+	<tr><th align="left">Description</th><td colspan="3" align="left">model definition for informing a LOL of a change in a product parameter set</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="3" align="left">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion/ProductParameterUpdatedInfo</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="3" align="left">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion</td></tr>
+	<tr><th align="left">RoleClasses</th><td colspan="3" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="3" align="left">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="2" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="2" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="3" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="3" align="left">(no further constraints given)</td></tr>
 </table>
- 
-The standard sequence of a *ProductParameterUpdatedInfo* is shown in Figure~[Sequence of the Logistics Interaction of a ProductParameterUpdatedInfo](#fig:ProductParameterUpdatedInfo).
 
+The standard sequence of a *ProductParameterUpdatedInfo* is shown in [Figure 9.12](#figure-912-sequence-of-the-logistics-interaction-of-a-productparameterupdatedinfo).
+
+##### Figure 9.12: Sequence of the Logistics Interaction of a ProductParameterUpdatedInfo
 ![Sequence of the Logistics Interaction of a ProductParameterUpdatedInfo](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Logistics_Interaction/ProductParameterUpdatedInfo.png)
-*Sequence of the Logistics Interaction of a ProductParameterUpdatedInfo*
 
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 3$, the LEA sends a *ProductParameterUpdatedInfo* to the LOL and transfers the array index, here: array index $= 5$, of the changed parameter set in the *ProductDataSet* as *LogisticsQuestionParam1*. The LOL parameter management then determines whether the corresponding product parameter data set is also to be adapted in the LOL, if necessary by user request, and updates the parameter set if required. The LOL acknowledges the parameter change by sending *LogisticsAnswerID*~$= 1$ to the LEA. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "$-1$", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* is reset.
 
 #### Specification of the System Unit Class PackagingParameterUpdatedInfo
-*SUC PackagingParameterUpdatedInfo* (Table~[Suc Packaging Parameter Updated Info](#tab:SucPackagingParameterUpdatedInfo)) is derived from *SUC LogisticsQuestion* and is used to inform an LOL that a parameter set in the *PackagingDataSet* of an LEA has changed. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC PackagingParameterUpdatedInfo*. Instead, the value "1" is expected as confirmation that the LOL has acknowledged the parameter change. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
+*SUC PackagingParameterUpdatedInfo* ([Table 9.35](#table-935-model-definition-of-suc-packagingparameterupdatedinfo)) is derived from *SUC LogisticsQuestion* and is used to inform an LOL that a parameter set in the *PackagingDataSet* of an LEA has changed. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC PackagingParameterUpdatedInfo*. Instead, the value "1" is expected as confirmation that the LOL has acknowledged the parameter change. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
 
-% Modelldefinition SUC PackagingParameterUpdatedInfo
-<a id="tab:SucPackagingParameterUpdatedInfo"></a>
-**Table: Model Definition of *SUC PackagingParameterUpdatedInfo***
+##### Table 9.35: Model Definition of *SUC PackagingParameterUpdatedInfo*
 
 <table>
-	<tr><td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="3"><strong>PackagingParameterUpdatedInfo</strong></td></tr>
-	<tr><th>Type</th><td colspan="3">SystemUnitClass (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="3">sealed</td></tr>
-	<tr><th>Description</th><td colspan="3">model definition for informing a LOL of a change in a packaging parameter set</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="3">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion/PackagingParameterUpdatedInfo</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="3">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion</td></tr>
-	<tr><th>RoleClasses</th><td colspan="3">-</td></tr>
-	<tr><th>Version</th><td colspan="3">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="2">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="2">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th>Description</th><th>AttributeType Reference</th></tr>
-	<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="4"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="4">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="3">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="3">(no further constraints given)</td></tr>
+	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="3" align="left"><strong>PackagingParameterUpdatedInfo</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="3" align="left">SystemUnitClass (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="3" align="left">sealed</td></tr>
+	<tr><th align="left">Description</th><td colspan="3" align="left">model definition for informing a LOL of a change in a packaging parameter set</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="3" align="left">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion/PackagingParameterUpdatedInfo</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="3" align="left">MTPTextSUCLib/TextDefinition/LogisticsInteraction/LogisticsQuestion</td></tr>
+	<tr><th align="left">RoleClasses</th><td colspan="3" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="3" align="left">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="2" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="2" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="3" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="3" align="left">(no further constraints given)</td></tr>
 </table>
- 
-The standard sequence of a *PackagingParameterUpdatedInfo* is shown in Figure~[Sequence of the Logistics Interaction of a PackagingParameterUpdatedInfo](#fig:PackagingParameterUpdatedInfo).
 
+The standard sequence of a *PackagingParameterUpdatedInfo* is shown in [Figure 9.13](#figure-913-sequence-of-the-logistics-interaction-of-a-packagingparameterupdatedinfo).
+
+##### Figure 9.13: Sequence of the Logistics Interaction of a PackagingParameterUpdatedInfo
 ![Sequence of the Logistics Interaction of a PackagingParameterUpdatedInfo](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Logistics_Interaction/PackagingParameterUpdatedInfo.png)
-*Sequence of the Logistics Interaction of a PackagingParameterUpdatedInfo*
 
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 4$, the LEA sends a *PackagingParameterUpdatedInfo* to the LOL and transfers the array index, here: array index $= 4$, of the changed parameter set in the *PackagingDataSet* as *LogisticsQuestionParam1*. The LOL parameter management then determines whether the corresponding product parameter data set is also to be adapted in the LOL, if necessary by user request, and updates the parameter set if required. The LOL acknowledges the parameter change by sending *LogisticsAnswerID*~$= 1$ to the LEA. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "$-1$", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* is reset.
 
 #### Specification of the System Unit Class TransportNodeRequest
-*SUC TransportNodeRequest* (Table~[Suc Transport Node Request](#tab:SucTransportNodeRequest)) is derived from *SUC LogisticsQuestion* and is used to request the next transport node to be approached from an LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC TransportNodeRequest*. Instead, a value in the DINT range is expected as the response. Values greater than 0 directly specify the ID of the next transport node to be approached. This eliminates the need for a separate parameter interface to configure the next transport node to be approached. Only values corresponding to the ID of a transport node in the respective MLS may be returned as a response. The value "0" indicates that the *FinalTargetNode* specified in the transport service interface is to be used as the next transport node. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
+*SUC TransportNodeRequest* ([Table 9.36](#table-936-model-definition-of-suc-transportnoderequest)) is derived from *SUC LogisticsQuestion* and is used to request the next transport node to be approached from an LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC TransportNodeRequest*. Instead, a value in the DINT range is expected as the response. Values greater than 0 directly specify the ID of the next transport node to be approached. This eliminates the need for a separate parameter interface to configure the next transport node to be approached. Only values corresponding to the ID of a transport node in the respective MLS may be returned as a response. The value "0" indicates that the *FinalTargetNode* specified in the transport service interface is to be used as the next transport node. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
 
-% Modelldefinition SUC TransportNodeRequest
-<a id="tab:SucTransportNodeRequest"></a>
-**Table: Model Definition of *SUC TransportNodeRequest***
+##### Table 9.36: Model Definition of *SUC TransportNodeRequest*
 
 <table>
-	<tr><td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="3"><strong>TransportNodeRequest</strong></td></tr>
-	<tr><th>Type</th><td colspan="3">SystemUnitClass (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="3">sealed</td></tr>
-	<tr><th>Description</th><td colspan="3">model definition for requesting the next transport node to be approached from a Logistics Orchestration Layer</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="3">MTPLogisticsSUCLib/LogisticsInteraction/LogisticsQuestion/TransportNodeRequest</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="3">MTPLogisticsSUCLib/LogisticsInteraction/LogisticsQuestion</td></tr>
-	<tr><th>RoleClasses</th><td colspan="3">-</td></tr>
-	<tr><th>Version</th><td colspan="3">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="2">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="2">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th>Description</th><th>AttributeType Reference</th></tr>
-	<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="4"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="4">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="3">(no further constraints given)</td></tr>
-	<tr><th>Allowed Children</th><td colspan="3">(no further constraints given)</td></tr>
+	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="3" align="left"><strong>TransportNodeRequest</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="3" align="left">SystemUnitClass (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="3" align="left">sealed</td></tr>
+	<tr><th align="left">Description</th><td colspan="3" align="left">model definition for requesting the next transport node to be approached from a Logistics Orchestration Layer</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="3" align="left">MTPLogisticsSUCLib/LogisticsInteraction/LogisticsQuestion/TransportNodeRequest</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="3" align="left">MTPLogisticsSUCLib/LogisticsInteraction/LogisticsQuestion</td></tr>
+	<tr><th align="left">RoleClasses</th><td colspan="3" align="left">-</td></tr>
+	<tr><th align="left">Version</th><td colspan="3" align="left">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="2" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="2" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="3" align="left">(no further constraints given)</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="3" align="left">(no further constraints given)</td></tr>
 </table>
 
-The standard sequence of a *TransportNodeRequest* is shown in Figure~[Sequence of the Logistics Interaction of a TransportNodeRequest](#fig:TransportNodeRequest).
+The standard sequence of a *TransportNodeRequest* is shown in [Figure 9.14](#figure-914-sequence-of-the-logistics-interaction-of-a-transportnoderequest).
 
+##### Figure 9.14: Sequence of the Logistics Interaction of a TransportNodeRequest
 ![Sequence of the Logistics Interaction of a TransportNodeRequest](Inhalt/Abbildungen/08_Bereichs-Automatisierung/TransportNodeRequest.png)
-*Sequence of the Logistics Interaction of a TransportNodeRequest*
 
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 5$, the LEA sends a *TransportNodeRequest* to the LOL and transfers the *TransportId* of the associated transport service as *LogisticsQuestionParam1*. The LOL then determines the required next transport node. If the next transport node is successfully determined, the LOL returns a *LogisticsAnswerID* $>= 0$ to the LEA. This response directly reflects the ID of the next transport node to be approached. A *LogisticsAnswerID* $= 0$ indicates that the *FinalTargetNode* of the transport service is to be used. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "$-1$", indicating that no question or answer is currently pending. *LogisticsQuestionParam1* and *LogisticsQuestionParam2* are reset. The information received about the next transport node is transferred by the LEA to the procedure parameter *NextNode* in the corresponding transport service.
 
 #### Specification of the Role Class HasLogisticsInteraction
-*RC HasLogisticsInteraction* (Table~[Rc Has Logistics Interaction](#tab:RcHasLogisticsInteraction)) is derived from *RC HasTextReference* specified in [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). *SUC HasLogisticsInteraction* is used to assign a *LogisticsInteraction* to the model definition *SUC Service*, specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4). For this purpose, a *SUC LogisticsInteraction* model definition is referenced by means of *TextRef*. If a *LogisticsInteraction* is provided in an LEA, exactly one *SUC HasLogisticsInteraction* must be assigned to the LEA service as a RoleRequirement; otherwise none.
+*RC HasLogisticsInteraction* ([Table 9.37](#table-937-model-definition-of-rc-haslogisticsinteraction)) is derived from *RC HasTextReference* specified in [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). *SUC HasLogisticsInteraction* is used to assign a *LogisticsInteraction* to the model definition *SUC Service*, specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4). For this purpose, a *SUC LogisticsInteraction* model definition is referenced by means of *TextRef*. If a *LogisticsInteraction* is provided in an LEA, exactly one *SUC HasLogisticsInteraction* must be assigned to the LEA service as a RoleRequirement; otherwise none.
 
-% Modelldefinition RC HasLogisticsInteraction
-<a id="tab:RcHasLogisticsInteraction"></a>
-**Table: Model Definition of *RC HasLogisticsInteraction***
+##### Table 9.37: Model Definition of *RC HasLogisticsInteraction*
 
 <table>
-	<tr><td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="3"><strong>HasLogisticsInteraction</strong><sup>a)</sup></td></tr>
-	<tr><th>Type</th><td colspan="3">Role Class (RC)</td></tr>
-	<tr><th>Modifier</th><td colspan="3">sealed</td></tr>
-	<tr><th>Description</th><td colspan="3">model definition for assigning a logistics interaction to a service</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="3">MTPTextRCLib/HasTextReference/HasLogisticsInteraction</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="3">MTPTextRCLib/HasTextReference</td></tr>
-	<tr><th>Version</th><td colspan="3">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="2">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="2">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th>Description</th><th>AttributeType Reference</th></tr>
-	<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-	<tr><td colspan="4"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="4"><sup>a)</sup> The usage of the HasLogisticsInteraction is allowed exactly once at a ServiceElement.</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Annotations</th><td colspan="3">IE of SUC Services as RR</td></tr>
+	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="3" align="left"><strong>HasLogisticsInteraction</strong><sup>a)</sup></td></tr>
+	<tr><th align="left">Type</th><td colspan="3" align="left">Role Class (RC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="3" align="left">sealed</td></tr>
+	<tr><th align="left">Description</th><td colspan="3" align="left">model definition for assigning a logistics interaction to a service</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="3" align="left">MTPTextRCLib/HasTextReference/HasLogisticsInteraction</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="3" align="left">MTPTextRCLib/HasTextReference</td></tr>
+	<tr><th align="left">Version</th><td colspan="3" align="left">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="2" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="2" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="4" align="left"><sup>a)</sup> The usage of the HasLogisticsInteraction is allowed exactly once at a ServiceElement.</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Annotations</th><td colspan="3" align="left">IE of SUC Services as RR</td></tr>
 </table>
 
 #### Extension of the System Unit Class Service
-*SUC ServiceParameter* (Table~[Suc Service](#tab:SucService)) defines the base class for modeling MTP services. This model definition was already defined in the MTP specification and is extended in this dissertation by the capability to connect a RoleClass of *RC HasLogisticsInteraction* as an RR.
+*SUC Service* ([Table 9.38](#table-938-model-definition-of-suc-service)) defines the base class for modeling MTP services. This model definition was already defined in the MTP specification and is extended in this work by the capability to connect a RoleClass of *RC HasLogisticsInteraction* as an RR.
 
-% Modelldefinition SUC Service 
-<a id="tab:SucService"></a>
-**Table: Model Definition of *SUC Service***
+##### Table 9.38: Model Definition of *SUC Service*
 
 <table>
-	<tr><td colspan="4"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
-	<tr><th>Name</th><td colspan="3"><strong>Service</strong></td></tr>
-	<tr><th>Type</th><td colspan="3">SystemUnitClass (SUC)</td></tr>
-	<tr><th>Modifier</th><td colspan="3">sealed</td></tr>
-	<tr><th>Description</th><td colspan="3">model definition for a Service</td></tr>
-	<tr><th>AutomationML Path</th><td colspan="3">MTPServiceSUCLib/Service</td></tr>
-	<tr><th>AutomationML BaseRef</th><td colspan="3">MTPSUCLib/LinkedObject</td></tr>
-	<tr><th>RoleClasses</th><td colspan="3">[0..1] MTPTextRCLib/HasTextReference/HasServicePosition (RR)<br>[0..1] MTPTextRCLib/HasTextReference/HasServiceInteraction (RR)<br>[0..1] MTPTextRCLib/HasTextReference/HasLogisticsInteraction (RR)</td></tr>
-	<tr><th>Version</th><td colspan="3">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Properties</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th colspan="2">Description</th></tr>
-	<tr><td>-</td><td>-</td><td colspan="2">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th>Name</th><th>Type</th><th>Description</th><th>AttributeType Reference</th></tr>
-	<tr><td>Classification</td><td>&lt;empty&gt;</td><td>List of child attributes of AttributeTypes FunctionClassificationAttribute</td><td>OrderedListType</td></tr>
-	<tr><td colspan="4"><strong>📌 Comment</strong></td></tr>
-	<tr><td colspan="4">-</td></tr>
-	<tr><td colspan="4"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
-	<tr><th>Allowed Parents</th><td colspan="3">IH to which an IE of SUC ServiceSet relates via EI of IC AspectSetReference</td></tr>
-	<tr><th>Allowed Children</th><td colspan="3">[1..*] IEs of SUC Procedure<br>[0..*] IEs of SUC ConfigurationParameter</td></tr>
+	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
+	<tr><th align="left">Name</th><td colspan="3" align="left"><strong>Service</strong></td></tr>
+	<tr><th align="left">Type</th><td colspan="3" align="left">SystemUnitClass (SUC)</td></tr>
+	<tr><th align="left">Modifier</th><td colspan="3" align="left">sealed</td></tr>
+	<tr><th align="left">Description</th><td colspan="3" align="left">model definition for a Service</td></tr>
+	<tr><th align="left">AutomationML Path</th><td colspan="3" align="left">MTPServiceSUCLib/Service</td></tr>
+	<tr><th align="left">AutomationML BaseRef</th><td colspan="3" align="left">MTPSUCLib/LinkedObject</td></tr>
+	<tr><th align="left">RoleClasses</th><td colspan="3" align="left">[0..1] MTPTextRCLib/HasTextReference/HasServicePosition (RR)<br>[0..1] MTPTextRCLib/HasTextReference/HasServiceInteraction (RR)<br>[0..1] MTPTextRCLib/HasTextReference/HasLogisticsInteraction (RR)</td></tr>
+	<tr><th align="left">Version</th><td colspan="3" align="left">ModuleTypePackage:ServiceSet.Logistics V2.0.0</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Properties</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="2" align="left">Description</th></tr>
+	<tr><td align="left">-</td><td align="left">-</td><td colspan="2" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
+	<tr><th align="left">Name</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th></tr>
+	<tr><td align="left">Classification</td><td align="left">&lt;empty&gt;</td><td align="left">List of child attributes of AttributeTypes FunctionClassificationAttribute</td><td align="left">OrderedListType</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 Comment</strong></td></tr>
+	<tr><td colspan="4" align="left">-</td></tr>
+	<tr><td colspan="4" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
+	<tr><th align="left">Allowed Parents</th><td colspan="3" align="left">IH to which an IE of SUC ServiceSet relates via EI of IC AspectSetReference</td></tr>
+	<tr><th align="left">Allowed Children</th><td colspan="3" align="left">[1..*] IEs of SUC Procedure<br>[0..*] IEs of SUC ConfigurationParameter</td></tr>
 </table>
- 
-
