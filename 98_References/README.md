@@ -1,6 +1,17 @@
 
 ## 13 References
 
+### IEC 62714-1
+
+- Citation key: `DeutscheKommissionElektrotechnikElektronikInformationstechnikinDINundVDE.2018`
+- Shorthand: `IEC 62714-1`
+- Authors: Deutsche Kommission Elektrotechnik Elektronik Informationstechnik in DIN und VDE
+- Year: 2018
+- Title: IEC 62714-1: Datenaustauschformat für Planungsdaten industrieller Automatisierungssysteme -- Automation markup language -- Teil 1: Architektur und allgemeine Festlegungen
+- Publisher: VDE Verlag
+- Address: Berlin
+- URL: https://www.vde-verlag.de/iec-normen/225580/iec-62714-1-2018.html
+
 ### MTP Specification Part 1
 
 - Citation key: `PNO.2025.Part1`
@@ -61,14 +72,6 @@
 - Publisher: PROFIBUS Nutzerorganisation e.V.
 - Address: Karlsruhe
 
-### OPC 10000-3
-
-- Citation key: `OPCFoundation.10000-3`
-- Authors: OPC Foundation
-- Year: 2024
-- Title: OPC 10000-3: UA Part 3: Address Space Model
-- URL: https://reference.opcfoundation.org/Core/Part3/v105/docs/
-
 ### NAMUR NE 184
 
 - Citation key: `NAMURArbeitskreisAK4.1.1.2023`
@@ -78,3 +81,11 @@
 - Publisher: DIN Media
 - Address: Berlin
 - URL: https://www.dinmedia.de/en/technical-rule/namur-ne-184/372813328
+
+### OPC 10000-3
+
+- Citation key: `OPCFoundation.10000-3`
+- Authors: OPC Foundation
+- Year: 2024
+- Title: OPC 10000-3: UA Part 3: Address Space Model
+- URL: https://reference.opcfoundation.org/Core/Part3/v105/docs/
