@@ -1,7 +1,7 @@
-## MTP Specification of the TransportSet {#sec:AnhangTransportAspekt}
+## MTP Specification of the TransportSet
 This chapter specifies the *TransportSet* as a new aspect of the MTP specification that contains all elements identified in the conceptual chapter~[Art3 LA](#chap:Art3LA).
 
-### Übersicht {#subsec:AnhangTransportSetUebersicht}
+### Übersicht
 #### Semantic Description of Transport Services
 For semantic identification of the transport services introduced in Section~[Transportdienste](#sec:Transportdienste), a semantic identifier in the form of a *FunctionClassificationAttribute* is added to them. Table~[Function Classification Transportdienst](#tab:FunctionClassificationTransportdienst) specifies the corresponding *FunctionClassificationAttribute*. "2.0" denotes the version in major-minor format and can be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
 
@@ -34,7 +34,7 @@ For semantic identification of the transport services introduced in Section~[Tra
 According to Chapter~[Art3 LA](#chap:Art3LA), a series of new model and interface definitions is required to represent transport-relevant information in the MTP of an LEA. Figure~[Specification of the TransportSet for Connecting Flexible Transport Systems to LEAs](#fig:AnhangUebersichtTransportAspekt) provides an overview of these newly specified definitions.
  
 ![Specification of the TransportSet for Connecting Flexible Transport Systems to LEAs](Inhalt/Abbildungen/99_Anhang/Spezifikation_Transport/Klassendiagramm.drawio.png)
-*Specification of the TransportSet for Connecting Flexible Transport Systems to LEAs* {#fig:AnhangUebersichtTransportAspekt}
+*Specification of the TransportSet for Connecting Flexible Transport Systems to LEAs*
 
 On the **interface-definition** side, *SUC TransportClientManager* is introduced as an interface definition for configuring and establishing a communication link between an LEA and transport management. It is an abstract interface definition that fundamentally allows the use of different communication technologies through different derivations. For implementation based on OPC~UA client/server, the derived *SUC OpcUaTransportClientManager* is introduced. In addition, *SUC TransportNodeManager* is introduced as an interface that enables the assignment of a transport node of an LEA to the associated TN proxy in transport management. A convention in the MTP specifications provides that interface definitions belonging together in terms of content are derived from a common interface definition with the suffix **Element*. Accordingly, in this case *SUC TransportElement*, derived from *SUC DataAssembly* [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3), is introduced, from which *SUC TransportClientManager* and *SUC TransportNodeManager* are derived. These interface definitions are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in Appendix~[Interface Definitions](#subsec:AnhangTransportSetSchnittstellen). 
 
@@ -42,7 +42,7 @@ On the **model-definition** side, *SUC TransportSet* is introduced as a new aspe
 
 All model and interface definitions required for the *TransportSet* are assigned to the new profile *ModuleTypePackage:TransportSet.Base V2.0.0*.
  
-### Interface Definitions {#subsec:AnhangTransportSetSchnittstellen}
+### Interface Definitions
 #### Specification of the System Unit Class TransportElement
 *SUC TransportElement* (Table~[Data Assembly Suc Transport Element](#tab:DataAssemblySucTransportElement)) is an abstract class derived from *SUC DataAssembly*. The transport-relevant interface definitions *SUC TransportClientManager* and *SUC TransportNodeManager* are derived from *SUC TransportElement*.
 
@@ -639,7 +639,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 </table>
 
-### Model Definitions {#subsec:AnhangTransportSetModelle}
+### Model Definitions
 #### Specification of the Instance Hierarchy Transports
 *IH Transports* (Table~[Ih Transports](#tab:IhTransports)) is the entry point for the transport-related information model in the instance hierarchy of an MTP.
 

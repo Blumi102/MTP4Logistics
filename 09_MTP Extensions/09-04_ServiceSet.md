@@ -1,7 +1,7 @@
-## MTP Extension of the ServiceSet {#sec:AnhangServiceSet}
+## MTP Extension of the ServiceSet
 This chapter specifies all identified extensions of the *ServiceSet* and integrates them into the existing MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
-### Übersicht {#subsec:AnhangServiceSetUebersicht}
+### Übersicht
 #### Semantic Description of LEA Services
 To distinguish the CES and SES procedures introduced in Section~[Lea Dienste](#sec:LeaDienste) for an LOL, a semantic identifier in the form of *FunctionClassificationAttributes* is added to them. Tables~[Function Classification Ces](#tab:FunctionClassificationCes) and [Function Classification Ses](#tab:FunctionClassificationSes) specify the corresponding *FunctionClassificationAttributes*. "2.0" denotes the version in major-minor format and can be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.  
 
@@ -196,9 +196,9 @@ Tables~[Function Classification Product Id](#tab:FunctionClassificationProductId
 According to Section~[Lea Parameter](#sec:LeaParameter), the two new interface definitions *SUC StructServParam* and *SUC ArrayServParam* are required for the parameterization of LEA services. As shown in Figure~[Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters](#fig:ErweiterungParam), *SUC StructServParam* and *SUC ArrayServParam*, together with all other interface definitions for service parameters, are derived from the interface definition *SUC ParameterElement* according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) and organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in Appendix~[Anhang Service Set Schnittstellen](#subsec:AnhangServiceSetSchnittstellen). This extension, as a result of this dissertation, has already been adopted into the profile *ModuleTypePackage:ServiceSet.ComplexTypes V2.0.0* of the MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
 ![Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Parameter/Klassendiagramm.drawio.png)
-*Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters* {#fig:ErweiterungParam}
+*Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters*
 
-#### Specification of the LogisticsInteraction {#subsec:LogisticsInteraction}
+#### Specification of the LogisticsInteraction
 Section~[Lea Parameter](#sec:LeaParameter) and Section~[Ermittlung Next Node](#subsec:ErmittlungNextNode) introduce the LEA requests to an LOL shown in Table~[Arten Logistics Interaction](#tab:ArtenLogisticsInteraction).
 
 % Arten der LogisticsInteraction
@@ -237,7 +237,7 @@ These requests are implemented on the basis of service-operator interaction acco
 Figure~[Extension of the ServiceSet for Implementing Logistics Interactions](#fig:LogisticsInteractionKonzept) shows the interface and model definitions newly introduced for *LogisticsInteraction*.
 
 ![Extension of the ServiceSet for Implementing Logistics Interactions](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Logistics_Interaction/Klassendiagramm.drawio.png)
-*Extension of the ServiceSet for Implementing Logistics Interactions* {#fig:LogisticsInteractionKonzept}
+*Extension of the ServiceSet for Implementing Logistics Interactions*
 
 <!-- Als Grundlage für die Standardisierung wird die Struktur der Dienst-Bediener-Interaktion gemäß \cite{PNO.2025.Part4} übernommen. Die Basis bildet die \emph{SUC LogisticsInteraction}, die mittels einer \emph{RC HasLogisticsInteraction} der \emph{SUC Service} einer LEA zugeordnet werden kann. Die \emph{RC HasLogisticsInteraction} ist abgeleitet von der in der \cite{PNO.2025.Part1} spezifizierten \emph{RC HasTextReference} und verweist mittels \emph{TextReference} auf die \emph{LogisticsInteraction}. Sie wird der \emph{SUC Service} als RR annotiert, da einem Dienst mehrere von der \emph{RC HasTextReference} abgeleitete RCs zugeordnet werden können. 
 
@@ -567,7 +567,7 @@ A *LogisticsInteraction* follows a principle similar to the service-operator int
 	<tr><th>Allowed Children</th><td colspan="5">(no further constraints given)</td></tr>
 </table>
 
-### Model Definitions {#subsec:AnhangServiceSetModelle}
+### Model Definitions
 #### Extension of the System Unit Class ServiceParameter
 *SUC ServiceParameter* (Table~[Suc Service Parameter](#tab:SucServiceParameter)) defines the base class for MTP service parameters of all data types. This model definition was already defined in the MTP specification and is extended in this dissertation by the attribute *Classification* for representing semantic information in the form of *FunctionClassificationAttributes*.
 
@@ -691,7 +691,7 @@ A *LogisticsInteraction* follows a principle similar to the service-operator int
 The standard sequence of a *ProductParameterRequest* is shown in Figure~[Sequence of the Logistics Interaction of a ProductParameterRequest](#fig:ProductParameterRequest).
 
 ![Sequence of the Logistics Interaction of a ProductParameterRequest](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Logistics_Interaction/ProductParameterRequest.png)
-*Sequence of the Logistics Interaction of a ProductParameterRequest* {#fig:ProductParameterRequest}
+*Sequence of the Logistics Interaction of a ProductParameterRequest*
 
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 1$, the LEA sends a *ProductParameterRequest* to the LOL and transfers *ProductId* as *LogisticsQuestionParam1* and *LogisticsObjectStatus* as *LogisticsQuestionParam2*. The LOL then determines the required parameter set and writes it into the *ProductDataSet* of the LEA via the corresponding *ArrayServParm* interface. If the parameterization is successful, the LOL returns a *LogisticsAnswer-ID* $>= 0$, here: *LogisticsAnswerID* $= 3$, to the LEA, reflecting the index of the *ProductDateSet* to which the new parameter set was written. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "$-1$", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* and *LogisticsQuestionParam2* are reset.
 
@@ -728,7 +728,7 @@ Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 1$, 
 The standard sequence of a *PackagingParameterRequest* is shown in Figure~[Sequence of the Logistics Interaction of a PackagingParameterRequest](#fig:PackagingParameterRequest).
  
 ![Sequence of the Logistics Interaction of a PackagingParameterRequest](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Logistics_Interaction/PackagingParameterRequest.png)
-*Sequence of the Logistics Interaction of a PackagingParameterRequest* {#fig:PackagingParameterRequest}
+*Sequence of the Logistics Interaction of a PackagingParameterRequest*
 
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 2$, the LEA sends a *PackagingParameterRequest* to the LOL and transfers *PackagingId* as *LogisticsQuestionParam1*. The LOL then determines the required parameter set and writes it into the *PackagingDataSet* of the LEA via the corresponding *ArrayServParm* interface. If the parameterization is successful, the LOL returns a *LogisticsAnswerID* $>= 0$, here: *LogisticsAnswerID* $= 2$, to the LEA, reflecting the index of the *PackagingDateSet* to which the new parameter set was written. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "$-1$", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* is reset.
 
@@ -765,7 +765,7 @@ Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 2$, 
 The standard sequence of a *ProductParameterUpdatedInfo* is shown in Figure~[Sequence of the Logistics Interaction of a ProductParameterUpdatedInfo](#fig:ProductParameterUpdatedInfo).
 
 ![Sequence of the Logistics Interaction of a ProductParameterUpdatedInfo](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Logistics_Interaction/ProductParameterUpdatedInfo.png)
-*Sequence of the Logistics Interaction of a ProductParameterUpdatedInfo* {#fig:ProductParameterUpdatedInfo}
+*Sequence of the Logistics Interaction of a ProductParameterUpdatedInfo*
 
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 3$, the LEA sends a *ProductParameterUpdatedInfo* to the LOL and transfers the array index, here: array index $= 5$, of the changed parameter set in the *ProductDataSet* as *LogisticsQuestionParam1*. The LOL parameter management then determines whether the corresponding product parameter data set is also to be adapted in the LOL, if necessary by user request, and updates the parameter set if required. The LOL acknowledges the parameter change by sending *LogisticsAnswerID*~$= 1$ to the LEA. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "$-1$", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* is reset.
 
@@ -802,7 +802,7 @@ Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 3$, 
 The standard sequence of a *PackagingParameterUpdatedInfo* is shown in Figure~[Sequence of the Logistics Interaction of a PackagingParameterUpdatedInfo](#fig:PackagingParameterUpdatedInfo).
 
 ![Sequence of the Logistics Interaction of a PackagingParameterUpdatedInfo](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Logistics_Interaction/PackagingParameterUpdatedInfo.png)
-*Sequence of the Logistics Interaction of a PackagingParameterUpdatedInfo* {#fig:PackagingParameterUpdatedInfo}
+*Sequence of the Logistics Interaction of a PackagingParameterUpdatedInfo*
 
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 4$, the LEA sends a *PackagingParameterUpdatedInfo* to the LOL and transfers the array index, here: array index $= 4$, of the changed parameter set in the *PackagingDataSet* as *LogisticsQuestionParam1*. The LOL parameter management then determines whether the corresponding product parameter data set is also to be adapted in the LOL, if necessary by user request, and updates the parameter set if required. The LOL acknowledges the parameter change by sending *LogisticsAnswerID*~$= 1$ to the LEA. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "$-1$", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* is reset.
 
@@ -839,7 +839,7 @@ Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 4$, 
 The standard sequence of a *TransportNodeRequest* is shown in Figure~[Sequence of the Logistics Interaction of a TransportNodeRequest](#fig:TransportNodeRequest).
 
 ![Sequence of the Logistics Interaction of a TransportNodeRequest](Inhalt/Abbildungen/08_Bereichs-Automatisierung/TransportNodeRequest.png)
-*Sequence of the Logistics Interaction of a TransportNodeRequest* {#fig:TransportNodeRequest}
+*Sequence of the Logistics Interaction of a TransportNodeRequest*
 
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* $= 5$, the LEA sends a *TransportNodeRequest* to the LOL and transfers the *TransportId* of the associated transport service as *LogisticsQuestionParam1*. The LOL then determines the required next transport node. If the next transport node is successfully determined, the LOL returns a *LogisticsAnswerID* $>= 0$ to the LEA. This response directly reflects the ID of the next transport node to be approached. A *LogisticsAnswerID* $= 0$ indicates that the *FinalTargetNode* of the transport service is to be used. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "$-1$", indicating that no question or answer is currently pending. *LogisticsQuestionParam1* and *LogisticsQuestionParam2* are reset. The information received about the next transport node is transferred by the LEA to the procedure parameter *NextNode* in the corresponding transport service.
 

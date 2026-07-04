@@ -1,4 +1,4 @@
-## Conformity Declaration for Logistics Equipment Assemblies {#sec:Konformitätsbeschreibung}
+## Conformity Declaration for Logistics Equipment Assemblies
 Based on the findings of this dissertation, Table~[Konformitätsbeschreibung](#tab:Konformitätsbeschreibung) provides an overview of the existing and newly introduced profiles required for applying the MTP concept in production-related logistics. A distinction is made between profiles that are generally relevant for LEA automation, profiles that LEAs must fulfill in order to participate in a logistics line, and profiles required for connecting LEAs to flexible transport systems.
 
 % Konformitätsbeschreibung

@@ -1,11 +1,11 @@
-## MTP Specification of the ChoreographySet {#sec:AnhangChoreoAspekt}
+## MTP Specification of the ChoreographySet
 This chapter specifies the *ChoreographySet* as a new aspect of the MTP specification that contains all elements identified in the conceptual chapter~[Art2 LL](#chap:Art2LL).
  
-### Übersicht {#subsec:AnhangChoreographySetUebersicht}
+### Übersicht
 According to Chapter~[Art2 LL](#chap:Art2LL), a series of new model and interface definitions is required to represent choreography-relevant information in the MTP of an LEA. Figure~[Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines](#fig:AnhangUebersichtChoreoAspekt) provides an overview of these newly specified definitions.
 
 ![Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines](Inhalt/Abbildungen/99_Anhang/Spezifikation_Choreografie/Klassendiagramm.drawio.png)
-*Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines* {#fig:AnhangUebersichtChoreoAspekt}
+*Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines*
 
 #### Interface Definitions
 On the interface-definition side, *SUC ChoreographyParticipantManager* is introduced as an interface for configuring configurable logic, and *SUC CommunicationManager* is introduced as an interface for configurable communication. *SUC CommunicationManager* is an abstract interface definition that fundamentally allows the use of different communication technologies through different derivations. For implementation based on OPC~UA client/server, the derived *SUC OpcUaClientServerManager* is introduced. A convention in the MTP specifications provides that interface definitions belonging together in terms of content are derived from a common interface definition with the suffix **Element*. Accordingly, in this case *SUC ChoreographyElement*, derived from *SUC DataAssembly* [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3), is introduced, from which *SUC ChoreographyParticipantManager* and *SUC CommunicationManager* are derived.
@@ -19,7 +19,7 @@ On the model-definition side, *SUC ChoreographySet* is introduced as a new aspec
 
 All model and interface definitions required for the *ChoreographySet* are assigned to the new profile *ModuleTypePackage:ChoreographySet.Base V2.0.0*.[^2]
 
-### Interface Definitions {#subsec:AnhangChoreographySetSchnittstellen}
+### Interface Definitions
 #### Specification of the System Unit Class UnionElement
 *SUC UnionElement* (Table~[Data Assembly Suc Union Element](#tab:DataAssemblySucUnionElement)) is used to display the value of an *InputElement* or an *OutputElement*. Accordingly, a *UnionElement* interface is assigned to these model definitions via a LinkedObject relation.
 
@@ -474,7 +474,7 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 
 <!-- End Table -->
 
-### Model Definitions {#subsec:AnhangChoreographySetModelle}
+### Model Definitions
 #### Specification of the Instance Hierarchy Choreography
 *IH Choreography* (Table~[Ih Choreography](#tab:IhChoreography)) is the entry point for the choreography-related information model in the instance hierarchy of an MTP.
 

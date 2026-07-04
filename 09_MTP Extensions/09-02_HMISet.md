@@ -1,13 +1,13 @@
-## MTP Extension of the HMISet {#sec:AnhangHMISet}
+## MTP Extension of the HMISet
 This chapter specifies all identified extensions of the *HMISet* and integrates them into the existing MTP specification [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2).
 
-### Overview {#subsec:AnhangHMISetUebersicht}
+### Overview
 According to Section~[Linien Bedienbild](#subsec:LinienBedienbild), the two model definitions *SUC PictureFrame* and *SUC ReferencedPicture* are required for process-picture modeling in choreographed logistics lines. As shown in Figure~[Extension of the HMISet for Representing Line Process Pictures](#fig:ErweiterungHMISet), these definitions, together with all other model definitions for process-picture modeling, are organized in *SUCL MTPHMISUCLib*. In MTP modeling, any number of *ReferencedPictures* can be inserted into the instance hierarchy of the *HMISet*, similar to *Pictures* according to [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). Any number of instances of *SUC PictureFrame* can be added to the *Pictures* or *SemanticGroups* modeled in the MTP, similar to *VisualObjects* according to [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). The model definitions of *SUC HMISet*, *SUC Picture*, and *SUC SemanticGroup* must therefore be extended to allow subordinate *ReferencedPictures* and *PictureFrames*, respectively. *SUC PictureFrame* and *SUC ReferencedPicture* use *RC HasExternalMtpContext*, specified in Appendix~[Model Definitions](#subsec:AnhangManifestModelle), to reference external objects from other MTP files. The new and extended model definitions are specified in detail in Appendix~[Model Definitions](#subsec:AnhangHMISetModelle) and are assigned to the new profile *ModuleTypePackage:HMISet.Composed V2.0.0*.[^1]
 
 ![Extension of the HMISet for Representing Line Process Pictures](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/HMISet Erweiterungen/Klassendiagramm.drawio.png)
-*Extension of the HMISet for Representing Line Process Pictures* {#fig:ErweiterungHMISet}
+*Extension of the HMISet for Representing Line Process Pictures*
 
-### Model Definitions {#subsec:AnhangHMISetModelle}
+### Model Definitions
 #### Specification of the System Unit Class PictureFrame
 *SUC PictureFrame* (Table~[Suc Picture Frame](#tab:SucPictureFrame)) enables the embedding of a referenced process picture into another process picture. For this purpose, the process picture to be displayed in the *PictureFrame* is referenced by means of *PictureLink* using the ID link mechanism according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). The *Picture-Frame* itself can be placed in a process picture of *SUC Picture* or, if applicable, in a contained *SUC SemanticGroup*, analogous to a *VisualObject* according to [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). The size and position of the *PictureFrame* are defined by the variables *Width*, *Height*, *X*, *Y*, and *ZIndex*.[^2] If a process picture modeled in another MTP is to be displayed in the *PictureFrame* for example, a line process picture according to Section~[Linien Bedienbild](#subsec:LinienBedienbild), *RC HasExternalMtpContext* must additionally be annotated as an SRC. This enables the referenced MTP file to be addressed by entering a *ContextLink*.
 

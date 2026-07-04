@@ -1,20 +1,20 @@
-## MTP Extension of the ProcessValueSet {#sec:AnhangProcessValueSet}
+## MTP Extension of the ProcessValueSet
 This chapter specifies all identified extensions of the *ProcessValueSet* and integrates them into the existing MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
-### Übersicht {#subsec:AnhangProcessValueSetUebersicht}
+### Übersicht
 #### Extension of the ProcessValueInputs
 According to Section~[Prozesswerte](#sec:Prozesswerte), the interface definitions *SUC StructProcessValueIn* and *SUC ArrayProcessValueIn* are intended to specify process-value inputs for structured data types and array data types. As shown in Figure~[Extension of the ProcessValueSet for Implementing Structured and Array-Based Process Value Inputs](#fig:ErweiterungProcessValueInputs), *SUC StructProcessValueIn* and *SUC ArrayProcessValueIn*, together with all other interface definitions for process-value inputs, are derived from the interface definition *SUC InputElement* according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) and organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in Appendix~[Interface Definitions](#subsec:AnhangProcessValueSetSchnittstellen). This extension, as a result of this dissertation, has already been adopted into the profile *ModuleTypePackage:ProcessValueSet.ComplexTypes V2.0.0* of the MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
 ![Extension of the ProcessValueSet for Implementing Structured and Array-Based Process Value Inputs](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Prozesswerte/Prozesswerteingänge/Klassendiagramm.drawio.png)
-*Extension of the ProcessValueSet for Implementing Structured and Array-Based Process Value Inputs* {#fig:ErweiterungProcessValueInputs}
+*Extension of the ProcessValueSet for Implementing Structured and Array-Based Process Value Inputs*
 
 #### Extension of the ProcessValueOutputs
 According to Section~[Prozesswerte](#sec:Prozesswerte), interface definitions for process-value outputs of structured data types and array data types are to be specified. For process-value outputs of structured data types, the associated *IndicatorElement*, i.e. *SUC StructView*, can be used as for all other MTP data types according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4). For array-based process-value outputs, a separate interface definition *SUC ArrayProcessValueOut* is provided because, unlike *SUC ArrayView*, it does not require an *OSLevel* variable for access control. An *ArrayProcessValueOut* interface is always accessed by another LEA and not by an operator or LOL. Following the principles of the MTP concept, *SUC ArrayProcessValueOut* is derived from an abstract *SUC OutputElement*. *SUC OutputElement*, in turn, is derived from *SUC DataAssembly* specified in [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3). The newly introduced interface definitions are shown in Figure~[Extension of the ProcessValueSet for Implementing Structured and Array-Based Process Value Outputs](#fig:ErweiterungProcessValueOutputs) and organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in Appendix~[Interface Definitions](#subsec:AnhangProcessValueSetSchnittstellen). This extension, as a result of this dissertation, has already been adopted into the profile *ModuleTypePackage:ProcessValueSet.ComplexTypes V2.0.0* of the MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
 ![Extension of the ProcessValueSet for Implementing Structured and Array-Based Process Value Outputs](Inhalt/Abbildungen/99_Anhang/Spezifikation_LEA/Prozesswerte/Prozesswertausgänge/Klassendiagramm.drawio.png)
-*Extension of the ProcessValueSet for Implementing Structured and Array-Based Process Value Outputs* {#fig:ErweiterungProcessValueOutputs}
+*Extension of the ProcessValueSet for Implementing Structured and Array-Based Process Value Outputs*
 
-### Interface Definitions {#subsec:AnhangProcessValueSetSchnittstellen}
+### Interface Definitions
 #### Specification of the System Unit Class StructProcessValueIn
 *SUC StructProcessValueIn* (Table~[Data Assembly Suc Struct Process Value In](#tab:DataAssemblySucStructProcessValueIn)) is used by an LEA to access the value of a variable with a structured data type from another LEA.
 
