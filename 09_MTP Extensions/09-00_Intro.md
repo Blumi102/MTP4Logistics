@@ -9,6 +9,7 @@
 <!-- TODO: bei den Specs Labels vergeben, was schon übernommen wurde -->
 <!-- TODO: Interface Definition durch DataSessembly definition ersetzen -->
 <!-- TODO: Prüfen, ob noch etwas deutsches vorhanden ist -->
+<!-- TODO: Durchgängige Nummierierung der Sections, Abbildungen und Tabellen prüfen -->
 
 ## 9 Enhancements of the Module Type Package Concept
 

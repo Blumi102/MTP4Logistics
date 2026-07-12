@@ -1,0 +1,53 @@
+@startuml 04_PackagingParameterRequest
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**LOL**" as DZ order 1
+participant "**LEA Service**" as Service order 2
+
+note over Service
+LogisticsInteraction
+--
+LogisticsQuestionID[-1]: No question
+LogisticsQuestionID[2]: PackagingParameterRequest
+..
+LogisticsAnswerID[-2]: Error
+LogisticsAnswerID[-1]: No answer
+LogisticsAnswerID[>=0]: Index of the modified parameter set
+in PackagingDataSet
+..
+LogisticsQuestionParam1: ' '
+LogisticsQuestionParam2: ' '
+end note
+
+DZ <<- Service: LogisticsQuestionID: 1\nLogisticsQuestionParam1: 'Z' (PackagingId)\nLogisticsQuestionParam2: ' ' (not used)
+
+hnote over DZ
+Determination of the parameter set
+end hnote
+
+DZ ->> Service: Parameterization via ArrayServParam\nof PackagingDataSet
+DZ ->> Service: LogisticsAnswerID := 2 (Index 2)
+
+hnote over Service
+New parameter set has been written to 
+index 2 of the LEA-internal PackagingDataSet
+end hnote
+
+DZ <<- Service: LogisticsQuestionID := -1\nLogisticsQuestionParam1 := ' '\nLogisticsQuestionParam2 := ' '
+DZ ->> Service: LogisticsAnswerID := -1
+
+@enduml
