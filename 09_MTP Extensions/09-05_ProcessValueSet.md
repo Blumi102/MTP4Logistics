@@ -34,7 +34,7 @@ DataAssembly definitions for process-value outputs of structured data types and 
 	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="4" align="left">Description</th></tr>
 	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
+	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th><th align="left">Base Function</th></tr>
 	<tr><td align="left">V</td><td align="left">LOL ⟶ LEA</td><td align="left">{VType}</td><td align="left">Value</td><td align="left">-</td><td align="left">-</td></tr>
 	<tr><td align="left">VType</td><td align="left">MTP</td><td align="left">&lt;empty&gt;</td><td align="left">Type Definition of the Value</td><td align="left">{AT of StructuredDataType}</td><td align="left">ComplexType</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
@@ -65,7 +65,7 @@ The required value is transferred in the variable *V* according to [MTP Specific
 	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="4" align="left">Description</th></tr>
 	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
+	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th><th align="left">Base Function</th></tr>
 	<tr><td align="left">IndexSel</td><td align="left">LOL ⟵ LEA</td><td align="left">DINT</td><td align="left">Index Value</td><td align="left">-</td><td align="left">Multiplexing for Process Values</td></tr>
 	<tr><td align="left">IndexMin</td><td align="left">LOL ⟶ LEA</td><td align="left">DINT</td><td align="left">Low Limit of the Index</td><td align="left">-</td><td align="left">Multiplexing for Process Values</td></tr>
 	<tr><td align="left">IndexMax</td><td align="left">LOL ⟶ LEA</td><td align="left">DINT</td><td align="left">High Limit of the Index</td><td align="left">-</td><td align="left">Multiplexing for Process Values</td></tr>
@@ -104,7 +104,7 @@ The array position to be displayed is selected via the variable *IndexSel*. The 
 	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="4" align="left">Description</th></tr>
 	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
+	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th><th align="left">Base Function</th></tr>
 	<tr><td align="left">WQC</td><td align="left">LOL ⟵ LEA</td><td align="left">BYTE</td><td align="left">Worst Quality Code variable</td><td align="left">-</td><td align="left">WQC</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6" align="left">-</td></tr>
@@ -134,7 +134,7 @@ The array position to be displayed is selected via the variable *IndexSel*. The 
 	<tr><th align="left">Name</th><th align="left">Type</th><th colspan="4" align="left">Description</th></tr>
 	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
-	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
+	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">AttributeType Reference</th><th align="left">Base Function</th></tr>
 	<tr><td align="left">IndexSel</td><td align="left">LOL ⟶ LEA</td><td align="left">DINT</td><td align="left">Index Value</td><td align="left">-</td><td align="left">Multiplexing for Process Values</td></tr>
 	<tr><td align="left">IndexMin</td><td align="left">LOL ⟵ LEA</td><td align="left">DINT</td><td align="left">Low Limit of the Index</td><td align="left">-</td><td align="left">Multiplexing for Process Values</td></tr>
 	<tr><td align="left">IndexMax</td><td align="left">LOL ⟵ LEA</td><td align="left">DINT</td><td align="left">High Limit of the Index</td><td align="left">-</td><td align="left">Multiplexing for Process Values</td></tr>

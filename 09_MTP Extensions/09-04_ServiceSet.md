@@ -286,7 +286,7 @@ These requests are implemented on the basis of *Service Interaction* mechanisms 
 		<th align="left">Access</th>
 		<th align="left">Type</th>
 		<th align="left">Description</th>
-		<th align="left">Attribute-Type Reference</th>
+		<th align="left">AttributeType Reference</th>
 		<th align="left">Base Function</th>
 	</tr>
 	<tr>
@@ -430,7 +430,7 @@ The distinctive feature of this DataAssembly definition is the use of a user-def
 		<th align="left">Access</th>
 		<th align="left">Type</th>
 		<th align="left">Description</th>
-		<th align="left">Attribute-Type Reference</th>
+		<th align="left">AttributeType Reference</th>
 		<th align="left">Base Function</th>
 	</tr>
 	<tr><td align="left">IndexExt</td><td align="left">LOL ⟶ LEA</td><td align="left">DINT</td><td align="left">External Index Value</td><td align="left">-</td><td align="left">Multiplexing for Arrays</td></tr>

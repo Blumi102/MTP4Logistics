@@ -87,7 +87,7 @@ These extensions are assigned to the newly introduced profile *ModuleTypePackage
 		<th align="left">Access</th>
 		<th align="left">Type</th>
 		<th align="left">Description</th>
-		<th align="left">Attribute-Type Reference</th>
+		<th align="left">AttributeType Reference</th>
 		<th align="left">Base Function</th>
 	</tr>
 	<tr>
@@ -196,7 +196,7 @@ The complex data type used must be derived from *AT StructuredDataType* defined 
 		<th align="left">Access</th>
 		<th align="left">Type</th>
 		<th align="left">Description</th>
-		<th align="left">Attribute-Type Reference</th>
+		<th align="left">AttributeType Reference</th>
 		<th align="left">Base Function</th>
 	</tr>
 	<tr>
@@ -346,7 +346,7 @@ By means of the *OSLevel* variable, it can be defined whether the interface is c
 		<th align="left">Access</th>
 		<th align="left">Type</th>
 		<th align="left">Description</th>
-		<th align="left">Attribute-Type Reference</th>
+		<th align="left">AttributeType Reference</th>
 		<th align="left">Base Function</th>
 	</tr>
 	<tr>
@@ -474,7 +474,7 @@ The distinctive feature of this DataAssembly definition is the use of a user-def
 		<th align="left">Access</th>
 		<th align="left">Type</th>
 		<th align="left">Description</th>
-		<th align="left">Attribute-Type Reference</th>
+		<th align="left">AttributeType Reference</th>
 		<th align="left">Base Function</th>
 	</tr>
 	<tr>
@@ -640,7 +640,7 @@ The *StructManInt* interface extends the *StructMan* interface by internal value
 		<th align="left">Access</th>
 		<th align="left">Type</th>
 		<th align="left">Description</th>
-		<th align="left">Attribute-Type Reference</th>
+		<th align="left">AttributeType Reference</th>
 		<th align="left">Base Function</th>
 	</tr>
 	<tr>
@@ -812,7 +812,7 @@ The array position to be modified is selected via the variable *IndexSel*. The v
 		<th align="left">Access</th>
 		<th align="left">Type</th>
 		<th align="left">Description</th>
-		<th align="left">Attribute-Type Reference</th>
+		<th align="left">AttributeType Reference</th>
 		<th align="left">Base Function</th>
 	</tr>
 	<tr>
@@ -1020,7 +1020,7 @@ The *ArrayManInt* interface extends the *ArrayMan* interface by internal value s
 		<th align="left">Access</th>
 		<th align="left">Type</th>
 		<th align="left">Description</th>
-		<th align="left">Attribute-Type Reference</th>
+		<th align="left">AttributeType Reference</th>
 		<th align="left">Base Function</th>
 	</tr>
 	<tr>
@@ -1138,7 +1138,7 @@ The *ArrayManInt* interface extends the *ArrayMan* interface by internal value s
 		<th align="left">Access</th>
 		<th align="left">Type</th>
 		<th align="left">Description</th>
-		<th align="left">Attribute-Type Reference</th>
+		<th align="left">AttributeType Reference</th>
 		<th align="left">Base Function</th>
 	</tr>
 	<tr>

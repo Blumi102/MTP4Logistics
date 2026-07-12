@@ -305,7 +305,7 @@ For version verification, the variable *ComposedTypeRevision* of *SUC ComposedMo
 		<td align="left">ContextLink</td>
 		<td align="left">xs:string (GUID-formatted)</td>
 		<td align="left">object identifier of the referenced MTP in the attachment</td>
-		<td align="left">IDLinkAttribute-Type</td>
+		<td align="left">IDLinkAttributeType</td>
 	</tr>
 	<tr>
 		<td colspan="4" align="left"><strong>📌 Comment</strong></td>
