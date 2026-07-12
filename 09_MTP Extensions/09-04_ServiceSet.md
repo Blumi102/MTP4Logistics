@@ -1,5 +1,5 @@
 ## 9.4 MTP Extension of the ServiceSet
-This chapter specifies all identified extensions of the *ServiceSet* and integrates them into the existing MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
+This chapter specifies all identified extensions of the *ServiceSet* and integrates them into the existing [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
 ### 9.4.1 Overview
 #### Semantic Description of LEA Services
@@ -54,7 +54,7 @@ To distinguish order-oriented CES and demand-oriented SES procedures for a LOL, 
 </table>
 
 #### Semantic Description of Service Parameters
-To enable a semantic description of service parameters, the model definition *ServiceParameter* is extended by the capability to append *FunctionClassificationAttributes*. The detailed specification is provided in [Model Definitions](#943-model-definitions). This extension, as a result of this work, has already been adopted into the base profile *ModuleTypePackage:ServiceSet.Base V2.0.0* of the MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
+To enable a semantic description of service parameters, the model definition *ServiceParameter* is extended by the capability to append *FunctionClassificationAttributes*. The detailed specification is provided in [Model Definitions](#943-model-definitions). This extension, as a result of this work, has already been adopted into the base profile *ModuleTypePackage:ServiceSet.Base V2.0.0* of the [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
 [Table 9.19](#table-919-functionclassificationattribute-of-a-procedure-parameter-for-setting-a-productid) to [Table 9.23](#table-923-functionclassificationattribute-of-a-configuration-parameter-for-accessing-a-packagingdataset) specify *FunctionClassificationAttributes* for the parameters *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* necessary for LEA parameterization. "2.0" denotes the version in major-minor format and can be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
 
@@ -179,7 +179,7 @@ To enable a semantic description of service parameters, the model definition *Se
 </table>
 
 #### Extension of the ParameterElements
-For the processing of values with structured and array data types, two new DataAssembly definitions *SUC StructServParam* and *SUC ArrayServParam* are required for the parameterization of LEA services. As shown in [Figure 9.8](#figure-98-extension-of-the-serviceset-for-implementing-structured-and-array-based-service-parameters), *SUC StructServParam* and *SUC ArrayServParam*, together with all other DataAssembly definitions for service parameters, are derived from the DataAssembly definition *SUC ParameterElement* according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) and organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [Model Definitions](#943-model-definitions). This extension, as a result of this work, has already been adopted into the profile *ModuleTypePackage:ServiceSet.ComplexTypes V2.0.0* of the MTP specification [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
+For the processing of values with structured and array data types, two new DataAssembly definitions *SUC StructServParam* and *SUC ArrayServParam* are required for the parameterization of LEA services. As shown in [Figure 9.8](#figure-98-extension-of-the-serviceset-for-implementing-structured-and-array-based-service-parameters), *SUC StructServParam* and *SUC ArrayServParam*, together with all other DataAssembly definitions for service parameters, are derived from the DataAssembly definition *SUC ParameterElement* according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) and organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [Model Definitions](#943-model-definitions). This extension, as a result of this work, has already been adopted into the profile *ModuleTypePackage:ServiceSet.ComplexTypes V2.0.0* of the [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
 ##### Figure 9.8: Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters
 ![Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters](./images/04_Parameter.drawio.svg)
@@ -366,7 +366,7 @@ These requests are implemented on the basis of *Service Interaction* mechanisms 
 
 The setting of a parameter of *SUC StructServParam* is performed via the access channels *Automatic Internal*, *Automatic External*, or *Operator* in the same way as for all other service parameters defined in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
-The distinctive feature of this DataAssembly definition is the use of a user-defined structured data type. The modeling and use of such a type have already been described in connection with *SUC StructView* and are applied in the same way for *SUC StructServParam*. This data type is then expected behind the variables *VExt*, *VInt*, *VOp*, *VReq*, *VOut* and *VFbk*.
+The distinctive feature of this DataAssembly definition is the use of a user-defined structured data type. The modeling and use of such a type have already been described in connection with [SUC StructView](./09-03_DataAssemblySet.md#specification-of-the-system-unit-class-structview) and are applied in the same way for *SUC StructServParam*. This data type is then expected behind the variables *VExt*, *VInt*, *VOp*, *VReq*, *VOut* and *VFbk*.
 
 #### Specification of the System Unit Class ArrayServParam
 *SUC ArrayServParam* ([Table 9.26](#table-926-dataassembly-definition-of-suc-arrayservparam)) is used by the LOL to write data to an array or read data from an array managed in a LEA.
@@ -465,7 +465,7 @@ The distinctive feature of this DataAssembly definition is the use of a user-def
 	</tr>
 </table>
 
-As with the *ArrayView* DataAssembly definition, the challenge for *SUC ArrayServParam* is to access an array within a LEA that may have an arbitrary length. As introduced in connection with *SUC ArrayView*, access to this array is also index-based in the case of *SUC ArrayServParam*.
+As with the *ArrayView* DataAssembly definition, the challenge for *SUC ArrayServParam* is to access an array within a LEA that may have an arbitrary length. As introduced in connection with [SUC ArrayView](./09-03_DataAssemblySet.md#specification-of-the-system-unit-class-arrayview), access to this array is also index-based in the case of *SUC ArrayServParam*.
 
 The variables *IndexExt*, *IndexInt*, and *IndexOp* are used to select an array element depending on the operation mode. According to the active access channel, one of these three values is transferred to the variable *IndexCur*. The variables of all three access channels are checked to determine whether they lie within the range between *IndexMin* and *IndexMax*. If an index outside this range is set, the last valid index remains active and the *Worst Quality Code (WQC)* is set to "Out of Specification" according to [NAMUR NE 184](../98_References/README.md#namur-ne-184).
 
