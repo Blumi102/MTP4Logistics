@@ -9,7 +9,7 @@ Two model definitions, *SUC PictureFrame* and *SUC ReferencedPicture*, are requi
 
 ### 9.2.2 Model Definitions
 #### Specification of the System Unit Class PictureFrame
-*SUC PictureFrame* ([Table 9.5](#table-95-model-definition-of-suc-pictureframe)) enables the embedding of a referenced picture into another picture. For this purpose, the picture to be displayed in the *PictureFrame* is referenced by means of *PictureLink* using the ID link mechanism according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). The *Picture-Frame* itself can be placed in a picture of *SUC Picture* or, if applicable, in a contained *SUC SemanticGroup*, analogous to a *VisualObject* according to [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). The size and position of the *PictureFrame* are defined by the variables *Width*, *Height*, *X*, *Y*, and *ZIndex*.[^2] If a picture modeled in another MTP is to be displayed in the *PictureFrame*, e.g., a picture of a logistics line, *RC HasExternalMtpContext* must additionally be annotated as an SRC. This enables the referenced MTP file to be addressed by entering a *ContextLink*.
+*SUC PictureFrame* ([Table 9.5](#table-95-model-definition-of-suc-pictureframe)) enables the embedding of a referenced picture into another picture. For this purpose, the picture to be displayed in the *PictureFrame* is referenced by means of *PictureLink* using the ID link mechanism according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). The *PictureFrame* itself can be placed in a picture of *SUC Picture* or, if applicable, in a contained *SUC SemanticGroup*, analogous to a *VisualObject* according to [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). The size and position of the *PictureFrame* are defined by the variables *Width*, *Height*, *X*, *Y*, and *ZIndex*.[^2] If a picture modeled in another MTP is to be displayed in the *PictureFrame*, e.g., a picture of a logistics line, *RC HasExternalMtpContext* must additionally be annotated as an SRC. This enables the referenced MTP file to be addressed by entering a *ContextLink*.
 
 ##### Table 9.5: Model Definition of *SUC PictureFrame*
 
@@ -75,7 +75,7 @@ Two model definitions, *SUC PictureFrame* and *SUC ReferencedPicture*, are requi
 		<td align="left">PictureLink</td>
 		<td align="left">xs:string (GUID-formatted)</td>
 		<td align="left">object identifier of the referenced picture</td>
-		<td align="left">IDLinkAttribute-Type</td>
+		<td align="left">IDLinkAttributeType</td>
 	</tr>
 	<tr>
 		<td align="left">Width</td>
@@ -385,7 +385,7 @@ Two model definitions, *SUC PictureFrame* and *SUC ReferencedPicture*, are requi
 		<td align="left">PictureLink</td>
 		<td align="left">xs:string (GUID-formatted)</td>
 		<td align="left">object identifier of the referenced picture within the attached MTP</td>
-		<td align="left">IDLinkAttribute-Type</td>
+		<td align="left">IDLinkAttributeType</td>
 	</tr>
 	<tr>
 		<td align="left">HierarchyLevel</td>

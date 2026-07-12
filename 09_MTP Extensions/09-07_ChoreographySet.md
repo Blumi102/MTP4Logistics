@@ -2,28 +2,28 @@
 This chapter specifies the *ChoreographySet* as a new aspect of the MTP specification that contains all elements identified in the conceptual chapter~[Art2 LL](#chap:Art2LL).
  
 ### 9.7.1 Overview
-According to Chapter~[Art2 LL](#chap:Art2LL), a series of new model and interface definitions is required to represent choreography-relevant information in the MTP of an LEA. [Figure 9.18](#figure-918-specification-of-the-choreographyset-for-implementing-choreography-based-logistics-lines) provides an overview of these newly specified definitions.
+According to Chapter~[Art2 LL](#chap:Art2LL), a series of new model and DataAssembly definitions is required to represent choreography-relevant information in the MTP of a LEA. [Figure 9.18](#figure-918-specification-of-the-choreographyset-for-implementing-choreography-based-logistics-lines) provides an overview of these newly specified definitions.
 
 ##### Figure 9.18: Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines
 ![Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines](./images/07_ChoreographySet.drawio.svg)
 
-#### Interface Definitions
-On the interface-definition side, *SUC ChoreographyParticipantManager* is introduced as an interface for configuring configurable logic, and *SUC CommunicationManager* is introduced as an interface for configurable communication. *SUC CommunicationManager* is an abstract interface definition that fundamentally allows the use of different communication technologies through different derivations. For implementation based on OPC~UA client/server, the derived *SUC OpcUaClientServerManager* is introduced. A convention in the MTP specifications provides that interface definitions belonging together in terms of content are derived from a common interface definition with the suffix **Element*. Accordingly, in this case *SUC ChoreographyElement*, derived from *SUC DataAssembly* [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3), is introduced, from which *SUC ChoreographyParticipantManager* and *SUC CommunicationManager* are derived.
+#### DataAssembly definitions
+On the dataassembly-definition side, *SUC ChoreographyParticipantManager* is introduced as an interface for configuring configurable logic, and *SUC CommunicationManager* is introduced as an interface for configurable communication. *SUC CommunicationManager* is an abstract DataAssembly definition that fundamentally allows the use of different communication technologies through different derivations. For implementation based on OPC~UA client/server, the derived *SUC OpcUaClientServerManager* is introduced. A convention in the MTP specifications provides that DataAssembly definitions belonging together in terms of content are derived from a common DataAssembly definition with the suffix **Element*. Accordingly, in this case *SUC ChoreographyElement*, derived from *SUC DataAssembly* [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3), is introduced, from which *SUC ChoreographyParticipantManager* and *SUC CommunicationManager* are derived.
 
 For individual values exchanged and processed within a choreography, *SUC UnionElement*, derived from *SUC DataAssembly* [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1), is introduced according to Section~[Union Type](#subsec:UnionType) to display a value with configurable data type. For the communication variant of active writing, *SUC WritableUnionElements*, derived from *SUC UnionElement*, is additionally provided[^1] and enables write access to a value with configurable data type. 
 
-These interface definitions are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in Appendix~[Interface Definitions](#subsec:AnhangChoreographySetSchnittstellen). 
+These DataAssembly definitions are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in Appendix~[DataAssembly definitions](#subsec:AnhangChoreographySetSchnittstellen). 
 
 #### Model Definitions
-On the model-definition side, *SUC ChoreographySet* is introduced as a new aspect set for organizing all choreography-related models and is derived from the abstract *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). The *ChoreographySet* always contains exactly one IE of *SUC ChoreographyParticipant*, derived from *SUC LinkedObject* [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). It indicates that an LEA has the capability to participate in a choreography and is linked to a *ChoreographyParticipantManager* interface. The input list and output list of the choreography participant are represented by the subordinate *SUC InputList* and *SUC OutputList*. These lists can contain any number of IEs of *SUC InputElemente* and *SUC OutputElement*. They are derived from *SUC LinkedObject* and represent incoming or outgoing system variables. According to Section~[Choreo Konfiguration](#subsec:ChoreoKonfiguration), the classes *SUC FixedInputElement*, *SUC ConfigurableInputElement*, *SUC WritableInputElement*, *SUC FixedOutputElement*, and *SUC ConfigurableOutputElement* are provided as concrete derivations of *SUC InputElemente* and *SUC OutputElement*. Almost all *InputElements* and *OutputElements* are linked to a *UnionElement* interface via LinkedObject relations. An exception is formed by *WritableInputElements*, each of which is assigned to a *WritableUnionElement* interface. In the case of *ConfigurableInputElements* and *ConfigurableOutpuElements*, an ID link relation to a *CommunicationManager* interface also exists, which handles value transfer in the sense of configurable communication. The model definitions are organized in the newly introduced library *SUCL MTPChoreographySUCLib*. The detailed specification is provided in Appendix~[Model Definitions](#subsec:AnhangChoreographySetModelle).
+On the model-definition side, *SUC ChoreographySet* is introduced as a new aspect set for organizing all choreography-related models and is derived from the abstract *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). The *ChoreographySet* always contains exactly one IE of *SUC ChoreographyParticipant*, derived from *SUC LinkedObject* [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). It indicates that a LEA has the capability to participate in a choreography and is linked to a *ChoreographyParticipantManager* interface. The input list and output list of the choreography participant are represented by the subordinate *SUC InputList* and *SUC OutputList*. These lists can contain any number of IEs of *SUC InputElemente* and *SUC OutputElement*. They are derived from *SUC LinkedObject* and represent incoming or outgoing system variables. According to Section~[Choreo Konfiguration](#subsec:ChoreoKonfiguration), the classes *SUC FixedInputElement*, *SUC ConfigurableInputElement*, *SUC WritableInputElement*, *SUC FixedOutputElement*, and *SUC ConfigurableOutputElement* are provided as concrete derivations of *SUC InputElemente* and *SUC OutputElement*. Almost all *InputElements* and *OutputElements* are linked to a *UnionElement* interface via LinkedObject relations. An exception is formed by *WritableInputElements*, each of which is assigned to a *WritableUnionElement* interface. In the case of *ConfigurableInputElements* and *ConfigurableOutpuElements*, an ID link relation to a *CommunicationManager* interface also exists, which handles value transfer in the sense of configurable communication. The model definitions are organized in the newly introduced library *SUCL MTPChoreographySUCLib*. The detailed specification is provided in Appendix~[Model Definitions](#subsec:AnhangChoreographySetModelle).
 
-All model and interface definitions required for the *ChoreographySet* are assigned to the new profile *ModuleTypePackage:ChoreographySet.Base V2.0.0*.[^2]
+All model and DataAssembly definitions required for the *ChoreographySet* are assigned to the new profile *ModuleTypePackage:ChoreographySet.Base V2.0.0*.[^2]
 
-### 9.7.2 Interface Definitions
+### 9.7.2 DataAssembly definitions
 #### Specification of the System Unit Class UnionElement
-*SUC UnionElement* ([Table 9.43](#table-943-interface-definition-of-suc-unionelement)) is used to display the value of an *InputElement* or an *OutputElement*. Accordingly, a *UnionElement* interface is assigned to these model definitions via a LinkedObject relation.
+*SUC UnionElement* ([Table 9.43](#table-943-dataassembly-definition-of-suc-unionelement)) is used to display the value of an *InputElement* or an *OutputElement*. Accordingly, a *UnionElement* interface is assigned to these model definitions via a LinkedObject relation.
 
-##### Table 9.43: Interface Definition of *SUC UnionElement*
+##### Table 9.43: DataAssembly definition of *SUC UnionElement*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -40,13 +40,13 @@ All model and interface definitions required for the *ChoreographySet* are assig
 	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
-	<tr><td align="left">VQC</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">quality Code of the value</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">DataType</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">identifier of selected data type<br/>(0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">VReal</td><td align="left">LOL <- LEA</td><td align="left">REAL</td><td align="left">Real Value<br/>(Type: 1)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">VDInt</td><td align="left">LOL <- LEA</td><td align="left">DINT</td><td align="left">Double Integer Value (Type: 2)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">VDWord</td><td align="left">LOL <- LEA</td><td align="left">DWORD</td><td align="left">Double Word Value (Type: 3)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">VBool</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">Boolean Value (Type: 4)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">VString</td><td align="left">LOL <- LEA</td><td align="left">STRING</td><td align="left">String Value<br/>(Type: 5)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VQC</td><td align="left">LOL ⟵ LEA</td><td align="left">BYTE</td><td align="left">quality Code of the value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">DataType</td><td align="left">LOL ⟵ LEA</td><td align="left">BYTE</td><td align="left">identifier of selected data type<br/>(0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VReal</td><td align="left">LOL ⟵ LEA</td><td align="left">REAL</td><td align="left">Real Value<br/>(Type: 1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VDInt</td><td align="left">LOL ⟵ LEA</td><td align="left">DINT</td><td align="left">Double Integer Value (Type: 2)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VDWord</td><td align="left">LOL ⟵ LEA</td><td align="left">DWORD</td><td align="left">Double Word Value (Type: 3)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VBool</td><td align="left">LOL ⟵ LEA</td><td align="left">BOOL</td><td align="left">Boolean Value (Type: 4)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VString</td><td align="left">LOL ⟵ LEA</td><td align="left">STRING</td><td align="left">String Value<br/>(Type: 5)</td><td align="left">-</td><td align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6" align="left"><sup>a)</sup> Bei der <em>SUC UnionElement</em> könnten zukünftig noch andere Datentypen ergänzt werden. Alle weiteren Schnittstellen, die die <em>SUC UnionElement</em> nutzen, sollte folglich auch Erweiterungen erlauben und nicht <em>sealed</em> sein.</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
@@ -57,9 +57,9 @@ All model and interface definitions required for the *ChoreographySet* are assig
 The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString * are used to display the desired value. The variable *DataType* indicates which data type is currently active and which of the previously mentioned variables is therefore to be interpreted. *UnionElement* can thus display only one value of one defined data type at a time. *VQC* provides information about the quality and trustworthiness of the displayed value.
 
 #### Specification of the System Unit Class WritableUnionElement
-*SUC WritableUnionElement* ([Table 9.44](#table-944-interface-definition-of-suc-writableunionElement)) is derived from *UnionElement* and is used to write a value into a *WritableInputElement*. Accordingly, a *WritableUnionElement* interface is always assigned to a *WritableInputElement* via a LinkedObject relation. 
+*SUC WritableUnionElement* ([Table 9.44](#table-944-dataassembly-definition-of-suc-writableunionElement)) is derived from *UnionElement* and is used to write a value into a *WritableInputElement*. Accordingly, a *WritableUnionElement* interface is always assigned to a *WritableInputElement* via a LinkedObject relation. 
 
-##### Table 9.44: Interface Definition of *SUC WritableUnionElement*
+##### Table 9.44: DataAssembly definition of *SUC WritableUnionElement*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -76,13 +76,13 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString * are used to di
 	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
-	<tr><td align="left">VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">quality Code of the value</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">DataType</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">identifier of selected data type (0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">Real Value (Type: 1)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">Double Integer Value (Type: 2)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">Double Word Value (Type: 3)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">Boolean Value (Type: 4)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">String Value (Type: 5)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VQC</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">quality Code of the value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">DataType</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">identifier of selected data type (0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VReal</td><td align="left">LOL ⟶ LEA</td><td align="left">REAL</td><td align="left">Real Value (Type: 1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VDInt</td><td align="left">LOL ⟶ LEA</td><td align="left">DINT</td><td align="left">Double Integer Value (Type: 2)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VDWord</td><td align="left">LOL ⟶ LEA</td><td align="left">DWORD</td><td align="left">Double Word Value (Type: 3)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VBool</td><td align="left">LOL ⟶ LEA</td><td align="left">BOOL</td><td align="left">Boolean Value (Type: 4)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">VString</td><td align="left">LOL ⟶ LEA</td><td align="left">STRING</td><td align="left">String Value (Type: 5)</td><td align="left">-</td><td align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6" align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
@@ -93,16 +93,16 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString * are used to di
 The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to enter the desired value. The variable *DataType* indicates which data type is currently active and which of the previously mentioned variables is to be used in the LEA program. *WritableUnionElement* thus accepts only one value of one defined data type at a time. *VQC* can be used to transmit information about the quality and trustworthiness of the entered value.
 
 #### Specification of the System Unit Class ChoreographyElement
-*SUC ChoreographyElement* ([Table 9.45](#table-945-interface-definition-of-suc-choreographyelement)) is an abstract class derived from *SUC DataAssembly* specified in [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3). The choreography-relevant interface definitions *ChoreographyParticipantManager* and *CommunicationManager* are derived from *ChoreographyElement*.
+*SUC ChoreographyElement* ([Table 9.45](#table-945-dataassembly-definition-of-suc-choreographyelement)) is an abstract class derived from *SUC DataAssembly* specified in [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3). The choreography-relevant DataAssembly definitions *ChoreographyParticipantManager* and *CommunicationManager* are derived from *ChoreographyElement*.
 
-##### Table 9.45: Interface Definition of *SUC ChoreographyElement*
+##### Table 9.45: DataAssembly definition of *SUC ChoreographyElement*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
 	<tr><th align="left">Name</th><td colspan="5" align="left"><strong>ChoreographyElement</strong></td></tr>
 	<tr><th align="left">Type</th><td colspan="5" align="left">System Unit Class (SUC)</td></tr>
 	<tr><th align="left">Modifier</th><td colspan="5" align="left">abstract</td></tr>
-	<tr><th align="left">Description</th><td colspan="5" align="left">root interface class for choreography-related interface definitions</td></tr>
+	<tr><th align="left">Description</th><td colspan="5" align="left">root interface class for choreography-related DataAssembly definitions</td></tr>
 	<tr><th align="left">AutomationML Path</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly/ChoreographyElement</td></tr>
 	<tr><th align="left">AutomationML BaseRef</th><td colspan="5" align="left">MTPDataAssemblySUCLib/DataAssembly</td></tr>
 	<tr><th align="left">Role Classes</th><td colspan="5" align="left">-</td></tr>
@@ -112,7 +112,7 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
-	<tr><td align="left">WQC</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">Worst Quality Code</td><td align="left">-</td><td align="left">WQC</td></tr>
+	<tr><td align="left">WQC</td><td align="left">LOL ⟵ LEA</td><td align="left">BYTE</td><td align="left">Worst Quality Code</td><td align="left">-</td><td align="left">WQC</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6" align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
@@ -121,9 +121,9 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 </table>
 
 #### Specification of the System Unit Class ChoreographyParticipantManager
-*SUC ChoreographyParticipantManager* ([Table 9.46](#table-946-interface-definition-of-suc-choreographyparticipantmanager)) is derived from *SUC ChoreographyElement* and is used to configure the configurable logic of a choreography participant. In addition, it provides information for type, version, and instance verification of choreographed logistics lines, see also Appendix~[Workflows](#subsec:AnhangManifestWorkflows). This interface definition is assigned to an *SUC ChoreographyParticipant* in the *ChoreographySet* via a LinkedObject relation.
+*SUC ChoreographyParticipantManager* ([Table 9.46](#table-946-dataassembly-definition-of-suc-choreographyparticipantmanager)) is derived from *SUC ChoreographyElement* and is used to configure the configurable logic of a choreography participant. In addition, it provides information for type, version, and instance verification of choreographed logistics lines, see also Appendix~[Workflows](#subsec:AnhangManifestWorkflows). This DataAssembly definition is assigned to an *SUC ChoreographyParticipant* in the *ChoreographySet* via a LinkedObject relation.
 
-##### Table 9.46: Interface Definition of *SUC ChoreographyParticipantManager*
+##### Table 9.46: DataAssembly definition of *SUC ChoreographyParticipantManager*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -140,97 +140,97 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 	<tr><td align="left">-</td><td align="left">-</td><td colspan="4" align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th align="left">Name</th><th align="left">Access</th><th align="left">Type</th><th align="left">Description</th><th align="left">Attribute-Type Reference</th><th align="left">Base Function</th></tr>
-	<tr><td align="left">ComposedTypeCode</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">identifier of the choreography type</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">ComposedTypeRevision</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">version of the choreography type</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">RoleIdent</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">identifier of the participant role within the choreography</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">ViewSel</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">selection to view prepared configuration (false) or active configuration (true)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">ViewCur</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">currently selected view: false = prepared, true = active</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">RestoreDefaultEn</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">enable flag to restore default configuration</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">RestoreDefault</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">restores the default config of all inputs, logics, and outputs</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">ExecuteEn</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">enable flag to execute the configurable logic</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">ExecuteOn</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">trigger to apply the current configuration and start the execution</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">ExecuteOff</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">trigger to quit the execution, outputs are set to default value</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">ExecuteAct</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">flag which indicates the active execution</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">ExecuteErr</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">flag which indicates min. one processing error</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">InputCnt</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">number of input configurations (maximum index of input configurations = InputCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">InputIndexSel</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of the desired input configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">InputIndexCur</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">index of the currently selected input configuration</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Input_VQC</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">value quality code of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Input_DataType</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Input_VReal</td><td align="left">LOL <- LEA</td><td align="left">REAL</td><td align="left">real value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Input_VDInt</td><td align="left">LOL <- LEA</td><td align="left">DINT</td><td align="left">double Integer value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Input_VDWord</td><td align="left">LOL <- LEA</td><td align="left">DWORD</td><td align="left">double Word value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Input_VBool</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">boolean value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Input_VString</td><td align="left">LOL <- LEA</td><td align="left">STRING</td><td align="left">string value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">LogicCnt</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">number of logic configurations (maximum index of logic configurations = LogicCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">LogicIndexSel</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of the desired logic configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">LogicIndexCur</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">index of the currently selected logic configuration</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_FuncTypeSel</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">function type selector of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In0_Source</td><td align="left">LOL -> LEA</td><td align="left">SINT</td><td align="left">source of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In0_Index</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In0_Const_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In0_Const_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In0_Const_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In0_Const_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In0_Const_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In0_Const_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In0_Const_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">constant String value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In1_Source</td><td align="left">LOL -> LEA</td><td align="left">SINT</td><td align="left">source of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In1_Index</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In1_Const_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In1_Const_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In1_Const_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In1_Const_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In1_Const_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In1_Const_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In1_Const_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">constant String value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In2_Source</td><td align="left">LOL -> LEA</td><td align="left">SINT</td><td align="left">source of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In2_Index</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In2_Const_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In2_Const_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In2_Const_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In2_Const_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In2_Const_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In2_Const_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In2_Const_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">constant String value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In3_Source</td><td align="left">LOL -> LEA</td><td align="left">SINT</td><td align="left">source of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In3_Index</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In3_Const_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In3_Const_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In3_Const_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In3_Const_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In3_Const_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In3_Const_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_In3_Const_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">constant String value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_Out_VQC</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_Out_DataType</td><td align="left">LOL <- LEA</td><td align="left">BYTE</td><td align="left">constant data type of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_Out_VReal</td><td align="left">LOL <- LEA</td><td align="left">REAL</td><td align="left">constant Real value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_Out_VDInt</td><td align="left">LOL <- LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_Out_VDWord</td><td align="left">LOL <- LEA</td><td align="left">DWORD</td><td align="left">constant Double Word value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_Out_VBool</td><td align="left">LOL <- LEA</td><td align="left">BOOL</td><td align="left">constant Boolean value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_Out_VString</td><td align="left">LOL <- LEA</td><td align="left">STRING</td><td align="left">constant String value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Logic_Ret</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">return value of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">OutputCnt</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">number of output configurations (maximum index of output configurations = OutputCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">OutputIndexSel</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of the desired output configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">OutputIndexCur</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">index of the currently selected output configuration</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Source</td><td align="left">LOL -> LEA</td><td align="left">SINT</td><td align="left">source of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Index</td><td align="left">LOL -> LEA</td><td align="left">UINT</td><td align="left">index of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_DataType</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Const_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Const_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">constant data type of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Const_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">constant Real value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Const_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Const_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">constant Double Word value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Const_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">constant Boolean value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Const_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">constant String value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Value_VQC</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">value quality code of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Value_DataTypeSel</td><td align="left">LOL -> LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Value_VReal</td><td align="left">LOL -> LEA</td><td align="left">REAL</td><td align="left">real value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Value_VDInt</td><td align="left">LOL -> LEA</td><td align="left">DINT</td><td align="left">double integer value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Value_VDWord</td><td align="left">LOL -> LEA</td><td align="left">DWORD</td><td align="left">double word value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Value_VBool</td><td align="left">LOL -> LEA</td><td align="left">BOOL</td><td align="left">boolean value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Value_VString</td><td align="left">LOL -> LEA</td><td align="left">STRING</td><td align="left">string value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
-	<tr><td align="left">Output_Ret</td><td align="left">LOL <- LEA</td><td align="left">UINT</td><td align="left">return value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ComposedTypeCode</td><td align="left">LOL ⟶ LEA</td><td align="left">STRING</td><td align="left">identifier of the choreography type</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ComposedTypeRevision</td><td align="left">LOL ⟶ LEA</td><td align="left">STRING</td><td align="left">version of the choreography type</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">RoleIdent</td><td align="left">LOL ⟶ LEA</td><td align="left">STRING</td><td align="left">identifier of the participant role within the choreography</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ViewSel</td><td align="left">LOL ⟶ LEA</td><td align="left">BOOL</td><td align="left">selection to view prepared configuration (false) or active configuration (true)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ViewCur</td><td align="left">LOL ⟵ LEA</td><td align="left">BOOL</td><td align="left">currently selected view: false = prepared, true = active</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">RestoreDefaultEn</td><td align="left">LOL ⟵ LEA</td><td align="left">BOOL</td><td align="left">enable flag to restore default configuration</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">RestoreDefault</td><td align="left">LOL ⟶ LEA</td><td align="left">BOOL</td><td align="left">restores the default config of all inputs, logics, and outputs</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ExecuteEn</td><td align="left">LOL ⟵ LEA</td><td align="left">BOOL</td><td align="left">enable flag to execute the configurable logic</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ExecuteOn</td><td align="left">LOL ⟶ LEA</td><td align="left">BOOL</td><td align="left">trigger to apply the current configuration and start the execution</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ExecuteOff</td><td align="left">LOL ⟶ LEA</td><td align="left">BOOL</td><td align="left">trigger to quit the execution, outputs are set to default value</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ExecuteAct</td><td align="left">LOL ⟵ LEA</td><td align="left">BOOL</td><td align="left">flag which indicates the active execution</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">ExecuteErr</td><td align="left">LOL ⟵ LEA</td><td align="left">BOOL</td><td align="left">flag which indicates min. one processing error</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">InputCnt</td><td align="left">LOL ⟵ LEA</td><td align="left">UINT</td><td align="left">number of input configurations (maximum index of input configurations = InputCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">InputIndexSel</td><td align="left">LOL ⟶ LEA</td><td align="left">UINT</td><td align="left">index of the desired input configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">InputIndexCur</td><td align="left">LOL ⟵ LEA</td><td align="left">UINT</td><td align="left">index of the currently selected input configuration</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VQC</td><td align="left">LOL ⟵ LEA</td><td align="left">BYTE</td><td align="left">value quality code of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_DataType</td><td align="left">LOL ⟵ LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VReal</td><td align="left">LOL ⟵ LEA</td><td align="left">REAL</td><td align="left">real value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VDInt</td><td align="left">LOL ⟵ LEA</td><td align="left">DINT</td><td align="left">double Integer value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VDWord</td><td align="left">LOL ⟵ LEA</td><td align="left">DWORD</td><td align="left">double Word value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VBool</td><td align="left">LOL ⟵ LEA</td><td align="left">BOOL</td><td align="left">boolean value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Input_VString</td><td align="left">LOL ⟵ LEA</td><td align="left">STRING</td><td align="left">string value of the currently selected input</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">LogicCnt</td><td align="left">LOL ⟵ LEA</td><td align="left">UINT</td><td align="left">number of logic configurations (maximum index of logic configurations = LogicCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">LogicIndexSel</td><td align="left">LOL ⟶ LEA</td><td align="left">UINT</td><td align="left">index of the desired logic configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">LogicIndexCur</td><td align="left">LOL ⟵ LEA</td><td align="left">UINT</td><td align="left">index of the currently selected logic configuration</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_FuncTypeSel</td><td align="left">LOL ⟶ LEA</td><td align="left">UINT</td><td align="left">function type selector of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Source</td><td align="left">LOL ⟶ LEA</td><td align="left">SINT</td><td align="left">source of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Index</td><td align="left">LOL ⟶ LEA</td><td align="left">UINT</td><td align="left">index of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VQC</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_DataTypeSel</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VReal</td><td align="left">LOL ⟶ LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VDInt</td><td align="left">LOL ⟶ LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VDWord</td><td align="left">LOL ⟶ LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VBool</td><td align="left">LOL ⟶ LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In0_Const_VString</td><td align="left">LOL ⟶ LEA</td><td align="left">STRING</td><td align="left">constant String value of input 0 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Source</td><td align="left">LOL ⟶ LEA</td><td align="left">SINT</td><td align="left">source of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Index</td><td align="left">LOL ⟶ LEA</td><td align="left">UINT</td><td align="left">index of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VQC</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_DataTypeSel</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VReal</td><td align="left">LOL ⟶ LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VDInt</td><td align="left">LOL ⟶ LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VDWord</td><td align="left">LOL ⟶ LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VBool</td><td align="left">LOL ⟶ LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In1_Const_VString</td><td align="left">LOL ⟶ LEA</td><td align="left">STRING</td><td align="left">constant String value of input 1 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Source</td><td align="left">LOL ⟶ LEA</td><td align="left">SINT</td><td align="left">source of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Index</td><td align="left">LOL ⟶ LEA</td><td align="left">UINT</td><td align="left">index of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VQC</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_DataTypeSel</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VReal</td><td align="left">LOL ⟶ LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VDInt</td><td align="left">LOL ⟶ LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VDWord</td><td align="left">LOL ⟶ LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VBool</td><td align="left">LOL ⟶ LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In2_Const_VString</td><td align="left">LOL ⟶ LEA</td><td align="left">STRING</td><td align="left">constant String value of input 2 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Source</td><td align="left">LOL ⟶ LEA</td><td align="left">SINT</td><td align="left">source of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Index</td><td align="left">LOL ⟶ LEA</td><td align="left">UINT</td><td align="left">index of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VQC</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_DataTypeSel</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">constant data type of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VReal</td><td align="left">LOL ⟶ LEA</td><td align="left">REAL</td><td align="left">constant Real value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VDInt</td><td align="left">LOL ⟶ LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VDWord</td><td align="left">LOL ⟶ LEA</td><td align="left">DWORD</td><td align="left">constant double word value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VBool</td><td align="left">LOL ⟶ LEA</td><td align="left">BOOL</td><td align="left">constant boolean value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_In3_Const_VString</td><td align="left">LOL ⟶ LEA</td><td align="left">STRING</td><td align="left">constant String value of input 3 of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VQC</td><td align="left">LOL ⟵ LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_DataType</td><td align="left">LOL ⟵ LEA</td><td align="left">BYTE</td><td align="left">constant data type of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VReal</td><td align="left">LOL ⟵ LEA</td><td align="left">REAL</td><td align="left">constant Real value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VDInt</td><td align="left">LOL ⟵ LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VDWord</td><td align="left">LOL ⟵ LEA</td><td align="left">DWORD</td><td align="left">constant Double Word value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VBool</td><td align="left">LOL ⟵ LEA</td><td align="left">BOOL</td><td align="left">constant Boolean value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Out_VString</td><td align="left">LOL ⟵ LEA</td><td align="left">STRING</td><td align="left">constant String value of output of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Logic_Ret</td><td align="left">LOL ⟵ LEA</td><td align="left">UINT</td><td align="left">return value of the currently selected logic element</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">OutputCnt</td><td align="left">LOL ⟵ LEA</td><td align="left">UINT</td><td align="left">number of output configurations (maximum index of output configurations = OutputCnt-1)</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">OutputIndexSel</td><td align="left">LOL ⟶ LEA</td><td align="left">UINT</td><td align="left">index of the desired output configuration to be shown</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">OutputIndexCur</td><td align="left">LOL ⟵ LEA</td><td align="left">UINT</td><td align="left">index of the currently selected output configuration</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Source</td><td align="left">LOL ⟶ LEA</td><td align="left">SINT</td><td align="left">source of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Index</td><td align="left">LOL ⟶ LEA</td><td align="left">UINT</td><td align="left">index of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_DataType</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VQC</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">constant value quality code of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_DataTypeSel</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">constant data type of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VReal</td><td align="left">LOL ⟶ LEA</td><td align="left">REAL</td><td align="left">constant Real value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VDInt</td><td align="left">LOL ⟶ LEA</td><td align="left">DINT</td><td align="left">constant Double Integer value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VDWord</td><td align="left">LOL ⟶ LEA</td><td align="left">DWORD</td><td align="left">constant Double Word value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VBool</td><td align="left">LOL ⟶ LEA</td><td align="left">BOOL</td><td align="left">constant Boolean value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Const_VString</td><td align="left">LOL ⟶ LEA</td><td align="left">STRING</td><td align="left">constant String value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VQC</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">value quality code of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_DataTypeSel</td><td align="left">LOL ⟶ LEA</td><td align="left">BYTE</td><td align="left">data type of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VReal</td><td align="left">LOL ⟶ LEA</td><td align="left">REAL</td><td align="left">real value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VDInt</td><td align="left">LOL ⟶ LEA</td><td align="left">DINT</td><td align="left">double integer value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VDWord</td><td align="left">LOL ⟶ LEA</td><td align="left">DWORD</td><td align="left">double word value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VBool</td><td align="left">LOL ⟶ LEA</td><td align="left">BOOL</td><td align="left">boolean value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Value_VString</td><td align="left">LOL ⟶ LEA</td><td align="left">STRING</td><td align="left">string value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
+	<tr><td align="left">Output_Ret</td><td align="left">LOL ⟵ LEA</td><td align="left">UINT</td><td align="left">return value of the currently selected output</td><td align="left">-</td><td align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6" align="left">-</td></tr>
 	<tr><td colspan="6" align="left"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
@@ -239,10 +239,10 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 </table>
 
 #### Specification of the System Unit Class CommunicationManager
-*SUC CommunicationManager* ([Table 9.47](#table-947-interface-definition-of-suc-communicationmanager)) is an abstract class derived from *SUC ChoreographyElement*. It is to be understood as a generic interface definition for configuring the configurable communication of a choreography participant. To use this interface definition, a concrete manager for a specific communication technology must be derived from it. So far, only *OpcUaClientServerManager* has been implemented for configuring OPC~UA client/server connections; additional derivations can be developed in the future. The derivations of *SUC CommunicationManager* are assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation, variable *ManagerLink*. In addition, each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*.
+*SUC CommunicationManager* ([Table 9.47](#table-947-dataassembly-definition-of-suc-communicationmanager)) is an abstract class derived from *SUC ChoreographyElement*. It is to be understood as a generic DataAssembly definition for configuring the configurable communication of a choreography participant. To use this DataAssembly definition, a concrete manager for a specific communication technology must be derived from it. So far, only *OpcUaClientServerManager* has been implemented for configuring OPC~UA client/server connections; additional derivations can be developed in the future. The derivations of *SUC CommunicationManager* are assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation, variable *ManagerLink*. In addition, each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*.
 
 <a id="tab:DataAssemblySucCommunicationManager"></a>
-##### Table 9.47: Interface Definition of *SUC CommunicationManager*
+##### Table 9.47: DataAssembly definition of *SUC CommunicationManager*
 
 <table>
 	<tr>
@@ -262,7 +262,7 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 	</tr>
 	<tr>
 		<th align="left">Description</th>
-		<td colspan="5" align="left">abstract interface definition for the communication between different choreography participants</td>
+		<td colspan="5" align="left">abstract DataAssembly definition for the communication between different choreography participants</td>
 	</tr>
 	<tr>
 		<th align="left">AutomationML Path</th>
@@ -332,10 +332,10 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 </table>
 
 #### Specification of the System Unit Class OpcUaClientServerManager
-*SUC OpcUaClientServerManager* ([Table 9.48](#table-948-interface-definition-of-suc-opcuaclientservermanager)) is derived from the abstract *SUC CommunicationManager*. It is used to configure OPC~UA client/server communication of an LEA with other LEAs participating in a choreography. *SUC OpcUaClientServerManager* is assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation, variable *ManagerLink*. Each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*. In the case of *OpcUaClientServerManager*, these communication elements are the *UaReader* and *UaWriter* managed by the manager, which are referenced via their index. The *UaReader* are each assigned to a *ConfigurableInputElement*, and the *UaWriter* are each assigned to a *ConfigurableOutputElement*. For the communication variant of active writing, *SUC OpcUaClientServerManager* manages the existing *ValueFields* of an LEA that can be written by other LEAs. 
+*SUC OpcUaClientServerManager* ([Table 9.48](#table-948-dataassembly-definition-of-suc-opcuaclientservermanager)) is derived from the abstract *SUC CommunicationManager*. It is used to configure OPC~UA client/server communication of a LEA with other LEAs participating in a choreography. *SUC OpcUaClientServerManager* is assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation, variable *ManagerLink*. Each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*. In the case of *OpcUaClientServerManager*, these communication elements are the *UaReader* and *UaWriter* managed by the manager, which are referenced via their index. The *UaReader* are each assigned to a *ConfigurableInputElement*, and the *UaWriter* are each assigned to a *ConfigurableOutputElement*. For the communication variant of active writing, *SUC OpcUaClientServerManager* manages the existing *ValueFields* of a LEA that can be written by other LEAs. 
 
 <a id="tab:DataAssemblySucOpcUaClientServerManager"></a>
-##### Table 9.48: Interface Definition of *SUC OpcUaClientServerManager*
+##### Table 9.48: DataAssembly definition of *SUC OpcUaClientServerManager*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>&#9654; Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -570,7 +570,7 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 </table>
 
 #### Specification of the System Unit Class ChoreographySet
-The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-choreographyset)), as a new aspect set of the MTP specification, is derived from *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) and organizes all model definitions required to describe an LEA as a participant in a choreography.
+The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-choreographyset)), as a new aspect set of the MTP specification, is derived from *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) and organizes all model definitions required to describe a LEA as a participant in a choreography.
 
 <a id="tab:SucChoreographySet"></a>
 ##### Table 9.51: Model Definition of *SUC ChoreographySet*
@@ -659,7 +659,7 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class ChoreographyParticipant
-*SUC ChoreographyParticipant* ([Table 9.52](#table-952-model-definition-of-suc-choreographyparticipant)) describes an LEA as a choreography participant. The interface definition *SUC ChoreographyParticipantManager* is assigned to this model definition via a LinkedObject relation.
+*SUC ChoreographyParticipant* ([Table 9.52](#table-952-model-definition-of-suc-choreographyparticipant)) describes a LEA as a choreography participant. The DataAssembly definition *SUC ChoreographyParticipantManager* is assigned to this model definition via a LinkedObject relation.
 
 <a id="tab:SucChoreographyParticipant"></a>
 ##### Table 9.52: Model Definition of *SUC ChoreographyParticipant*
@@ -1110,7 +1110,7 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class WritableInputElement
-*SUC WritableInputElement* ([Table 9.57](#table-957-model-definition-of-suc-writableinputelement)) is derived from *SUC InputElement* and describes an incoming system variable into which values can be written by another choreography participant. A *WritableInputElement* is assigned to a *WritableUnionElement* interface definition via a LinkedObject relation.
+*SUC WritableInputElement* ([Table 9.57](#table-957-model-definition-of-suc-writableinputelement)) is derived from *SUC InputElement* and describes an incoming system variable into which values can be written by another choreography participant. A *WritableInputElement* is assigned to a *WritableUnionElement* DataAssembly definition via a LinkedObject relation.
 
 <a id="tab:SucWritableInputElement"></a>
 ##### Table 9.57: Model Definition of *SUC WritableInputElement*
@@ -1569,4 +1569,4 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 
 
 [^1]: This derivation is possible because a write access always includes reading back the written value. A write access is therefore an extension of a read access.
-[^2]: *SUC CommunicationManager* and the derived *SUC OpcUaClientServerManager* can in principle also be used for configurable communication independently of choreographies, for example in decentralized orchestrations. Since such approaches are not yet provided in the MTP specification, these interface definitions are initially assigned to the *ChoreographySet*. For future cross-cutting use cases, a shift into the *ServerAssemblySet* [MTP Specification Part 5.1](../98_References/README.md#mtp-specification-part-51) may be appropriate.
+[^2]: *SUC CommunicationManager* and the derived *SUC OpcUaClientServerManager* can in principle also be used for configurable communication independently of choreographies, for example in decentralized orchestrations. Since such approaches are not yet provided in the MTP specification, these DataAssembly definitions are initially assigned to the *ChoreographySet*. For future cross-cutting use cases, a shift into the *ServerAssemblySet* [MTP Specification Part 5.1](../98_References/README.md#mtp-specification-part-51) may be appropriate.

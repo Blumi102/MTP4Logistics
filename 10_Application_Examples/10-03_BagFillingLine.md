@@ -71,23 +71,23 @@ The choreography configuration in terms of Configurable Logic and Configurable C
   </tr>
   <tr>
     <td align="left">Scenario 1 – Start-Up</td>
-    <td align="left">The line must be started up in an orderly manner from back to front, i.e., from the PAL to the FFS. The service of an LEA must therefore be started as soon as the service of the downstream LEA is running.</td>
+    <td align="left">The line must be started up in an orderly manner from back to front, i.e., from the PAL to the FFS. The service of a LEA must therefore be started as soon as the service of the downstream LEA is running.</td>
   </tr>
   <tr>
     <td align="left">Scenario 2 – Drain</td>
-    <td align="left">The line must be drained in an orderly manner from front to back, i.e., from the FFS to the PAL. The service of an LEA must therefore be stopped as soon as the service of the upstream LEA has been stopped.</td>
+    <td align="left">The line must be drained in an orderly manner from front to back, i.e., from the FFS to the PAL. The service of a LEA must therefore be stopped as soon as the service of the upstream LEA has been stopped.</td>
   </tr>
   <tr>
     <td align="left">Scenario 3 – Exception Handling</td>
-    <td align="left">When an error occurs in the packaging line, all LEAs must transition to a fault state. The service of an LEA must therefore switch to a fault state as soon as another LEA service or an existing LOL indicates a fault state.</td>
+    <td align="left">When an error occurs in the packaging line, all LEAs must transition to a fault state. The service of a LEA must therefore switch to a fault state as soon as another LEA service or an existing LOL indicates a fault state.</td>
   </tr>
   <tr>
     <td align="left">Scenario 4 – Unhold</td>
-    <td align="left">If the error is non-critical (service state: HELD), it must be possible to restart the Logistics Line after the fault has been resolved. The service of an LEA must therefore be restarted as soon as the service of the downstream LEA is running again.</td>
+    <td align="left">If the error is non-critical (service state: HELD), it must be possible to restart the Logistics Line after the fault has been resolved. The service of a LEA must therefore be restarted as soon as the service of the downstream LEA is running again.</td>
   </tr>
   <tr>
     <td align="left">Scenario 5 – Reset</td>
-    <td align="left">If a critical error has occurred or the filling process has been completed, it must be possible to reset the Logistics Line to its initial state IDLE. The service of an LEA must therefore be reset as soon as the service of the downstream LEA has been reset.</td>
+    <td align="left">If a critical error has occurred or the filling process has been completed, it must be possible to reset the Logistics Line to its initial state IDLE. The service of a LEA must therefore be reset as soon as the service of the downstream LEA has been reset.</td>
   </tr>
 </table>
 
@@ -139,8 +139,8 @@ In the present use case, the available process values for transmitting the clear
 ##### Figure 10.11: Exemplary Constants of a Bag Filling Line
 ![Exemplary Constants of a Bag Filling Line](./images/Const_Relationen.png)
 
-The ability to define constants is used in the case of the bag filling line to define the operating mode of the LEA services. For the three LEA services *BagFilling*, *Conveying*, and *Palletizing*, the *Access Mode* variable is set to a constant value of "1". The LEA controller interprets this as the *Automatic Internal* operating mode. For the Lead Service, the *Access Mode* is set to a constant value of "2". The LEA controller interprets this as the *Operator* operating mode. Furthermore, constants can be used, for example, to set parameters such as the *Speed* variable of the CONV to a constant value. Additionally, clearance signals can be permanently set to TRUE when an LEA, as in the example of the PAL, is located at the end of the Logistics Line and does not need to wait for clearance from a downstream LEA.
+The ability to define constants is used in the case of the bag filling line to define the operating mode of the LEA services. For the three LEA services *BagFilling*, *Conveying*, and *Palletizing*, the *Access Mode* variable is set to a constant value of "1". The LEA controller interprets this as the *Automatic Internal* operating mode. For the Lead Service, the *Access Mode* is set to a constant value of "2". The LEA controller interprets this as the *Operator* operating mode. Furthermore, constants can be used, for example, to set parameters such as the *Speed* variable of the CONV to a constant value. Additionally, clearance signals can be permanently set to TRUE when a LEA, as in the example of the PAL, is located at the end of the Logistics Line and does not need to wait for clearance from a downstream LEA.
 
 > **Best Practices for Choreography Configuration in Logistics Lines:**
-> - The Configurable Communication design pattern fundamentally enables the exchange of all information available in an LEA with other LEAs of a choreographed Logistics Line. However, to enable vendor-neutral interaction between LEAs, variables from the standardized MTP-based LEA interfaces should be exchanged wherever possible.
+> - The Configurable Communication design pattern fundamentally enables the exchange of all information available in a LEA with other LEAs of a choreographed Logistics Line. However, to enable vendor-neutral interaction between LEAs, variables from the standardized MTP-based LEA interfaces should be exchanged wherever possible.
 > - An exception is the interface of the External Lead. For this, "DoRequest and DoneReply relations" are recommended in accordance with [Stutz 2026](../98_References/README.md#stutz-2026), which enable the merging of different start and end points of a choreography relation across multiple LEA services.

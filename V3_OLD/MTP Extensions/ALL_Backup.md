@@ -829,12 +829,12 @@ The complex data type used must be derived from *AT StructuredDataType* defined 
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>OSLevel</td><td>LOL -> LEA</td><td>BYTE</td><td>OSLevel variable</td><td>-</td><td>OSLevel</td></tr>
-	<tr><td>IndexSel</td><td>LOL -> LEA</td><td>DINT</td><td>Index Select Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexMin</td><td>LOL <- LEA</td><td>DINT</td><td>Low Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexMax</td><td>LOL <- LEA</td><td>DINT</td><td>High Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexCur</td><td>LOL <- LEA</td><td>DINT</td><td>Current Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>V</td><td>LOL <- LEA</td><td>{VType}</td><td>Output Value</td><td>-</td><td>-</td></tr>
+	<tr><td>OSLevel</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>OSLevel variable</td><td>-</td><td>OSLevel</td></tr>
+	<tr><td>IndexSel</td><td>LOL ⟶ LEA</td><td>DINT</td><td>Index Select Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>IndexMin</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Low Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>IndexMax</td><td>LOL ⟵ LEA</td><td>DINT</td><td>High Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>IndexCur</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Current Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>V</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Output Value</td><td>-</td><td>-</td></tr>
 	<tr><td>VType</td><td>MTP</td><td><sup>a)</sup></td><td>Type Definition of the Values</td><td>{AT derived from BaseData-Type}</td><td>Complex-Type</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6"><sup>a)</sup> Type shall be &lt;empty&gt; in case of a StructuredDataType and shall be set to the defined type in case of a PrimitiveDataType.</td></tr>
@@ -874,10 +874,10 @@ By means of the *OSLevel* variable, it can be defined according to [MTP Specific
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>VOut</td><td>LOL <- LEA</td><td>{VType}</td><td>Value Output</td><td>-</td><td>-</td></tr>
-	<tr><td>VMan</td><td>LOL -> LEA</td><td>{VType}</td><td>Manual Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VRbk</td><td>LOL <- LEA</td><td>{VType}</td><td>Readback Value</td><td>-</td><td>Readback</td></tr>
-	<tr><td>VFbk</td><td>LOL <- LEA</td><td>{VType}</td><td>Feedback</td><td>-</td><td>Feedback</td></tr>
+	<tr><td>VOut</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Value Output</td><td>-</td><td>-</td></tr>
+	<tr><td>VMan</td><td>LOL ⟶ LEA</td><td>{VType}</td><td>Manual Value</td><td>-</td><td>-</td></tr>
+	<tr><td>VRbk</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Readback Value</td><td>-</td><td>Readback</td></tr>
+	<tr><td>VFbk</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Feedback</td><td>-</td><td>Feedback</td></tr>
 	<tr><td>VType</td><td>MTP</td><td>&lt;empty&gt;</td><td>Type Definition of the Value</td><td>{AT of StructuredDataType}</td><td>Complex-Type</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6">-</td></tr>
@@ -911,16 +911,16 @@ The distinctive feature of this interface definition is the use of a user-define
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>WQC</td><td>LOL <- LEA</td><td>BYTE</td><td>Worst Quality Code variable</td><td>-</td><td>WQC</td></tr>
-	<tr><td><em>VMan <sup>a)</sup></em></td><td><em>LOL -> LEA</em></td><td><em>{VType}</em></td><td><em>(relevant, if SrcManAct is true, see SourceMode) Manual Value</em></td><td><em>-</em></td><td><em>-</em></td></tr>
-	<tr><td>VInt</td><td>LOL <- LEA</td><td>{VType}</td><td>(relevant, if SrcIntAct is true, see SourceMode) Internal Value</td><td>-</td><td>-</td></tr>
-	<tr><td>SrcChannel</td><td>LOL <- LEA</td><td>BOOL</td><td>SourceMode channel; 0: operator (*Op) shall be used; 1: automatic (*Aut) shall be used</td><td>-</td><td>SourceMode</td></tr>
-	<tr><td>SrcManAut</td><td>LOL <- LEA</td><td>BOOL</td><td>Request SourceMode to Manual by automatic (if SrcChannel is true); 1: request manual; 0: no operation</td><td>-</td><td>SourceMode</td></tr>
-	<tr><td>SrcIntAut</td><td>LOL <- LEA</td><td>BOOL</td><td>Request SourceMode to Internal by automatic (if SrcChannel is true); 1: request internal; 0: no operation</td><td>-</td><td>SourceMode</td></tr>
-	<tr><td>SrcIntOp</td><td>LOL -> LEA</td><td>BOOL</td><td>Request SourceMode to Internal by operator (if SrcChannel is false); 1: request internal; 0: no operation</td><td>-</td><td>SourceMode</td></tr>
-	<tr><td>SrcManOp</td><td>LOL -> LEA</td><td>BOOL</td><td>Request SourceMode to Manual by operator (if SrcChannel is false); 1: request manual; 0: no operation</td><td>-</td><td>SourceMode</td></tr>
-	<tr><td>SrcIntAct</td><td>LOL <- LEA</td><td>BOOL</td><td>1: internal mode active</td><td>-</td><td>SourceMode</td></tr>
-	<tr><td>SrcManAct</td><td>LOL <- LEA</td><td>BOOL</td><td>1: manual mode active</td><td>-</td><td>SourceMode</td></tr>
+	<tr><td>WQC</td><td>LOL ⟵ LEA</td><td>BYTE</td><td>Worst Quality Code variable</td><td>-</td><td>WQC</td></tr>
+	<tr><td><em>VMan <sup>a)</sup></em></td><td><em>LOL ⟶ LEA</em></td><td><em>{VType}</em></td><td><em>(relevant, if SrcManAct is true, see SourceMode) Manual Value</em></td><td><em>-</em></td><td><em>-</em></td></tr>
+	<tr><td>VInt</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>(relevant, if SrcIntAct is true, see SourceMode) Internal Value</td><td>-</td><td>-</td></tr>
+	<tr><td>SrcChannel</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>SourceMode channel; 0: operator (*Op) shall be used; 1: automatic (*Aut) shall be used</td><td>-</td><td>SourceMode</td></tr>
+	<tr><td>SrcManAut</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>Request SourceMode to Manual by automatic (if SrcChannel is true); 1: request manual; 0: no operation</td><td>-</td><td>SourceMode</td></tr>
+	<tr><td>SrcIntAut</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>Request SourceMode to Internal by automatic (if SrcChannel is true); 1: request internal; 0: no operation</td><td>-</td><td>SourceMode</td></tr>
+	<tr><td>SrcIntOp</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>Request SourceMode to Internal by operator (if SrcChannel is false); 1: request internal; 0: no operation</td><td>-</td><td>SourceMode</td></tr>
+	<tr><td>SrcManOp</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>Request SourceMode to Manual by operator (if SrcChannel is false); 1: request manual; 0: no operation</td><td>-</td><td>SourceMode</td></tr>
+	<tr><td>SrcIntAct</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>1: internal mode active</td><td>-</td><td>SourceMode</td></tr>
+	<tr><td>SrcManAct</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>1: manual mode active</td><td>-</td><td>SourceMode</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6"><sup>a)</sup> VMan is inherited from the StructMan interface. However, its meaning changes slightly in this case since it is only used when the SourceMode is set to manual.</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
@@ -950,14 +950,14 @@ The *StructManInt* interface extends the *StructMan* interface by internal value
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>IndexSel</td><td>LOL -> LEA</td><td>DINT</td><td>Index Select Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexMin</td><td>LOL <- LEA</td><td>DINT</td><td>Low Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexMax</td><td>LOL <- LEA</td><td>DINT</td><td>High Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexCur</td><td>LOL <- LEA</td><td>DINT</td><td>Current Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>VMan</td><td>LOL -> LEA</td><td>{VType}</td><td>Manual Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VRbk</td><td>LOL <- LEA</td><td>{VType}</td><td>Readback Value</td><td>-</td><td>Readback</td></tr>
-	<tr><td>VFbk</td><td>LOL <- LEA</td><td>{VType}</td><td>Feedback</td><td>-</td><td>Feedback</td></tr>
-	<tr><td>VOut</td><td>LOL <- LEA</td><td>{VType}</td><td>Value Output</td><td>-</td><td>-</td></tr>
+	<tr><td>IndexSel</td><td>LOL ⟶ LEA</td><td>DINT</td><td>Index Select Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>IndexMin</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Low Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>IndexMax</td><td>LOL ⟵ LEA</td><td>DINT</td><td>High Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>IndexCur</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Current Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>VMan</td><td>LOL ⟶ LEA</td><td>{VType}</td><td>Manual Value</td><td>-</td><td>-</td></tr>
+	<tr><td>VRbk</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Readback Value</td><td>-</td><td>Readback</td></tr>
+	<tr><td>VFbk</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Feedback</td><td>-</td><td>Feedback</td></tr>
+	<tr><td>VOut</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Value Output</td><td>-</td><td>-</td></tr>
 	<tr><td>VType</td><td>MTP</td><td><sup>a)</sup></td><td>Type Definition of the Values</td><td>{AT derived from BaseData-Type}</td><td>Complex-Type</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6"><sup>a)</sup> Type shall be &lt;empty&gt; in case of a StructuredDataType and shall be set to the defined type in case of a PrimitiveDataType.</td></tr>
@@ -1596,7 +1596,7 @@ Die \emph{SUC StructServParam} (Tabelle~\ref{tab:DataAssemblySucStructServParam}
 	</tr>
 	<tr>
 		<td>VExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>{VType}</td>
 		<td>External Value</td>
 		<td>-</td>
@@ -1604,7 +1604,7 @@ Die \emph{SUC StructServParam} (Tabelle~\ref{tab:DataAssemblySucStructServParam}
 	</tr>
 	<tr>
 		<td>VInt</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>{VType}</td>
 		<td>Internal Value</td>
 		<td>-</td>
@@ -1612,7 +1612,7 @@ Die \emph{SUC StructServParam} (Tabelle~\ref{tab:DataAssemblySucStructServParam}
 	</tr>
 	<tr>
 		<td>VOp</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>{VType}</td>
 		<td>Operator Value</td>
 		<td>-</td>
@@ -1620,7 +1620,7 @@ Die \emph{SUC StructServParam} (Tabelle~\ref{tab:DataAssemblySucStructServParam}
 	</tr>
 	<tr>
 		<td>VReq</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>{VType}</td>
 		<td>Requested Value</td>
 		<td>-</td>
@@ -1628,7 +1628,7 @@ Die \emph{SUC StructServParam} (Tabelle~\ref{tab:DataAssemblySucStructServParam}
 	</tr>
 	<tr>
 		<td>VOut</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>{VType}</td>
 		<td>Output Value</td>
 		<td>-</td>
@@ -1636,7 +1636,7 @@ Die \emph{SUC StructServParam} (Tabelle~\ref{tab:DataAssemblySucStructServParam}
 	</tr>
 	<tr>
 		<td>VFbk</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>{VType}</td>
 		<td>Feedback Value</td>
 		<td>-</td>
@@ -1740,18 +1740,18 @@ The distinctive feature of this interface definition is the use of a user-define
 		<th>Attribute-Type Reference</th>
 		<th>Base Function</th>
 	</tr>
-	<tr><td>IndexExt</td><td>LOL -> LEA</td><td>DINT</td><td>External Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexInt</td><td>LOL <- LEA</td><td>DINT</td><td>Internal Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexOp</td><td>LOL -> LEA</td><td>DINT</td><td>Operator Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexMin</td><td>LOL <- LEA</td><td>DINT</td><td>Low Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexMax</td><td>LOL <- LEA</td><td>DINT</td><td>High Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>IndexCur</td><td>LOL <- LEA</td><td>DINT</td><td>Current Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
-	<tr><td>VExt</td><td>LOL -> LEA</td><td>{VType}</td><td>External Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VInt</td><td>LOL <- LEA</td><td>{VType}</td><td>Internal Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VOp</td><td>LOL -> LEA</td><td>{VType}</td><td>Operator Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VReq</td><td>LOL <- LEA</td><td>{VType}</td><td>Requested Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VOut</td><td>LOL <- LEA</td><td>{VType}</td><td>Output Value</td><td>-</td><td>-</td></tr>
-	<tr><td>VFbk</td><td>LOL <- LEA</td><td>{VType}</td><td>Feedback Value</td><td>-</td><td>-</td></tr>
+	<tr><td>IndexExt</td><td>LOL ⟶ LEA</td><td>DINT</td><td>External Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>IndexInt</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Internal Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>IndexOp</td><td>LOL ⟶ LEA</td><td>DINT</td><td>Operator Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>IndexMin</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Low Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>IndexMax</td><td>LOL ⟵ LEA</td><td>DINT</td><td>High Limit of the Index</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>IndexCur</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Current Index Value</td><td>-</td><td>Multiplexing for Arrays</td></tr>
+	<tr><td>VExt</td><td>LOL ⟶ LEA</td><td>{VType}</td><td>External Value</td><td>-</td><td>-</td></tr>
+	<tr><td>VInt</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Internal Value</td><td>-</td><td>-</td></tr>
+	<tr><td>VOp</td><td>LOL ⟶ LEA</td><td>{VType}</td><td>Operator Value</td><td>-</td><td>-</td></tr>
+	<tr><td>VReq</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Requested Value</td><td>-</td><td>-</td></tr>
+	<tr><td>VOut</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Output Value</td><td>-</td><td>-</td></tr>
+	<tr><td>VFbk</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Feedback Value</td><td>-</td><td>-</td></tr>
 	<tr><td>VType</td><td>MTP</td><td><sup>a)</sup></td><td>Type Definition of the Values</td><td>{AT of BaseDataType}</td><td>Complex-Type</td></tr>
 	<tr>
 		<td colspan="6"><strong>📌 Comment</strong></td>
@@ -1801,11 +1801,11 @@ According to the value of the variable *IndexCur*, the array element at the corr
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>Logistics-QuestionID</td><td>LOL <- LEA</td><td>DINT</td><td>Identifier of a currently pending logistics question</td><td>-</td><td></td></tr>
-	<tr><td>Logistics-QuestionParam1</td><td>LOL <- LEA</td><td>STRING</td><td>Question parameter 1 of a currently pending logistics question (e.g., ProductId)</td><td>-</td><td></td></tr>
-	<tr><td>Logistics-QuestionParam2</td><td>LOL <- LEA</td><td>STRING</td><td>Question parameter 2 of a currently pending logistics question (e.g., LogisticsObjectStatus)</td><td>-</td><td></td></tr>
-	<tr><td>Logistics-AnswerID</td><td>LOL -> LEA</td><td>DINT</td><td>Identifier of a currently given answer to a pending question</td><td>-</td><td></td></tr>
-	<tr><td>Logistics-AnswerTimeout</td><td>LOL -> LEA</td><td>TIME_OF_DAY</td><td>Timeout for a LEA to wait for an answer from a LOL; 0: timeout function deactivated; &gt; 0: timeout in s</td><td>-</td><td></td></tr>
+	<tr><td>Logistics-QuestionID</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Identifier of a currently pending logistics question</td><td>-</td><td></td></tr>
+	<tr><td>Logistics-QuestionParam1</td><td>LOL ⟵ LEA</td><td>STRING</td><td>Question parameter 1 of a currently pending logistics question (e.g., ProductId)</td><td>-</td><td></td></tr>
+	<tr><td>Logistics-QuestionParam2</td><td>LOL ⟵ LEA</td><td>STRING</td><td>Question parameter 2 of a currently pending logistics question (e.g., LogisticsObjectStatus)</td><td>-</td><td></td></tr>
+	<tr><td>Logistics-AnswerID</td><td>LOL ⟶ LEA</td><td>DINT</td><td>Identifier of a currently given answer to a pending question</td><td>-</td><td></td></tr>
+	<tr><td>Logistics-AnswerTimeout</td><td>LOL ⟶ LEA</td><td>TIME_OF_DAY</td><td>Timeout for a LEA to wait for an answer from a LOL; 0: timeout function deactivated; &gt; 0: timeout in s</td><td>-</td><td></td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
@@ -2217,7 +2217,7 @@ According to Section~[Prozesswerte](#sec:Prozesswerte), interface definitions fo
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>V</td><td>LOL -> LEA</td><td>{VType}</td><td>Value</td><td>-</td><td>-</td></tr>
+	<tr><td>V</td><td>LOL ⟶ LEA</td><td>{VType}</td><td>Value</td><td>-</td><td>-</td></tr>
 	<tr><td>VType</td><td>MTP</td><td>&lt;empty&gt;</td><td>Type Definition of the Value</td><td>{AT of Structured-DataType}</td><td>Complex-Type</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6">-</td></tr>
@@ -2250,11 +2250,11 @@ The required value is transferred in the variable *V* according to [MTP Specific
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>IndexSel</td><td>LOL <- LEA</td><td>DINT</td><td>Index Value</td><td>-</td><td>Multiplexing for Process Values</td></tr>
-	<tr><td>IndexMin</td><td>LOL -> LEA</td><td>DINT</td><td>Low Limit of the Index</td><td>-</td><td>Multiplexing for Process Values</td></tr>
-	<tr><td>IndexMax</td><td>LOL -> LEA</td><td>DINT</td><td>High Limit of the Index</td><td>-</td><td>Multiplexing for Process Values</td></tr>
-	<tr><td>IndexCur</td><td>LOL -> LEA</td><td>DINT</td><td>Current Index Value</td><td>-</td><td>Multiplexing for Process Values</td></tr>
-	<tr><td>V</td><td>LOL -> LEA</td><td>{VType}</td><td>Output Value</td><td>-</td><td>-</td></tr>
+	<tr><td>IndexSel</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Index Value</td><td>-</td><td>Multiplexing for Process Values</td></tr>
+	<tr><td>IndexMin</td><td>LOL ⟶ LEA</td><td>DINT</td><td>Low Limit of the Index</td><td>-</td><td>Multiplexing for Process Values</td></tr>
+	<tr><td>IndexMax</td><td>LOL ⟶ LEA</td><td>DINT</td><td>High Limit of the Index</td><td>-</td><td>Multiplexing for Process Values</td></tr>
+	<tr><td>IndexCur</td><td>LOL ⟶ LEA</td><td>DINT</td><td>Current Index Value</td><td>-</td><td>Multiplexing for Process Values</td></tr>
+	<tr><td>V</td><td>LOL ⟶ LEA</td><td>{VType}</td><td>Output Value</td><td>-</td><td>-</td></tr>
 	<tr><td>VType</td><td>MTP</td><td>a)</td><td>Type Definition of the Values</td><td>{AT of BaseDataType}</td><td>Complex-Type</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6"><sup>a)</sup> Type shall be &lt;empty&gt; in case of a StructuredDataType and shall be set to the defined type in case of a PrimitiveDataType.</td></tr>
@@ -2291,7 +2291,7 @@ The array position to be displayed is selected via the variable *IndexSel*. The 
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>WQC</td><td>LOL <- LEA</td><td>BYTE</td><td>Worst Quality Code variable</td><td>-</td><td>WQC</td></tr>
+	<tr><td>WQC</td><td>LOL ⟵ LEA</td><td>BYTE</td><td>Worst Quality Code variable</td><td>-</td><td>WQC</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
@@ -2323,11 +2323,11 @@ The array position to be displayed is selected via the variable *IndexSel*. The 
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>IndexSel</td><td>LOL -> LEA</td><td>DINT</td><td>Index Value</td><td>-</td><td>Multiplexing for Process Values</td></tr>
-	<tr><td>IndexMin</td><td>LOL <- LEA</td><td>DINT</td><td>Low Limit of the Index</td><td>-</td><td>Multiplexing for Process Values</td></tr>
-	<tr><td>IndexMax</td><td>LOL <- LEA</td><td>DINT</td><td>High Limit of the Index</td><td>-</td><td>Multiplexing for Process Values</td></tr>
-	<tr><td>IndexCur</td><td>LOL <- LEA</td><td>DINT</td><td>Current Index Value</td><td>-</td><td>Multiplexing for Process Values</td></tr>
-	<tr><td>V</td><td>LOL <- LEA</td><td>{VType}</td><td>Output Value</td><td>-</td><td>-</td></tr>
+	<tr><td>IndexSel</td><td>LOL ⟶ LEA</td><td>DINT</td><td>Index Value</td><td>-</td><td>Multiplexing for Process Values</td></tr>
+	<tr><td>IndexMin</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Low Limit of the Index</td><td>-</td><td>Multiplexing for Process Values</td></tr>
+	<tr><td>IndexMax</td><td>LOL ⟵ LEA</td><td>DINT</td><td>High Limit of the Index</td><td>-</td><td>Multiplexing for Process Values</td></tr>
+	<tr><td>IndexCur</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Current Index Value</td><td>-</td><td>Multiplexing for Process Values</td></tr>
+	<tr><td>V</td><td>LOL ⟵ LEA</td><td>{VType}</td><td>Output Value</td><td>-</td><td>-</td></tr>
 	<tr><td>VType</td><td>MTP</td><td>a)</td><td>Type Definition of the Values</td><td>{AT of BaseDataType}</td><td>Complex-Type</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6"><sup>a)</sup> Type shall be &lt;empty&gt; in case of a StructuredDataType and shall be set to the defined type in case of a PrimitiveDataType.</td></tr>
@@ -2399,13 +2399,13 @@ All model and interface definitions required for the *ChoreographySet* are assig
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>VQC</td><td>LOL <- LEA</td><td>BYTE</td><td>quality Code of the value</td><td>-</td><td>-</td></tr>
-	<tr><td>DataType</td><td>LOL <- LEA</td><td>BYTE</td><td>identifier of selected data type<br/>(0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td>-</td><td>-</td></tr>
-	<tr><td>VReal</td><td>LOL <- LEA</td><td>REAL</td><td>Real Value<br/>(Type: 1)</td><td>-</td><td>-</td></tr>
-	<tr><td>VDInt</td><td>LOL <- LEA</td><td>DINT</td><td>Double Integer Value (Type: 2)</td><td>-</td><td>-</td></tr>
-	<tr><td>VDWord</td><td>LOL <- LEA</td><td>DWORD</td><td>Double Word Value (Type: 3)</td><td>-</td><td>-</td></tr>
-	<tr><td>VBool</td><td>LOL <- LEA</td><td>BOOL</td><td>Boolean Value (Type: 4)</td><td>-</td><td>-</td></tr>
-	<tr><td>VString</td><td>LOL <- LEA</td><td>STRING</td><td>String Value<br/>(Type: 5)</td><td>-</td><td>-</td></tr>
+	<tr><td>VQC</td><td>LOL ⟵ LEA</td><td>BYTE</td><td>quality Code of the value</td><td>-</td><td>-</td></tr>
+	<tr><td>DataType</td><td>LOL ⟵ LEA</td><td>BYTE</td><td>identifier of selected data type<br/>(0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td>-</td><td>-</td></tr>
+	<tr><td>VReal</td><td>LOL ⟵ LEA</td><td>REAL</td><td>Real Value<br/>(Type: 1)</td><td>-</td><td>-</td></tr>
+	<tr><td>VDInt</td><td>LOL ⟵ LEA</td><td>DINT</td><td>Double Integer Value (Type: 2)</td><td>-</td><td>-</td></tr>
+	<tr><td>VDWord</td><td>LOL ⟵ LEA</td><td>DWORD</td><td>Double Word Value (Type: 3)</td><td>-</td><td>-</td></tr>
+	<tr><td>VBool</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>Boolean Value (Type: 4)</td><td>-</td><td>-</td></tr>
+	<tr><td>VString</td><td>LOL ⟵ LEA</td><td>STRING</td><td>String Value<br/>(Type: 5)</td><td>-</td><td>-</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6"><sup>a)</sup> Bei der <em>SUC UnionElement</em> könnten zukünftig noch andere Datentypen ergänzt werden. Alle weiteren Schnittstellen, die die <em>SUC UnionElement</em> nutzen, sollte folglich auch Erweiterungen erlauben und nicht <em>sealed</em> sein.</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
@@ -2437,13 +2437,13 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString * are used to di
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>quality Code of the value</td><td>-</td><td>-</td></tr>
-	<tr><td>DataType</td><td>LOL -> LEA</td><td>BYTE</td><td>identifier of selected data type (0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td>-</td><td>-</td></tr>
-	<tr><td>VReal</td><td>LOL -> LEA</td><td>REAL</td><td>Real Value (Type: 1)</td><td>-</td><td>-</td></tr>
-	<tr><td>VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>Double Integer Value (Type: 2)</td><td>-</td><td>-</td></tr>
-	<tr><td>VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>Double Word Value (Type: 3)</td><td>-</td><td>-</td></tr>
-	<tr><td>VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>Boolean Value (Type: 4)</td><td>-</td><td>-</td></tr>
-	<tr><td>VString</td><td>LOL -> LEA</td><td>STRING</td><td>String Value (Type: 5)</td><td>-</td><td>-</td></tr>
+	<tr><td>VQC</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>quality Code of the value</td><td>-</td><td>-</td></tr>
+	<tr><td>DataType</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>identifier of selected data type (0 : None, 1: VReal, 2: VDInt, 3: VDWord, 4: VBool, 5: VString)</td><td>-</td><td>-</td></tr>
+	<tr><td>VReal</td><td>LOL ⟶ LEA</td><td>REAL</td><td>Real Value (Type: 1)</td><td>-</td><td>-</td></tr>
+	<tr><td>VDInt</td><td>LOL ⟶ LEA</td><td>DINT</td><td>Double Integer Value (Type: 2)</td><td>-</td><td>-</td></tr>
+	<tr><td>VDWord</td><td>LOL ⟶ LEA</td><td>DWORD</td><td>Double Word Value (Type: 3)</td><td>-</td><td>-</td></tr>
+	<tr><td>VBool</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>Boolean Value (Type: 4)</td><td>-</td><td>-</td></tr>
+	<tr><td>VString</td><td>LOL ⟶ LEA</td><td>STRING</td><td>String Value (Type: 5)</td><td>-</td><td>-</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
@@ -2475,7 +2475,7 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>WQC</td><td>LOL <- LEA</td><td>BYTE</td><td>Worst Quality Code</td><td>-</td><td>WQC</td></tr>
+	<tr><td>WQC</td><td>LOL ⟵ LEA</td><td>BYTE</td><td>Worst Quality Code</td><td>-</td><td>WQC</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
@@ -2505,97 +2505,97 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 	<tr><td>-</td><td>-</td><td colspan="4">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Attributes</strong></td></tr>
 	<tr><th>Name</th><th>Access</th><th>Type</th><th>Description</th><th>Attribute-Type Reference</th><th>Base Function</th></tr>
-	<tr><td>ComposedTypeCode</td><td>LOL -> LEA</td><td>STRING</td><td>identifier of the choreography type</td><td>-</td><td>-</td></tr>
-	<tr><td>ComposedTypeRevision</td><td>LOL -> LEA</td><td>STRING</td><td>version of the choreography type</td><td>-</td><td>-</td></tr>
-	<tr><td>RoleIdent</td><td>LOL -> LEA</td><td>STRING</td><td>identifier of the participant role within the choreography</td><td>-</td><td>-</td></tr>
-	<tr><td>ViewSel</td><td>LOL -> LEA</td><td>BOOL</td><td>selection to view prepared configuration (false) or active configuration (true)</td><td>-</td><td>-</td></tr>
-	<tr><td>ViewCur</td><td>LOL <- LEA</td><td>BOOL</td><td>currently selected view: false = prepared, true = active</td><td>-</td><td>-</td></tr>
-	<tr><td>RestoreDefaultEn</td><td>LOL <- LEA</td><td>BOOL</td><td>enable flag to restore default configuration</td><td>-</td><td>-</td></tr>
-	<tr><td>RestoreDefault</td><td>LOL -> LEA</td><td>BOOL</td><td>restores the default config of all inputs, logics, and outputs</td><td>-</td><td>-</td></tr>
-	<tr><td>ExecuteEn</td><td>LOL <- LEA</td><td>BOOL</td><td>enable flag to execute the configurable logic</td><td>-</td><td>-</td></tr>
-	<tr><td>ExecuteOn</td><td>LOL -> LEA</td><td>BOOL</td><td>trigger to apply the current configuration and start the execution</td><td>-</td><td>-</td></tr>
-	<tr><td>ExecuteOff</td><td>LOL -> LEA</td><td>BOOL</td><td>trigger to quit the execution, outputs are set to default value</td><td>-</td><td>-</td></tr>
-	<tr><td>ExecuteAct</td><td>LOL <- LEA</td><td>BOOL</td><td>flag which indicates the active execution</td><td>-</td><td>-</td></tr>
-	<tr><td>ExecuteErr</td><td>LOL <- LEA</td><td>BOOL</td><td>flag which indicates min. one processing error</td><td>-</td><td>-</td></tr>
-	<tr><td>InputCnt</td><td>LOL <- LEA</td><td>UINT</td><td>number of input configurations (maximum index of input configurations = InputCnt-1)</td><td>-</td><td>-</td></tr>
-	<tr><td>InputIndexSel</td><td>LOL -> LEA</td><td>UINT</td><td>index of the desired input configuration to be shown</td><td>-</td><td>-</td></tr>
-	<tr><td>InputIndexCur</td><td>LOL <- LEA</td><td>UINT</td><td>index of the currently selected input configuration</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VQC</td><td>LOL <- LEA</td><td>BYTE</td><td>value quality code of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_DataType</td><td>LOL <- LEA</td><td>BYTE</td><td>data type of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VReal</td><td>LOL <- LEA</td><td>REAL</td><td>real value of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VDInt</td><td>LOL <- LEA</td><td>DINT</td><td>double Integer value of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VDWord</td><td>LOL <- LEA</td><td>DWORD</td><td>double Word value of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VBool</td><td>LOL <- LEA</td><td>BOOL</td><td>boolean value of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>Input_VString</td><td>LOL <- LEA</td><td>STRING</td><td>string value of the currently selected input</td><td>-</td><td>-</td></tr>
-	<tr><td>LogicCnt</td><td>LOL <- LEA</td><td>UINT</td><td>number of logic configurations (maximum index of logic configurations = LogicCnt-1)</td><td>-</td><td>-</td></tr>
-	<tr><td>LogicIndexSel</td><td>LOL -> LEA</td><td>UINT</td><td>index of the desired logic configuration to be shown</td><td>-</td><td>-</td></tr>
-	<tr><td>LogicIndexCur</td><td>LOL <- LEA</td><td>UINT</td><td>index of the currently selected logic configuration</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_FuncTypeSel</td><td>LOL -> LEA</td><td>UINT</td><td>function type selector of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Source</td><td>LOL -> LEA</td><td>SINT</td><td>source of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Index</td><td>LOL -> LEA</td><td>UINT</td><td>index of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>constant value quality code of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>constant data type of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>constant Real value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>constant Double Integer value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>constant double word value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>constant boolean value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In0_Const_VString</td><td>LOL -> LEA</td><td>STRING</td><td>constant String value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Source</td><td>LOL -> LEA</td><td>SINT</td><td>source of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Index</td><td>LOL -> LEA</td><td>UINT</td><td>index of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>constant value quality code of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>constant data type of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>constant Real value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>constant Double Integer value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>constant double word value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>constant boolean value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In1_Const_VString</td><td>LOL -> LEA</td><td>STRING</td><td>constant String value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Source</td><td>LOL -> LEA</td><td>SINT</td><td>source of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Index</td><td>LOL -> LEA</td><td>UINT</td><td>index of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>constant value quality code of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>constant data type of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>constant Real value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>constant Double Integer value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>constant double word value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>constant boolean value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In2_Const_VString</td><td>LOL -> LEA</td><td>STRING</td><td>constant String value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Source</td><td>LOL -> LEA</td><td>SINT</td><td>source of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Index</td><td>LOL -> LEA</td><td>UINT</td><td>index of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>constant value quality code of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>constant data type of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>constant Real value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>constant Double Integer value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>constant double word value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>constant boolean value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_In3_Const_VString</td><td>LOL -> LEA</td><td>STRING</td><td>constant String value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VQC</td><td>LOL <- LEA</td><td>BYTE</td><td>constant value quality code of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_DataType</td><td>LOL <- LEA</td><td>BYTE</td><td>constant data type of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VReal</td><td>LOL <- LEA</td><td>REAL</td><td>constant Real value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VDInt</td><td>LOL <- LEA</td><td>DINT</td><td>constant Double Integer value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VDWord</td><td>LOL <- LEA</td><td>DWORD</td><td>constant Double Word value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VBool</td><td>LOL <- LEA</td><td>BOOL</td><td>constant Boolean value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Out_VString</td><td>LOL <- LEA</td><td>STRING</td><td>constant String value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>Logic_Ret</td><td>LOL <- LEA</td><td>UINT</td><td>return value of the currently selected logic element</td><td>-</td><td>-</td></tr>
-	<tr><td>OutputCnt</td><td>LOL <- LEA</td><td>UINT</td><td>number of output configurations (maximum index of output configurations = OutputCnt-1)</td><td>-</td><td>-</td></tr>
-	<tr><td>OutputIndexSel</td><td>LOL -> LEA</td><td>UINT</td><td>index of the desired output configuration to be shown</td><td>-</td><td>-</td></tr>
-	<tr><td>OutputIndexCur</td><td>LOL <- LEA</td><td>UINT</td><td>index of the currently selected output configuration</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Source</td><td>LOL -> LEA</td><td>SINT</td><td>source of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Index</td><td>LOL -> LEA</td><td>UINT</td><td>index of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_DataType</td><td>LOL -> LEA</td><td>BYTE</td><td>data type of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>constant value quality code of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>constant data type of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>constant Real value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>constant Double Integer value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>constant Double Word value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>constant Boolean value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Const_VString</td><td>LOL -> LEA</td><td>STRING</td><td>constant String value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VQC</td><td>LOL -> LEA</td><td>BYTE</td><td>value quality code of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_DataTypeSel</td><td>LOL -> LEA</td><td>BYTE</td><td>data type of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VReal</td><td>LOL -> LEA</td><td>REAL</td><td>real value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VDInt</td><td>LOL -> LEA</td><td>DINT</td><td>double integer value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VDWord</td><td>LOL -> LEA</td><td>DWORD</td><td>double word value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VBool</td><td>LOL -> LEA</td><td>BOOL</td><td>boolean value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Value_VString</td><td>LOL -> LEA</td><td>STRING</td><td>string value of the currently selected output</td><td>-</td><td>-</td></tr>
-	<tr><td>Output_Ret</td><td>LOL <- LEA</td><td>UINT</td><td>return value of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>ComposedTypeCode</td><td>LOL ⟶ LEA</td><td>STRING</td><td>identifier of the choreography type</td><td>-</td><td>-</td></tr>
+	<tr><td>ComposedTypeRevision</td><td>LOL ⟶ LEA</td><td>STRING</td><td>version of the choreography type</td><td>-</td><td>-</td></tr>
+	<tr><td>RoleIdent</td><td>LOL ⟶ LEA</td><td>STRING</td><td>identifier of the participant role within the choreography</td><td>-</td><td>-</td></tr>
+	<tr><td>ViewSel</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>selection to view prepared configuration (false) or active configuration (true)</td><td>-</td><td>-</td></tr>
+	<tr><td>ViewCur</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>currently selected view: false = prepared, true = active</td><td>-</td><td>-</td></tr>
+	<tr><td>RestoreDefaultEn</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>enable flag to restore default configuration</td><td>-</td><td>-</td></tr>
+	<tr><td>RestoreDefault</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>restores the default config of all inputs, logics, and outputs</td><td>-</td><td>-</td></tr>
+	<tr><td>ExecuteEn</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>enable flag to execute the configurable logic</td><td>-</td><td>-</td></tr>
+	<tr><td>ExecuteOn</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>trigger to apply the current configuration and start the execution</td><td>-</td><td>-</td></tr>
+	<tr><td>ExecuteOff</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>trigger to quit the execution, outputs are set to default value</td><td>-</td><td>-</td></tr>
+	<tr><td>ExecuteAct</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>flag which indicates the active execution</td><td>-</td><td>-</td></tr>
+	<tr><td>ExecuteErr</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>flag which indicates min. one processing error</td><td>-</td><td>-</td></tr>
+	<tr><td>InputCnt</td><td>LOL ⟵ LEA</td><td>UINT</td><td>number of input configurations (maximum index of input configurations = InputCnt-1)</td><td>-</td><td>-</td></tr>
+	<tr><td>InputIndexSel</td><td>LOL ⟶ LEA</td><td>UINT</td><td>index of the desired input configuration to be shown</td><td>-</td><td>-</td></tr>
+	<tr><td>InputIndexCur</td><td>LOL ⟵ LEA</td><td>UINT</td><td>index of the currently selected input configuration</td><td>-</td><td>-</td></tr>
+	<tr><td>Input_VQC</td><td>LOL ⟵ LEA</td><td>BYTE</td><td>value quality code of the currently selected input</td><td>-</td><td>-</td></tr>
+	<tr><td>Input_DataType</td><td>LOL ⟵ LEA</td><td>BYTE</td><td>data type of the currently selected input</td><td>-</td><td>-</td></tr>
+	<tr><td>Input_VReal</td><td>LOL ⟵ LEA</td><td>REAL</td><td>real value of the currently selected input</td><td>-</td><td>-</td></tr>
+	<tr><td>Input_VDInt</td><td>LOL ⟵ LEA</td><td>DINT</td><td>double Integer value of the currently selected input</td><td>-</td><td>-</td></tr>
+	<tr><td>Input_VDWord</td><td>LOL ⟵ LEA</td><td>DWORD</td><td>double Word value of the currently selected input</td><td>-</td><td>-</td></tr>
+	<tr><td>Input_VBool</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>boolean value of the currently selected input</td><td>-</td><td>-</td></tr>
+	<tr><td>Input_VString</td><td>LOL ⟵ LEA</td><td>STRING</td><td>string value of the currently selected input</td><td>-</td><td>-</td></tr>
+	<tr><td>LogicCnt</td><td>LOL ⟵ LEA</td><td>UINT</td><td>number of logic configurations (maximum index of logic configurations = LogicCnt-1)</td><td>-</td><td>-</td></tr>
+	<tr><td>LogicIndexSel</td><td>LOL ⟶ LEA</td><td>UINT</td><td>index of the desired logic configuration to be shown</td><td>-</td><td>-</td></tr>
+	<tr><td>LogicIndexCur</td><td>LOL ⟵ LEA</td><td>UINT</td><td>index of the currently selected logic configuration</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_FuncTypeSel</td><td>LOL ⟶ LEA</td><td>UINT</td><td>function type selector of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In0_Source</td><td>LOL ⟶ LEA</td><td>SINT</td><td>source of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In0_Index</td><td>LOL ⟶ LEA</td><td>UINT</td><td>index of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In0_Const_VQC</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>constant value quality code of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In0_Const_DataTypeSel</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>constant data type of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In0_Const_VReal</td><td>LOL ⟶ LEA</td><td>REAL</td><td>constant Real value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In0_Const_VDInt</td><td>LOL ⟶ LEA</td><td>DINT</td><td>constant Double Integer value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In0_Const_VDWord</td><td>LOL ⟶ LEA</td><td>DWORD</td><td>constant double word value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In0_Const_VBool</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>constant boolean value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In0_Const_VString</td><td>LOL ⟶ LEA</td><td>STRING</td><td>constant String value of input 0 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In1_Source</td><td>LOL ⟶ LEA</td><td>SINT</td><td>source of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In1_Index</td><td>LOL ⟶ LEA</td><td>UINT</td><td>index of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In1_Const_VQC</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>constant value quality code of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In1_Const_DataTypeSel</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>constant data type of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In1_Const_VReal</td><td>LOL ⟶ LEA</td><td>REAL</td><td>constant Real value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In1_Const_VDInt</td><td>LOL ⟶ LEA</td><td>DINT</td><td>constant Double Integer value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In1_Const_VDWord</td><td>LOL ⟶ LEA</td><td>DWORD</td><td>constant double word value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In1_Const_VBool</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>constant boolean value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In1_Const_VString</td><td>LOL ⟶ LEA</td><td>STRING</td><td>constant String value of input 1 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In2_Source</td><td>LOL ⟶ LEA</td><td>SINT</td><td>source of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In2_Index</td><td>LOL ⟶ LEA</td><td>UINT</td><td>index of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In2_Const_VQC</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>constant value quality code of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In2_Const_DataTypeSel</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>constant data type of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In2_Const_VReal</td><td>LOL ⟶ LEA</td><td>REAL</td><td>constant Real value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In2_Const_VDInt</td><td>LOL ⟶ LEA</td><td>DINT</td><td>constant Double Integer value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In2_Const_VDWord</td><td>LOL ⟶ LEA</td><td>DWORD</td><td>constant double word value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In2_Const_VBool</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>constant boolean value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In2_Const_VString</td><td>LOL ⟶ LEA</td><td>STRING</td><td>constant String value of input 2 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In3_Source</td><td>LOL ⟶ LEA</td><td>SINT</td><td>source of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In3_Index</td><td>LOL ⟶ LEA</td><td>UINT</td><td>index of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In3_Const_VQC</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>constant value quality code of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In3_Const_DataTypeSel</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>constant data type of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In3_Const_VReal</td><td>LOL ⟶ LEA</td><td>REAL</td><td>constant Real value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In3_Const_VDInt</td><td>LOL ⟶ LEA</td><td>DINT</td><td>constant Double Integer value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In3_Const_VDWord</td><td>LOL ⟶ LEA</td><td>DWORD</td><td>constant double word value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In3_Const_VBool</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>constant boolean value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_In3_Const_VString</td><td>LOL ⟶ LEA</td><td>STRING</td><td>constant String value of input 3 of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_Out_VQC</td><td>LOL ⟵ LEA</td><td>BYTE</td><td>constant value quality code of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_Out_DataType</td><td>LOL ⟵ LEA</td><td>BYTE</td><td>constant data type of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_Out_VReal</td><td>LOL ⟵ LEA</td><td>REAL</td><td>constant Real value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_Out_VDInt</td><td>LOL ⟵ LEA</td><td>DINT</td><td>constant Double Integer value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_Out_VDWord</td><td>LOL ⟵ LEA</td><td>DWORD</td><td>constant Double Word value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_Out_VBool</td><td>LOL ⟵ LEA</td><td>BOOL</td><td>constant Boolean value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_Out_VString</td><td>LOL ⟵ LEA</td><td>STRING</td><td>constant String value of output of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>Logic_Ret</td><td>LOL ⟵ LEA</td><td>UINT</td><td>return value of the currently selected logic element</td><td>-</td><td>-</td></tr>
+	<tr><td>OutputCnt</td><td>LOL ⟵ LEA</td><td>UINT</td><td>number of output configurations (maximum index of output configurations = OutputCnt-1)</td><td>-</td><td>-</td></tr>
+	<tr><td>OutputIndexSel</td><td>LOL ⟶ LEA</td><td>UINT</td><td>index of the desired output configuration to be shown</td><td>-</td><td>-</td></tr>
+	<tr><td>OutputIndexCur</td><td>LOL ⟵ LEA</td><td>UINT</td><td>index of the currently selected output configuration</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Source</td><td>LOL ⟶ LEA</td><td>SINT</td><td>source of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Index</td><td>LOL ⟶ LEA</td><td>UINT</td><td>index of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_DataType</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>data type of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Const_VQC</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>constant value quality code of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Const_DataTypeSel</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>constant data type of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Const_VReal</td><td>LOL ⟶ LEA</td><td>REAL</td><td>constant Real value of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Const_VDInt</td><td>LOL ⟶ LEA</td><td>DINT</td><td>constant Double Integer value of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Const_VDWord</td><td>LOL ⟶ LEA</td><td>DWORD</td><td>constant Double Word value of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Const_VBool</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>constant Boolean value of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Const_VString</td><td>LOL ⟶ LEA</td><td>STRING</td><td>constant String value of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Value_VQC</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>value quality code of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Value_DataTypeSel</td><td>LOL ⟶ LEA</td><td>BYTE</td><td>data type of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Value_VReal</td><td>LOL ⟶ LEA</td><td>REAL</td><td>real value of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Value_VDInt</td><td>LOL ⟶ LEA</td><td>DINT</td><td>double integer value of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Value_VDWord</td><td>LOL ⟶ LEA</td><td>DWORD</td><td>double word value of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Value_VBool</td><td>LOL ⟶ LEA</td><td>BOOL</td><td>boolean value of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Value_VString</td><td>LOL ⟶ LEA</td><td>STRING</td><td>string value of the currently selected output</td><td>-</td><td>-</td></tr>
+	<tr><td>Output_Ret</td><td>LOL ⟵ LEA</td><td>UINT</td><td>return value of the currently selected output</td><td>-</td><td>-</td></tr>
 	<tr><td colspan="6"><strong>📌 Comment</strong></td></tr>
 	<tr><td colspan="6">-</td></tr>
 	<tr><td colspan="6"><strong>📌 AutomationML Object - Instance Constraints</strong></td></tr>
@@ -4044,7 +4044,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>WQC</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>BYTE</td>
 		<td>Worst Quality Code</td>
 		<td>-</td>
@@ -4230,7 +4230,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConfigApplyEn</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>BOOL</td>
 		<td>Enable flag to apply the prepared configuration</td>
 		<td>-</td>
@@ -4238,7 +4238,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConfigApplyExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>BOOL</td>
 		<td>Apply the prepared configuration</td>
 		<td>-</td>
@@ -4246,7 +4246,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConnectEn</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>BOOL</td>
 		<td>Enable flag to establish connection</td>
 		<td>-</td>
@@ -4254,7 +4254,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConnectExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>BOOL</td>
 		<td>Establish connection</td>
 		<td>-</td>
@@ -4262,7 +4262,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>DisconnectEn</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>BOOL</td>
 		<td>Enable flag to remove connection</td>
 		<td>-</td>
@@ -4270,7 +4270,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>DisconnectExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>BOOL</td>
 		<td>Remove connection</td>
 		<td>-</td>
@@ -4278,7 +4278,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ResetExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>BOOL</td>
 		<td>Reset communication block</td>
 		<td>-</td>
@@ -4286,7 +4286,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConnectionAct</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>BOOL</td>
 		<td>Flag indicating an established connection</td>
 		<td>-</td>
@@ -4294,7 +4294,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConnectionErr</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>BOOL</td>
 		<td>Flag indicating a connection error</td>
 		<td>-</td>
@@ -4302,7 +4302,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ErrorId</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>DWORD</td>
 		<td>Identifier of the connection error</td>
 		<td>-</td>
@@ -4310,7 +4310,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>EndpointExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>STRING</td>
 		<td>Defines the server URL to connect with</td>
 		<td>-</td>
@@ -4318,7 +4318,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>NamespaceExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>STRING</td>
 		<td>Defines Namespace to be used</td>
 		<td>-</td>
@@ -4326,7 +4326,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>EndpointReq</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>STRING</td>
 		<td>Requested server URL</td>
 		<td>-</td>
@@ -4334,7 +4334,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>NamespaceReq</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>STRING</td>
 		<td>Requested namespace</td>
 		<td>-</td>
@@ -4342,7 +4342,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>EndpointCur</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>STRING</td>
 		<td>Currently configured server URL</td>
 		<td>-</td>
@@ -4350,7 +4350,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>NamespaceCur</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>STRING</td>
 		<td>Currently configured namespace</td>
 		<td>-</td>
@@ -4358,7 +4358,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>LeaStateCur</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>DWORD</td>
 		<td>MTP service state of the LEA service</td>
 		<td>-</td>
@@ -4451,7 +4451,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConfigApplyEn</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>BOOL</td>
 		<td>Enable flag to apply the prepared configuration</td>
 		<td>-</td>
@@ -4459,7 +4459,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConfigApplyExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>BOOL</td>
 		<td>Apply the prepared configuration</td>
 		<td>-</td>
@@ -4467,7 +4467,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConnectEn</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>BOOL</td>
 		<td>Enable flag to establish connection</td>
 		<td>-</td>
@@ -4475,7 +4475,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConnectExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>BOOL</td>
 		<td>Establish connection</td>
 		<td>-</td>
@@ -4483,7 +4483,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>DisconnectEn</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>BOOL</td>
 		<td>Enable flag to remove connection</td>
 		<td>-</td>
@@ -4491,7 +4491,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>DisconnectExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>BOOL</td>
 		<td>Remove connection</td>
 		<td>-</td>
@@ -4499,7 +4499,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ResetExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>BOOL</td>
 		<td>Reset communication block</td>
 		<td>-</td>
@@ -4507,7 +4507,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConnectionAct</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>BOOL</td>
 		<td>Flag indicating an established connection</td>
 		<td>-</td>
@@ -4515,7 +4515,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ConnectionErr</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>BOOL</td>
 		<td>Flag indicating a connection error</td>
 		<td>-</td>
@@ -4523,7 +4523,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ErrorId</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>DWORD</td>
 		<td>Identifier of the connection error</td>
 		<td>-</td>
@@ -4531,7 +4531,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ProxyIdExt</td>
-		<td>LOL -> LEA</td>
+		<td>LOL ⟶ LEA</td>
 		<td>DINT</td>
 		<td>Defines related proxy in the transportsystem</td>
 		<td>-</td>
@@ -4539,7 +4539,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ProxyIdReq</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>DINT</td>
 		<td>Requested transport proxy</td>
 		<td>-</td>
@@ -4547,7 +4547,7 @@ All model and interface definitions required for the *TransportSet* are assigned
 	</tr>
 	<tr>
 		<td>ProxyIdCur</td>
-		<td>LOL <- LEA</td>
+		<td>LOL ⟵ LEA</td>
 		<td>DINT</td>
 		<td>Currently configured transport proxy</td>
 		<td>-</td>

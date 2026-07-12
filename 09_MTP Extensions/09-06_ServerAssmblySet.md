@@ -2,7 +2,7 @@
 This chapter specifies all identified extensions of the *ServerAssemblySet* and integrates them into the existing MTP specification [MTP Specification Part 5.1](../98_References/README.md#mtp-specification-part-51) and [MTP Specification Part 5](../98_References/README.md#mtp-specification-part-5), respectively.
 
 #### Mapping Complex Data Types in OPC UA
-The specification chapters [MTP Extension of the DataAssemblySet](#sec:AnhangDataAssemblySet), [MTP Extension of the ServiceSet](#sec:AnhangServiceSet), and [MTP Extension of the ProcessValueSet](#sec:AnhangProcessValueSet) described interface definitions with complex data types, Struct and Array. To transmit these data types via OPC UA, not only the existing primitive data types but also the mapping of complex data types into the address space of the OPC UA server of an LEA must be specified.
+The specification chapters [MTP Extension of the DataAssemblySet](#sec:AnhangDataAssemblySet), [MTP Extension of the ServiceSet](#sec:AnhangServiceSet), and [MTP Extension of the ProcessValueSet](#sec:AnhangProcessValueSet) described DataAssembly definitions with complex data types, Struct and Array. To transmit these data types via OPC UA, not only the existing primitive data types but also the mapping of complex data types into the address space of the OPC UA server of a LEA must be specified.
 
 [Figure 9.17](#figure-917-mapping-of-structured-data-types-in-opc-ua-based-on-pno2025part5) shows the mapping of variables of **structured data types** in OPC UA.
 

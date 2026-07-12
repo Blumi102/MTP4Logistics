@@ -1,0 +1,677 @@
+\chapter{Problemkontext}
+\label{chap:problemkontext}
+
+Dieses Kapitel untersucht modulare Verpackungssysteme als Problemkontext dieser Dissertation. In Abschnitt~\ref{sec:ProduktionsnaheLogistik} werden zunächst der Bereich der produktionsnahen Logistik eingeordnet und typische Verpackungsprozesse beschrieben. Nachfolgend werden in Abschnitt~\ref{sec:ProblemkontextMLS} die Struktur und Arbeitsweise modularer Verpackungssysteme vorgestellt. Der Abschnitt~\ref{sec:Anforderungen} leitet schließlich unter Berücksichtigung bestehender Literatur Anforderungen an die Automatisierung der verschiedenen Bestandteile eines modularen Verpackungssystems ab. 
+
+\section{Produktionsnahe Logistik}
+\label{sec:ProduktionsnaheLogistik}
+
+\subsection{Einordnung}
+\label{subsec:EinordnungProduktionsnaheLogistik}
+
+Gemäß \cite{DIN.2015} umfasst die Wertschöpfungskette produzierender Unternehmen den Einkauf, die Produktion und den Vertrieb. Die zugehörigen logistischen Aufgaben der Beschaffungs-, Produktions- und Distributionslogistik zielen darauf ab, die richtigen Mengen benötigten Materials in der richtigen Qualität an den richtigen Stellen im Unternehmen zur richtigen Zeit wirtschaftlich bereitzustellen. Die produktionsnahe Logistik umfasst den Teil der Produktionslogistik, der die Versorgung von Produktionsprozessen mit Rohstoffen und die Verpackung der Produkte sicherstellt \cite{Kessler.2015,NAMURAK4.19.2020}.
+
+Diese Dissertation fokussiert auf Verpackungsprozesse der Prozessindustrie als Teil der produktionsnahen Logistik. Dies umfasst die Verpackung und Diskretisierung von Produktströmen (z.~B. Schütt- oder Flüssiggüter) in individuelle, eindeutig identifizierbare Einheiten, die gemäß \cite{NAMURAK4.19.2020} als Logistische Leistungsobjekte (engl. \textbf{\gls{lo}}) bezeichnet werden.
+ 
+\subsection{Typische Verpackungsprozesse}
+\label{subsec:Verpackungsprozesse}
+
+Im Rahmen des MoProLog-Projekts wurden gemeinsam mit Anwendern und Herstellern von Verpackungssystemen verschiedene bestehende Verpackungsprozesse untersucht und die in Abbildung~\ref{ProzessketteFig} dargestellte generische Prozesskette abgeleitet \cite{Gryczycha.2023}. Diese abstrahiert typische Verpackungsprozessschritte, die danach klassifiziert sind, ob sie an der Erstellung der Primärverpackung (Consumer Unit), Sekundärverpackung (Trade Unit) oder Transportverpackung (Logistics Unit) gemäß \cite{DIN.2014} beteiligt sind. Ein konkreter Verpackungsprozess weist meist nur einen Teil aller dargestellten Prozessschritte auf. 
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/03_Problemkontext/Referenzprozessmodell.pdf}}
+	\caption{Generische Prozesskette für Verpackungsprozesse, in Anlehnung an \cite{Gryczycha.2023}}
+	\label{ProzessketteFig}
+\end{figure}
+
+Abbildung~\ref{ProzessketteAnalyseFig} stellt beispielhaft die notwendigen Prozessschritte für einen Kanisterabfüllprozess (K), einen Sackabfüllprozess (S) und einen Oktabinabfüllprozess (O)\footnote{Oktabins sind achteckige Behälter aus Wellpappe zum Transport und zur Lagerung von Schüttgütern.} dar.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/03_Problemkontext/Referenzprozessmodell_Analyse.pdf}}
+	\caption{Analyse der generischen Prozesskette für einen Kanister-, Sack- und Oktabinabfüllprozess, in Anlehnung an \cite{Blumenstein.Designprinzipien}}
+	\label{ProzessketteAnalyseFig}
+\end{figure}
+
+\section{Modulare Logistische Systeme}
+\label{sec:ProblemkontextMLS}
+
+Im MoProLog-Projekt wurden eine generelle Struktur modularer Verpackungssysteme und deren grundlegende Arbeitsweise erarbeitet, die in den Abschnitten~\ref{subsec:StrukturMLS} und \ref{subsec:ArbeitsweiseMLS} beschrieben werden. An dieser Erarbeitung hat die Autorin der vorliegenden Dissertation mitgewirkt.
+
+\subsection{Struktur}
+\label{subsec:StrukturMLS}
+
+\subsubsection{Strukturebenen Modularer Logistischer Systeme}
+
+Der Grundgedanke der Modularisierung ist die Unterteilung eines Systems (hier: Verpackungssystem) in voneinander abgegrenzte Module, die sich wiederum in Sub-Module zerlegen lassen. Diese Zerlegung in immer kleinere hierarchisch angeordnete Module resultiert in \textbf{Strukturebenen}. Die im Folgenden beschriebenen Strukturebenen modularer Verpackungssysteme basieren auf dem MoProLog-Projekt und sind teilweise in \cite{Blumenstein.Designprinzipien} publiziert. Abbildung~\ref{StrukturebenenFig} stellt diese dar und ordnet sie in bestehende Strukturmodelle modularer Systeme gemäß \cite{VDI.2020}, PackML \cite{InternationalSocietyofAutomation.2022,ISA.2010} und \cite{NAMURAK4.19.2020} ein. 
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.9\textwidth]{Inhalt/Abbildungen/03_Problemkontext/Strukturebenen.pdf}}
+	\caption{Einordnung der Strukturebenen Modularer Logistischer Systeme in bestehende Strukturmodelle modularer Systeme}
+	\label{StrukturebenenFig}
+\end{figure}
+
+Ein Modulares Logistisches System (engl. \textbf{\gls{mls}})\footnote{\textbf{Hinweis:} Wie in Abschnitt~\ref{sec:ziel} beschrieben, fokussiert diese Dissertation auf den Bereich der Verpackungslogistik. Im Sinne einer späteren Generalisierung werden allerdings bei der Benennung der Strukturebenen bewusst generellere Begrifflichkeiten mit der Vorsilbe \enquote{Logistik...}/\enquote{Logistics...} anstatt \enquote{Verpackung...}/\enquote{Packaging...} verwendet. \\ Zur begrifflichen Abgrenzung von anderweitig umgesetzten Lösungen werden im Rahmen dieser Dissertation die hier eingeführten englischen Begrifflichkeiten und Abkürzungen der Strukturebenen verwendet.} ist die höchste Aggregationsebene und dient zur Ausführung eines oder mehrerer Logistikprozesse (hier: Verpackungsprozesse gemäß der generischen Prozesskette) auf Basis von Verpackungsaufträgen. Es unterscheidet sich von heutigen Verpackungssystemen durch seine modulare Struktur. Ein MLS besteht aus einer Logistics Area und einem \textbf{\gls{lol}}, der als Orchestrierungsebene die Steuerung, Verwaltung und Überwachung des MLS übernimmt.
+Ein Logistikbereich (engl. \textbf{\gls{la}}) ist ein Verbund aus lose gekoppelten Logistics Equipment Assemblies und Logistics Lines in einem gemeinsamen Arbeitsbereich (z.~B. dieselbe Werkhalle). Sie ist durch flexible, zur Laufzeit konfigurierbare Materialflüsse charakterisiert. Die Logistics Equipment Assemblies und Logistics Lines innerhalb einer Logistics Area weisen durch ihre lose Kopplung nur geringe Abhängigkeiten voneinander auf.
+Eine Logistiklinie (engl. \textbf{\gls{ll}}) ist ein Verbund aus starr gekoppelten Logistics Equipment Assemblies mit festgelegtem Materialfluss. Transportwege werden durch den physischen Aufbau der Logistics Line zum Engineeringzeitpunkt bestimmt und sind zur Laufzeit unveränderlich. Die Logistics Equipment Assemblies einer Logistics Line weisen durch ihre starre Kopplung starke Abhängigkeiten voneinander auf.
+Eine Modulare Logistikeinheit (engl. \textbf{\gls{lea}}) ist ein austauschbarer Bestandteil eines MLS. Eine LEA ist vergleichbar zu einer PEA gemäß \cite{VDI.2020}, führt allerdings logistische Funktionen gemäß Abbildung~\ref{ProzessketteFig} aus. Dabei werden LOs, wie z.~B. Säcke und Paletten, verpackt und verarbeitet. Eine LEA umfasst die notwendige Hardware und Software zur weitgehend unabhängigen Aus\-füh\-rung ihrer Funktion. Im Unterschied zu bestehenden Package Units verfügt jede LEA über eine eigene Steuerung und stellt ihre Funktionalität über standardisierte Schnittstellen bereit, wodurch eine automatisierte Integration in ein MLS möglich ist. Innerhalb eines MLS kann eine LEA mit dem LOL sowie mit anderen LEAs kommunizieren. Diese Möglichkeit der direkten LEA-zu-LEA-Kommunikation unterscheidet eine LEA von heutigen MTP-basiert automatisierten PEAs.
+Eine LEA kann in Modulare Funktionseinheiten (engl. \textbf{Functional Equipment Assemblies, FEAs}) unterteilt werden, die analog zur \cite{VDI.2020} definiert sind. Eine FEA ist ein austauschbarer Bestandteil einer LEA und dieser eindeutig zugeordnet. Sie ergänzt die LEA hardware- und ggf. softwareseitig und kann eine eigene Steuerung besitzen. Eine FEA kommuniziert ausschließlich mit ihrer über\-ge\-ord\-ne\-ten LEA.
+Komponenten (engl. \textbf{Components, COMPs}) sind die kleinsten aus Sicht der Modularisierung nicht mehr teilbaren Einheiten einer FEA gemäß \cite{VDI.2020}. Sie repräsentieren z.~B. einzelne Sensoren oder Aktoren. COMPs können eine eigene Steuerung besitzen und kommunizieren ausschließlich mit ihrer übergeordneten FEA.
+
+\begin{graybox}
+	\textbf{Fokus dieser Dissertation:} Die Integration von COMPs in FEAs und FEAs in LEAs entspricht in Logistiksystemen weitgehend den bekannten Konzepten der modularen Produktion. Die wesentlichen Herausforderungen der MLS-Automatisierung liegen gemäß \cite{NAMURAK4.19.2020} in der Interaktion von LEAs untereinander und mit übergeordneten Systemen sowie in der entsprechenden LEA-Integration. Daher fokussiert diese Dissertation auf die Automatisierung von LEAs und deren Zusammenwirken in Logistics Lines und Logistics Areas sowie auf die Integration der LEAs und Logistics Lines in einen LOL.  
+\end{graybox}
+
+Abbildung~\ref{MlsStrukturFig} stellt die für diese Dissertation relevanten Strukturebenen -- Modular Logistics System (inkl. Logistics Orchestration Layer), Logistics Area, Logistics Line und Logistics Equipment Assembly -- sowie deren Zusammenhang schematisch und exemplarisch dar.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/03_Problemkontext/MLS_Struktur.pdf}}
+	\caption{Struktur eines Modularen Logistischen Systems, in Anlehnung an \cite{Blumenstein.atpLEA}}
+	\label{MlsStrukturFig}
+\end{figure}
+
+\subsubsection{Transportsysteme}
+\label{subsubsec:StrukturTransportsystem}
+
+Wie in Abbildung~\ref{MlsStrukturFig} dargestellt, werden in einem MLS zwei verschiedene Arten von Kopplungen zwischen LEAs unterschieden, die mit zwei verschiedenen Arten von Transporten einhergehen. LEAs in Logistics Lines sind durch \textbf{starre Kopplungen} miteinander verbunden. Diese werden durch Stetigfördertechnik, in der Regel durch Transportbänder, realisiert. Diese Fördertechnik ist entweder Teil einer LEA (z.~B. Palettieren-LEA mit Förderbändern zum Ein- und Ausfördern) oder ist als separate Transportband-LEA realisiert. In jedem Fall folgt diese Fördertechnik denselben Prinzipien wie die LEAs und wird daher im Rahmen dieser Dissertation nicht gesondert betrachtet. LEAs und Logistics Lines einer Logistics Area sind durch \textbf{lose Kopplungen} miteinander verbunden, welche durch Unstetigfördertechnik, in der Regel \textbf{\gls{agvSystem}}, umgesetzt werden. Diese Systeme bestehen meist aus mehreren Fahrzeugen, sogenannten \textbf{\gls{agv}}, die ein Flottenmanager steuert (Abbildung~\ref{AgvSystemFig}). Die lose Kopplung wird ermöglicht, da für ein AGV flexibel zur Laufzeit definiert werden kann, welches Transportknoten es im Rahmen eines Transportprozesses anfahren soll. Auf diese Weise kann es LOs auf verschiedenen Wegen durch die Logistics Area transportieren.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.7\textwidth]{Inhalt/Abbildungen/03_Problemkontext/Intro_AGV-System.pdf}}
+	\caption{AGV-Systeme zur Umsetzung flexibler Transporte in einer Logistics Area, in Anlehnung an \cite{Blumenstein.MoProLog}}
+	\label{AgvSystemFig}
+\end{figure}
+
+ 
+\subsection{Arbeitsweise}
+\label{subsec:ArbeitsweiseMLS}
+
+\subsubsection{Auftrags- und bedarfsorientierte Arbeitsweise}
+
+In \cite{Blumenstein.Designprinzipien} wurden MLSs untersucht und deren Charakteristika herausgearbeitet. Im Ergebnis zeigte sich, dass zwischen einer auftragsorientierten und einer bedarfsorientierten Arbeitsweise von LEAs unterschieden werden muss. Die \textbf{auftragsorientierte Arbeitsweise} sieht die kontinuierliche Abarbeitung eines Verpackungsauftrags durch eine LEA vor. Die LEA erhält zu Beginn der Aus\-füh\-rung alle notwendigen Auftragsdaten und bearbeitet anschließend alle LOs des gegebenen Verpackungsauftrags auf immer gleiche Weise (z.~B. kontinuierliches Abfüllen immer gleicher Säcke). Dabei können sich mehrere LOs unterschiedlicher Bearbeitungsstatus gleichzeitig in der LEA befinden. Der Fokus liegt auf einem hohen Durchsatz. Die LEA ist während der Ausführung an \underline{einen} Verpackungsauftrag gebunden und bearbeitet nur \underline{eine} Aufgabe. Die \textbf{bedarfsorientierte Arbeitsweise} sieht die bedarfsorientierte Anpassung der Funktion einer LEA an eintreffende Logistikobjekte (LOs) vor. Die LEA wird ohne auftragsspezifische Vorgaben in Betrieb genommen. Bei Eintreffen eines LO wird dieses identifiziert und gemäß seinen spezifischen Auftragsdaten bearbeitet. Es befindet sich stets nur ein LO in der LEA. Der Fokus liegt auf hoher Flexibilität in Bezug auf die Ausführung der Logistikfunktionen (z.~B. Überziehen oder Einlegen einer Folienhaube je nach LO). Die LEA kann an \underline{verschiedenen} Verpackungsaufträgen mitwirken und/oder \underline{verschiedene} Aufgaben übernehmen. LEAs einer \textbf{Logistics Line} müssen aufgrund ihrer engen Abhängigkeiten einheitlich entweder auftragsorientiert oder bedarfsorientiert arbeiten. Somit weisen nicht nur einzelne LEAs, sondern auch ganze Logistics Lines einen auftragsorientierten oder einen bedarfsorientierten Charakter auf. Eine \textbf{Logistics Area} hingegen erlaubt die flexible Kombination aus auftrags- und bedarfsorientiert arbeitenden LEAs und Logistics Lines. Allerdings muss mindestens eine auftragsorientierte LEA oder eine auftragsorientierte Logistics Line existieren, um Verpackungsaufträge entgegenzunehmen. 
+
+\subsubsection{Abarbeitung von Verpackungsprozessen}
+
+Das in Abbildung~\ref{ArbeitsweiseFig} beispielhaft dargestellte MLS zeigt die im MoProLog-Projekt entwickelte MLS-Arbeitsweise zur Abarbeitung von Verpackungsprozessen \cite{Blumenstein.atpLEA,Blumenstein.MoProLog}. Jeder Verpackungsprozess basiert auf einem Verpackungsauftrag (z.~B. Verpackung von 500 Säcken auf 10 Paletten). Verpackungsaufträge werden in einem Auftrags-Management des LOL verwaltet oder über eine Bedienbild-Funk\-tio\-na\-li\-tät des LOL ad hoc vorgegeben. Zur Ausführung wird der Verpackungsauftrag durch den LOL an eine auftragsorientiert arbeitende Instanz (LEA oder Logistics Line) übergeben und somit der zugehörige Verpackungsprozess initiiert. Die beauftragte Instanz verpackt anschließend gemäß ihrer Aufgabe alle für den Auftrag notwendigen LOs unter Berücksichtigung der Auftragsdaten und treibt den Auftrag damit voran. In einem MLS können maximal so viele Verpackungsaufträge parallel bearbeitet werden, wie auftragsorientiert arbeitende LEAs und Logistics Lines existieren.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/03_Problemkontext/Arbeitsweise_MLS.pdf}}
+	\caption{Arbeitsweise eines Modularen Logistischen Systems, in Anlehnung an \cite{Blumenstein.atpLEA}}
+	\label{ArbeitsweiseFig}
+\end{figure}
+
+Bei der Abarbeitung eines Verpackungsauftrags kann die auftragsorientiert arbeitende Instanz Material (z.~B. Leerpaletten) von bedarfsorientiert arbeitenden Instanzen beziehen. Ein AGV holt dieses Material ab und transportiert es zur auftragsorientiert arbeitenden Instanz. Die Information, woher das Material bezogen wird, kann entweder dynamisch durch ein Materialfluss-Management im LOL oder statisch über vordefinierte Defaultrouten festgelegt werden.
+
+Ist ein LO durch eine auftragsorientiert arbeitende Instanz fertiggestellt, wird es einem AGV übergeben und je nach nächstem notwendigen Prozessschritt zu einer bedarfsorientiert arbeitenden Instanz (LEA oder Logistics Line) transportiert. Die Vorgabe der als nächstes anzufahrenden Instanz erfolgt entweder dynamisch durch ein Materialfluss-Management im LOL oder statisch über vordefinierte Defaultrouten.
+
+\pagebreak
+
+Die bedarfsorientierten Instanzen werden ohne Auftragsdaten aus dem LOL gestartet. Bei Eintreffen eines LO wird dieses identifiziert und gemäß seinen individuellen Auftragsdaten bearbeitet. Anschließend wird das LO wieder einem AGV übergeben und kann von weiteren auftrags- oder bedarfsorientiert arbeitenden Instanzen verarbeitet werden.
+
+\subsubsection{Abarbeitung von Transportprozessen in der Logistics Area}
+
+Aus dem vorherigen Abschnitt geht hervor, dass der Ablauf eines Verpackungsprozesses in einem MLS wesentlich durch flexible Transportprozesse zwischen den lose gekoppelten LEAs und Logistics Lines in der Logistics Area bestimmt wird. Abbildung~\ref{fig:AnalyseLA} zeigt einen Ausschnitt einer beispielhaften Logistics Area und veranschaulicht die Arbeitsweise zur Abarbeitung von Transportprozessen, die auch in \cite{Blumenstein.INDIN,Blumenstein.MoProLog} beschrieben wird. Der beispielhafte Prozess umfasst einen Palettierer (engl. \gls{pal}), der von einem Palettenvereinzeler (engl. \gls{pas}) Leerpaletten bezieht, auf die optional durch einen Folienblattaufleger (engl. \gls{fos}) ein Folienblatt gelegt wird. Nach dem Palettiervorgang wird den Paletten durch eine von zwei Stretchhaubenmaschinen (engl. \gls{sh}) eine Folienhaube zur Ladungssicherung appliziert.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.9\textwidth]{Inhalt/Abbildungen/03_Problemkontext/Analyse_Logistikbereich.pdf}}
+	\caption[Flexible Transporte in einer Logistics Area, in Anlehnung an \newline \cite{Blumenstein.INDIN}]{Flexible Transporte in einer Logistics Area, in Anlehnung an \cite{Blumenstein.INDIN}}
+	\label{fig:AnalyseLA}
+\end{figure}
+
+\textbf{Transportknoten:} Dieses Beispiel zeigt, dass LEAs verschiedene physische Über\-ga\-be\-punk\-te (im Folgenden als Transportknoten, engl. Transport Nodes, bezeichnet) besitzen können, mittels derer sie auf verschiedene Weisen mit einem AGV-System interagieren. 
+
+\begin{itemize}
+	\item \textbf{Outbound-Knoten:} LEAs können physische Übergabepunkte, sogenannte \emph{Out\-bound-Knoten}, besitzen, an denen LOs an AGVs übergeben werden können (Beispiel: Palettenabgabe aus dem PAS).
+	\item \textbf{Inbound-Knoten:} LEAs können physische Übergabepunkte, sogenannte \emph{In\-bound-Knoten}, besitzen, um LOs von AGVs an die LEA zu übergeben (Beispiel: Palettenaufnahme an die SHs).
+	\item \textbf{InOutbound-Knoten:} LEAs können physische Übergabepunkte, sogenannte \emph{In\-Out\-bound-Knoten}, besitzen, mit denen sowohl LOs von AGVs an die LEA als auch von der LEA an AGVs übergeben werden können (Beispiel: Palettenaufnahme und -abgabe des PALs).
+	\item \textbf{Processing-Knoten:} LEAs können physische Bearbeitungspunkte, sogenannte \emph{Pro\-cessing-Knoten}, besitzen, bei denen LOs von der LEA bearbeitet werden, wobei sie auf dem jeweiligen AGV verbleiben und \underline{nicht} von der LEA übernommen werden (Beispiel: Folienapplizieren des FOS).
+\end{itemize}
+
+\textbf{Transportprozesse und -aufträge:} Zwischen diesen Transportknoten finden Transportprozesse auf Basis von Transportaufträgen statt. Als \emph{Transportprozess} wird der Transport eines LO von einem Startknoten (Outbound-Knoten) zu einem Zielknoten (Inbound-Knoten) inkl. der Übergaben am Start- und Zielknoten betrachtet. Ein InOutbound-Knoten kann sowohl die Rolle des Start- als auch des Zielknotens einnehmen. Auf dem Weg vom Start- zum Zielknoten können beliebig viele Processing-Knoten angefahren werden. Ein \emph{Transportauftrag} enthält alle notwendigen aktuellen Informationen zur Durchführung eines Transportprozesses.
+
+\textbf{Transportbedarfe:} Zur Planung notwendiger Transportprozesse müssen Transportbedarfe der LEAs erkannt werden. Es kann sich dabei um \emph{Push-} oder \emph{Pull-Transportbedarfe} handeln. Im Falle eines Push-Transportbedarfs meldet eine LEA, dass sie ein LO fertiggestellt hat und dieses abtransportiert werden soll. Im Falle eines Pull-Transportbedarfs meldet eine LEA einen Materialbedarf und möchte von einer anderen LEA ein LO beziehen. Charakteristisch ist, dass ein Push-Transportbedarf von der Start-LEA und ein Pull-Transportbedarf von der Ziel-LEA initiiert wird. Im Beispiel gehen die Transportbedarfe vom PAL aus, der Leerpaletten vom PAS \emph{pullen} und fertige Paletten an die SHs \emph{pushen} kann.
+
+\textbf{Materialfluss:} Für die Ausführung eines Transportprozesses sind die nacheinander anzufahrenden Transportknoten festzulegen. In einigen Fällen ist es sinnvoll, diesen Weg \emph{dynamisch} zur Laufzeit zu definieren. So kann im Beispiel dynamisch entschieden werden, welche der beiden SHs zur Ladungssicherung angefahren werden soll oder ob je nach Kundenauftrag der FOS zum Folienblattapplizieren benötigt wird. Auch bei Ausfall der Ziel-LEA soll ein neues Ziel dynamisch vorgegeben werden können. In anderen Fällen ist es sinnvoll, den Weg des LO \emph{statisch} als Defaultroute vorzugeben, z.~B. wenn es, wie vom FOS aus, nur einen möglichen Transportknoten gibt, der als nächstes angefahren werden kann.
+
+\begin{graybox}
+	\textbf{Fokus dieser Dissertation:} In dieser Dissertation wird ein Automatisierungskonzept für MLSs entwickelt, welche der zuvor beschriebenen Struktur und Arbeitsweise folgen. Es besteht hingegen \underline{nicht} der Anspruch, Leitlinien für den Entwurf modularer Verpackungsprozesse und -systeme zu definieren, z.~B. dahingehend, wie ein optimaler Modulschnitt für LEAs aussieht, welche LEAs lose oder starr miteinander gekoppelt werden oder welche Instanzen auftrags- oder bedarfsorientiert arbeiten sollen. Die Autoren von \cite{Jurgensmeyer.2020,Pannok.2021,Gryczycha.2023,Gryczycha.2025,Borgmann.2025} beschreiben Ansätze zur Planung von MLSs sowie unterstützende Softwarewerkzeuge. In \cite{Pannok.2023,Pannok.2024} wird ein MLS-Aufbau für einen möglichst wirtschaftlichen Betrieb untersucht. Diese Arbeiten leisten Beiträge zu o.~g. Leitlinien.
+\end{graybox}
+
+
+\section{Anforderungserhebung}
+\label{sec:Anforderungen}
+
+Dieser Abschnitt beschreibt die Anforderungen an die Automatisierung von MLSs (Abschnitt~\ref{subsec:AnforderungenMLS}) sowie deren Bestandteile -- LEAs (Abschnitt~\ref{subsec:AnforderungenLEA}), Logistics Lines (Abschnitt~\ref{subsec:AnforderungenLL}) und Logistics Areas (Abschnitt~\ref{subsec:AnforderungenLA}) -- die im Rahmen dieser Dissertation berücksichtigt werden. Eine wesentliche Grundlage dafür bildet \cite{NAMURAK4.19.2020}, welche erste Anforderungen in Bezug auf die Automatisierung modularer produktionsnaher Logistiksysteme zusammenfasst. Diese Inhalte werden hier aufgegriffen und mit Erkenntnissen aus der vorangegangenen Analyse zu MLSs (Abschnitt~\ref{sec:ProduktionsnaheLogistik} und \ref{sec:ProblemkontextMLS}) und aus dem MoProLog-Projekt \cite{Blumenstein.MoProLog} angereichert. Zu jeder Anforderung wird zunächst deren Hintergrund erläutert. Es folgt eine tabellarische Zusammenfassung der Anforderung sowie die Definition von Akzeptanzkriterien, die später zur Evaluation der entwickelten Artefakte dienen. Die Erläuterung der einzelnen Akzeptanzkriterien ist im Anhang~\ref{sec:AnhangAnforderungserhebung} zu finden.
+
+\subsection{Modulares Logistisches System}
+\label{subsec:AnforderungenMLS}
+
+\subsubsection{REQ-MLS-1: Umsetzung gemäß den Prinzipien des Module~Type~Package-Konzepts}
+
+Die Zielstellung und die Forschungsfragen dieser Dissertation (Abschnitt~\ref{sec:ziel}) sehen eine MTP-basierte Umsetzung der MLS-Automatisierung vor. Aufgrund dessen sollen die Automatisierungskonzepte von MLSs auf bestehenden MTP-Konzepten aufbauen und diese gemäß den Prinzipien zur MTP-Standardisierung weiterentwickeln, welche auch in den Standardisierungsgremien verfolgt werden. Tabelle~\ref{tab:AnforderungenMLS1} fasst diese Anforderung (engl. \gls{req}) und deren Akzeptanzkriterien zusammen.
+
+% MTP-Umsetzung LEA
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+	\caption{REQ-MLS-1: Umsetzung gemäß den Prinzipien des Module~Type Pa\-cka\-ge-Konzepts}
+		\label{tab:AnforderungenMLS1}\\
+		\hline 
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-MLS-1: Umsetzung gemäß den Prinzipien des Module~Type~Package-Konzepts}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Die entwickelten Konzepte sollen den Prinzipien der MTP-Standardisierung folgen.}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Wo immer möglich, sollen bestehende Mechanismen, Schnittstellen und Modelle des MTP-Konzepts verwendet werden. Diese sollen nicht verändert werden, sondern ihre Anwendung im Kontext der produktionsnahen Logistik soll gezeigt werden.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Wo keine bestehenden MTP-Lösungen verfügbar sind, sollen neue Mechanismen, Schnittstellen und Modelle entwickelt werden, die auf bestehenden MTP-Prinzipien aufbauen.} 
+		\\ \hline	
+
+	\end{longtable}
+\end{footnotesize}
+
+
+\subsection{Logistics Equipment Assemblies}
+\label{subsec:AnforderungenLEA}
+
+\subsubsection{REQ-LEA-1: Dienstebasierte Automatisierung von LEAs}
+
+Gemäß \cite{NAMURAK4.19.2020} sollen das Abrufen und die Überwachung logistischer Funktionen in einem MLS durch parametrierbare Dienste erfolgen, was in einer dienstebasierten Automatisierung von LEAs resultiert. Dies ermöglicht eine Kapselung der LEA-Funktionalität und deren Bereitstellung über standardisierte Schnittstellen unabhängig von der LEA-internen Umsetzung. Tabelle~\ref{tab:AnforderungenLEA1} fasst diese Anforderung und deren Akzeptanzkriterien zusammen.
+
+% Dienstebasierte Automatisierung
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{REQ-LEA-1: Dienstebasierte Automatisierung von LEAs }
+		\label{tab:AnforderungenLEA1}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-LEA-1: Dienstebasierte Automatisierung von LEAs}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Es sind Mechanismen zur dienstebasierten Automatisierung von LEAs bereitzustellen.}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Umsetzung typischer Logistikfunktionen gemäß der generischen Prozesskette aus Abschnitt~\ref{subsec:Verpackungsprozesse} soll möglich sein.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Umsetzung typischer Logistikprozesse Modularer Logistischer Systeme gemäß Abschnitt~\ref{subsec:ArbeitsweiseMLS} soll möglich sein, insbesondere die auftrags- und bedarfsorientierte Arbeitsweise von LEAs.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} c) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die LEA-Automatisierung soll dienstebasiert umgesetzt sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} d) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die LEA-Dienste sollen einem einheitlichen, herstellerneutralen Zustandsmodell folgen.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} e) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die LEA-Dienste sollen parametrierbar sein. Es soll eine Parametrierung durch Einzelparameter und durch die Auswahl von Parametersätzen möglich sein. Änderungen in den in der LEA verwalteten Parametersätzen sollen an den LOL gemeldet werden.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} f) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Der Austausch von Prozesswerten zwischen den LEA-Diensten soll möglich sein.} 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{REQ-LEA-2: Bedienbildkonzept für LEAs}
+
+Um ein Bedienen und Beobachten der LEAs und deren Dienste durch einen Operator zu ermöglichen, ist ein Bedienbildkonzept für LEAs vorzusehen \cite{NAMURAK4.19.2020}. Dieses soll eine Visualisierung der LEA und des Verpackungsprozesses sowie eine Manipulation relevanter Prozessvariablen ermöglichen. Tabelle~\ref{tab:AnforderungenLEA2} fasst diese Anforderung und deren Akzeptanzkriterien zusammen.
+
+% Bedienbildkonzept LEA
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{REQ-LEA-2: Bedienbildkonzept für LEAs}
+		\label{tab:AnforderungenLEA2}\\
+		\hline 
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-LEA-2: Bedienbildkonzept für LEAs}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Es sind Mechanismen zur Visualisierung und Manipulation relevanter Prozessvariablen der LEAs auf equipmentspezifischen Bedienbildern bereitzustellen.}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Zur eindeutigen visuellen Identifikation soll die Anzeige eines LEA-spezifischen statischen Bildes auf dem Bedienbild möglich sein.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Nutzung dynamischer Bedienbildobjekte auf den LEA-Bedienbildern soll möglich sein. Diese dienen der Anzeige und Manipulation relevanter Prozessvariablen, wie des LEA-Dienstes, der Parameter oder anderer prozessrelevanter Werte der LEA.} 
+		\\ \hline 
+
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{REQ-LEA-3: Einheitliche Schnittstellen zur Kommunikation eines LOL mit LEAs}
+
+In \cite{NAMURAK4.19.2020} sind einheitliche Kommunikationsschnittstellen für die Interaktion der LEAs mit dem LOL vorgesehen. So kann der LOL LEAs verschiedener Hersteller integrieren und mit diesen interagieren, ohne auf herstellerspezifische Besonderheiten angepasst werden zu müssen. Tabelle~\ref{tab:AnforderungenLEA3} fasst diese Anforderung und deren Akzeptanzkriterien zusammen.
+
+% Schnittstellen LEA
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{REQ-LEA-3: Einheitliche Schnittstellen zur Kommunikation eines LOL mit LEAs}
+		\label{tab:AnforderungenLEA3}\\
+		\hline 
+		
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-LEA-3: Einheitliche Schnittstellen zur Kommunikation eines LOL mit LEAs}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Es sind einheitliche, herstellerneutrale Schnittstellen für die Kommunikation mit LEAs unter Berücksichtigung der Anforderungen REQ-LEA-1 und REQ-LEA-2 bereitzustellen.}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Interaktion mit Zustandsautomaten von LEA-Diensten soll über einheitliche Schnittstellen möglich sein.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Einstellung der LEA-Parameter sowie die Meldung von Parametersatzänderungen soll über einheitliche Schnittstellen möglich sein.
+		} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} c) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Der Austausch von Prozesswerten zwischen LEAs soll über einheitliche Schnittstellen möglich sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} d) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Visualisierung und Manipulation relevanter Prozessvariablen auf LEA-Bedienbildern soll über einheitliche Schnittstellen möglich sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} e) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Interaktion mit allen zuvor genannten LEA-Schnittstellen soll mittels einer standardisierten Kommunikationstechnologie möglich sein.} 
+		\\ \hline 
+
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{REQ-LEA-4: Einheitliche Informationsmodelle zur au\-to\-ma\-ti\-sie\-rungs\-tech\-ni\-schen Beschreibung von LEAs} 
+
+Zur automatisierten Integration von LEAs in einen LOL sind gemäß \cite{NAMURAK4.19.2020} die Eigenschaften und Funktionalitäten der LEAs, vor allem die automatisierungstechnischen Schnittstellen, standardisiert in einem Informationsmodell abzubilden. Dieses soll der LOL in seinen Datenhaushalt integrieren und verarbeiten können. Tabelle~\ref{tab:AnforderungenLEA4} fasst diese Anforderung und deren Akzeptanzkriterien zusammen.
+
+% Modelle LEA
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{REQ-LEA-4: Einheitliche Informationsmodelle zur automatisie-\newline rungstechnischen Beschreibung von LEAs}
+		\label{tab:AnforderungenLEA4}\\
+		\hline 
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-LEA-4: Einheitliche Informationsmodelle zur automatisierungstechnischen Beschreibung von LEAs}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Es sind einheitliche Informationsmodelle zur automatisierungstechnischen Beschreibung von LEAs bereitzustellen.}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Abbildung der LEA-Dienste als zustandsbasierte Funktionen soll mittels einheitlicher Informationsmodelle möglich sein.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Abbildung der an einer LEA einstellbaren Diensteparameter und des Mechanismus zur Erkennung von Parametersatzänderungen soll mittels einheitlicher Informationsmodelle möglich sein.
+		} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} c) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Abbildung der an einer LEA vorhandenen Prozesswerte soll mittels einheitlicher Informationsmodelle möglich sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} d) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Abbildung des LEA-Bedienbilds mit seinen statischen und dynamischen Bedienbildobjekten soll mittels einheitlicher Informationsmodelle möglich sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} e) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die eindeutige Identifizierbarkeit einer LEA und deren Datensätzen soll möglich sein.} 
+		\\ \hline	
+
+	\end{longtable}
+\end{footnotesize}
+ 
+
+\begin{graybox}
+	\textbf{Fokus dieser Dissertation:} In dieser Dissertation werden zunächst grundlegende Aspekte der Automatisierung von LEAs gemäß \cite{PNO.2025.Part1} bis \cite{PNO.2025.Part5.1} betrachtet. Die Passfähigkeit weiterführender MTP-Konzepte auf die produktionsnahe Logistik ist in zukünftigen Arbeiten zu untersuchen, u.~a. sind das Alarme und Events \cite{PNO.2025.Part6}, Diagnose und Instandhaltung \cite{NAMURArbeitskreisAK4.1.1.2023}, funktionale Sicherheit \cite{Klose.2023} und IT-Sicherheit \cite{Madsen.2023}.
+\end{graybox}
+
+
+\subsection{Logistics Lines}
+\label{subsec:AnforderungenLL}
+
+\subsubsection{REQ-LL-1: Choreografiebasierte Zusammenführung von Logistics Equip\-ment Assemblies zu einer Logistics Line}
+
+Eine Logistics Line assoziiert die Dienste mehrerer LEAs zu einer zusammengesetzten Automatisierungsfunktion. In \cite{NAMURAK4.19.2020} und \cite{Cordes.2020.DE} sind dafür die Varianten der zentralen, dezentralen und verteilten Steuerung gemäß Abschnitt~\ref{sec:AssoziationModAnlagen} vorgesehen. 
+Gespräche mit Anwendern im MoProLog-Projekt \cite{Blumenstein.ETFA,Blumenstein.MoProLog} ergaben, dass die Interaktion der LEAs in einer Logistics Line hochverfügbar und latenzarm erfolgen muss, um in Fehlerfällen schnell und zuverlässig zu reagieren. Als LOL sollen aus wirtschaftlichen Gründen jedoch keine Prozessleitsysteme eingesetzt werden, die dies sicherstellen könnten. Eine \textbf{zentrale Steuerung} von Logistics Lines mit einem LOL als zentraler Broker ist somit nicht sinnvoll.
+Ein Nachteil der \textbf{dezentralen Steuerung} ist, ähnlich wie bei der Nutzung eines Line Controllers, dass die LEAs zum Engineeringzeitpunkt bereits auf ihren Einsatz in der Logistics Line und die konkreten Interaktionen mit anderen LEAs vorbereitet werden müssen (Abschnitt~\ref{sec:AssoziationModAnlagen}). Zudem ist die dezentrale Steuerung auf die Interaktion zwischen hierarchisch angeordneten LEAs ausgelegt. In einer Logistics Line müssen hingegen alle LEAs mit allen anderen interagieren. Beispielsweise können Parameter zwischen beliebigen LEAs ausgetauscht werden, und Fehler in einer LEA können zur Abschaltung der gesamten Logistics Line führen. Dies widerspricht dem hierarchischen Gedanken einer dezentralen Steuerung. 
+Daher ist eine \textbf{verteilte Steuerung} von Logistics Lines vorzusehen. Sie ermöglicht den Informationsaustausch zwischen beliebig vielen LEAs sowie die konfigurative Definition von Verhaltensregeln beim Aufbau der Logistics Line. Dies entspricht dem Assoziationsprinzip der Choreografie gemäß Abschnitt~\ref{sec:AssoziationModAnlagen}. Tabelle~\ref{tab:AnforderungenLL1} fasst diese Anforderung und deren Akzeptanzkriterien zusammen.
+
+% Choreografiebasierte Zusammenführung von LEAs zu einer Logistics Line
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{REQ-LL-1: Choreografiebasierte Zusammenführung von LEAs zu einer Logistics Line }
+		\label{tab:AnforderungenLL1}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-LL-1: Choreografiebasierte Zusammenführung von LEAs zu einer Logistics Line}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Es sind choreografiebasierte Mechanismen zur Zusammenführung von LEAs zu einer Logistics Line auf Basis der dienstebasierten Automatisierung der LEAs bereitzustellen.}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Ein horizontaler Informationsaustausch zwischen LEAs soll möglich sein.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Der Austausch prozeduraler, verriegelnder und parametrierender Informationen soll möglich sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} c) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Definition verteilter Verhaltensregeln zwischen den LEAs soll möglich sein. Diese Regeln sollen logische und arithmetische Funktionen zur Vorverarbeitung der Informationen enthalten können. Zudem sollen konstante Werte gesetzt werden können.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} d) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die (Um-) Konfiguration der Verhaltensregeln soll ohne erneutes Laden der LEA-Automatisierung möglich sein.} 
+		\\ \hline	
+
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{REQ-LL-2: Einheitliche Schnittstellen zur Konfiguration von Logistics Lines}
+
+In \cite{NAMURAK4.19.2020} sind einheitliche Kommunikationsschnittstellen für LEAs vorgesehen. Über die Anforderung REQ-LEA-3 hinaus sind im Kontext von Logistics Lines zudem Konfigurationsschnittstellen notwendig, die es einem Konfigurator im LOL ermöglichen, einzelne LEAs zu einer choreografierten Logistics Line zusammenzuführen. Tabelle~\ref{tab:AnforderungenLL2} fasst diese Anforderung und deren Akzeptanzkriterien zusammen.
+
+% Konfigurationsschnittstellen LL
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{REQ-LL-2: Einheitliche Schnittstellen zur Konfiguration von Logistics Lines }
+		\label{tab:AnforderungenLL2}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-LL-2: Einheitliche Schnittstellen zur Konfiguration von Logistics Lines}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Es sind einheitliche, herstellerneutrale Schnittstellen für die Konfiguration von LEAs bereitzustellen, um diese zu einer choreografierten Logistics Line zusammenzuführen.}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Konfiguration des horizontalen Informationsaustauschs zwischen LEAs soll über einheitliche Schnittstellen möglich sein.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Konfiguration der verteilten Verhaltensregeln soll über einheitliche Schnittstellen möglich sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} c) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Interaktion mit allen zuvor genannten LEA-Schnittstellen soll mittels einer standardisierten Kommunikationstechnologie möglich sein.} 
+		\\ \hline	
+
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{REQ-LL-3: Integration von Logistics Lines in übergeordnete LOLs}
+
+Gemäß der Arbeitsweise eines MLS (Abschnitt~\ref{subsec:ArbeitsweiseMLS}) sollen Logistics Lines als Ganzes in eine Auftragsverwaltung und Bedienbild-Funktionalität eines übergeordneten LOL integriert werden können. In \cite{NAMURAK4.19.2020} ist dies als hybride Kommunikation beschrieben. Hierfür sind einheitliche Schnittstellen für Logistics Lines vorzusehen. Tabelle~\ref{tab:AnforderungenLL3} fasst diese Anforderung und deren Akzeptanzkriterien zusammen.
+
+% Vertikale Integration LL
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{REQ-LL-3: Integration von Logistics Lines in übergeordnete LOLs }
+		\label{tab:AnforderungenLL3}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-LL-3: Integration von Logistics Lines in übergeordnete LOLs}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Es sind einheitliche Schnittstellen zur Integration choreografierter Logistics Lines in einen übergeordneten LOL bereitzustellen.}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Interaktion mit einer choreografierten Logistics Line soll über eine gemeinsame Line-Schnittstelle möglich sein.} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die manuelle Bedienung einer choreografierten Logistics Line soll über ein gemeinsames Line-Bedienbild möglich sein.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} c) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Zielkonflikte zwischen der vertikalen Ansteuerung der Logistics Line durch einen übergeordneten LOL und der horizontalen Interaktion zwischen den LEAs durch die Choreografie sollen eindeutig gelöst werden.} 
+		\\ \hline	
+
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection[REQ-LL-4: Einheitliche Informationsmodelle zur automatisierungstechnischen Beschreibung choreografierter Logistics Lines]{REQ-LL-4: Einheitliche Informationsmodelle zur automatisierungs- technischen Beschreibung choreografierter Logistics Lines}
+
+Die in den Anforderungen REQ-LL-2 und REQ-LL-3 beschriebenen Konfigurations- und Integrationsschnittstellen sind gemäß \cite{NAMURAK4.19.2020} auf standardisierte Weise in einem Informationsmodell abzubilden, welches in den Datenhaushalt des LOL integriert und von diesem verarbeitet werden kann. Tabelle~\ref{tab:AnforderungenLL4} fasst diese Anforderung und deren Akzeptanzkriterien zusammen.
+
+% Modelle LL
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{REQ-LL-4: Einheitliche Informationsmodelle zur automatisierungstechnischen Beschreibung choreografierter Logistics Lines }
+		\label{tab:AnforderungenLL4}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-LL-4: Einheitliche Informationsmodelle zur automatisierungstechnischen Beschreibung choreografierter Logistics Lines }} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Es sind einheitliche Informationsmodelle zur automatisierungstechnischen Beschreibung choreografierter Logistics Lines bereitzustellen. }} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Abbildung notwendiger Informationen einer LEA zur Konfiguration horizontaler Kommunikationsverbindungen mit anderen LEAs soll mittels einheitlicher Informationsmodelle möglich sein.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Abbildung notwendiger Informationen einer LEA zur Konfiguration verteilter Verhaltensregeln soll mittels einheitlicher Informationsmodelle möglich sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} c) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Abbildung der gemeinsamen Line-Schnittstelle und des Line-Bedienbilds einer choreografierten Logistics Line soll mittels einheitlicher Informationsmodelle möglich sein.} 
+		\\ \hline	
+
+	\end{longtable}
+\end{footnotesize}
+
+\newpage
+
+\begin{graybox}
+	\textbf{Fokus dieser Dissertation:} In dieser Dissertation wird ein MTP-basiertes Konzept zur Automatisierung von Logistics Lines auf Basis eines Choreografiekonzepts vorgestellt. Es ist hingegen \underline{kein} Ziel dieser Dissertation, Designregeln für den Entwurf von Choreografien und deren Verhaltensregeln bereitzustellen. Es wird daher \underline{nicht} untersucht, wie eine Choreografie entworfen sein muss, damit es zu keinem Fehlverhalten der Logistics Line kommt. Einen Ansatz zur Erkennung solcher Entwurfsfehler liefert \cite{Bloch.2024}. 
+\end{graybox}
+
+
+\subsection{Logistics Areas}
+\label{subsec:AnforderungenLA}
+
+\subsubsection{REQ-LA-1: Einheitliche Interaktion zwischen LEAs und AGV-Systemen}
+
+Wie in Abschnitt~\ref{subsec:ArbeitsweiseMLS} und in \cite{Blumenstein.INDIN,Blumenstein.MoProLog} auf Basis des MoProLog-Projekts gezeigt, ist die Interaktion zwischen LEAs und AGV-Systemen zentral für die Arbeitsweise eines MLS. Um Abstimmungsaufwände zu eliminieren, sind einheitliche Mechanismen zur Interaktion zwischen diesen Systemen vorzusehen. Tabelle~\ref{tab:AnforderungenLA1} fasst diese Anforderung und deren Akzeptanzkriterien zusammen.
+
+% Interaktion LEA - AGV-System
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{REQ-LA-1: Einheitliche Interaktion zwischen LEAs und AGV-Systemen }
+		\label{tab:AnforderungenLA1}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-LA-1: Einheitliche Interaktion zwischen LEAs und AGV-Systemen}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Es sind einheitliche Mechanismen zur Interaktion zwischen LEAs und AGV-Systemen bereitzustellen.}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Abbildung und Verwaltung der im MLS aktuell anstehenden Transportaufträge soll möglich sein.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Erkennung von Transportbedarfen im System und deren Unterscheidung nach Push- und Pull-Transportbedarfen soll möglich sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} c) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} An den Transportknoten der LEAs sollen entsprechend der Knotenart LO-Übernahmen von AGVs, LO-Übergaben an AGVs sowie LO-Bearbeitungen mit Verbleib des LO auf dem AGV möglich sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} d) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Eine statische Vorgabe von Materialflüssen als Defaultrouten soll möglich sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} e) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Eine dynamische Vorgabe von Materialflüssen zur Laufzeit soll möglich sein. } 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} f) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Interaktion zwischen den LEAs und dem AGV-System soll auf Basis eines einheitlichen Interaktionsmechanismus möglich sein.} 
+		\\ \hline	
+
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{REQ-LA-2: Einheitliche Schnittstellen zur Anbindung von AGV-Systemen}
+
+In \cite{NAMURAK4.19.2020} sind einheitliche Kommunikationsschnittstellen für LEAs vorgesehen. Über die Anforderung REQ-LEA-3 hinaus sind im Kontext von Logistics Areas Schnittstellen zur Anbindung der LEAs an AGV-Systeme notwendig. Tabelle~\ref{tab:AnforderungenLA2} fasst diese Anforderung und deren Akzeptanzkriterien zusammen.
+
+% Schnittstellen LA
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{REQ-LA-2: Einheitliche Schnittstellen zur Anbindung von AGV-Systemen }
+		\label{tab:AnforderungenLA2}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-LA-2: Einheitliche Schnittstellen zur Anbindung von AGV-Systemen}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Es sind einheitliche Schnittstellen für die Konfiguration der Kommunikationsverbindungen sowie für die Interaktion zwischen den LEAs und AGV-Systemen bereitzustellen.}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Konfiguration einer Kommunikationsverbindung zwischen einer LEA und einem AGV-System soll über einheitliche Konfigurationsschnittstellen möglich sein.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Alle für den einheitlichen Interaktionsmechanismus gemäß REQ-LA-1-f notwendigen Interaktionen zwischen einer LEA und einem AGV-System sollen über einheitliche Schnittstellen möglich sein.} 
+		\\ \hline	
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} c) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Konfiguration der Kommunikationsverbindungen und die Interaktion zwischen einer LEA und einem AGV-System soll mittels einer standardisierten Kommunikationstechnologie möglich sein.} 
+		\\ \hline	
+
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{REQ-LA-3: Einheitliche Informationsmodelle zur Beschreibung transportrelevanter Informationen von LEAs}
+
+Die Schnittstellen zur Anbindung an AGV-Systeme (Anforderung REQ-LA-2) sind gemäß \cite{NAMURAK4.19.2020} auf standardisierte Weise in einem Informationsmodell abzubilden, welches in den Datenhaushalt des LOL integriert und von diesem verarbeitet werden kann. Tabelle~\ref{tab:AnforderungenLA3} fasst die resultierende Anforderung und deren Akzeptanzkriterien zusammen.
+
+\pagebreak
+
+% Modelle LA
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{REQ-LA-3: Einheitliche Informationsmodelle zur Beschreibung transportrelevanter Informationen von LEAs }
+		\label{tab:AnforderungenLA3}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{REQ-LA-3:\newline Einheitliche Informationsmodelle zur Beschreibung transportrelevanter Informationen von LEAs}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Es sind einheitliche Informationsmodelle zur Beschreibung der transportrelevanten Informationen von LEAs bereitzustellen, welche eine automatisierte Integration der LEAs in ein AGV-System ermöglichen.}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{E0E0E0}~}        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Akzeptanzkriterien}} 
+		\\ \hline
+	
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} a) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Abbildung notwendiger Informationen einer LEA zur Konfiguration einer Kommunikationsverbindung zu einem AGV-System soll mittels einheitlicher Informationsmodelle möglich sein.} 
+		\\ \hline
+		
+		\multicolumn{1}{|C{0.5cm}|}{\cellcolor[HTML]{FFFFFF} b) }        	& 
+		\multicolumn{1}{L{14.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Abbildung der in einer LEA vorhandenen Transportknoten soll mittels einheitlicher Informationsmodelle möglich sein.} 
+		\\ \hline	
+
+	\end{longtable}
+\end{footnotesize}
+
+
+\subsection{Logistics Orchestration Layer}
+\label{subsec:AnforderungenLOL}
+
+Der LOL als übergeordnete Automatisierungsebene soll notwendige Verwaltungs-, Koordinations- und Überwachungsaufgaben innerhalb eines MLS übernehmen. Welche konkreten Aufgaben von einem LOL erfüllt werden müssen, hängt vom Aufbau des spezifischen MLS und von den Wünschen des MLS-Betreibers ab. Ein erster Satz möglicher LOL-Funktionalitäten wird in \cite{Blumenstein.AutomationLOL.DE,Blumenstein.MoProLog} vorgestellt. Zudem wird in diesen Beiträgen beschrieben, dass sich ein modularer Aufbau eines LOL anbietet, um dem MLS-Betreiber die Möglichkeit zu geben, die für sein spezifisches MLS notwendigen LOL-Funktionalitäten auszuwählen und zu verwenden. Die (Software-) Modularisierung eines LOL bedarf allerdings anderer Konzepte als die in dieser Dissertation betrachtete modulare Automation des physischen Logistikequipments. Bei den Funktionalitäten eines LOL handelt es sich nicht um Dienste im Sinne des MTP-Konzepts, sondern vielmehr um IT-Services.
+
+Ein LOL soll die Informationen über die vorhandenen LEAs, die er zur Ausführung seiner Funktionalitäten benötigt, vollständig aus den MTPs der LEAs sowie der zugrunde liegenden Spezifikation erhalten. Diese Informationen sind in den Schnittstellen"~, Modell- und Laufzeitdefinitionen der LEA-MTPs beschrieben, die der LOL importieren, interpretieren und verarbeiten kann. 
+
+\begin{graybox}
+	\textbf{Fokus dieser Dissertation:} Die MTP-Richtlinie spezifiziert die Funktionalitäten und Schnittstellen von PEAs sowie deren maschinenlesbare Beschreibung in Form von MTP-Dateien, die von POL-Funktionen eingelesen und interpretiert werden können. Die konkrete Umsetzung der Funktionalitäten eines POL ist allerdings nicht Teil der MTP-Richtlinie. 
+	
+	Ähnlich der MTP-Richtlinie beschreibt diese Dissertation die Funktionalitäten und Schnittstellen von LEAs und deren maschinenlesbare Beschreibung in einer MTP-Datei. Zudem wird im Rahmen der Evaluation eine konkrete Umsetzung eines LOL vorgestellt, die zeigt, dass die Entwicklung eines solchen möglich ist. Es werden jedoch \underline{keine} generischen Konzepte für die Umsetzung eines LOL im Sinne eines Artefakts nach DSR entwickelt. Durch die spezifizierten Schnittstellen ergeben sich jedoch Implikationen an die zukünftige Umsetzung eines LOL, der diese Schnittstellen unterstützen muss.
+\end{graybox}
