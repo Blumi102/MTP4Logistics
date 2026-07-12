@@ -3,7 +3,7 @@ This chapter specifies all identified extensions of the *ServiceSet* and integra
 
 ### 9.4.1 Overview
 #### Semantic Description of LEA Services
-To distinguish order-oriented CES and demand-oriented SES procedures for a LOL, a semantic identifier in the form of *FunctionClassificationAttributes* is added to them. [Table 9.17](#table-917-functionclassificationattribute-of-a-cyclic-execution-service-procedure) and [Table 9.18](#table-918-functionclassificationattribute-of-a-single-execution-service-procedure) specify the corresponding *FunctionClassificationAttributes*. "2.0" denotes the version in major-minor format and can be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
+To distinguish order-oriented CES and demand-oriented SES procedures for a LOL, a semantic identifier in the form of *FunctionClassificationAttributes* is added to them. [Table 9.17](#table-917-functionclassificationattribute-of-a-cyclic-execution-service-procedure) and [Table 9.18](#table-918-functionclassificationattribute-of-a-single-execution-service-procedure) specify the corresponding *FunctionClassificationAttributes*. "2.0" denotes the version in major-minor format and shall be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
 
 ##### Table 9.17: FunctionClassificationAttribute of a Cyclic Execution Service Procedure
 
@@ -56,7 +56,7 @@ To distinguish order-oriented CES and demand-oriented SES procedures for a LOL, 
 #### Semantic Description of Service Parameters
 To enable a semantic description of service parameters, the model definition *ServiceParameter* is extended by the capability to append *FunctionClassificationAttributes*. The detailed specification is provided in [Model Definitions](#943-model-definitions). This extension, as a result of this work, has already been adopted into the base profile *ModuleTypePackage:ServiceSet.Base V2.0.0* of the [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
-[Table 9.19](#table-919-functionclassificationattribute-of-a-procedure-parameter-for-setting-a-productid) to [Table 9.23](#table-923-functionclassificationattribute-of-a-configuration-parameter-for-accessing-a-packagingdataset) specify *FunctionClassificationAttributes* for the parameters *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* necessary for LEA parameterization. "2.0" denotes the version in major-minor format and can be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
+[Table 9.19](#table-919-functionclassificationattribute-of-a-procedure-parameter-for-setting-a-productid) to [Table 9.23](#table-923-functionclassificationattribute-of-a-configuration-parameter-for-accessing-a-packagingdataset) specify *FunctionClassificationAttributes* for the parameters *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* necessary for LEA parameterization. "2.0" denotes the version in major-minor format and shall be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
 
 ##### Table 9.19: FunctionClassificationAttribute of a Procedure Parameter for Setting a ProductId
 
