@@ -1,4 +1,4 @@
-# Formatting Rules — 09_MTP Extensions
+# Formatting Rules
 
 ## 1. Figure Captions
 
@@ -48,7 +48,42 @@
 
 - 4th-level sections (`####`) have **no** number — descriptive title only.
 
-## 5. Table Cell Alignment
+## 5. Inline Citations
+
+- **Format:** Markdown link with the BibTeX shorthand in square brackets as display text, linking to the entry in `98_References/README.md`
+- **Syntax:** `[[{shorthand}]](../98_References/README.md#{anchor})`
+- **Shorthand:** taken from the `shorthand` field of the BibTeX entry (e.g. `NE 171`, `GPL23`, `BFG+21`)
+- **Anchor:** derived from the `### ` heading of the reference entry — lowercase, spaces replaced by `-`, special characters removed
+- **Example:**
+  ```markdown
+  [[NE 171]](../98_References/README.md#namur-ak-419-2020)
+  [[BFG+21]](../98_References/README.md#blumenstein-et-al-design-principles)
+  ```
+- Before linking, verify the entry exists in `98_References/README.md`. If missing, add it first using bibliographic data from the `Bib/` folder.
+- If a shorthand is shared by multiple entries (collision), list all affected entries for the user to resolve.
+
+## 6. Reference Entries (`98_References/README.md`)
+
+- Each entry is a `### ` heading followed by a bullet list of metadata fields
+- **Heading format:** descriptive title or citation key used in the text (e.g. `### NAMUR AK 4.19, 2020`, `### Blumenstein et al., Design Principles`)
+- **Required fields:** `Citation key`, `Shorthand`, `Authors`, `Year`, `Title` — add `Journal`, `Booktitle`, `Publisher`, `Address`, `DOI`, `URL` as applicable
+- **Sorting:** entries must always be kept in **alphabetical order** by `### ` heading
+- **Example:**
+  ```markdown
+  ### Blumenstein et al., Design Principles
+
+  - Citation key: `Blumenstein.Designprinzipien`
+  - Shorthand: `BFG+21`
+  - Authors: Michelle Blumenstein, Alexander Fay, ...
+  - Year: 2021
+  - Title: Designprinzipien für den Modul- und Serviceentwurf ...
+  - Booktitle: VDI-Bericht 2392 - Automation 2021
+  - Publisher: VDI-Verlag
+  - Address: Düsseldorf
+  - DOI: 10.51202/9783181023921-101
+  ```
+
+## 7. Table Cell Alignment
 
 - **All** cells (`<td>` and `<th>`) must have the attribute `align="left"`
 - This applies to cells with `colspan` as well

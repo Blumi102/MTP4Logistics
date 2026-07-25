@@ -1,0 +1,881 @@
+
+\chapter{Evaluation}
+\label{chap:evaluation}
+
+Dieses Kapitel beschreibt die Evaluation der in den Kapiteln~\ref{chap:Art1LEA} bis \ref{chap:Art3LA} beschriebenen Artefakte. Wie in \cite{Peffers.2007} vorgeschlagen, wird die Anwendbarkeit der vorgestellten Artefakte zunächst anhand dreier konkreter Evaluationsbeispiele demonstriert, die im Abschnitt~\ref{sec:Evaluationsbeispiele} beschrieben werden. Aufbauend darauf werden die Artefakte im Zuge einer Verifizierung anhand der in den Abschnitten~\ref{subsec:AnforderungenLEA}, \ref{subsec:AnforderungenLL} und \ref{subsec:AnforderungenLA} beschriebenen Anforderungen bewertet. Schließlich bewertet Abschnitt~\ref{sec:Validierung} im Zuge einer Validierung die Nützlichkeit der Artefakte im Problemkontext und deren Eignung, das in Abschnitt~\ref{sec:ziel} beschriebene Forschungsziel zu erfüllen. 
+
+\section{Evaluationsbeispiele}
+\label{sec:Evaluationsbeispiele}
+
+Als Grundlage für die Evaluation der Artefakte wurden drei Evaluationsbeispiele umgesetzt und anschließend mittels kontrollierter Experimente (\emph{Single Case Experiments} gemäß \cite{Wieringa.2014}, \emph{Controlled Experiment} gemäß \cite{Hevner.2004}) untersucht. Im Zuge dieser Experimente wurden Testszenarien durch definierte Stimuli an den Prototypen durchgeführt und deren Reaktion erklärt sowie bewertet. Dies ermöglicht gemäß \cite{Wieringa.2014}, Voraussagen über die Performance der Artefakte im realen Problemkontext zu treffen, auch wenn die Artefakte zum Zeitpunkt der Erstellung dieser Dissertation noch nicht in produktiven produktionsnahen Logistiksystemen eingesetzt werden.
+ 
+Tabelle~\ref{tab:ArtefakteVsEvaluationsbeispiele} zeigt die drei Evaluationsbeispiele dieser Dissertation und welche der drei Artefakte diese jeweils umsetzen. Bei den Evaluationsbeispielen handelt es sich um eine Logistics Line im Labor der BASF (Abschnitt~\ref{subsec:EvaluationsBeispielBasf}), den Demonstrator des MoProLog-Projekts als Logistics Area mit AGV-System (Abschnitt~\ref{subsec:EvaluationsBeispielMoProLog}) sowie eine steuerungstechnische Emulation eines umfassenderen Logistiksystems. In Tabelle~\ref{tab:ArtefakteVsEvaluationsbeispiele} wird deutlich, dass jedes Artefakt in mindestens zwei Evaluationsbeispielen umgesetzt ist, was zeigt, dass die Artefakte in verschiedenen Anwendungsszenarien einsetzbar sind. Zudem wurde jedes Artefakt mindestens in einem realen System (BASF-Demonstrator oder MoProLog-Demonstrator) implementiert, was die praktische Umsetzbarkeit der Artefakte mit industrieller Steuerungstechnik zeigt.
+
+% Zuordnung Artefakte - Evaluationsbeispiele
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+        >{\columncolor[HTML]{E0E0E0}}c
+        >{\columncolor[HTML]{E0E0E0}}c
+		>{\columncolor[HTML]{E0E0E0}}c |}
+
+		\caption{Umsetzung der Artefakte in drei Evaluationsbeispielen}
+		\label{tab:ArtefakteVsEvaluationsbeispiele}\\
+		\hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{E0E0E0}}        & 
+        \multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{BASF}}        & 
+        \multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{MoProLog}}        & 
+		\multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Emulation} } 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Artefakt 1 - \newline LEA-Automatisierung}}        & 
+        \multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{FFFFFF} $\times$ \newline (CES) }        & 
+        \multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{FFFFFF} $\times$ \newline (CES \& SES) }        & 
+		\multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{FFFFFF} $\times$ \newline (CES \& SES)}
+        \\ \hline
+
+        \multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Artefakt 2 - Automatisierung von Logistics Lines}}        & 
+        \multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{FFFFFF} $\times$ }        & 
+        \multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{FFFFFF}}        & 
+		\multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{FFFFFF} $\times$ }
+		\\ \hline
+
+        \multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Artefakt 3 - Automatisierung von Logistics Areas}}        & 
+        \multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+        \multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{FFFFFF} $\times$}        & 
+		\multicolumn{1}{C{2.5cm}|}{\cellcolor[HTML]{FFFFFF} $\times$ }
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
+
+Im Folgenden wird für jedes Evaluationsbeispiel der dahinterliegende Anwendungsfall und die Implementierung des Prototyps beschrieben. Anschließend werden die Testszenarien und deren Ergebnisse dargestellt und Erkenntnisse abgeleitet. 
+
+\subsection{BASF-Demonstrator}
+\label{subsec:EvaluationsBeispielBasf}
+
+\subsubsection{Anwendungsfall}
+
+Abbildung~\ref{fig:BasfDemo} zeigt eine Laboranlage zur Flaschenabfüllung bei der BASF SE in Ludwigshafen. Diese wurde gemäß den Konzepten dieser Dissertation automatisiert und dient der Evaluation der LEA-Automatisierung im CES-Betrieb sowie der choreografiebasierten Automatisierung von Logistics Lines. 
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.6\textwidth]{Inhalt/Abbildungen/10_Evaluation/BASF_Demo.png}}
+	\caption{Laboranlage zur Flaschenabfüllung bei der BASF SE in Ludwigshafen (Evaluationsbeispiel 1)}
+	\label{fig:BasfDemo}
+\end{figure}
+
+Drei physische LEAs sind in einer Logistics Line angeordnet -- ein Kennzeichner, ein Abfüller und ein Verschrauber. Durch den Kennzeichner (engl. Labeller, LABEL) werden Kunststoffflaschen bedruckt\footnote{Aus Umwelt- und Gesundheitsgründen wurde auf das eigentliche Bedrucken im Rahmen der Tests dieser Dissertation verzichtet. Stattdessen beförderte diese LEA die Flaschen und emulierte das Drucken. Für die Interaktion mit den anderen LEAs im Kontext der Choreografie hatte dies keine Auswirkungen.}, der Abfüller (engl. \gls{fill}) füllt Granulat in die Flaschen ein und der Verschrauber (engl. \gls{cap}) verschließt diese schließlich. Die LEAs sind starr miteinander gekoppelt, so ist der Materialfluss durch den Aufbau der Logistics Line fest vorgegeben. Übergeordnet ist ein LOL vorgesehen, der notwendige Orchestrierungsfunktionen für das MLS bereitstellt. 
+
+\subsubsection{Implementierung}
+
+Abbildung~\ref{fig:BasfImplementierung} zeigt schematisch die automatisierungstechnische Umsetzung der Logistics Line. Die betrachtete Logistics Line war bereits zuvor unabhängig von dieser Dissertation als modulares Logistiksystem geplant und physisch aufgebaut worden. Jedes der drei Module war mit einer Siemens-Steuerung ausgestattet, das LABEL-Modul mit einer \emph{SIMATIC S7 CPU 1511-1 PN}, das FILL-Modul mit einer \emph{SIMATIC S7 CPU 1516-3 PN/DP} und das CAP-Modul mit einer \emph{SIMATIC S7 CPU 1512SP-1 PN}. Diese Steuerungen enthielten bereits ein natives Steuerungsprogramm, welches die Interaktion mit den Sensoren und Aktoren des jeweiligen Moduls übernahm.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/10_Evaluation/Basf_Demo_Prozess.pdf}}
+	\caption{Aufbau des BASF-Demonstrators und umgesetzter Logistikprozess}
+	\label{fig:BasfImplementierung}
+\end{figure}
+
+Im Zuge der Evaluation dieser Dissertation wurde um die native Software jedes Moduls herum eine MTP-Diensteimplementierung entwickelt, welche den in Kapitel~\ref{chap:Art1LEA} beschriebenen Konzepten folgt. Hierdurch wurden die Module zu LEAs im Sinne dieser Dissertation. Die Parametrierung wurde in diesem Fall ausschließlich auf Basis von Einzelwerten durchgeführt, da die LEAs nur wenige Parameter aufwiesen.
+
+Alle drei LEAs wurden nach dem CES-Prinzip im Sinne des Kapitels~\ref{chap:Art1LEA} automatisiert. Die Schnittstelle der LEA-Dienste ist im Anhang~\ref{subsec:AnhangEvaluationBasf} beschrieben. Die Zusammenführung der LEAs erfolgte gemäß dem Choreografiekonzept in Kapitel~\ref{chap:Art2LL}. Dabei wurde ein \gls{lead} in der Steuerung des Verschraubers vorgesehen. Die Implementierung der MTP-Dienste basierte auf prototypischen Bausteinbibliotheken der Siemens AG zur Umsetzung von MTP-Konzepten sowie Choreografien in SIMATIC TIA Portal V17. Die Choreografie-Bausteinbibliothek wurde um neue Funktionsbausteine ergänzt, die eine MTP-basierte Choreografiekonfiguration gemäß den Konzepten aus Kapitel~\ref{chap:Art2LL} ermöglichen.
+
+Zudem wurde ein übergeordneter LOL vorgesehen, welcher einen Choreografie-Kon\-fi\-gu\-ra\-tor sowie das Line-Bedienbild als LOL-Funktionen zur Verfügung stellte. Somit konnten über den LOL die Choreografierelationen der Logistics Line konfiguriert und auf die LEAs heruntergeladen werden sowie die Logistics Line durch einen Operator bedient werden. Der Choreografie-Konfigurator wurde in der studentischen Arbeit \cite{Kempin.2022} auf Basis der in Kapitel~\ref{chap:Art2LL} beschriebenen Konzepte entwickelt. Es handelt sich dabei um eine NestJs-Anwendung mit einer Angular-basierten Benutzeroberfläche. Das Line-Bedienbild wurde unter Nutzung von SIMATIC WinCC Unified umgesetzt.
+
+\subsubsection{Testszenarien}
+
+Mittels dieses Demonstrators wurden die in Tabelle~\ref{tab:BasfTestszeanrien} dargestellten Testszenarien erfolgreich durchgeführt. Ein detailliertes Testprotokoll ist im Anhang~\ref{subsec:AnhangEvaluationBasf} zu finden.
+
+% Testszenarien BASF Logistics Line
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Testszenarien an der BASF Logistics Line (Evaluationsbeispiel 1)}
+		\label{tab:BasfTestszeanrien}\\
+		\hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Testszenario}}        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Beschreibung}} 
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Laden der Choreografiekonfiguration }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Die zuvor erstellte Choreografiekonfiguration der Logistics Line wurde auf die drei LEAs LABEL, FILL und CAP geladen und aktiviert.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Einstellung der Access Modes }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Die AccessModes der LEA-Dienste sowie der vorhandenen ProductId-Variablen wurden entsprechend gesetzt, je nachdem ob ein Zugriff (1) ausschließlich von innerhalb der Choreografie oder (2) auch von außen möglich sein soll.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Übertragung der Freigabe\-signale }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Zwischen den LEAs wurden kontinuierliche Freigabesignale korrekt ausgetauscht, sodass eine vorgelagerte LEA stets Kenntnis darüber hatte, ob die nachfolgende LEA frei ist und LOs aufnehmen kann.\footnote{In diesem Testfall wurde lediglich die \underline{erstmalige} Übertragung explizit getestet. Die Durchführung der nachfolgenden Testfälle setzt eine korrekte Übertragung der Freigabesignale voraus. Durch den erfolgreichen Abschluss dieser Testfälle wurde implizit nachgewiesen, dass auch die \underline{kontinuierliche} Übertragung der Freigabesignale korrekt erfolgte.} } 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Prozedur\-vorgabe }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Prozedur wurde am LEAD eingestellt. Alle weiteren LEA-Dienste übernahmen diese Prozedureinstellung. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Einstellung der Product-ID }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Die ID des abzufüllenden Produkts wurde am FILL eingestellt und von den anderen beiden LEAs übernommen. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Anfahren }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Angestoßen durch einen \emph{Start}-Befehl am LEAD wurde die Logistics Line von hinten nach vorn, d.~h. vom CAP über den FILL zum LABEL, angefahren. Währenddessen befand sich der LEAD im Zustand STARTING. Befanden sich alle drei LEA-Dienste im Zustand EXECUTE, wechselte auch der LEAD in den Zustand EXECUTE.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Leerfahren }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Angestoßen durch einen \emph{Complete}-Befehl am LEAD wurde die Logistics Line von vorn nach hinten, d.~h. vom LABEL über den FILL zum CAP, leergefahren. Währenddessen befand sich der LEAD im Zustand COMPLETING. Befanden sich alle drei LEA-Dienste im Zustand COMPLETED, wechselte auch der LEAD in den Zustand COMPLETED.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Zurücksetzen }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Angestoßen durch einen \emph{Reset}-Befehl am LEAD wurden alle LEA-Dienste aus dem COMPLETED-, STOPPED- oder ABORTED-Zustand in den Initialzustand IDLE zurückgesetzt. Währenddessen befand sich der LEAD im Zustand RESETTING. Befanden sich alle drei LEA-Dienste im Zustand IDLE, wechselte auch der LEAD in den Zustand IDLE.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Stoppen }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Befand sich einer der LEA-Dienste oder der LEAD im Zustand STOPPING oder STOPPED, wurden alle (anderen) LEA-Dienste ebenfalls gestoppt. Währenddessen befand sich der LEAD im Zustand STOPPING. Befanden sich alle drei LEA-Dienste im Zustand STOPPED, wechselte auch der LEAD in den Zustand STOPPED.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Abbrechen }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Befand sich einer der LEA-Dienste oder der LEAD im Zustand ABORTING oder ABORTED, wurden alle (anderen) LEA-Dienste ebenfalls abgebrochen. Währenddessen befand sich der LEAD im Zustand ABORTING. Befanden sich alle drei LEA-Dienste im Zustand ABORTED, wechselte auch der LEAD in den Zustand ABORTED.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Anhalten }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Befand sich einer der LEA-Dienste oder der LEAD im Zustand HOLDING oder HELD, wurden alle (anderen) LEA-Dienste ebenfalls angehalten. Währenddessen befand sich der LEAD im Zustand HOLDING. Befanden sich alle drei LEA-Dienste im Zustand HELD, wechselte auch der LEAD in den Zustand HELD.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Wiederanfahren nach dem Anhalten }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Angestoßen durch einen \emph{Unhold}-Befehl am LEAD wurde die Logistics Line von hinten nach vorn, d.~h. vom CAP über den FILL zum LABEL, nach einem Anhalten (Zustand: HELD) wieder angefahren. Währenddessen befand sich der LEAD im Zustand UNHOLDING. Befanden sich alle drei LEA-Dienste im Zustand EXECUTE, wechselte auch der LEAD in den Zustand EXECUTE.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Pausieren }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Befand sich einer der LEA-Dienste oder der LEAD im Zustand PAUSING oder PAUSED, wurden alle (anderen) LEA-Dienste ebenfalls pausiert. Währenddessen befand sich der LEAD im Zustand PAUSING. Befanden sich alle drei LEA-Dienste im Zustand PAUSED, wechselte auch der LEAD in den Zustand PAUSED.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Wiederanfahren nach dem Pausieren }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Angestoßen durch einen \emph{Resume}-Befehl am LEAD wurde die Logistics Line von hinten nach vorn, d.~h. vom CAP über den FILL zum LABEL, nach einem Pausieren (Zustand: PAUSED) wieder angefahren. Währenddessen befand sich der LEAD im Zustand RESUMING. Befanden sich alle drei LEA-Dienste im Zustand EXECUTE, wechselte auch der LEAD in den Zustand EXECUTE.} 
+		\\ \hline
+
+		
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{Erkenntnisse}
+
+\textbf{Praktische Anwendbarkeit:} Die Tests am BASF-Demonstrator zeigen die praktische Anwendbarkeit der dienstebasierten Automatisierung von LEAs nach dem CES-Prinzip gemäß Kapitel~\ref{chap:Art1LEA} sowie des Konzepts zur choreografiebasierten Automatisierung von Logistics Lines gemäß Kapitel~\ref{chap:Art2LL}. 
+
+\textbf{Zusammenführung von LEAs zu einer Logistics Line:} Durch die vorgesehene Choreografiekonzeption können eigenständige LEAs, welche gemäß Artefakt~2 choreografiebefähig sind, nach Bedarf zu einer Logistics Line zusammengeführt werden.
+
+\textbf{Konfiguration der Logistics Line:} Für die zuvor beschriebene Zusammenführung werden die Verhaltensregeln einer Choreografie als Konfiguration im Anwenderprogramm einer jeden LEA hinterlegt. Diese Konfiguration erfolgt, ohne dass das LEA-Programm selbst geändert und neu geladen werden muss. Die Implementierung und der Test der LEA-Automatisierung sind somit unabhängig von der Konfiguration und dem Test der Logik der Logistics Line. 
+
+\textbf{Verteilte Koordination:} Durch das vorgesehene Choreografiekonzept erfolgt die Steuerung der Logistics Line zur Laufzeit durch eine verteilte Koordination der LEAs untereinander. Dies ermöglicht kürzest mögliche Reaktionszeiten (z.~B. in den Fehlerszenarien). Zudem ist keine ständige Verbindung zu einem übergeordneten LOL notwendig und dieser muss geringere Anforderungen an Verfügbarkeit und Echtzeitfähigkeit erfüllen. Der LOL dient lediglich der Konfiguration der Choreografie sowie der Bedienung und Überwachung der Logistics Line.
+
+\textbf{Verschaltung strukturierter und arraybasierter Datentypen:} Die derzeitigen Konzepte und Implementierungen sehen ausschließlich eine Verschaltung von primitiven Datentypen innerhalb von Choreografien vor. Dies ist für die im Rahmen dieser Dissertation betrachteten Anwendungsfälle ausreichend. Sollen zukünftig strukturierte oder arraybasierte Datentypen über Choreografien verschaltet werden, müssen beide verschalteten LEAs die gleichen Datentypen nutzen. Für eine herstellerneutrale Verschaltung müssten diese Datentypen standardisiert und die Choreografiekonzepte und -implementierungen entsprechend erweitert werden.
+
+\textbf{Design der Choreografie:} Es zeigte sich, dass die Definition der Choreografieregeln wohlüberlegt sein muss, um unerwünschtes Verhalten zu vermeiden (siehe nachfolgendes Beispiel). Diese Dissertation zeigt die Anwendbarkeit choreografiebasierter Prinzipien für die Automatisierung modularer Logistics Lines. Designprinzipien und Designmethoden für Choreografien zur Sicherstellung gewünschten Verhaltens sind nicht Gegenstand der Betrachtung, sondern sind in weiterführenden Arbeiten zu untersuchen.
+
+\begin{graybox}
+	\textbf{Beispiel für unerwünschtes Verhalten:} Im Kontext des Exception Handlings wurden Choreografieregeln definiert, die beschreiben, dass LEAs in einen Fehlerzustand (z.~B. HELD) wechseln sollen, sobald sich eine andere LEA der Linie in einem solchen Zustand befindet. Wurde der Fehler behoben, sollte es möglich sein, die LEAs mittels eines entsprechenden Befehls (z.~B. Unhold) wieder in den normalen Betriebszustand (EXECUTE) zu überführen. Dies ist allerdings nicht möglich: Sobald eine LEA wieder im Betriebszustand angefahren ist, wird sie durch die zuvor beschriebenen Choreografieregeln direkt wieder in den Fehlerzustand versetzt, da sich die anderen LEAs noch im Fehlerzustand befinden. Eine Lösung ist, dass LEAs nur dann in einen Fehlerzustand wechseln, wenn sie erkennen, dass eine andere LEA gerade in einen Fehlerzustand gewechselt ist (positive Flankenerkennung).  
+\end{graybox}
+
+\textbf{Nachrüstbarkeit:} Durch Umsetzung der im Abschnitt \emph{Implementierung} beschriebenen Architektur wurde gezeigt, dass auch bei bestehenden Systemen MTP-Funktionalität gemäß Artefakt 1 und die Fähigkeit zur Teilnahme an einer Choreografie gemäß Artefakt 2 nachgerüstet werden können. Dies hält die Einstiegshürde für Brownfield-Systeme gering. Perspektivisch sollte aber die native Software der LEAs gemäß den Artefakten 1 und 2 überarbeitet werden. Nur so können alle Funktionalitäten des MTP- und Choreografiekonzepts genutzt werden (Bsp.: Unterscheidung zwischen Hold, Stop und Abort als Eskalationsstufen bei Fehlern).
+
+\subsection{MoProLog-Demonstrator}
+\label{subsec:EvaluationsBeispielMoProLog}
+
+\subsubsection{Anwendungsfall}
+
+Im Rahmen des MoProLog-Projekts wurde der in Abbildung~\ref{fig:MoProLogDemo} dargestellte Demonstrator bei der BEUMER Group GmbH \& Co. KG (im Folgenden BEUMER genannt) in Beckum aufgebaut und gemäß den Konzepten dieser Dissertation automatisiert. Dieser Demonstrator dient der Evaluation der LEA-Automatisierung im CES- und SES-Betrieb sowie der Anbindung flexibler Transportsysteme in der Logistics Area.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.9\textwidth]{Inhalt/Abbildungen/10_Evaluation/MoProLog_Demo.png}}
+	\caption{Demonstrator des MoProLog-Projekts bei der BEUMER Group in Beckum (Evaluationsbeispiel 2)}
+	\label{fig:MoProLogDemo}
+\end{figure}
+
+Der Demonstrator umfasst drei physische LEAs in einer Logistics Area – einen Lagenpalettierer (engl. Palletizer, PAL), einen Palettenvereinzeler (engl. Pallet Supply, PAS) sowie einen Folienblattaufleger (Foil Supply, FOS). Der PAL bezieht vom PAS Leerpaletten, auf die er anschließend Säcke nach einem vorgegebenen Packmuster palettiert. Nach Bedarf wird auf eine Leerpalette eine Folie durch den FOS appliziert, bevor der PAL diese Palette erhält. Es sind zudem zwei Übergabepositionen vorgesehen, zu denen eine fertig palettierte Palette vom PAL aus transportiert werden kann. Diese Positionen stehen stellvertretend für zwei fiktive Stretchhaubenmaschinen (engl. Stretch Hood Machine, SH1 und SH2), die die Paletten anschließend aufnehmen und stretchen. Diese Stretchhaubenmaschinen sind im Demonstrator lediglich als Emulation umgesetzt. Der physische Prozess endet, wenn die Palette zu einem der beiden Übergabepositionen transportiert wurde. Dort wird das AGV manuell entladen. Die notwendigen Palettentransporte zwischen den LEAs untereinander und zu den Übergabepositionen werden mittels eines AGV-Systems bestehend aus einem Flottenmanager, der hier nur ein AGV steuert, und einem Transport-Management im LOL durchgeführt. Der übergeordnete LOL übernimmt daneben auch alle weiteren notwendigen Orchestrierungsfunktionen für das MLS. Abbildung~\ref{fig:MoProLogProzess} zeigt den umgesetzten Prozess, die Bestandteile des MLS sowie die vorhandenen Transportknoten im System.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.8\textwidth]{Inhalt/Abbildungen/10_Evaluation/MoProLog_Demo_Prozess.pdf}}
+	\caption{Aufbau des MoProLog-Demonstrators}
+	\label{fig:MoProLogProzess}
+\end{figure}
+
+\subsubsection{Implementierung}
+
+Die Umsetzung der physischen LEAs -- PAL, PAS und FOS -- basierte auf dem Palettierer \emph{paletpac} der Firma BEUMER \cite{BEUMERGroup.2025}. Dieser wurde hardware- sowie softwareseitig modularisiert, sodass drei unabhängige LEAs entstanden. Jede der LEAs war mit einer Siemens-Steuerung ausgestattet, welche die Automatisierungssoftware der LEA ausführte. Für die PAL-LEA und die PAS-LEA wurde jeweils eine \emph{SIMATIC S7 CPU 1512SP-1 PN} und für die FOS-LEA eine \emph{SIMATIC S7 CPU 1510SP-1 PN} genutzt. Abbildung~\ref{fig:MoProLogImplementierung} zeigt den Grundaufbau der Automatisierungssoftware der LEAs.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{Inhalt/Abbildungen/10_Evaluation/MoProLog_Implementierung.pdf}}
+	\caption{Aufbau der LEA-Dienste im MoProLog-Demonstrator}
+	\label{fig:MoProLogImplementierung}
+\end{figure}
+
+Diese Software bestand im Kern aus einem Teil der \emph{paletpac}-Software, welcher die Interaktion mit den Sensoren und Aktoren der LEA übernahm (Abbildung~\ref{fig:MoProLogImplementierung}, \enquote{Native Software}). Um diese native Software herum wurde für jede LEA eine MTP-Diensteimplementierung entwickelt, welche den in Kapitel~\ref{chap:Art1LEA} beschriebenen Konzepten folgt und um die TK-Bausteine zur Anbindung des AGV-Systems gemäß Kapitel~\ref{chap:Art3LA} ergänzt wurde. Das \emph{ProductDataSet} und das \emph{PackagingDataSet} der LEAs wurde in diesem Fall allerdings noch manuell und nicht über \emph{ArrayServParam}-Schnittstellen befüllt.
+
+In dem vorliegenden Anwendungsfall wird angenommen, dass der PAL kontinuierlich Säcke erhält und diese nach einem fix vorgegebenen Packmuster palettieren soll. Er ist die am meisten ausgelastete LEA im MLS und führt genau eine Funktion zyklisch aus. Gemäß \cite{Blumenstein.Designprinzipien} ist es daher sinnvoll, den PAL-Dienst nach dem auftragsorientierten CES-Prinzip umzusetzen. Der PAS und FOS werden weniger ausgelastet als der PAL, je nach zu verpackendem Produkt ist die Funktion des FOS sogar optional. Daher wurden der PAS- und der FOS-Dienst nach dem SES-Prinzip umgesetzt und wurden nach Bedarf aktiviert und parametriert, wenn ihre Funktionalität benötigt wurde. Somit wäre es bei Erweiterung des MLS auch möglich, PAS und FOS zusätzlich für andere Verpackungsprozesse zu nutzen oder umgekehrt dem PAL verschiedene PAS- und FOS-LEAs zur Verfügung zu stellen, welche verschiedene Folien- und Palettenarten für verschiedene Produkte bereitstellen (siehe auch Evaluationsbeispiel 3 in Abschnitt~\ref{subsec:EvaluationsBeispielEmulation}). 
+
+Jeder dieser MTP-Dienste enthielt Verpackungsfunktionalität, an die die native Software angebunden war und das Palettieren, Paletten-Bereitstellen bzw. Fo\-li\-en\-blatt-Auflegen steuerte. Über eine abgestimmte proprietäre Schnittstelle wurden notwendige Signale zwischen der MTP-Diensteimplementierung und der nativen Software der LEA ausgetauscht. Zudem wies jeder der LEA-Dienste TK-Bausteine auf, welche die Anbindung an das Transport-Management, im Speziellen die dezentrale Orchestrierung der Transportdienste gemäß Artefakt 3 übernahmen. Die Implementierung der MTP-Dienste basierte auf einer prototypischen MTP-Bausteinbibliothek für SIMATIC TIA Portal V17 der Siemens AG. Diese wurde ergänzt durch neue Bausteine (im Wesentlichen TK-Bausteine und Clientbausteine zur Anbindung an das Transport-Management gemäß Kapitel~\ref{chap:Art3LA}), die auf Basis der Konzepte dieser Dissertation für den Demonstrator entwickelt wurden.
+
+Die Dienste der beiden virtuellen Stretchhaubenmaschinen (SH1 und SH2) wurden auf gleiche Weise umgesetzt und folgten dem SES-Prinzip. Im Unterschied zu den physischen LEAs wurde die Automatisierungssoftware dieser LEAs auf virtuellen Steuerungen (\emph{SIMATIC S7 CPU 1515-2 PN}) ausgeführt, die mittels der Software SIMATIC S7-PLCSIM Advanced emuliert wurden. Diese LEAs enthielten keine realen Sensoren und Aktoren. Stattdessen wurde als native Software ein Funktionsbaustein angebunden, der vereinfacht das Verhalten der Stretchhaubenmaschinen emulierte.
+
+Die notwendigen Transporte zwischen den LEAs wurden durch ein AGV \enquote{MAXO-MS-TV015} der SEW-Eurodrive GmbH \& Co. KG \cite{SEWEurodrives.2018} durchgeführt, welches durch ein prototypisches Flottenmanagementsystem der Firma BEUMER angesteuert wurde. Das Flottenmanagement inkl. dem AGV stellte ein AGV-System mit proprietären Schnittstellen gemäß Abschnitt~\ref{sec:AgvSystemLA} dar. Zur MTP-basierten Anbindung an die LEAs der Logistics Area wurde ein prototypisches Transport-Management gemäß Abschnitt~\ref{sec:TransportManagementLA} als LOL-Funktionalität implementiert. Es handelte sich dabei um eine .NET-Anwendung mit Angular-basierter Benutzeroberfläche \cite{Henkel.2022}.
+
+Als weitere LOL-Funktionalitäten wurden durch das Fraunhofer-Institut für Materialfluss und Logistik (IML) ein Auftrags- und ein Materialfluss-Management implementiert. Ersteres diente dazu, Verpackungsaufträge zu verwalten und diese dem PAL zur Verfügung zu stellen. Letzteres plante den Materialfluss im MLS und stellte den LEAs auf Anfrage Informationen zum nächsten anzufahrenden Transportknoten bereit. Weiterhin wurde im Kontext dieser Dissertation eine Bedienbild-Funktionalität auf Basis von SIMATIC WinCC Unified umgesetzt, die eine manuelle Bedienung und Beobachtung der LEAs der Logistics Area ermöglichte.
+
+\subsubsection{Testszenarien}
+
+% Testszenarien MoProLog-Demonstator
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Testszenarien am MoProLog-Demonstrator (Evaluationsbeispiel 2)}
+		\label{tab:MoProLogTestszenarien}\\
+		\hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Testszenario}}        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Beschreibung}} 
+		\\ \hline
+	
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Transporte unter Nutzung statischer Defaultrouten }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Bei diesem Szenario wurde ein Logistiksystem mit statischen Transportprozessen angenommen, bei denen der Materialfluss für das gleiche Produkt immer derselbe ist. Die anzufahrenden Transportknoten wurden als Defaultwerte in den LEA-Programmen vorgegeben. Verpackungsaufträge wurden manuell über die Bedienbild-Funktionalität im LOL eingegeben. Das Auftrags-Management und das Materialfluss-Management im LOL wurden nicht verwendet. Es wurden Tests für zwei verschiedene Produkte (P1 und P2) durchgeführt. Während für P2 das Auflegen eines Folienblatts erforderlich war, war das für P1 nicht notwendig.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Transporte unter Nutzung dynamischer Transport-knoten-Anfragen }        	& 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Bei diesem Szenario wurde ein Logistiksystem mit dynamischen Transportprozessen angenommen, bei denen der Materialfluss flexibel zur Laufzeit festgelegt wird. Dies erforderte ein übergeordnetes Materialfluss-Management im LOL, das die Optimierung des Materialflusses zur Laufzeit übernahm und Anfragen der LEAs nach dem nächsten anzufahrenden Transportknoten gemäß Abschnitt~\ref{subsec:ErmittlungNextNode} beantwortete. Lediglich bei Ausfall des Materialfluss-Management wurde auf die lokal gespeicherten Defaultwerte für den nächsten anzufahrenden Transportknoten zurückgegriffen. Zudem wurde das Auftrags-Management im LOL zur Übergabe von Verpackungsaufträgen an den PAL verwendet. Es wurden Tests für zwei verschiedene Produkte (P1 und P2) durchgeführt. Während für P2 das Auflegen eines Folienblatts erforderlich war, war das für P1 nicht notwendig. Zudem wurde bedarfsgerecht entschieden, zu welcher Stretchhaubenmaschine (SH1 oder SH2) fertig palettierte Paletten gefahren werden sollten. } 
+		\\ \hline		
+
+		
+	\end{longtable}
+\end{footnotesize}
+
+\newpage
+
+Mittels dieses Demonstrators wurden die in Tabelle~\ref{tab:MoProLogTestszenarien} dargestellten Testszenarien erfolgreich durchgeführt. Ein detailliertes Testprotokoll ist im Anhang~\ref{sec:AnhangEvaluationMoProLog} zu finden.
+
+\subsubsection{Erkenntnisse}
+
+\textbf{Praktische Anwendbarkeit:} Die Tests am MoProLog-Demonstrator zeigen die praktische Anwendbarkeit der dienstebasierten Automatisierung von LEAs nach dem CES- und SES-Prinzip gemäß Kapitel~\ref{chap:Art1LEA} sowie des Konzepts zur MTP-basierten Anbindung flexibler Transportsysteme in Logistics Areas gemäß Kapitel~\ref{chap:Art3LA}. Im Speziellen wurden mit Testszenario 1 Transporte mit vordefinierten Materialflüssen und manueller Auftragsvergabe für verschiedene Produkte erfolgreich erprobt. Ein solches Transportkonzept bietet sich bei Systemen an, die eine geringe Varianz der Materialflüsse während des Betriebs aufweisen oder bei denen kein übergeordnetes System zur Auftragsvergabe und zur Optimierung des Materialflusses vorgesehen werden kann oder soll. Mit Testszenario 2 wurden Transporte mit zur Laufzeit definierbaren Materialflüssen und automatisierter Auftragsvergabe für verschiedene Produkte erfolgreich erprobt. Ein solches Transportkonzept bietet sich bei Systemen an, die eine hohe Varianz in den Materialflüssen während des Betriebs aufweisen und über übergeordnete Systeme zum Auftrags- und Materialfluss-Management verfügen.
+
+\textbf{Anpassungen am Automatisierungskonzept:} Durch die Arbeit mit und die Tests am MoProLog-Demonstrator wurde der Bedarf nach Anpassungen an der Automatisierung deutlich. Diese werden im Anhang~\ref{sec:AnhangEvaluationMoProLog} beschrieben und sind bereits in das dritte Artefakt dieser Dissertation (Kapitel~\ref{chap:Art3LA}) eingeflossen. Da diese Anpassungen mehr auf eine robustere, einheitlichere und einfachere Implementierung und weniger auf den zugrunde liegenden Interaktionsmechanismus zwischen den LEAs und einem AGV-System abzielen, wird der MoProLog-Demonstrator dennoch für die Evaluation von Artefakt 3 herangezogen. Zudem flossen die beschriebenen Anpassungen in die Implementierung des Evaluationsbeispiels 3 (Abschnitt~\ref{subsec:EvaluationsBeispielEmulation}) ein und werden dort evaluiert. 
+
+\textbf{Nachrüstbarkeit:} Grundlage für die Umsetzung des MoProLog-Demonstrators war eine proprietäre Logistikmaschine der Firma BEUMER und ein proprietäres AGV der Firma SEW Eurodrives. Mit dem MoProLog-Demonstrator wurde gezeigt, dass solchen Komponenten aufwandsarm eine erste MTP-Schnittstelle als Hülle nachgerüstet werden kann. Somit ist die Einstiegshürde für die Umrüstung eines klassischen Logistiksystems hin zu einem MTP-basierten MLS gering. Auf lange Sicht sollte die native Software von Logistikmaschinen in MLSs jedoch entsprechend den Gedanken des MTP-Konzepts überarbeitet werden. Nur so kann eine einheitliche Softwarephilosophie geschaffen und die Möglichkeiten der Softwaremodularisierung (z.~B. Wiederverwendbarkeit von Softwarebestandteilen) bestmöglich genutzt werden.
+
+\textbf{Unabhängige Entwicklung:} Bei der Umsetzung des MoProLog-Demonstrators fanden die Entwicklung der Automatisierungssoftware der LEAs, die Entwicklung des AGV-System, die Entwicklung des Transport-Managements sowie die Entwicklung des Auftrags- und Materialfluss-Managements im LOL unabhängig voneinander statt. Diese Entwicklungen wurden zudem durch verschiedene Projektpartner durchgeführt. Durch die einheitlichen MTP-Schnittstellen war dennoch eine schnelle und einfache Inbetriebnahme möglich.
+
+\subsection{Steuerungstechnische Emulation}
+\label{subsec:EvaluationsBeispielEmulation}
+
+\subsubsection{Anwendungsfall}
+
+Als drittes Evaluationsbeispiel wurde ein beispielhaftes MLS als steuerungstechnische Emulation umgesetzt und gemäß den Konzepten dieser Dissertation automatisiert. Diese Emulation dient dazu, das Zusammenwirken der Konzepte zu demonstrieren und zu evaluieren. Abbildung~\ref{fig:MoProLogEmulation} stellt den betrachteten Anwendungsfall sowie die vorhandenen Transportknoten und möglichen Materialflüsse dar.\footnote{Im Sinne einer übersichtlicheren Darstellung sind die Materialflüsse zum Teil nicht direkt an die Transportknoten, sondern vielmehr an die LEAs andockend dargestellt. Dennoch finden alle LO-Übergaben und -Übernahmen an den Transportknoten statt.} Das MLS dient der Verpackung von Säcken und Oktabins inkl. der zugehörigen Abfüllung, Palettierung, Ladungssicherung und Kennzeichnung. Es werden folglich zwei Verpackungsprozesse im MLS durchgeführt.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/10_Evaluation/Emulation_Anwendungsbeispiel.pdf}}
+	\caption{Steuerungstechnische Emulation eines Modular Logistics System \newline (Evaluationsbeispiel 3)}
+	\label{fig:MoProLogEmulation}
+\end{figure}
+
+\textbf{Verpackungsprozess zur Sackabfüllung:} Für diesen Verpackungsprozess steht eine Logistics Line bestehend aus drei LEAs bereit - einer Abfüllmaschine (engl. Form Fill Seal, FFS), einem Transportband (engl. Conveyor, CONV) und einem Lagenpalettierer (engl. Palletizer, PAL). Diese Logistics Line erhält Aufträge aus dem LOL und arbeitet diese auftragsorientiert ab. Die LEAs der Logistics Line sind physisch gekoppelt. Für die Zufuhr von Leerpaletten stehen zwei Palettenvereinzeler (engl. Pallet Supplies, PASs) bereit, die bedarfsorientiert zwei verschiedenen Palettentypen bereitstellen. Auf die Leerpaletten kann bei Bedarf durch einen Folienblattaufleger (engl. Foil Supply, FOS) eine Folienlage zum Schutz der Säcke appliziert werden. Ist eine Palette durch die Logistics Line fertiggestellt, wird dieser durch eine von zwei Stretchhaubenmaschinen (engl. Stretch Hood Machine, SH) eine Folienhaube zur Ladungssicherung übergestülpt. Durch einen Kennzeichner (engl. Labeller LABEL) erfolgt schließlich eine Kennzeichnung der Palette. Alle LEAs außerhalb der Logistics Line sind lose angebundene Einzel-LEAs, welche bedarfsorientiert arbeiten. Transporte zwischen diesen LEAs untereinander und zur Logistics Line werden durch ein AGV-System durchgeführt. Fertige Paletten werden in ein Lager (engl. \gls{stock}) gebracht, das ebenfalls durch das AGV-System beliefert wird. Die Automatisierung des Lagers selbst ist kein Bestandteil des Evaluationsbeispiels, sie ist vereinfacht durch einen Dienst im SES-Betrieb repräsentiert.
+
+\pagebreak
+
+\textbf{Verpackungsprozess zur Oktabinabfüllung:} Für diesen Verpackungsprozess steht eine Oktabinaufrichtstation (engl. \gls{oau}) bereit, welche zum Aufbau von Oktabins dient. Diese LEA erhält Aufträge aus dem LOL und arbeitet diese auftragsorientiert ab. Zur Versorgung dieser LEA mit Leerpaletten werden dieselben PASs wie im Falle der Sackabfüllung verwendet. Nach dem Aufrichten eines Oktabins, wird in diesen ein Folieninlay (zum Schutz des späteren Füllguts) durch eine der beiden bereits beschriebenen SHs eingelegt. Ist der Oktabin vorbereitet, kann er befüllt und verschlossen werden. Hierzu steht eine Logistics Line bestehend aus drei LEAs bereit -- einer Oktabinabfüllung (engl. \gls{ofill}), einem Transportband (CONV) und einer Verschweißstation (engl. \gls{oseal}). Diese Logistics Line bearbeitet bedarfsorientiert Oktabins, sobald diese ihr von der OAU und den SHs zur Verfügung gestellt werden. Anschließend erfolgt eine Ladungssicherung der fertigen Oktabins durch eine der beiden SHs und eine Kennzeichnung durch die bereits beschriebene LABEL-LEA. Schließlich werden die Oktabins ins Lager transportiert. Die LEAs der Logistics Line zur Oktabinabfüllung sind physisch fest miteinander gekoppelt. Alle weiteren am Oktabin-Verpackungsprozess beteiligten LEAs sind untereinander und mit der Logistics Line lose gekoppelt, Transporte sind durch das AGV-System umgesetzt.
+
+In diesem Anwendungsbeispiel kommen auftrags- und bedarfsorientiert arbeitende Einzel-LEAs sowie auftrags- und bedarfsorientiert arbeitende Logistics Lines vor. Somit deckt das gewählte Beispiel die im Rahmen der Problemkontextanalyse (Abschnitt~\ref{subsec:StrukturMLS} und Abschnitt~\ref{subsec:ArbeitsweiseMLS}) analysierte Vielfalt von MLSs ab.
+
+\subsubsection{Implementierung}
+
+Dieses Evaluationsbeispiel wurde als Emulation ohne physische LEA-Hardware umgesetzt. Die Implementierung erfolgte auf Basis der Emulationssoftware SIMATIC S7-PLCSIM Advanced der Siemens AG und TIA Portal V18. Für jede LEA wird eine virtuelle Steuerung der SIMATIC S7 1500er Reihe emuliert, welche die Automatisierungssoftware der LEA ausführt. Diese Steuerungen arbeiten und kommunizieren wie reale Steuerungen, interagieren allerdings nicht mit realen Sensoren und Aktoren. Zur Evaluation der Konzepte dieser Dissertation ist dies ausreichend, da nicht die LEA-interne Automatisierung, sondern die Kommunikation der LEAs über die definierten MTP-Schnittstellen im Fokus steht. Dahingehend unterscheiden sich die emulierten LEAs \underline{nicht} von physischen LEAs. Auch LOs werden rein virtuell abgebildet, so erfolgt beispielsweise eine LO-Übergabe in Logistics Lines durch binäre Prozesswertverschaltungen. In der Logistics Area wird ein virtuelles LO durch sein transportierendes AGV repräsentiert.
+
+Die Automatisierungssoftware der emulierten LEAs besteht im Kern aus einem Funktionsbaustein, der auf stark vereinfachte Weise die Funktionalität der jeweiligen LEA emuliert. Um diese native Software herum wurde für jede LEA eine MTP-Diensteimplementierung entwickelt, welche den in Kapitel~\ref{chap:Art1LEA} beschriebenen Konzepten folgt. 
+
+Alle in Abbildung~\ref{fig:MoProLogEmulation} blau dargestellten LEAs wurden nach dem CES-Prinzip im Sinne des Kapitels~\ref{chap:Art1LEA} automatisiert. Sie können Aufträge entgegennehmen und diese zyklisch ausführen. Alle in Abbildung~\ref{fig:MoProLogEmulation} rot dargestellten LEAs wurden nach dem SES-Prinzip im Sinne des Kapitels~\ref{chap:Art1LEA} automatisiert. Sie werden nach Bedarf aktiviert und parametriert, wenn ihre Funktionalität benötigt wird. 
+
+Die Parametrierung der LEAs erfolgt gemäß dem in Abschnitt~\ref{subsec:Parametrierngsmech} beschriebenem Parametrierungsmechanismus. In Bezug auf die logistikspezifischen Anfragen an den LOL (\emph{LogisticsInteractions}) wurde ausschließlich die Anfrage des nächsten Transportknotens (\emph{TransportNodeRequest}) in der Implementierung umgesetzt. Die Abfragen nach produkt- und verpackungsspezifischen Parametern (ProductParameterRequest, PackagingParameterRequest) sowie zur Information über neue Parametersätze (\emph{ProductParameterUpdateInfo}, \emph{PackagingParameterUpdateInfo}) ähneln dieser stark.
+
+Die Zusammenführung der LEAs in den Logistics Lines erfolgte gemäß dem Choreografiekonzept in Kapitel~\ref{chap:Art2LL}. Dabei wurden \emph{External Leads} in den Steuerungen des PAL (LEADBag) und des OFill (LEADOct) vorgesehen. Die CES-basierte Logistics Line zur Sackabfüllung arbeitet nach einem ähnlichen Prinzip wie die Logistics Line in Evaluationsbeispiel 1. Der LEAD dient zur Auftrags- und Befehlsübergabe an die Line. Diese Logistics Line wurde in einem ersten Vorabdemonstrator bereits auf der ACHEMA und Hannover Messe 2022 vorgestellt und diskutiert.
+
+Im Falle der SES-basierten Logistics Line zur Oktabinabfüllung dient der LEAD\-Oct dem Anfahren und der Überwachung der Line. Nach dem Anfahren wechselt diese Logistics Line in den PAUSED-Zustand. Sobald ein LO am OFill eintrifft, wechselt dieser in den EXECUTE-Zustand und bearbeitet das LO gemäß seinen LO-spezifischen Auftragsdaten, die er vom Transportdienst während der LO-Übergabe erhalten hat. Anschließend gibt er das LO und dessen LO-spezifische Informationen (ProductionId, ProductId, LogisticsObjectId, LogisticsObjectStatus) an den CONV2 weiter und dieser wechselt in den EXECUTE-Zustand. Ist in der Zwischenzeit ein weiteres LO am OFill eingetroffen, verbleibt diese LEA in EXECUTE und bearbeitet das LO, ansonsten wechselt sie zurück in den PAUSED-Zustand. Auf gleiche Weise verläuft auch die Übergabe von CONV2 zum OSeal. Der External Lead LEADOct ist so lange im EXECUTE-Zustand wie eine der LEAs in EXECUTE ist. So können während des EXECUTE-Zustands der Logistics Line mehrere LOs gleichen oder unterschiedlichen Typs nacheinander bearbeitet werden. Dabei wird in jeder LEA stets nur ein LO gleichzeitig bearbeitet und die LO-spezifischen Auftragsdaten werden mittels Prozesswertverschaltungen an die jeweils nachfolgende LEA weitergegeben. Auf Basis dieser Daten kann jede LEA die notwendigen Parameter des aktuell zu bearbeitenden LO für sich ermitteln und es entsprechend bearbeiten.
+
+Die Koordination der flexiblen Transporte erfolgt gemäß den Konzepten in Kapitel~\ref{chap:Art3LA}. Da keine physischen LEAs und kein physisches AGV-System zur Verfügung stehen, werden die Transporte durch eine stark vereinfachte AGV-Emulation und ein Transport-Management im übergeordneten LOL umgesetzt. Die Transportknoten der LEAs wurden in das Transport-Management fest einprogrammiert und noch nicht mittels MTPs integriert.
+
+Die Implementierung der LEA-Dienste basiert auf einer prototypischen MTP-Bausteinbibliothek sowie einer Choreografie-Bausteinbibliothek für SIMATIC TIA Portal V18 der Siemens AG. Erstere wurde um neue Funktionsbausteine ergänzt, die die Parametrierung von LEAs auf Basis strukturierter und Array-Datentypen ermöglichen. Letztere wurde ergänzt durch Funktionsbausteine, die eine MTP-ba\-sier\-te Choreografiekonfiguration gemäß den Konzepten aus Kapitel~\ref{chap:Art2LL} ermöglichen. Zudem wurden neue Funktionsbausteine (im Wesentlichen TK-Bausteine und Clientbausteine zur Anbindung an das Transport-Management) neu entwickelt, die die Anbindung an das Transport-Management gemäß Kapitel~\ref{chap:Art3LA} ermöglichen.
+
+Im übergeordneten LOL wurden die in Tabelle~\ref{tab:LolEmulation} gezeigten Funktionalitäten bereitgestellt.
+
+% LOL-Funktionalitäten in der steuerungstechnischen Emulation
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Funktionalitäten des Logistics Orchestration Layer in der steue-\newline rungstechnischen Emulation (Evaluationsbeispiel 3)}
+		\label{tab:LolEmulation}\\
+		\hline
+
+		\multicolumn{1}{|C{2.2cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Funktion}}        & 
+		\multicolumn{1}{C{8.3cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Beschreibung}} &
+		\multicolumn{1}{C{4cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Umsetzung}}        
+		\\ \hline
+
+		\multicolumn{1}{|L{2.2cm}|}{\cellcolor[HTML]{FFFFFF} Bedienbild-Funktionalität}        & 
+		\multicolumn{1}{L{8.3cm}|}{\cellcolor[HTML]{FFFFFF} Das Bedienbild des Systems ermöglicht, die auftrags- und konstruktionsspezifischen LEA-Parameter einzustellen, den LEAs sowie Logistics Lines Befehle zu übermitteln (z.~B. zum Starten) und die LEAs sowie Logistics Lines im Betrieb zu überwachen. } &
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} WinCC Unified}        
+		\\ \hline
+
+		\multicolumn{1}{|L{2.2cm}|}{\cellcolor[HTML]{FFFFFF} Parameter-Management}        & 
+		\multicolumn{1}{L{8.3cm}|}{\cellcolor[HTML]{FFFFFF} Das Parameter-Management übernimmt die Verwaltung und die Einstellung der produkt- und verpackungsspezifischen LEA-Parameter. } &
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} .NET- und NestJS-basiertes Backend; Angular-basiertes Frontend; aus \cite{Janzen.2023}}        
+		\\ \hline
+
+		\multicolumn{1}{|L{2.2cm}|}{\cellcolor[HTML]{FFFFFF} Transport-Management}        & 
+		\multicolumn{1}{L{8.3cm}|}{\cellcolor[HTML]{FFFFFF} Das Transport-Management übernimmt die Anbindung der AGV-Emulation und die Verwaltung von dessen Transportaufträgen als MTP-Transportdienste. } &
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} .NET-basiertes Backend; Angular-basiertes Frontend; zu Teilen aus \cite{Henkel.2022} }        
+		\\ \hline
+
+		\multicolumn{1}{|L{2.2cm}|}{\cellcolor[HTML]{FFFFFF} AGV-Emulation}        & 
+		\multicolumn{1}{L{8.3cm}|}{\cellcolor[HTML]{FFFFFF} Mit der AGV-Emulation wird die Funktionalität eines AGV-Systems in Form eines oder mehrerer AGVs und deren Flottenmanager emuliert und über eine proprietäre Schnittstelle bereitgestellt. } &
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} .NET-basiertes Backend; Angular-basiertes Frontend }        
+		\\ \hline
+
+		\multicolumn{1}{|L{2.2cm}|}{\cellcolor[HTML]{FFFFFF} Choreografie-Konfigurator}        & 
+		\multicolumn{1}{L{8.3cm}|}{\cellcolor[HTML]{FFFFFF} Der Choreografie-Konfigurator ermöglicht die Konfiguration der Choreografierelationen für die beiden Logistics Lines.}    & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} NestJS-basiertes Backend; Angular-basiertes Frontend; aus \cite{Kempin.2022} }        
+		\\ \hline
+
+		
+	\end{longtable}
+\end{footnotesize} 
+
+\subsubsection{Testszenarien}
+
+Mittels der steuerungstechnischen Emulation wurden die in Tabelle~\ref{tab:EmulationTestszeanrien} dargestellten Testszenarien erfolgreich durchgeführt. Ein detailliertes Testprotokoll ist im Anhang~\ref{subsec:AnhangEvaluationEmulation} zu finden.
+
+% Testszenarien Steuerungstechnische Emulation
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Testszenarien an der Steuerungstechnischen Emulation (Evaluationsbeispiel 3)}
+		\label{tab:EmulationTestszeanrien}\\
+		\hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Testszenario}}        	& 
+		\multicolumn{1}{L{11.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Beschreibung}} 
+		\\ \hline
+	
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} 1) Laden der Choreografiekonfigurationen }        	& 
+		\multicolumn{1}{L{11.13cm}|}{\cellcolor[HTML]{FFFFFF} Zuvor mittels Choreografie-Konfigurator erstellte Choreografiekonfigurationen wurden auf die beiden Logistics Lines geladen. In der Folge wurden die AccessModes von Diensten und Parametern eingestellt und Prozesswertverschaltungen wurden geschlossen. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} 2) Anbindung aller transportrelevanten LEAs an das Transport-Management }        	& 
+		\multicolumn{1}{L{11.13cm}|}{\cellcolor[HTML]{FFFFFF} Alle LEAs, die mit dem AGV-System interagieren mussten, wurden an das Transport-Management angebunden. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} 3) Einstellung auftrags\-unabhängiger Parameter }        	& 
+		\multicolumn{1}{L{11.13cm}|}{\cellcolor[HTML]{FFFFFF} Es wurden alle Parameter an den LEAs eingestellt, die unabhängig von einem konkreten Verpackungsauftrag waren. Dabei handelte es sich um die produkt- und verpackungsspezifischen Parametersätze sowie um konstruktionsspezifische Parameter. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} 4) Starten aller nach dem SES-Prinzip arbeitender LEAs }        	& 
+		\multicolumn{1}{L{11.13cm}|}{\cellcolor[HTML]{FFFFFF} Alle nach dem SES-Prinzip, d.~h. bedarfsorientiert, arbeitenden LEAs wurden gestartet. In der Folge warteten diese im Zustand PAUSED auf das Eintreffen von LOs. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} 5) Starten der nach dem SES-Prinzip arbeitenden Logistics Line zur Oktabinabfüllung }        	& 
+		\multicolumn{1}{L{11.13cm}|}{\cellcolor[HTML]{FFFFFF} Die nach dem SES-Prinzip, d.~h. bedarfsorientiert, arbeitende Logistics Line zur Oktabinabfüllung wurden gestartet. In der Folge fuhr diese geordnet hoch und wartete anschließend im Zustand PAUSED auf das Eintreffen von LOs. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} 6) Durchführung eines Sackabfüllprozesses auf Basis statisch vorgegebener Transportwege }        	& 
+		\multicolumn{1}{L{11.13cm}|}{\cellcolor[HTML]{FFFFFF} Es wurde ein Sackabfüllprozess auf Basis statisch vorgegebener Transportwege durchgeführt (Produkt-ID: 1). Dabei wurde der Logistics Line (Sackabfüllung) ein entsprechender Verpackungsauftrag übergeben. Anschließend wurden PAS1, Logistics Line (Sackabfüllung), SH2, LABEL und STOCK in der Reihenfolge angefahren. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} 7) Durchführung eines Sackabfüllprozesses auf Basis dynamisch vorgegebener Transportwege }        	& 
+		\multicolumn{1}{L{11.13cm}|}{\cellcolor[HTML]{FFFFFF} Es wurde ein Sackabfüllprozess auf Basis dynamisch vorgegebener Transportwege durchgeführt (Produkt-ID: 2). Dabei wurde der Logistics Line (Sackabfüllung) ein entsprechender Verpackungsauftrag übergeben. Anschließend wurden PAS2, FOS, Logistics Line (Sackabfüllung), SH2, LABEL und STOCK in der Reihenfolge angefahren. Die Entscheidungen für die Verwendung von PAS2 (anstatt PAS1), für die Verwendung des FOS und für die Verwendung von SH2 (anstatt SH1) wurden durch Abfrage beim Materialfluss-Management getroffen. Für die restlichen Transporte wurden statisch vorgegebene Transportwege verwendet. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} 8) Durchführung eines Oktabinabfüllprozesses auf Basis statisch vorgegebener Transportwege }        	& 
+		\multicolumn{1}{L{11.13cm}|}{\cellcolor[HTML]{FFFFFF} Es wurde ein Oktabinabfüllprozess auf Basis statisch vorgegebener Transportwege durchgeführt (Produkt-ID: 3). Dabei wurde der OAU ein entsprechender Verpackungsauftrag übergeben. Anschließend wurden PAS1, OAU, SH1, Logistics Line (Oktabinabfüllung), SH1, LABEL und STOCK in der Reihenfolge angefahren. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} 9) Durchführung eines Oktabinabfüllprozesses auf Basis dynamisch vorgegebener Transportwege }        	& 
+		\multicolumn{1}{L{11.13cm}|}{\cellcolor[HTML]{FFFFFF} Es wurde ein Oktabinabfüllprozess auf Basis dynamisch vorgegebener Transportwege durchgeführt (Produkt-ID: 4). Dabei wurde der OAU ein entsprechender Verpackungsauftrag übergeben. Anschließend wurden PAS1, OAU, SH2, Logistics Line (Oktabinabfüllung), SH1, LABEL und STOCK in der Reihenfolge angefahren. Die Entscheidungen für die Verwendung von PAS1 (anstatt PAS2), für die Verwendung von SH2 (anstatt SH1) für das Einlegen einer Inlay-Folie und für die Verwendung von SH1 (anstatt SH2) zum Applizieren einer Stretchhaube wurden durch Abfrage beim Materialfluss-Management getroffen. Für die restlichen Transporte wurden statisch vorgegebene Transportwege verwendet. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} 10) Durchführung paralleler Sack- und Oktabinabfüllprozesse }   	& 
+		\multicolumn{1}{L{11.13cm}|}{\cellcolor[HTML]{FFFFFF} Dieses Testszenario baute auf den vorherigen Szenarien auf. Ziel war, pa\-rallele Abläufe von Sack- und Oktabinabfüllprozessen zu erproben. Hierzu wurde ein paralleler Betrieb auf Basis statisch vorgegebener Transportwege (Kombination Testszenarien 6 und 8), ein paralleler Betrieb auf Basis dynamisch vorgegebener Transportwege (Kombination Testszenarien 7 und 9) und ein Mischbetrieb (Kombination Testszenarien 7 und 8) durchgeführt. Die Abläufe in den verschiedenen Verpackungsprozessen wurden so abgefahren, wie in den vorherigen Szenarien beschrieben. } 
+		\\ \hline
+		
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{Erkenntnisse}
+
+\textbf{Praktische Anwendbarkeit:} Die Tests an der steuerungstechnischen Emulation zeigen die praktische Anwendbarkeit der dienstebasierten Automatisierung von LEAs nach dem CES- und SES-Prinzip sowie deren Parametrierung gemäß Kapitel~\ref{chap:Art1LEA}. Vor allem die Funktionsfähigkeit des SES-Prinzips wird in diesem Evaluationsbeispiel deutlich. SH1 und SH2 erhalten Paletten mit Säcken, mit leeren Oktabins oder mit vollen Oktabins, identifizieren diese LOs und bearbeiten sie entsprechend der \emph{ProductId} und dem \emph{LogisticsObjectStatus} gemäß den vorgegebenen Parametern. Weiterhin wird die praktische Anwendbarkeit des Konzepts zur choreografiebasierten Automatisierung von Logistics Lines gemäß Kapitel~\ref{chap:Art2LL} und die Anwendbarkeit des Konzepts zur MTP-basierten Anbindung flexibler Transportsysteme in Logistics Areas gemäß Kapitel~\ref{chap:Art3LA} gezeigt. Neben der praktischen Anwendbarkeit der einzelnen Artefakte zeigt dieses Evaluationsbeispiel vor allem auch den Einsatz der Artefakte im Zusammenspiel. 
+
+\pagebreak
+
+\textbf{Systemdesign:} Durch ein sinnvolles Design des MLS besteht auf Basis der vorgestellten Artefakte die Möglichkeit, die Systemauslastung im Vergleich zu bestehenden Systemen zu erhöhen. So übernehmen im vorliegenden Anwendungsbeispiel die beiden SHs das Stretchen für die Paletten beider Logistics Lines sowie das Einlegen von Folieninlays für Oktabins, anstatt nur eine Aufgabe in einer Logistics Line umzusetzen. Zudem kann durch den Einsatz von Unstetigfördertechnik (hier: AGVs) beispielsweise der Platzbedarf für das MLS reduziert werden. Weiterhin wird die Flexibilität des Systems in Bezug auf den Materialfluss und damit in Bezug auf die verpackbaren Produkttypen erhöht. In dieser Dissertation wird explizit kein Designworkflow für MLSs betrachtet. Allerdings begünstigen die vorgestellten Artefakte, dass für jedes vorhandene Produktportfolio ein passendes MLS entworfen und aufgebaut werden kann, indem ...
+
+\begin{itemize}
+	\item ... LEAs über standardisierte Schnittstellen parametrierbar sind, was die Anbindung eines Parameter-Managements ermöglicht.
+	\item ... Unstetigfördertechnik (hier: AGVs) über standardisierte Schnittstellen anbindbar ist, ohne tiefgehendes Wissen über die Automatisierung derartiger Fördertechnik. Das senkt die Einstiegshürde für Unstetigfördertechnik, welche für den Aufbau flexibler MLSs essenziell ist.
+	\item ... der Materialfluss flexibel, ggf. sogar zur Laufzeit konfigurierbar ist. So können verschiedene Produkte auf dem gleichen MLS verpackt werden.
+	\item ... auf Basis MTP-basierter Mechanismen schnell und einfach LEAs integriert oder ausgetauscht werden können. So kann das MLS bei Bedarf skaliert werden und auch Redundanzkonzepte sind einfach umsetzbar.
+\end{itemize}
+
+
+\section{Verifizierung}
+\label{sec:Verifizierung}
+
+Der Begriff \emph{Verifizierung} beschreibt gemäß \cite{DINNormenausschussQualitatsmanagementStatistikundZertifizierungsgrundlagen.2015} die \enquote{Bestätigung durch Bereitstellung eines objektiven Nachweises, dass festgelegte Anforderungen erfüllt worden sind}. Es wird also auf Grundlage von identifizierten Anforderungen geprüft, ob \emph{Artefakte richtig entwickelt} wurden. 
+
+In diesem Abschnitt werden folglich die in den Kapiteln~\ref{chap:Art1LEA} bis \ref{chap:Art3LA} vorgestellten Artefakte anhand der in den Abschnitten~\ref{subsec:AnforderungenLEA} bis \ref{subsec:AnforderungenLA} beschriebenen Anforderungen geprüft. Dazu wird für jede Anforderung beschrieben, inwiefern die vorgestellten Artefakte die Akzeptanzkriterien der Anforderung erfüllen, und schließlich die Erfüllung der Anforderung bewertet.
+
+\subsection{Automatisierung von Logistics Equipment Assemblies}
+
+\subsubsection{REQ-LEA-1: Dienstebasierte Automatisierung von LEAs}
+
+Das Konzept zur dienstebasierten LEA-Automatisierung in Abschnitt~\ref{sec:LeaDienste} folgt dem MTP-Dienstekonzept, wobei die Funktionalität einer jeden LEA durch einen MTP-Dienst umgesetzt wird (REQ-LEA-1c). Auf Basis der in Abschnitt~\ref{sec:Evaluationsbeispiele} beschriebenen Evaluationsbeispiele wurde gezeigt, dass so die Umsetzung typischer Logistikfunktionen und -prozesse möglich ist (REQ-LEA-1a). Insbesondere der CES- und SES-Betrieb der LEA-Dienste ermöglicht eine auftrags- und bedarfsorientierte Arbeitsweise (REQ-LEA-1b). Beide Ausführungsarten nutzen das einheitliche, herstellerneutrale Zustandsmodell des MTP-Konzepts (REQ-LEA-1d). Der in Abschnitt~\ref{sec:LeaParameter} beschriebene Parametrierungsmechanismus ermöglicht neben der Parametrierung der LEA-Dienste mittels Einzelparametern auch das Laden und Auswählen produkt- und verpackungsspezifischer Parametersätze (REQ-LEA-1e). Zudem können durch \emph{ProductParameterUpdatedInfo} und \emph{PackagingParameterUpdatedInfo} Änderungen in der lokalen Parameterverwaltung einer LEA an den LOL gemeldet werden (REQ-LEA-1e). Das in Abschnitt~\ref{sec:Prozesswerte} beschriebene Konzept sieht die Übertragung von Prozesswerten zwischen LEA-Diensten für primitive, strukturierte und arraybasierte Datentypen vor (REQ-LEA-1f). Daher werden alle Akzeptanzkriterien REQ-LEA-1a-f und die gesamte Anforderung REQ-LEA-1 als \emph{erfüllt} angesehen.
+
+\subsubsection{REQ-LEA-2: Bedienbildkonzept für LEAs}
+
+Das in Abschnitt~\ref{sec:LeaHmi} beschriebene Konzept ermöglicht die Erstellung von LEA-Bedienbildern auf Basis des MTP-Bedienbildkonzepts. Hierbei ist die Nutzung aller im MTP-Konzept vorgesehener dynamischer Bedienbildobjekte sowie die Nutzung neuer dynamischer Bedienbildobjekte für die Darstellung von Variablen strukturierter und arraybasierter Datentypen möglich (REQ-LEA-2b). Weiterhin können mit dem CustomSymbols-Mechanismus LEA-spezifische statische Bilder bei der Bedienbildmodellierung genutzt werden (REQ-LEA-2a). In den drei Evaluationsbeispielen wurde die Umsetzung von LEA-Bedienbildern bestehend aus dynamischen MTP-Bedienbildobjekten zur Steuerung von LEA-Diensten sowie statischen Bildern zur Visualisierung der LEAs erfolgreich gezeigt. Die Nutzung dynamischer Bedienbildobjekte zur Steuerung von Schnittstellen mit strukturierten und arraybasierten Datentypen wurde in den Evaluationsbeispielen nicht umgesetzt, da hierfür noch keine Faceplates existieren. Dies ist allerdings eine reine entwicklungstechnische Aufgabe, aber kein Forschungsproblem. Daher werden alle Akzeptanzkriterien REQ-LEA-2a-b und die gesamte Anforderung REQ-LEA-2 als \emph{erfüllt} angesehen.
+
+\subsubsection{REQ-LEA-3: Einheitliche Schnittstellen zur Kommunikation eines LOL mit LEAs}
+
+Gemäß Abschnitt~\ref{sec:LeaDienste} erfolgt die Interaktion mit den LEA-Diensten mittels der bestehenden \emph{ServiceControl}-Schnittstellendefinition für MTP-Dienste (REQ-LEA-3a). Die Einstellung von Parametern (Abschnitt~\ref{sec:LeaParameter}) und die Übertragung von Prozesswerten (Abschnitt~\ref{sec:Prozesswerte}) von LEA-Diensten kann grundsätzlich auf Basis der bestehenden MTP-Schnittstellendefinitionen erfolgen (REQ-LEA-3b-c). Zusätzlich werden Schnittstellen zur Nutzung strukturierter und arraybasierter Datentypen vorgesehen. Für die Abfrage von Parametern und Meldung von Parametersatzänderungen (\emph{LogisticsInteractions}) kann die \emph{ServiceControl}-Schnittstelle durch die \emph{LogisticsInteractionExtension} erweitert werden (REQ-LEA-3b). Die Visualisierung und Manipulation relevanter Prozessvariablen auf LEA-Bedienbildern (REQ-LEA-3d) baut ebenfalls auf bestehenden MTP-Schnittstellendefinitionen auf. In den Abschnitten~\ref{sec:Reportwerte} und \ref{sec:LeaHmi} werden ergänzend Schnittstellendefinitionen für die Anzeige und Manipulation von strukturierten und arraybasierten Werten eingeführt. In den vorgestellten Konzepten wurde durchgehend OPC~UA Client/Server als einheitliche, standardisierte Kommunikationstechnologie zwischen LEA und dem LOL genutzt (REQ-LEA-3e). Dies wurde zudem in den drei Evaluationsbeispielen erfolgreich umgesetzt. Daher werden alle Akzeptanzkriterien REQ-LEA-3a-e und die gesamte Anforderung REQ-LEA-3 als \emph{erfüllt} angesehen.
+
+\subsubsection{REQ-LEA-4: Einheitliche Informationsmodelle zur automatisierungstechnischen Beschreibung von LEAs}
+
+% Interner Hinweis: Für die Einführung von strukturierten und arraybasierten Datentypen sind keine neuen Modelldefinitionen notwendig, nur Schnittstellendefinitionen.
+Gemäß Abschnitt~\ref{sec:LeaDienste} ist die Abbildung der LEA-Dienste (REQ-LEA-4a) grund\-sätz\-lich mit bestehenden MTP-Modelldefinitionen möglich. Um den CES- und SES-Charakter einer LEA-Prozedur semantisch beschreibbar zu machen, wurden entsprechende \emph{FunctionClassificationAttributes} eingeführt. Die Abbildung von LEA-Parametern (REQ-LEA-4b) und -Prozesswerten (REQ-LEA-4c) kann durch bestehende MTP-Modelldefinitionen erfolgen. Für den Parametrierungsmechanismus in Abschnitt~\ref{sec:LeaParameter} wurden \emph{FunctionClassificationAttributes} zur eindeutigen Beschreibung der Parameter \emph{ProductId}, \emph{LogisticsObjectStatus}, \emph{PackagingId}, \emph{ProductDataSet} und \emph{PackagingDataSet} eingeführt. Darüber hinaus wurden neue Modelldefinitionen für \emph{LogisticsInteractions}, u.~a. zur Parameterabfrage und zur Erkennung von Parametersatzänderungen (REQ-LEA-4b) in der LEA, spezifiziert. Die Abbildung von LEA-Bedienbildern (REQ-LEA-4d) baut auf den bestehenden MTP-Modelldefinitionen auf. Das in Abschnitt~\ref{sec:LeaHmi} beschriebene Konzept ermöglicht zudem die Nutzung benutzerspezifischer statischer Bilder der LEAs bei der Bedienbildmodellierung. Eine eindeutige Identifikation einer LEA (REQ-LEA-4e) ist durch das bereits im MTP-Konzept vorgesehene \emph{PeaInformationLabel} gegeben. Entsprechende MTP-Dateien, die die REQ-LEA-4a-e erfüllen, wurden für die LEAs der drei Evaluationsbeispiele umgesetzt und sind im GitHub-Repository zu dieser Dissertation \cite{Blumenstein.Github} zu finden. Diese beschreiben die unter REQ-LEA-3 aufgelisteten Schnittstellen und die hier gezeigten semantischen Modelle. Daher werden alle Akzeptanzkriterien REQ-LEA-4a-e und die gesamte Anforderung REQ-LEA-4 als \emph{erfüllt} angesehen.
+
+\subsection{Automatisierung von Logistics Lines}
+
+\subsubsection{REQ-LL-1: Choreografiebasierte Zusammenführung von LEAs zu einer Logistics Line}
+
+Der Mechanismus aus \cite{Stutz.2026} unter Nutzung von OPC~UA-Client/Server-Kom\-mu\-ni\-ka\-ti\-on wurde im Rahmen dieser Dissertation als Grundlage für die choreografiebasierte Automatisierung von Logistics Lines verwendet. Dieser ermöglicht den horizontalen Informationsaustausch durch einen OPC~UA-Server und -Client in jeder LEA einer Logistics Line (REQ-LL-1a). Wie in den Evaluationsbeispielen 1 und 3 gezeigt, können prozedurale, verriegelnde und parametrierende Informationen zwischen LEAs ausgetauscht werden; zudem können Konstanten definiert werden (REQ-LL-1b). Es ist eine Konfiguration verteilter Verhaltensregeln im Sinne der Konfigurierbaren Logik und Konfigurierbaren Kommunikation möglich. Diese Regeln beschreiben, welche Informationen eine LEA beziehen soll und wie sie auf diese reagieren soll (REQ-LL-1c). Wie in den Evaluationsbeispielen 1 und 3 gezeigt, können arithmetische und logische Funktionen zur Vorverarbeitung sowie Konstanten verwendet werden. Diese Verhaltensregeln werden als Konfiguration im Anwenderprogramm der LEAs hinterlegt und nicht fest einprogrammiert; eine konfigurative Anpassung ohne erneutes Laden des Anwenderprogramms ist möglich (REQ-LL-1d). Daher werden alle Akzeptanzkriterien REQ-LL-1a-d und die gesamte Anforderung REQ-LL-1 als \emph{erfüllt} angesehen.
+
+\subsubsection{REQ-LL-2: Einheitliche Schnittstellen zur Konfiguration von Logistics Lines}
+
+In Abschnitt~\ref{subsec:LeaChoreoSchnittstellen} wurden für die Konfiguration choreografierter Logistics Lines neue Schnittstellendefinitionen eingeführt. Die \emph{OpcUaClientServerManager}-Schnittstelle dient der Konfiguration der OPC~UA-basierten Konfigurierbaren Kommunikation innerhalb der Logistics Line (REQ-LL-2a). Die \emph{ChoreographyParticipantManager}-Schnittstelle dient der Konfiguration der Konfigurierbaren Logik, d.~h. der verteilten Verhaltensregeln (REQ-LL-2b). Die Interaktion mit diesen Schnittstellen erfolgt, wie in den Evaluationsbeispielen 1 und 3 gezeigt, mittels OPC~UA als standardisierte Kommunikationstechnologie (REQ-LL-2c). Daher werden alle Akzeptanzkriterien REQ-LL-2a-c und die gesamte Anforderung REQ-LL-2 als \emph{erfüllt} angesehen.
+
+\subsubsection{REQ-LL-3: Integration von Logistics Lines in übergeordnete Logistics Orchestration Layers}
+
+In Abschnitt~\ref{subsec:LineSchnittstelle} wird eine Methodik beschrieben, mittels derer die Schnittstellen einzelner LEAs zu einer gemeinsamen Line-Schnittstelle zusammengeführt werden können (REQ-LL-3a). Diese wurde für die Logistics Lines der Evaluationsbeispiele 1 und 3 erfolgreich umgesetzt. Über die zusammengeführten Schnittstellen kann ein übergeordneter LOL die Logistics Line steuern. Abschnitt~\ref{subsec:LinienBedienbild} sieht zudem eine Möglichkeit zur Erstellung eines Line-Bedienbildes aus den Bedienbildern der einzelnen LEAs vor, um eine Steuerung und Überwachung der Logistics Line durch einen Operator zu ermöglichen (REQ-LL-3b). Zielkonflikte zwischen vertikaler Ansteuerung durch den LOL und horizontaler Ansteuerung innerhalb der Choreografie (REQ-LL-3c) werden durch zwei Konzeptbestandteile aufgelöst. Im Falle der Follower Services sorgen die Zugriffskanäle des MTP-Betriebsartenkonzepts für eine ausschließlich horizontale Ansteuerung dieser Dienste. Im Falle des Lead Service sorgt der Aufbau und die Ebenenstruktur des MTP-Zustandsautomaten dafür, dass bei Eintreffen gegensätzlicher Befehle der horizontalen und vertikalen Kommunikation immer der höher priorisierte Befehl ausgeführt wird. Daher werden alle Akzeptanzkriterien REQ-LL-3a-c und die gesamte Anforderung REQ-LL-3 als \emph{erfüllt} angesehen.
+
+\subsubsection{REQ-LL-4: Einheitliche Informationsmodelle zur automatisierungstechnischen Beschreibung choreografierter Logistics Lines}
+
+Mit dem \emph{ChoreographySet} (Abschnitt~\ref{subsec:ChoreoSet}) wurden alle notwendigen Modelle zur Beschreibung choreografierelevanter Informationen einer LEA eingeführt. Mittels der \emph{InputElements} und \emph{OutputElements} werden alle verschaltbaren ein- und ausgehenden Systemvariablen einer LEA und deren kommunikationsrelevante Informationen abgebildet (REQ-LL-4a). Dies umfasst auch deren Relation zu den zuvor beschriebenen Schnittstellen. Mit der Modelldefinition \emph{ChoreographyParticipant} wird eine LEA als möglicher Teilnehmer einer Choreografie ausgewiesen und auf die notwendige Schnittstelle zur Konfiguration der verteilten Verhaltensregeln verwiesen (REQ-LL-4b). Das Konzept des Composed-MTP (Abschnitt~\ref{subsec:KonzeptComposedMTP}) ermöglicht die Beschreibung der gemeinsamen Line-Schnittstelle und des Line-Bedienbilds einer choreografierten Logistics Line (REQ-LL-4c). Entsprechende MTP- und Composed-MTP-Dateien, die die REQ-LL-4a-c erfüllen, wurden für die LEAs und Logistics Lines der Evaluationsbeispiele 1 und 3 umgesetzt und sind im GitHub-Repository zu dieser Dissertation \cite{Blumenstein.Github} zu finden. Diese beschreiben die unter REQ-LL-2 aufgelisteten Schnittstellen und die hier gezeigten semantischen Modelle. Daher werden alle Akzeptanzkriterien REQ-LL-4a-c und die gesamte Anforderung REQ-LL-4 als \emph{erfüllt} angesehen.
+
+\subsection{Automatisierung von Logistics Areas}
+
+\subsubsection{REQ-LA-1: Einheitliche Interaktion zwischen LEAs und flexiblen Transportsystemen}
+
+Als Basis für die Interaktion mit den LEAs stellt ein Transport-Management alle aktiven Transportaufträge als MTP-basierte Transportdienste (Abschnitte~\ref{subsec:CharakteristikTransportdienste} und \ref{subsec:SchnittstelleTransportdienst}) bereit (REQ-LA-1a). Für diese wird ein definiertes Prozessmodell eingeführt, welches aus einem definierten Satz an Prozeduren besteht. Durch Umsetzung dieses Prozessmodells in allen MTP-basierten Transportdiensten wird ein einheitlicher Interaktionsmechanismus zu den LEAs ermöglicht (REQ-LA-1f). Zur Interaktion mit den LEAs werden diese Transportdienste über einen Proxy-Mechanismus an die LEA-Transportknoten angebunden (Abschnitt~\ref{subsec:IntegrationLeaTm}). Die verschiedenen LEA-Transportknoten werden dabei über TK-Bausteine und TK-Proxies abgebildet, die Interaktion mit den Transportdiensten und somit die Koordination von LO-Über\-ga\-ben, LO-Übernahmen und LO-Bearbeitungen ermöglichen (REQ-LA-1c). Ein Transportdienst, welcher an einem Order-Knoten angebunden ist, kann von der entsprechenden LEA in der Prozedur \emph{PushRequested} oder \emph{PullRequested} gestartet werden. Auf diese Weise werden Transportbedarfe im MLS identifiziert (REQ-LA-1b). In Abschnitt~\ref{subsec:ErmittlungNextNode} wird ein Konzept zur Ermittlung des nächsten anzufahrenden Transportknotens beschrieben. Dabei besteht mit \emph{DefaultSupplyNode} und \emph{DefaultNextNode} die Möglichkeit, statische Routen vorzugeben (REQ-LA-1d). Mit der \emph{LogisticsInteraction} \emph{TransportNodeRequest} ist die Abfrage des nächsten anzufahrenden Transportknotens beim LOL zur Laufzeit möglich (REQ-LA-1e). Dieser Mechanismus zur Anbindung von flexiblen Transportsystemen an LEAs wurde in den Evaluationsbeispielen 2 und 3 erfolgreich umgesetzt. Daher werden alle Akzeptanzkriterien REQ-LA-1a-f und die gesamte Anforderung REQ-LA-1 als \emph{erfüllt} angesehen.
+
+\subsubsection{REQ-LA-2: Einheitliche Schnittstellen zur Anbindung von flexiblen Transportsystemen}
+
+Das in Abschnitt~\ref{subsec:IntegrationLeaTm} beschriebene \emph{TransportSet} führt notwendige Schnittstellendefinitionen zur Anbindung flexibler Transportsysteme ein. Mit der \emph{OpcUaTransportClientManager}-Schnittstelle besteht für ein Transport-Management die Möglichkeit, den OPC~UA-Client einer LEA so zu konfigurieren, dass dieser sich anschließend mit dem OPC~UA-Server des Transport-Managements verbindet (REQ-LA-2a). Darüber hinaus besteht mit der \emph{TransportNodeManager}-Schnittstelle die Möglichkeit, die TK-Bausteine einer LEA an die zugehörigen TK-Proxies des Transport-Managements anzubinden, denen schließlich Transportdienste zugeordnet werden. Die Interaktion zwischen LEA und AGV-System erfolgt anschließend über die einheitliche Schnittstelle der Transportdienste (Abschnitt~\ref{subsec:SchnittstelleTransportdienst}). Diese Schnittstelle basiert auf bestehenden MTP-Schnittstellendefinitionen sowie der Erweiterung \emph{HasTimeFormat} für eine Darstellung von Zeiten (REQ-LA-2b). Sie wird zudem ergänzt durch das in Abschnitt~\ref{sec:TransportprozessLA} beschriebene Prozessmodell, welches alle Transportdienste im Sinne dieser Dissertation in Form von Prozeduren umsetzen müssen (Abschnitt~\ref{subsec:SchnittstelleTransportdienst}). Die Interaktion mit den beschriebenen Schnittstellen erfolgt, wie in den Evaluationsbeispielen 2 und 3 gezeigt, mittels OPC~UA als standardisierte Kommunikationstechnologie (REQ-LA-2c). Daher werden alle Akzeptanzkriterien REQ-LA-2a-c und die gesamte Anforderung REQ-LA-2 als \emph{erfüllt} angesehen.
+
+\subsubsection{REQ-LA-3: Einheitliche Informationsmodelle zur Beschreibung transportrelevanter Informationen von LEAs}
+
+Das in Abschnitt~\ref{subsec:IntegrationLeaTm} beschriebene \emph{TransportSet} führt notwendige Modelldefinitionen zur Anbindung flexibler Transportsysteme ein. Die Modelldefinition \emph{TransportNode} und deren Ableitungen ermöglichen die semantische Beschreibung der an einer LEA verfügbaren Transportknoten und ordnen diese zu den zugehörigen \emph{TransportNodeManager} Schnittstellen zu (REQ-LA-3b). Jedem \emph{TransportNode}-Modell ist zudem eine \emph{OpcUaTransportClientManager}-Schnittstelle zugeordnet, welche die kommunikative Anbindung an den OPC~UA-Server des Transport-Managements ermöglicht (REQ-LA-3a). Die Schnittstelle eines Transportdienstes ist fest-definiert und muss folglich \underline{nicht} in einem MTP-Modell beschrieben werden. Falls der Bedarf dazu dennoch bestehen sollte, kann sie mit bestehenden Modelldefinitionen beschrieben werden. Entsprechende MTP-Dateien, die die REQ-LA-3a-b erfüllen, wurden für die LEAs der Evaluationsbeispiele 2 und 3 umgesetzt und sind im GitHub-Repository zu dieser Dissertation \cite{Blumenstein.Github} zu finden. Diese beschreiben die unter REQ-LA-2 aufgelisteten Schnittstellen und die hier gezeigten semantischen Modelle. Daher werden alle Akzeptanzkriterien REQ-LA-3a-b und die gesamte Anforderung REQ-LA-3 als \emph{erfüllt} angesehen.
+
+\subsection{Automatisierung von Modular Logistics Systems}
+
+\subsubsection{REQ-MLS-1: Umsetzung gemäß den Prinzipien des Module~Type~Package-Konzepts}
+
+\textbf{Automatisierung von Logistics Equipment Assemblies:} Wie in der Verifizierung der Anforderungen REQ-LEA-1 bis REQ-LEA-4 gezeigt, wurden im Kontext der dienstebasierten LEA-Automatisierung viele Grundprinzipien aus dem MTP-Konzept übernommen (REQ-MLS-1a). Diese wurden zum Teil uminterpretiert (z.~B. Ausführungsarten CES und SES als verschiedene Interpretationen des Zustandsautomaten), aber nicht verändert. Wo notwendig, wurden neue MTP-Konstrukte eingeführt. Diese folgen den Leitlinien der bestehenden MTP-Spezifikation (z.~B. generische \emph{OutputElement}-Schnittstellen für Prozesswertausgänge ähnlich der \emph{InputElement}-Schnittstelle für Prozesswerteingänge) (REQ-MLS-1b). Zudem wurden bereits einige vorgeschlagenen Erweiterungen unverändert in die MTP-Spezifikation übernommen, was die Übertragbarkeit der Ergebnisse dieser Dissertation in die Standardisierung zeigt. 
+
+\textbf{Automatisierung von Logistics Lines:} Bisher existieren in der MTP-Spe\-zi\-fi\-ka\-ti\-on keine Mechanismen, Modelle und Schnittstellen, die eine horizontale Kommunikation bzw. choreografiebasierte Interaktion ermöglichen (REQ-MLS-1a). Daher wurden, wie in der Verifizierung der Anforderungen REQ-LL-1 bis REQ-LL-4 gezeigt, neue MTP-Konstrukte eingeführt. Diese folgen den Leitlinien der bestehenden MTP-Spezifikation (z.~B. Ableitung des \emph{ChoreographySet} von generischen \emph{MTPSet} oder Einführung einer generischen \emph{ChoreographyElement}-Schnittstelle als Basis für zusammengehörige, choreografiebezogene Schnittstellendefinitionen) (REQ-MLS-1b). 
+ 
+\textbf{Automatisierung flexibler Transportsysteme in Logistics Areas:} Für die Umsetzung der Transportdienste wurden bestehende MTP-Konstrukte verwendet, welche durch eine Zeitdarstellung für Reportwerte sowie das Prozessmodell erweitert, aber nicht verändert wurden (REQ-MLS-1a). Weitere spezifische MTP-Konstrukte für die Anbindung flexibler Transportsysteme existieren bisher nicht. Daher wurden, wie in der Verifizierung der Anforderungen REQ-LA-1 bis REQ-LA-3 gezeigt, neue MTP-Konstrukte eingeführt. Diese folgen den Leitlinien der bestehenden MTP-Spezifikation, z.~B. Ableitung des \emph{TransportSet} von generischen \emph{MTPSet} oder Einführung einer generischen \emph{TransportElement}-Schnittstelle als Basis für zusammengehörige, transportbezogene Schnittstellendefinitionen (REQ-MLS-1a).
+
+Daher werden alle Akzeptanzkriterien REQ-MLS-1a-b für alle drei Artefakte und somit die gesamte Anforderung REQ-MLS-1 als \emph{erfüllt} angesehen.
+
+
+\section{Validierung}
+\label{sec:Validierung}
+
+Der Begriff \emph{Validierung} beschreibt gemäß \cite{DINNormenausschussQualitatsmanagementStatistikundZertifizierungsgrundlagen.2015} die \enquote{Bestätigung durch Bereitstellung eines objektiven Nachweises, dass die Anforderungen für einen spezifischen beabsichtigten Gebrauch oder eine spezifische beabsichtigte Anwendung erfüllt worden sind}. Eine \emph{Validierung} im Sinne von DSR beinhaltet die Prüfung, ob Artefakte zur Erreichung des vorgesehenen Zwecks (Stakeholderziel) im vorgesehenen Problemkontext dienlich sind \cite{Wieringa.2014}. Es wird geprüft, ob die \emph{richtigen Artefakte entwickelt} wurden. Während die Aussagekraft der \emph{Verifizierung} abhängig von der Qualität der zugrunde gelegten Anforderungen ist, ist die Aussagekraft der \emph{Validierung} unabhängig von den Anforderungen.
+
+In diesem Abschnitt erfolgt die \emph{Validierung} der vorgestellten Artefakte. Dazu wird zunächst eine Übersicht über das Validierungsziel und die Validierungsstrategie gegeben und anschließend werden die Ergebnisse der notwendigen Validierungsschritte vorgestellt.
+
+\subsubsection{Validierungsziel und Validierungsstrategie}
+
+Gemäß Kapitel~\ref{chap:problemkontext} ist der Problemkontext dieser Dissertation modulare produktionsnahe Logistiksysteme. Das Ziel gemäß Abschnitt~\ref{sec:ziel} ist die Verringerung des Engineering- und Abstimmungsaufwands dieser Systeme durch automatisierte Modulintegration, um Herausforderungen hinsichtlich Flexibilität und Wandelbarkeit zu genügen. Ziel der Validierung ist somit der Beweis, dass die vorgestellten Artefakte dazu dienlich sind, den Engineering- und Abstimmungsaufwand modularer produktionsnaher Logistiksysteme durch eine automatisierte Integration zu reduzieren. 
+
+Im Rahmen dieser Arbeit ist kein direkter Vergleich des Engineering- und Abstimmungsaufwands eines klassisch engineerten und eines MTP-basiert engineerten modularen produktionsnahen Logistiksystem möglich. Daher wird auf eine deskriptive Validierung im Sinne des \emph{Informed Argument} gemäß \cite{Hevner.2004} zurückgegriffen. Hierbei werden Informationen aus dem bestehenden Stand der Erkenntnisse genutzt, um eine fundierte Argumentation für die Nützlichkeit der Artefakte zu entwickeln. Abbildung~\ref{fig:Validierungsstrategie} stellt die Schritte der vorliegenden Validierung in der Übersicht dar. 
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/10_Evaluation/Validierungsstrategie.pdf}}
+	\caption{Strategie zur Validierung der Artefakte}
+	\label{fig:Validierungsstrategie}
+\end{figure}
+
+Grundlegend wird davon ausgegangen, dass das MTP-Konzept geeignet ist, um Engineering- und Abstimmungsaufwände zu reduzieren (A). Hierzu zeigen sich in bestehenden MTP-basierten Systemen Voraussetzungen, die gegeben sein müssen, um diese Reduktion zu erreichen (B). In der Folge wird eine Reduktion von Engineering- und Abstimmungsaufwänden auch für MLS angenommen, wenn diese Voraussetzungen für den Bereich der produktionsnahen Logistik gegeben sind (C). Daher werden diese Voraussetzungen im Kontext von MLS geprüft (D). Durch die erfolgreiche Prüfung wird geschlussfolgert, dass mit den in dieser Dissertation beschriebenen Artefakten die Engineering- und Abstimmungsaufwände für MLS reduziert werden können (E). Diese Schritte werden nachfolgend detaillierter beschrieben.
+
+\subsubsection{(A) Reduktion von Engineering- und Abstimmungsaufwänden durch das MTP-Konzept}
+
+Während der vergangenen ca. 10 Jahre wurde das MTP-Konzept bereits in diversen Demonstratorsystemen und auch Produktivanlagen vor allem im Bereich der Prozessindustrie eingesetzt. Dabei wurde seine Tauglichkeit zur Reduktion von Engineering- und Abstimmungsaufwänden erfolgreich geprüft. Gemäß einem Statusbericht der NAMUR, der ProcessNet, des \gls{vdma} und des \gls{zvei} \cite{NAMURProcessNetVDMAundZVEI.2021.DE} zeigte sich eine Reduktion von bis zu 70\%.
+
+\subsubsection{(B) Voraussetzungen zum Einsatz des MTP-Konzepts}
+
+Die Reduktion der Engineering- und Abstimmungsaufwände beruht auf einer automatisierten Integration von intelligentem Equipment in modulare Systeme auf Basis standardisierter Schnittstellen und deren Beschreibung mittels semantischer Modelle. Daraus resultieren vier notwendige Voraussetzungen, die erfüllt sein müssen, um die beschriebenen Potenziale auszuschöpfen.
+
+\begin{itemize}
+	\item[(1)] \textbf{Schnittstellendefinitionen:} Für alle Arten von Informationen, welche zwischen dem zu integrierenden Equipment und anderen Systemen auszutauschen sind, müssen einheitliche MTP-basierte Schnittstellendefinitionen spezifiziert sein.
+	\item[(2)] \textbf{Modelldefinitionen:} Zur semantischen Beschreibung der Schnittstellen und aller weiteren integrationsrelevanten Informationen des Equipments müssen einheitliche MTP-basierte Modelldefinitionen spezifiziert sein.
+	\item[(3)] \textbf{Tools zur Erzeugung, zum Import und zur Interpretation von MTP-Dateien:} Für einen effizienten Engineeringworkflow sind die MTP-Dateien des zu integrierenden Equipments automatisiert, z.~B. auf Basis des Anwenderprogramms des Equipments zu generieren. Im Zuge des Engineerings des modularen Systems sind MTPs automatisiert in die Orchestrierungsebene zu importieren und dort zu interpretieren. Für die Generierung, den Import und die Interpretation von MTP-Dateien sind entsprechende Tools zur Verfügung zu stellen.
+	\item[(4)] \textbf{Einheitliche Kommunikationstechnologie:} Für eine her\-stel\-ler\-über\-grei\-fen\-de Interoperabilität zwischen dem integrierten Equipment und der Orchestrierungsebene ist in allen beteiligten Systemen eine einheitliche Kommunikationstechnologie zu nutzen.
+\end{itemize}
+
+Neben diesen notwendigen Voraussetzungen muss zudem auch die Kompetenz vorhanden sein, die MTP-Schnittstellen und -Modelle unter Nutzung der bereitgestellten Tools richtig anzuwenden. Dies bedarf vor allem entsprechender Designregeln und Engineeringmethodiken für modulare MTP-basierte Systeme.
+
+\subsubsection{(C) Grundannahme der Validierung}
+
+Die Idee der automatisierten Integration von intelligentem Equipment und die zugrunde liegenden Voraussetzungen sind \underline{nicht} spezifisch für die Prozessindustrie. Es wird folglich angenommen, dass auch im Bereich der produktionsnahen Logistik eine Reduktion der Engineering- und Abstimmungsaufwände in einem ähnlichen Maß durch das MTP-Konzept erreicht werden kann. Hierfür müssen allerdings die zuvor beschriebenen Voraussetzungen erfüllt sein.
+
+\subsubsection{(D) Bewertung der Voraussetzungen für die produktionsnahe Logistik}
+
+In den folgenden Abschnitten wird entsprechend bewertet, inwiefern die Voraussetzungen für den gewinnbringenden Einsatz des MTP-Konzepts für den Bereich der produktionsnahen Logistik erfüllt sind.
+
+\textbf{(1) Schnittstellendefinitionen:} Die Vollständigkeit und Funktionsfähigkeit der MTP-Schnittstellendefinitionen für die produktionsnahe Logistik wurde durch die drei Evaluationsbeispiele in Abschnitt~\ref{sec:Evaluationsbeispiele} nachgewiesen. In den Evaluationsbeispielen findet die Kommunikation der LEAs untereinander und zum übergeordneten LOL ausschließlich über bestehende oder in dieser Dissertation neu definierte MTP-Schnittstellen statt. Aus der Funktionsfähigkeit der Evaluationsbeispiele wird gefolgert, dass alle notwendigen Schnittstellendefinitionen vorhanden und funktionsfähig sind. Die MTP-Dateien der LEAs im GitHub-Repository zu dieser Dissertation \cite{Blumenstein.Github} zeigen zudem, dass jede verwendete Schnittstelle in einer MTP-Datei abbildbar ist und so einem über\-la\-ger\-ten LOL zur Verfügung gestellt werden kann. Diese Voraussetzung wird folglich als \emph{erfüllt} angesehen.
+
+\textbf{(2) Modelldefinitionen:} Mittels der MTP-Modelldefinitionen sind alle integrationsrelevanten LEA-Informationen abzubilden, welche ein übergeordneter LOL für seine Funktionen benötigt. Zum Nachweis der Vollständigkeit der Modelldefinitionen wurden die LOL-Implementierungen der drei Evaluationsbeispiele in Abschnitt~\ref{sec:Evaluationsbeispiele} untersucht. Tabelle~\ref{tab:LolInfosModelle} listet die in den LOL-Implementierungen notwendigen LEA-Informationen auf und ordnet diesen Modelldefinitionen zu, mittels derer diese Informationen in einem MTP beschrieben werden können. Im Ergebnis zeigt sich, dass alle notwendigen LEA-Informationen mittels MTP-Modelldefinitionen abgebildet werden können. Die MTP-Dateien der LEAs im GitHub-Repository zu dieser Dissertation \cite{Blumenstein.Github} zeigen zudem, dass jede verwendete Modelldefinition in einer MTP-Datei abbildbar ist und so einem übergeordneten LOL zur Verfügung gestellt werden kann. Diese Voraussetzung wird folglich als \emph{erfüllt} angesehen.
+
+% Notwendige Informationen im LOL
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{E0E0E0}}l |}
+		\caption{Vollständigkeitsprüfung der Modelldefinitionen zur Abbildung relevanter LEA-Informationen in einem LOL}
+		\label{tab:LolInfosModelle}\\
+		\hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{LOL-Funktion}}        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Notwendige LEA-Informationen}}        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Modelldefinitionen}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} übergreifend\footnote{Es handelt sich hierbei um Basis-Informationen zu LEAs und Logistics Lines, die übergreifend in allen LOL-Funktionen notwendig sind, die mit LEAs bzw. Logistics Lines arbeiten.}}        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Assetinformationen von LEAs}        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} Bestehende Modelldefinitionen gemäß \cite{PNO.2025} } 
+		\\  \hhline{|~|-|-|}  %\cline{2-3} 
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Assetinformationen von Logistics Lines}        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} Bestehende Modelldefinitionen gemäß \cite{PNO.2025} } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC ComposedModuleTypePackage } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} RC HasExternalMtpContext } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} AT ComposedTypeRevisionType } 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Auftrags-Management}        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Diensteschnittstellen und auftragsspezifische Parameterschnittstellen von LEAs}        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} Bestehende Modelldefinitionen für Dienste und Parameter gemäß \cite{PNO.2025.Part4} } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} FunctionClassificationAttributes für CES, SES und ProductId } 
+		\\ \hhline{|~|-|-|}  %\cline{2-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Diensteschnittstellen und auftragsspezifische Parameterschnittstellen von Logistics Lines }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} Bestehende Modelldefinitionen für Dienste und Parameter gemäß \cite{PNO.2025.Part4} } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} FunctionClassificationAttribute für CES, SES und ProductId } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC ComposedModuleTypePackage } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} RC HasExternalMtpContext } 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Parameter-Management}        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Produkt- und verpackungsspezifische Parametersätze der LEAs }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} Bestehende Modelldefinitionen für Parameter gemäß \cite{PNO.2025.Part4} } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} FunctionClassificationAttributes ProductId, LogisticsObjectStatus, ProductDataSet, PackagingId und PackagingDataSet } 
+		\\ \hhline{|~|-|-|}  %\cline{2-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Anfragen nach produkt- und verpa-  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} RC HasLogisticsInteraction  } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  ckungsspezifischen Parametersätzen  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC LogisticsInteraction  } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} sowie Meldungen von Änderungen   }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF}  SUC LogisticsQuestion } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+		
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} produkt- und verpackungsspezifi-  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF}  SUC ProductParameterRequest } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} scher Parametersätze  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF}  SUC PackagingParameterRequest } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}   }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF}  SUC ProductParameterUpdatedInfo } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}   }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF}  SUC PackagingParameterUpdatedInfo } 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Bedienbild-Funktionalität}        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Bedienbildinformationen von LEAs }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} Bestehende Modelldefinitionen gemäß \cite{PNO.2025.Part2} } 
+		\\ \hhline{|~|-|-|}  %\cline{2-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Bedienbildinformationen von Logistics Lines }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} Bestehende Modelldefinitionen gemäß \cite{PNO.2025.Part2} } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC ReferencedPicture} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC PictureFrame} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} RC HasExternalMtpContext} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Choreografie- }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Choreografierelevante Informatio- }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC ChoreographySet } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Konfigurator }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} nen einer LEA inkl. der Elemente }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC ChoreographyParticipant} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} der In- und Output-Listen }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC InputList} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC InputElement} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC FixedInputElement} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC ConfigurableInputElement} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC WritableInputElement} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC OutputList} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC OutputElement} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC FixeOutputElement} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC ConfigurableOutputElement} 
+		\\ \hhline{|~|-|-|}  %\cline{2-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Informationen von Composed- }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC ComposedModuleTypePackage } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} MTPs \footnote{Zukünftige Choreografie-Konfiguratoren sollten Composed-MTPs zur Beschreibung von Line-Schnittstellen und Line-Bedienbildern erzeugen, importieren und bearbeiten können. Dies ist in den LOL-Implementierungen der Evaluationsbeispielen noch nicht umgesetzt.} }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} AT ComposedTypeRevisionType} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} RC HasExternalMtpContext} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC ReferencedPicture} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC PictureFrame} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Transport- }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Transportrelevante Informationen  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC TransportSet } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Management }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} einer LEA inkl. deren Transport- }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC TransportNode} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} knoten und deren Arten }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC InboundNode} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC OutboundNode} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC InOutboundNode} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC ProcessingNode} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC OrderNode} 
+		\\ \hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Materialfluss- }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Transportrelevante Informationen  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC TransportSet } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} Management }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} einer LEA inkl. deren Transport- }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC TransportNode} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} knoten und deren Arten }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC InboundNode} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC OutboundNode} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC InOutboundNode} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC ProcessingNode} 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC OrderNode} 
+		\\ \hhline{|~|-|-|}  %\cline{2-3}
+ 
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Produktspezifische Parametersätze von LEAs (inkl. Defaultwerten für  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} Modelldefinitionen für Parameter gemäß \cite{PNO.2025.Part4} } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} anzufahrende Transportknoten) }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} FunctionClassificationAttributes ProductId, LogisticsObjectStatus und ProductDataSet } 
+		\\ \hhline{|~|-|-|}  %\cline{2-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} Abfragen nach dem nächsten anzu-  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} RC HasLogisticsInteraction } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF} fahrenden Transportknoten  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC LogisticsInteraction } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}  }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC LogisticsQuestion } 
+		\\ \hhline{|~|~|-|} %\cline{3-3}
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} }        & 
+		\multicolumn{1}{L{5.5cm}|}{\cellcolor[HTML]{FFFFFF}   }        & 
+		\multicolumn{1}{L{6cm}|}{\cellcolor[HTML]{FFFFFF} SUC TransportNodeRequest } 
+		\\ \hline
+
+
+	\end{longtable}
+\end{footnotesize}
+
+\textbf{(3) Tools zur Generierung, zum Import und zur Interpretation von MTP-Dateien:} Die Generierung, der Import und die Interpretation von MTP-Dateien beruht auf der Generierung, dem Import und der Interpretation gepackter AutomationML-Dateien in dem in \cite{PNO.2025} beschriebenen Format. Mit der AMLEngine \cite{AutomationMLe.V..2025} existiert eine offizielle .NET-Bibliothek des AutomationML e.~V., welche diese Verarbeitungen von AutomationML-Dateien ermöglicht. Auch für das konforme Packen von MTP-Dateien gemäß den Open Packaging Conventions \cite{ISOIECJTC1InformationtechnologySubcommitteeSC34Documentdescriptionandprocessinglangu.2021} existieren bereits Lösungen (z.~B. \cite{Microsoft.2025}). Diese Bibliotheken zeigten sich in MTP-Anwendungen der Prozessindustrie als geeignet für die Generierung und Interpretation von MTP-Dateien. Für die Generierung und Interpretation der neuen Modell- und Schnittstellendefinitionen, die im Rahmen dieser Dissertation spezifiziert wurden, existiert derzeit noch kein Softwarewerkzeug. Allerdings wurden für die Modellierung der neuen Konstrukte ausschließlich AutomationML-konforme Objekte verwendet. Bei der Entwicklung entsprechender Generierungs- und Interpretationstools handelt es sich daher lediglich um eine Entwicklungs- und nicht um eine Forschungsaufgabe. Diese Voraussetzung wird folglich als \emph{erfüllt} angesehen.
+
+\textbf{(4) Einheitliche Kommunikationstechnologie:} OPC~UA Client/Server hat sich als Kommunikationstechnologie in bestehenden MTP-Anwendungen bewährt. Die drei in Abschnitt~\ref{sec:Evaluationsbeispiele} beschriebenen Evaluationsbeispiele nutzen ebenfalls OPC~UA Client/Server als einheitliche standardisierte Technologie zur Kommunikation zwischen den LEAs untereinander und zu übergeordneten Orchestrierungssystemen. Damit wurde gezeigt, dass die Nutzung einer einheitlichen Kommunikationstechnologie möglich ist. Diese Voraussetzung wird folglich als \emph{erfüllt} angesehen.
+
+\subsubsection{(E) Schlussfolgerung}
+
+Im Schritt (D) wurde gezeigt, dass mit den in den Kapiteln~\ref{chap:Art1LEA} bis \ref{chap:Art3LA} beschriebenen Artefakten und deren Implementierung in den Evaluationsbeispielen in Abschnitt~\ref{sec:Evaluationsbeispiele} alle unter Punkt (B) herausgestellten notwendigen Voraussetzungen für den gewinnbringenden Einsatz des MTP-Konzepts auch im Bereich der produktionsnahen Logistik erfüllt sind. In der Folge ist davon auszugehen, dass unter Nutzung dieser Artefakte auch im Bereich der produktionsnahen Logistik eine Reduktion des Engineering- und Abstimmungsaufwands in einem ähnlichen Maß wie in der Prozessindustrie (A) erreicht werden kann. 
+
+Um diese Reduktion tatsächlich zu erreichen, muss sichergestellt werden, dass die in dieser Dissertation entwickelten Artefakte \emph{richtig} angewendet werden. Hierzu sind Designregeln und Engineeringmethodiken für MLS sowie unterstützende Tools notwendig, die die \emph{richtige} Anwendung der Artefakte definieren und deren Anwendung in der Praxis unterstützen. Diese Methodiken, Regeln und Tools sind nicht Gegenstand der Betrachtungen dieser Dissertation, sondern werden als zukünftige Forschungs- und Entwicklungsaufgaben angesehen (Kapitel~\ref{chap:ausblick}).

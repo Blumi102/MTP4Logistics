@@ -2,15 +2,15 @@
 
 ### 2.1 Context: Production-Adjacent Logistics and Packaging Processes
 
-This dissertation focuses on packaging processes in the process industry as a part of production-adjacent logistics. Production-adjacent logistics encompasses the supply of production processes with raw materials and the packaging of finished products [NAMUR AK 4.19, 2020]. The core task of packaging processes is the discretization of product streams — such as bulk or liquid goods — into individual, uniquely identifiable units referred to as **Logistics Objects (LOs)**, e.g., bags or pallets [NAMUR AK 4.19, 2020].
+This work focuses on packaging processes in the process industry as a part of production-adjacent logistics. Production-adjacent logistics encompasses the supply of production processes with raw materials and the packaging of finished products [[NE 171]](../98_References/README.md#namur-ak-419-2020). The core task of packaging processes is the discretization of product streams — such as bulk or liquid goods — into individual, uniquely identifiable units referred to as **Logistics Objects (LOs)**, e.g., bags or pallets [[NE 171]](../98_References/README.md#namur-ak-419-2020).
 
-Within the MoProLog research project, a generic process chain for packaging processes was derived in collaboration with end users and equipment manufacturers [Gryczycha, 2023]. This chain abstracts typical packaging steps, categorized according to whether they contribute to the primary packaging (Consumer Unit), secondary packaging (Trade Unit), or transport packaging (Logistics Unit) [DIN EN ISO 21067, 2014]. A concrete packaging process typically involves only a subset of these steps.
+Within the MoProLog research project, a generic process chain for packaging processes was derived in collaboration with end users and equipment manufacturers [[GPL23]](../98_References/README.md#gryczycha-et-al-2023). This chain abstracts typical packaging steps, categorized according to whether they contribute to the primary packaging (Consumer Unit), secondary packaging (Trade Unit), or transport packaging (Logistics Unit) [[DIN 55405]](../98_References/README.md#din-55405). A concrete packaging process typically involves only a subset of these steps.
 
 ### 2.2 Structure of a Modular Logistics System
 
-The fundamental idea of modularization is the decomposition of a system into clearly bounded modules, which can in turn be broken down into sub-modules. This hierarchical decomposition yields a set of **structural levels**. The structural levels described below were developed within the MoProLog project and are partially published in [Blumenstein et al., Design Principles].
+The fundamental idea of modularization is the decomposition of a system into clearly bounded modules, which can in turn be broken down into sub-modules. This hierarchical decomposition yields a set of **structural levels**. The structural levels described below were developed within the MoProLog project and are partially published in [[BFG+21]](../98_References/README.md#blumenstein-et-al-design-principles).
 
-[Figure 2.1](#figure-21-structure-of-a-modular-logistics-system) illustrates an exemplary **Modular Logistics System (MLS)** used for filling and palletizing bags and octabins [Blumenstein et al., 2023]. The structural levels relevant to this dissertation — MLS, Logistics Area, Logistics Line, and Logistics Equipment Assembly — are described in the following.
+[Figure 2.1](#figure-21-structure-of-a-modular-logistics-system) illustrates an exemplary **Modular Logistics System (MLS)** used for filling and palletizing bags and octabins [[BHF+23]](../98_References/README.md#blumenstein-et-al-2023). The structural levels relevant to this work — MLS, Logistics Area, Logistics Line, and Logistics Equipment Assembly — are described in the following.
 
 ##### Figure 2.1: Structure of a Modular Logistics System
 ![Structure of a Modular Logistics System](../V2/02_Modular_Logistics_System/Fig_2.1_MLS.png)
@@ -25,7 +25,7 @@ The fundamental idea of modularization is the decomposition of a system into cle
 
 a LEA may be further subdivided into **Functional Equipment Assemblies (FEAs)**, which extend the LEA hardware- and software-wise and are exclusively assigned to one LEA. FEAs may have their own controller and communicate only with their parent LEA. At the lowest level, **Components (COMPs)** represent atomic, non-decomposable units (e.g., individual sensors or actuators) and communicate only with their parent FEA.
 
-> **Scope of this dissertation:** The integration challenges in MLS automation lie primarily in the interaction of LEAs with each other and with higher-level systems [NAMUR AK 4.19, 2020]. This dissertation therefore focuses on the automation of LEAs, their interaction in Logistics Lines and Logistics Areas, and their integration into a LOL.
+> **Scope of this work:** The integration challenges in MLS automation lie primarily in the interaction of LEAs with each other and with higher-level systems [[NE 171]](../98_References/README.md#namur-ak-419-2020). This work therefore focuses on the automation of LEAs, their interaction in Logistics Lines and Logistics Areas, and their integration into a LOL.
 
 ### 2.3 Transport Systems
 
@@ -45,7 +45,7 @@ Transport processes between nodes are initiated by **transport demands**, which 
 
 ### 2.4 Operating Modes of LEAs and Logistics Lines
 
-Two fundamental operating modes of LEAs are distinguished [Blumenstein et al., Design Principles]:
+Two fundamental operating modes of LEAs are distinguished [[BFG+21]](../98_References/README.md#blumenstein-et-al-design-principles):
 
 **Order-oriented operation:** a LEA continuously processes a single packaging order. It receives all order data at the start and processes all LOs of the order in the same manner (e.g., continuous bag filling). Multiple LOs may be present in the LEA simultaneously. The focus is on high throughput. During execution, the LEA is bound to *one* order and performs *one* task.
 
@@ -63,7 +63,7 @@ Demand-oriented instances are started without order data. Upon receiving an LO, 
 
 ### 2.6 Automation Requirements
 
-The automation of an MLS places specific requirements on its constituent elements. The requirements summarized below are derived from [NAMUR AK 4.19, 2020] and enriched with findings from the MoProLog project [Blumenstein et al., MoProLog].
+The automation of an MLS places specific requirements on its constituent elements. The requirements summarized below are derived from [[NE 171]](../98_References/README.md#namur-ak-419-2020) and enriched with findings from the MoProLog project [[BGB+23]](../98_References/README.md#blumenstein-et-al-moprolog).
 
 #### Logistics Equipment Assemblies
 
@@ -87,6 +87,6 @@ The automation of an MLS places specific requirements on its constituent element
 
 #### Logistics Orchestration Layer
 
-The LOL is responsible for management, coordination, and monitoring functions in the MLS. Which specific functions are required depends on the MLS configuration and the operator's needs. A modular LOL architecture — selecting and combining IT-service modules as needed — is considered appropriate [Blumenstein et al., AutomationLOL]. The LOL shall be able to obtain all information about the LEAs it needs entirely from the LEAs' standardized information models (MTP files), without requiring vendor-specific adaptations.
+The LOL is responsible for management, coordination, and monitoring functions in the MLS. Which specific functions are required depends on the MLS configuration and the operator's needs. A modular LOL architecture — selecting and combining IT-service modules as needed — is considered appropriate [[BJF+23]](../98_References/README.md#blumenstein-et-al-automationlol). The LOL shall be able to obtain all information about the LEAs it needs entirely from the LEAs' standardized information models (MTP files), without requiring vendor-specific adaptations.
 
-> **Scope of this dissertation:** This dissertation specifies the automation-relevant interfaces and information models for LEAs, Logistics Lines, and Logistics Areas. An exemplary LOL implementation is provided in the evaluation to demonstrate feasibility; however, generic LOL implementation concepts are outside the scope of this work.
+> **Scope of this work:** This work specifies the automation-relevant interfaces and information models for LEAs, Logistics Lines, and Logistics Areas. An exemplary LOL implementation is provided in the evaluation to demonstrate feasibility; however, generic LOL implementation concepts are outside the scope of this work.

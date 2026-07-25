@@ -11,6 +11,7 @@
 <!-- TODO: Prüfen, ob noch etwas deutsches vorhanden ist -->
 <!-- TODO: Durchgängige Nummierierung der Sections, Abbildungen und Tabellen prüfen -->
 <!-- TODO: Claude fragen, ob er Inkonsistenzen in den Dokumenten findet und diese ausgeben lassen. -->
+<!-- TODO: Referenzierung von Quellen überarbeiten in gleicher Weise, wie bei den Inhaltskapitel. Formatierung in CLAUDE.md hinterlegt. -->
 
 ## 9 Enhancements of the Module Type Package Concept
 
