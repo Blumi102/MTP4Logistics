@@ -1,0 +1,1326 @@
+\chapter{Artefakt 3 - Automatisierung flexibler Transportsysteme in Logistics Areas}
+\label{chap:Art3LA}
+
+Dieses Kapitel stellt die \emph{MTP-basierte Automatisierung und Integration flexibler Transportsysteme} als drittes Artefakt dieser Dissertation vor. Dabei werden sowohl bereits etablierte als auch neu spezifizierte MTP-Konzepte behandelt. Die MTP-basierte Automatisierung flexibler Transportprozesse in der Logistics Area wurde im Rahmen der studentischen Arbeit \cite{Henkel.2022} untersucht und zu Teilen in \cite{Blumenstein.INDIN,Blumenstein.MoProLog} veröffentlicht. Die Evaluationsbeispiele des \emph{MoProLog-Demonstrators} und der \emph{Steuerungstechnischen Emulation} in Abschnitt~\ref{sec:Evaluationsbeispiele} veranschaulichen die Anwendung des Artefakts auf industrienahe Anwendungsfälle der produktionsnahen Logistik. Darüber hinaus enthält das GitHub-Repository zu dieser Dissertation \cite{Blumenstein.Github} Detailspezifikationen der eingeführten MTP-Erweiterungen sowie eine noch detailliertere Beschreibung ihrer Anwendung auf die Automatisierung eines Transports zwischen einer Palettierer-, einer Kennzeichnungs- und einer Stretchhauben-LEA.
+
+\section{Artefaktübersicht}
+\label{sec:Art3LAUebersicht}
+
+Für die Umsetzung flexibler Transporte in der Logistics Area ist eine einheitliche Interaktion zwischen LEAs und AGV-Systemen erforderlich. Da im MTP-Umfeld bislang kein entsprechender Lösungsansatz existiert, präsentiert dieses Artefakt ein neues Konzept zur Automatisierung und Integration flexibler Transporte, das sich soweit möglich an bestehenden MTP-Konzepten orientiert. Dieser Abschnitt führt die konzeptionellen Bestandteile des Artefakts sowie zentrale Begrifflichkeiten ein und setzt diese zueinander in Beziehung. Die anschließenden Abschnitte präzisieren die technische Umsetzung und begründen die zugrunde liegenden Designentscheidungen. Die Inhalte dieses Abschnitts werden aus zwei Perspektiven dargestellt: Abschnitt~\ref{subsec:ArchitekturÜbersichtLA} beschreibt die wesentlichen Systembestandteile eines MLS, die an der Ausführung flexibler Transporte beteiligt sind. Abschnitt~\ref{subsec:ArbeitsweisenÜbersichtLA} erläutert die Ausführung eines Transportprozesses auf Basis dieser Systembestandteile. Von diesen Abschnitten aus wird auf die nachfolgenden Detailbeschreibungen verwiesen.
+
+\subsection{Architektur}
+\label{subsec:ArchitekturÜbersichtLA}
+
+Abbildung~\ref{fig:ArchitekturLA} zeigt die Systembestandteile eines MLS zur Umsetzung flexibler Transporte in der Logistics Area sowie deren Schnittstellen zueinander.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/Architektur_Uebersicht.pdf}}
+	\caption{Architekturansatz zur Umsetzung flexibler Transporte in einer Logistics Area}
+	\label{fig:ArchitekturLA}
+\end{figure}
+
+\textbf{Transport-Management (Abschnitt~\ref{sec:TransportManagementLA}):} Ein zentraler Bestandteil ist ein \gls{tm}, das Transportbedarfe aus LEAs entgegennimmt, als Transportaufträge verwaltet und deren Ausführung über angebundene AGV-Systeme koordiniert. Die Transportaufträge werden dabei als \textbf{MTP-Transportdienste} abgebildet und durch das Transport-Management dynamisch erzeugt, ausgeführt und beendet. Hierzu umfasst das Transport-Management ein Order-Management zur Verwaltung und -ausführung der Transportaufträge sowie ein LEA-Management zur Integration und Verwaltung der LEAs.
+
+\textbf{LEAs (Abschnitt~\ref{sec:LogisticsEquipmentAssemblyLA}):} LEAs bringen Transportbedarfe über sogenannte Order-Knoten in das System ein und koordinieren Übergaben, Übernahmen sowie Bearbeitungen an ihren Transportknoten (z.~B. InOutbound-Knoten, siehe Abschnitt~\ref{subsec:ArbeitsweiseMLS}). Diese Knoten sind in den LEA-Programmen durch sogenannte \textbf{\gls{tkbaustein}} realisiert, die gemäß dem Prinzip der dezentralen Orchestrierung mit den Transportdiensten des Transport-Managements interagieren.
+Zur robusten Kopplung zwischen TK-Bausteinen und Transportdiensten werden im Transport-Management sogenannte \textbf{\gls{tkproxy}} eingesetzt. Im Zuge der LEA-Integration bindet das LEA-Management jeden TK-Baustein dauerhaft an einen TK-Proxy an, der ihn im Order-Management repräsentiert. Während der Ausführung von Transportprozessen werden den TK-Proxies innerhalb des Order-Managements dynamisch verschiedene Transportdienste zugeordnet. Dadurch kann jeder TK-Baustein über seinen Proxy mit unterschiedlichen Transportdiensten interagieren. Zur automatisierten Integration der LEAs in das LEA-Management werden transportrelevante LEA-Informationen in einem \emph{TransportSet} in den LEA-MTPs beschrieben. 
+
+\textbf{AGV-System (Abschnitt~\ref{sec:AgvSystemLA}):} Das AGV-System besteht aus einem Flottenmanager und mehreren AGVs zur Durchführung von Transporten zwischen den physischen Transportknoten der LEAs. Darüber hinaus interagiert es mit den LEAs zur Koordination von Übergaben, Übernahmen und Bearbeitungen. Die Anbindung an das Transport-Management erfolgt über einen \textbf{AGV-System-Adapter}, der die proprietäre Schnittstelle des AGV-Systems an die Transportdienste anbindet.
+
+\textbf{Weitere LOL-Funktionen:} Ergänzend zum Transport-Management können ein Parameter-Management und/oder ein Materialfluss-Management genutzt werden, um statische bzw. dynamische Routeninformationen gemäß REQ-LA-1d/e bereitzustellen. Das Parameter-Management verwaltet produktspezifische statische Defaultrouten. Das Materialfluss-Management plant für jeden Transportauftrag abhängig vom aktuellen Zustand des MLS sowie den anstehenden Verpackungsaufträgen eine möglichst optimale Sequenz anzufahrender Transportknoten.
+
+\subsection{Arbeitsweise}
+\label{subsec:ArbeitsweisenÜbersichtLA}
+
+Abbildung~\ref{fig:ArbeitsweiseLA} zeigt beispielhaft eine Logistics Area mit einer Palettierer-LEA (engl. Palletizer, PAL), einer Kennzeichner-LEA (engl. \gls{label}) und einer Stretchhauben-LEA (engl. Stretch Hood Machine, SH) einschließlich der zugehörigen Transport- und Order-Knoten. Anhand dieser Konfiguration wird im Folgenden die grundlegende Arbeitsweise des Artefakts erläutert.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.8\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/ArbeitsweiseLA.pdf}}
+	\caption{Anwendungsbeispiel zur Verdeutlichung der Arbeitsweise flexibler Transporte in einer Logistics Area}
+	\label{fig:ArbeitsweiseLA}
+\end{figure}
+
+\textbf{Meldung von Transportbedarfen und AGV-Auswahl (Abschnitt~\ref{subsec:MeldungTransportbedarfe}):} An den TK-Proxy des Order-Knotens des PAL ist initial ein inaktiver Transportdienst angebunden (Abbildung~\ref{fig:ArbeitsweiseLA}, (1)). Zur Meldung eines Transportbedarfs, etwa zum Abtransport einer fertiggestellten Palette, parametriert und startet der PAL diesen Dienst über den TK-Baustein des Order-Knotens. Dabei stellt er den eigenen InOutbound am Transportdienst als nächsten anzufahrenden Transportknoten (\emph{NextNode}) ein und startet den Transportdienst im Status \emph{PushRequested}. 
+Anschließend entkoppelt das Transport-Management den gestarteten Transportdienst vom TK-Proxy des Order-Knotens und bindet einen neuen inaktiven Transportdienst für zukünftige Transportbedarfe an. Auf Basis des gestarteten Transportdienstes stellt das Transport-Management dem AGV-System einen Transportauftrag bereit, woraufhin der Flottenmanager ein geeignetes AGV auswählt.
+
+\textbf{Transport und Anfahren einer LEA (Abschnitt~\ref{subsec:TransportAnfahrenLea}):} Nach der Auswahl eines AGV veranlasst der Flottenmanager dessen Fahrt zum angegebenen Transportknoten (\emph{NextNode}) und setzt den Transportstatus auf \emph{Transport}. Beim Einfahren des AGV in einen definierten Anfahrbereich des InOutbound-Knotens setzt das AGV-System den Status des Transportdienstes auf \emph{TransportAwaitRequested}. Daraufhin bindet das Transport-Management den Transportdienst an den TK-Proxy dieses Transportknotens an (Abbildung~\ref{fig:ArbeitsweiseLA}, (2)).
+Der PAL prüft anschließend, ob es sich um den beauftragten Transport handelt, und gibt dem AGV die Freigabe zum Heranfahren (\emph{TransportAwaited}). Nach Ankunft des AGV setzt der Flottenmanager den Transportstatus auf \emph{TransportArrived}.
+
+\textbf{Übergabe des LO (Abschnitt~\ref{subsec:UbergabeUebernahmeProcessing}):} Anschließend führt die LEA die erforderlichen Interaktionsschritte zur Übergabe der Palette an das AGV durch (\emph{TransferFromLea}). Nach erfolgreicher Übergabe ermittelt der PAL den nächsten anzufahrenden Transportknoten, hier den Processing-Knoten der LABEL-LEA, aktualisiert die \emph{NextNode} des Transportdienstes und signalisiert den Abschluss über den Transportstatus \emph{TransferFromLeaSucceeded}. Daraufhin entkoppelt das Transport-Management den Transportdienst vom TK-Proxy des InOutbound-Knotens und signalisiert dem AGV-System die Weiterfahrt zum nächsten Transportknoten.
+
+\textbf{Transport und Anfahren einer LEA (Abschnitt~\ref{subsec:TransportAnfahrenLea}):} Befindet sich das AGV auf dem Weg zum nächsten Transportknoten, setzt der Flottenmanager den Transportstatus erneut auf \emph{Transport}. Die Interaktion am Processing-Knoten der LABEL-LEA erfolgt analog. Nach Einfahrt des AGV in den Anfahrbereich bindet das Transport-Management den Transportdienst an den TK-Proxy des Processing-Knotens an (Abbildung~\ref{fig:ArbeitsweiseLA}, (3)), woraufhin die LABEL-LEA prüft, ob sie den Transport verarbeiten kann. Nach erteilter Freigabe fährt das AGV an die LABEL-LEA heran.
+
+\textbf{Bearbeitung des LO (Abschnitt~\ref{subsec:UbergabeUebernahmeProcessing}):} Nach Ankunft des AGV setzt die LABEL-LEA den Transportstatus auf \emph{Processing}. Während der Bearbeitung verbleibt das LO auf dem AGV, das seine Position hält. Nach erfolgreicher Bearbeitung aktualisiert die LABEL-LEA die \emph{NextNode} auf den Inbound-Knoten der SH und signalisiert den Abschluss über \emph{ProcessingSucceeded}. Anschließend entkoppelt das Transport-Management den Transportdienst vom TK-Proxy des Processing-Knotens und signalisiert dem AGV-System die Weiterfahrt zum nächsten Transportknoten. Auf diese Weise können beliebig viele Processing-Knoten sequenziell angefahren werden.
+
+\textbf{Transport und Anfahren einer LEA (Abschnitt~\ref{subsec:TransportAnfahrenLea}):} Befindet sich das AGV auf dem Weg zum nächsten Transportknoten, setzt der Flottenmanager den Transportstatus erneut auf \emph{Transport}. Am Inbound-Knoten der SH erfolgt derselbe Anbindungsmechanismus (Abbildung~\ref{fig:ArbeitsweiseLA}, (4)).
+
+\textbf{Übernahme des LO (Abschnitt~\ref{subsec:UbergabeUebernahmeProcessing}):} Nach Prüfung des Transportauftrags und Ankunft des AGV übernimmt die SH das LO im Transportstatus \emph{TransferToLea} und bestätigt den Abschluss mit \emph{TransferToLeaSucceeded}. Da es sich um den letzten Transportknoten handelt, entfällt die Aktualisierung der \emph{NextNode}. Anschließend entkoppelt das Transport-Management den Transportdienst vom TK-Proxy des Inbound-Knotens, beendet ihn und meldet dies dem AGV-System, welches das eingesetzte AGV für Folgeaufträge freigibt.
+
+\textbf{Umrouten von Transporten (Abschnitt~\ref{subsec:Rerouting}):} Das Transport-Management erkennt zudem Störungen an LEAs und kann Transporte umleiten, die sich bereits auf dem Weg zu einer betroffenen LEA befinden. Hierzu setzt es die entsprechenden Transportdienste in den Status \emph{Rerouting}. Nach erfolgreicher Umleitung und Aktualisierung der \emph{NextNode} wird der Abschluss über \emph{ReroutingSucceeded} signalisiert. Dieser Sonderfall ist in Abbildung~\ref{fig:ArbeitsweiseLA} nicht dargestellt.\\
+
+Die nachfolgenden Abschnitte beschreiben die technische Umsetzung dieser Konzepte. Abschnitt~\ref{sec:ArchitekturentscheidungenLA} erläutert die architekturrelevanten Designentscheidungen. Abschnitt~\ref{sec:TransportprozessLA} beschreibt die Umsetzung der einzelnen Schritte eines Transportprozesses im Detail. Die Abschnitte~\ref{sec:TransportManagementLA} bis \ref{sec:AgvSystemLA} stellen die Umsetzung der Systembestandteile Transport-Management, LEAs und AGV-System vor. Abschließend fasst Abschnitt~\ref{sec:MTPErweiterungenLA} die notwendigen Erweiterungen des MTP-Konzepts zur Umsetzung flexibler Transporte in der Logistics Area zusammen. Aus Gründen der Vereinfachung erfolgen die Konzeptbeschreibungen anhand einzelner LEAs und nicht anhand von Logistics Lines. Sofern nicht anders angegeben, sind die beschriebenen Konzepte jedoch gleichermaßen auf die LEAs einer Logistics Line anwendbar.
+
+\section{Architekturentscheidungen}
+\label{sec:ArchitekturentscheidungenLA}
+
+Dieser Abschnitt beschreibt grundlegende, aufeinander aufbauende Designentscheidungen, die die Entwicklung der in Abschnitt~\ref{subsec:ArchitekturÜbersichtLA} dargestellten Architektur maßgeblich geprägt haben.
+
+\subsubsection{DE1 - Abstraktion zur Beherrschung der Vielfalt von AGV-Systemen}
+
+Grundlage für die Umsetzung flexibler Transporte in der Logistics Area ist die Fähigkeit der LEAs zur Interaktion mit AGV-Systemen. Diese kann entweder direkt oder über eine zwischengeschaltete Abstraktionsschicht erfolgen. Abbildung~\ref{fig:AbstraktionTM} und Tabelle~\ref{tab:AbstraktionTM} stellen beide Ansätze gegenüber und bewerten sie.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.8\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/Designentscheidung_AbstraktionTM.pdf}}
+	\caption{Möglichkeiten zur direkten und indirekten Interaktion zwischen LEAs und AGV-Systemen}
+	\label{fig:AbstraktionTM}
+\end{figure}
+
+
+% Abstraktionsschicht Transport-Management
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Bewertung der Möglichkeiten zur direkten und indirekten Interaktion zwischen LEAs und AGV-Systemen}
+		\label{tab:AbstraktionTM}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Direkte Interaktion zwischen LEAs und AGV-Systemen}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{LEAs und AGV-Systeme interagieren über eine MTP-basierte Schnittstelle direkt miteinander.}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Interaktion erfolgt direkt, ohne zwischengeschaltete Instanz, wodurch geringe Latenzen möglich sind. Zudem sind neben LEAs und AGV-Systemen keine weiteren Systemkomponenten erforderlich. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Bestehende AGV-Systeme verfügen derzeit nicht über MTP-basierte Schnittstellen und müssen entsprechend erweitert werden. Werden in einer Logistics Area mehrere AGV-Systeme eingesetzt, müssen die LEAs zudem an unterschiedliche MTP-Schnittstellen angebunden werden, abhängig davon, mit welchem AGV-System sie interagieren. } 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Indirekte Interaktion zwischen LEAs und AGV-Systemen}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{ LEAs und AGV-Systeme interagieren über das Transport-Management als zwischengeschaltete Abstraktionsschicht. Dieses stellt den LEAs eine standardisierte Schnittstelle sowie einen einheitlichen Interaktionsmechanismus bereit. Aufseiten der AGV-Systeme ist das Transport-Management durch ein Adapterkonzept erweiterbar, sodass unterschiedliche bestehende AGV-Systeme angebunden werden können. }} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Bestehende AGV-Systeme können über Adapter ohne Anpassungen an das Transport-Management angebunden werden, wodurch eine Nachrüstbarkeit für bestehende Systeme ermöglicht wird. Zudem können mehrere AGV-Systeme innerhalb der Logistics Area eingesetzt und durch das Transport-Management vereinheitlicht angesprochen werden. Den LEAs wird dabei eine standardisierte Schnittstelle bereitgestellt, die unabhängig von Anzahl und Typ der angebundenen AGV-Systeme ist. } 
+		\\ \hline
+ 
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+
+		Neben LEAs und AGV-Systemen ist das Transport-Management als zusätzliche Systemkomponente erforderlich. Für jedes angebundene AGV-System muss darin ein geeigneter Adapter implementiert werden. Zudem erfolgt die Interaktion zwischen LEA und AGV-System nicht direkt, sondern über das Transport-Management, was zu höheren Latenzen führen kann. }
+
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
+
+\begin{graybox}
+	\textbf{Designentscheidung:} Es wird die Variante der \textbf{indirekten Interaktion zwischen LEAs und AGV-Systemen} gewählt. Hierzu wird ein Transport-Management als vereinheitlichende Ebene zwischen LEAs und AGV-Systemen eingeführt. Diese Entscheidung ermöglicht eine Entkopplung beider Systeme. Bestehende AGV-Systeme können im Sinne des Bestandsschutzes ohne Anpassungen weiterverwendet und über entsprechende Adapter an das Transport-Management angebunden werden. Auch beim Einsatz mehrerer AGV-Systeme innerhalb einer Logistics Area stellt das Transport-Management den LEAs eine einheitliche, standardisierte MTP-basierte Schnittstelle zur Interaktion bereit.
+\end{graybox}
+
+Trotz der Möglichkeit, mehrere AGV-Systeme innerhalb einer Logistics Area einzusetzen, fokussiert diese Dissertation zunächst auf den Einsatz \underline{eines} AGV-Systems. Die Herausforderungen und Randbedingungen beim Betrieb mehrerer AGV-Systeme sollten Gegenstand weiterführender Arbeiten sein (siehe Ausblickskapitel~\ref{chap:ausblick}). Darüber hinaus eröffnet die DE1 perspektivisch auch die Möglichkeit zur Integration anderer Arten flexibler Transportsysteme, beispielsweise flexibler Förderbandsysteme.
+
+\subsubsection{DE2 - Level der Abstraktion}
+
+Eine funktionale Abstraktion, wie sie das Transport-Management für AGV-Systeme bereitstellt, wird im Sinne des MTP-Konzepts durch Dienste umgesetzt. Diese Dienste können entweder auf Ebene der AGVs oder der Transportaufträge angesetzt werden. Beide Varianten werden in Abbildung~\ref{fig:AbstraktionAgvSystem} sowie Tabelle~\ref{tab:AbstraktionAgvSystem} dargestellt und bewertet.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.8\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/Designentscheidung_Abstraktionslevel.pdf}}
+	\caption{Abstraktionslevel für die Abbildung von AGV-Systemen auf MTP-Dienste}
+	\label{fig:AbstraktionAgvSystem}
+\end{figure}
+
+% Abstraktionslevel für die Abbildung von AGV-Systemen auf MTP-Dienste 
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Bewertung der Abstraktionslevel für die Abbildung von AGV-Systemen auf MTP-Dienste}
+		\label{tab:AbstraktionAgvSystem}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Ein Dienst pro AGV}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Die Funktionalität eines AGVs wird durch einen MTP-Dienst abgebildet.}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} LEAs können die Funktionalität eines AGVs direkt über dessen Diensteschnittstelle ansteuern. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		
+		Die Auswahl eines geeigneten AGV (\emph{Resource Utilization} im Sinne von SAIL \cite{VDIVDMA.2016}) für einen Transport muss im Transport-Management oder in der LEA erfolgen. Hierfür sind Kenntnisse über Eigenschaften, Belegungen und Zustände aller AGVs erforderlich. Auf diese Aufgabe sind jedoch die Flottenmanager der AGV-Systeme spezialisiert. Zudem wird das MTP-Konzept mit diesem Ansatz auf einer Ebene eingesetzt, auf der VDA~5050 bereits etabliert ist, was gemäß Abschnitt~\ref{subsec:SotaLAStandards} nicht zielführend ist.} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Ein Dienst pro Transportauftrag}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Jeder in der Logistics Area laufende oder beauftragte Transportauftrag wird durch einen MTP-Dienst abgebildet.}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		
+		Die Auswahl eines geeigneten AGV kann durch den Flottenmanager des AGV-Systems erfolgen und wird innerhalb des MTP-Dienstes gekapselt. Die Transportaufträge lassen sich dabei als einzelne MTP-Dienste im Transport-Management verwalten und den LEAs bereitstellen. Zudem berücksichtigt dieser Ansatz veränderliche AGV-Systeme, in denen AGVs dynamisch hinzugefügt oder entfernt werden können. Solche Änderungen innerhalb des AGV-Systems wirken sich nicht auf die MTP-Transportdienste des Transport-Managements aus.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF}
+		
+		Im Gegensatz zum klassischen MTP-Konzept werden hierbei \underline{nicht} die Funktionalitäten des AGV-Systems (\emph{Was kann es?}), sondern die Transportaufträge (\emph{Was tut es gerade?}) als MTP-Dienste abgebildet. Dadurch ändert sich im Gegensatz zu konventionellen MTP-Konzepten die Anzahl der Transportdienste im Transport-Management dynamisch entsprechend der aktuell laufenden oder beauftragten Transportaufträge.	}
+
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
+ 
+\begin{graybox}
+	\textbf{Designentscheidung:} Es wird ein \textbf{MTP-Dienst pro Transportauftrag} gewählt. Im Gegensatz zu einem Dienst pro AGV muss das Transport-Management dabei keine internen Eigenschaften, Belegungen und Zustände einzelner AGVs nach außen abbilden, sondern überlässt die Auswahl und Zuweisung geeigneter AGVs dem Flottenmanager des AGV-Systems. Gleichzeitig wird jeder Transportauftrag als eigenständige Instanz im Transport-Management verwaltet, sodass LEAs ihn gezielt adressieren und mit ihm interagieren können.
+\end{graybox}
+
+Abbildung~\ref{fig:EinordnungSail} zeigt die aus DE2 resultierende Einordnung in die SAIL-Architektur \cite{VDIVDMA.2016}. Das Transport-Management übernimmt dabei die Transportkoordination (\emph{Transport Coordination}, TC), während das AGV-System die übrigen SAIL-Ebenen abdeckt. Abhängig vom Autonomiegrad der Fahrzeuge realisiert der Flottenmanager beispielsweise die Funktionen der \emph{Resource Utilization} und des \emph{Mission Management}, während die AGVs die Funktionen der \emph{Direction Control} und \emph{Facility Control} umsetzen.
+Unabhängig vom internen Aufbau des AGV-Systems können LEAs ihre Transportbedarfe an das Transport-Management melden, das diese als Transportaufträge verwaltet und anhand definierter Kriterien, etwa Auslastung oder Fähigkeiten, an die unterlagerten AGV-Systeme zur Ausführung weitergibt.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.6\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/Einorndung_SAIL.pdf}}
+	\caption{Einordnung des Transport-Managements und AGV-Systems in die SAIL-Architektur \cite{VDIVDMA.2016}}
+	\label{fig:EinordnungSail}
+\end{figure}
+
+
+\subsubsection{DE3 - Assoziationsprinzip von LEA-Diensten und Transportdiensten}
+
+Die Transportdienste des Transport-Managements müssen im Rahmen von Transportbedarfsmeldungen, Übergaben, Übernahmen und Bearbeitungen mit den Diensten der LEAs interagieren. Hierfür ist eine Assoziation zwischen Transportdiensten und LEA-Diensten erforderlich. Gemäß Abschnitt~\ref{sec:AssoziationModAnlagen} kommen hierfür die Prinzipien der zentralen Orchestrierung, dezentralen Orchestrierung sowie der Choreografie infrage. Abbildung~\ref{fig:AssoziationTransportLeaDienste} und Tabelle~\ref{tab:AssoziationTransportLeaDienste} stellen diese Prinzipien im Kontext der Assoziation von LEA-Diensten und Transportdiensten dar und bewerten sie.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/Designentscheidung_Assoziation.pdf}}
+	\caption{Prinzipien zur Assoziation von LEA-Diensten und Transportdiensten}
+	\label{fig:AssoziationTransportLeaDienste}
+\end{figure}
+
+% Assoziationsprinzipien LEA-Dienste - Transportdienste
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Bewertung der Prinzipien zur Assoziation von LEA-Diensten und Transportdiensten}
+		\label{tab:AssoziationTransportLeaDienste}\\
+		\hline
+ 
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Zentrale Orchestrierung}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Eine Funktion im LOL, z.~B. Auftrags-Management, orchestriert die LEA-Dienste und die Transportdienste zentral.}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Dieses Prinzip liegt sehr nah an den bestehenden standardisierten MTP-Konzepten. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		
+		Das Auftrags-Management im LOL muss über sämtliche relevanten Informationen verfügen, etwa zu Transportbedarfen der LEAs, laufenden Transporten oder dem Status aktiver Übergaben, um LEA- und Transportdienste zentral zu koordinieren. LEAs in der produktionsnahen Logistik arbeiten jedoch weitgehend autark und besitzen dieses Wissen selbst, während es im LOL typischerweise nicht vorliegt. Der LOL agiert primär als auftraggebende, nicht als koordinierende Instanz. Das Prinzip der zentralen Orchestrierung widerspricht somit der Charakteristik von MLS. } 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Dezentrale Orchestrierung}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{ LEA-Dienste orchestrieren die Transportdienste dezentral.}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF}
+		
+		Das Wissen über Transportbedarfe sowie erforderliche Übergaben, Übernahmen und Bearbeitungen liegt bei den LEAs selbst. Diese können die Informationen daher unmittelbar zur Orchestrierung der Transportdienste nutzen. Die dezentrale Orchestrierung unterstützt somit die autarke Arbeitsweise der LEAs. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		Wie in Abschnitt~\ref{sec:AssoziationModAnlagen} beschrieben, besteht ein grundlegender Nachteil der dezentralen Orchestrierung darin, dass die Schnittstelle des orchestrierten Dienstes (hier: Transportdienst) bereits während des LEA-Engineerings im orchestrierenden Dienst (hier: LEA-Dienst) vorbereitet werden muss. }
+
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Choreografie}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{LEA-Dienste und Transportdienste werden durch eine Choreografie assoziiert.}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		
+		Das Wissen der LEAs über Transportbedarfe sowie erforderliche Übergaben, Übernahmen und Bearbeitungen kann unmittelbar zur Interaktion mit den Transportdiensten genutzt werden. Die Choreografie unterstützt damit die autarke Arbeitsweise der LEAs. Zudem lässt sich die Interaktion zwischen LEA-Dienst und Transportdienst flexibel über Choreografieregeln definieren, ohne diese bereits während des LEA-Engineerings vorbereiten zu müssen.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF}
+		
+		Im Vergleich zur dezentralen Orchestrierung verursacht die Choreografie höhere Konfigurationsaufwände, da Transportdienste nicht lediglich vorbereiteten Schnittstellen von LEA-Diensten zugeordnet werden müssen, sondern zusätzlich Choreografieregeln definiert und geladen werden müssen. }
+
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
+ 
+\begin{graybox}
+	\textbf{Designentscheidung:} Für die Assoziation zwischen LEA-Diensten und Transportdiensten wird das Prinzip der \textbf{dezentralen Orchestrierung} gewählt. Dieses unterstützt die autarke Arbeitsweise der LEAs und verursacht im Vergleich zur Choreografie einen geringeren Assoziationsaufwand.
+	Im Rahmen dieser Dissertation wird hierzu eine einheitliche Schnittstelle sowie ein standardisierter Interaktionsmechanismus für Transportdienste definiert, die von allen Transportdiensten umgesetzt werden müssen. Dadurch können Schnittstelle und Interaktionsmechanismus bereits während des LEA-Engineerings im LEA-Dienst vorbereitet werden. Die zusätzliche Flexibilität einer Choreografie wird daher nicht benötigt.
+\end{graybox}
+
+Durch diese DE übernehmen die LEA-Dienste aus logischer Sicht die Rolle der orchestrierenden Dienste, welche die Transportdienste steuern, und sind diesen logisch übergeordnet (Abbildung~\ref{fig:DOLeaTransportLogischeSicht}, links).
+Aus technischer Sicht stellt das Transport-Management hingegen eine LEA-übergreifende Instanz dar, die LEA-Informationen importiert und verarbeitet. Es ist damit definitionsgemäß eine Funktion des LOLs\footnote{Definition eines POL gemäß \cite{VDI.2020}: PEA-übergreifende, automatisierungs- und informationstechnische Ebene für den Betrieb von MPs} und folglich den LEA-Diensten übergeordnet (Abbildung~\ref{fig:DOLeaTransportLogischeSicht}, rechts).
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.6\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/DO_LogischeSicht.pdf}}
+	\caption{Logische und Technische Sichten auf die Anbindung einer LEA an das Transport-Management}
+	\label{fig:DOLeaTransportLogischeSicht}
+\end{figure}
+
+Diesen beiden Sichten wird durch die zwei Hauptfunktionen des Trans\-port-Ma\-nage\-ments Rechnung getragen: Das LEA-Management stellt eine klassische LOL-Funktion dar, welche LEA-MTPs importiert sowie deren Informationen verwaltet und verarbeitet. Das Order-Management dient hingegen der Bereitstellung von Transportdiensten zur dezentralen Orchestrierung durch die LEAs. Abbildung~\ref{fig:ArchitekturLA} verdeutlicht diesen Zusammenhang anhand der unterschiedlichen Ausrichtung der Schnittstellen zwischen den LEAs und dem LEA-Management bzw. Order-Management.
+
+\subsubsection{DE4 - Konfiguration der dezentralen Orchestrierung}
+
+Zur Umsetzung der dezentralen Orchestrierung müssen LEAs die zu orchestrierenden Transportdienste identifizieren und eine Kommunikationsverbindung zu diesen aufbauen. Abbildung~\ref{fig:KonfigurationDOLeaTransport} sowie Tabelle~\ref{tab:KonfigurationDOLeaTransport} zeigen mögliche Konfigurationsansätze und bewerten diese.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/Designentscheidung_KonfigurationDO.pdf}}
+	\caption{Möglichkeiten zur Konfiguration der dezentralen Orchestrierung von Transportdiensten}
+	\label{fig:KonfigurationDOLeaTransport}
+\end{figure}
+
+% Konfiguration der dezentralen Orchestrierung 
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Bewertung der Möglichkeiten zur Konfiguration der dezentralen Orchestrierung von Transportdiensten}
+		\label{tab:KonfigurationDOLeaTransport}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Browsen von Transportdiensten durch die LEAs}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{ 
+			
+		LEAs erhalten vom Transport-Management über eine dedizierte Schnittstelle sowohl dessen Adressinformationen als auch die IDs der Transportdienste, zu denen eine Verbindung aufgebaut werden soll. Anschließend ermitteln die LEAs die entsprechenden Transportdienste und etablieren die notwendigen Kommunikationsverbindungen. }} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		Die Schnittstelle zwischen Transport-Management und LEA ist schlank und umfasst ausschließlich die Adressinformationen des Transport-Managements sowie die IDs der anzubindenden Transportdienste. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		
+		Für die LEA ist ein Browsen nach verfügbaren Transportdiensten erforderlich. Industrielle Steuerungssysteme, wie sie in LEAs eingesetzt werden, sind jedoch nicht für derartige Browsing-Mechanismen ausgelegt. Zudem erfordert die Anbindung eines Transportdiensts stets einen erneuten Kommunikationsaufbau zwischen LEA und Transportdienst. }
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Konfigurative Anbindung von Transportdiensten durch das Transport-Management }} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{ Jede LEA stellt eine Schnittstelle bereit, über die das Transport-Management Transportdienste an die LEA anbinden kann. }} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+
+		Das Transport-Management, das über Informationen zu laufenden Transportaufträgen verfügt, konfiguriert die dezentrale Orchestrierung der LEA direkt. Ein Browsen nach Transportaufträgen durch die LEA entfällt. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF}
+		
+		Die Schnittstelle zur konfigurativen Anbindung von Transportdiensten durch das Transport-Management ist umfangreicher als jene zum Browsen von Transportdiensten. Zudem erfordert die Anbindung eines Transportdiensts stets einen erneuten Kommunikationsaufbau zwischen LEA und Transportdienst. }
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Konfigurative Anbindung von TK-Proxies durch das Transport-Management }} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{ 
+			
+		Transportdienste werden nicht direkt an die LEAs angebunden. Stattdessen stellt das Transport-Management TK-Proxies bereit, die mit den LEAs verbunden werden. Den TK-Proxies werden anschließend Transport-Management-intern die erforderlichen Transportdienste zugeordnet. Die konfigurative Anbindung der TK-Proxies an die LEAs erfolgt über eine ähnliche Schnittstelle wie im Fall der \emph{konfigurativen Anbindung von Transportdiensten durch das Transport-Management}. }} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF}
+		
+		Das Transport-Management, das die Informationen zu den verfügbaren TK-Proxies besitzt, konfiguriert deren Anbindung an die LEAs direkt (kein Browsen). So sind LEAs, unabhängig von aktuell laufenden Transportaufträgen, dauerhaft mit denselben TK-Proxies verbunden. Die dynamische Zuordnung verschiedener Transportdienste zu den TK-Proxies erfolgt ausschließlich innerhalb des Transport-Managements und erfordert keine Rekonfiguration der Kommunikationsverbindungen zu den LEAs. }
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF}
+		Die Schnittstelle zur konfigurativen Anbindung von Proxies durch das Transport-Management ist umfangreicher als jene zum Browsen von Transportdiensten. Zudem erfordert dieser Ansatz zusätzliche Proxy-Komponenten, die im Transport-Management zu implementieren sind. }
+		\\ \hline
+
+
+	\end{longtable}
+\end{footnotesize}
+
+\pagebreak
+
+\begin{graybox}
+	\textbf{Designentscheidung:} Für die Konfiguration der dezentralen Orchestrierung wird die Variante der \textbf{konfigurativen Anbindung von TK-Proxies durch das Transport-Management} gewählt. Das Transport-Management, das über Informationen zu laufenden Transportaufträgen verfügt, konfiguriert die Anbindung der TK-Proxies an die LEAs direkt (ohne Browsing). Nach der initialen Anbindung bleiben die LEAs dauerhaft mit denselben TK-Proxies verbunden. Die dynamische Zuordnung verschiedener Transportdienste zu den Proxies erfolgt ausschließlich innerhalb des Transport-Managements und erfordert keine Rekonfiguration der Kommunikationsverbindungen, was zu einer robusteren Implementierung führt (siehe auch Abschnitt~\ref{sec:AnhangEvaluationMoProLog}, Testszenario 1).
+\end{graybox}
+
+\subsubsection{DE5 - Erzeugung von Transportdiensten}
+
+Gemäß DE2 werden Transportaufträge durch Transportdienste umgesetzt, die im Transport-Management dynamisch erzeugt und gelöscht werden können. Im klassischen MTP-Konzept sind Dienste hingegen statisch in PEAs implementiert und nicht zur dynamischen Erzeugung oder Löschung vorgesehen. Im MTP-Umfeld existiert daher bislang kein entsprechendes Konzept. Abbildung~\ref{fig:DynErzeugungTransportdienste} sowie Tabelle~\ref{tab:DynErzeugungTransportdienste} stellen zwei Ansätze zur dynamischen Erzeugung von Transportdiensten dar und bewerten diese.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.8\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/Designentscheidung_ErzeugungTransportdienste.pdf}}
+	\caption{Möglichkeiten zur dynamischen Erzeugung von Transportdiensten}
+	\label{fig:DynErzeugungTransportdienste}
+\end{figure}
+
+\pagebreak
+
+% Dynamische Erzeugung von Transportdiensten
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Bewertung der Möglichkeiten zur dynamischen Erzeugung von Transportdiensten}
+		\label{tab:DynErzeugungTransportdienste}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Erzeugung durch die LEA mittels OPC~UA-Methoden}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{ 
+			
+		Die LEAs erzeugen neue Transportdienste im Zuge der Meldung von Transportbedarfen. Hierfür muss das Transport-Management geeignete Methoden zur Erzeugung neuer Transportdienste bereitstellen. Da die in dieser Dissertation entwickelten Konzepte OPC~UA als Kommunikationsprotokoll vorsehen, bietet sich hierfür die Nutzung von OPC~UA-Methoden an. }} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF}
+		
+		Die LEAs können die erforderlichen Transportdienste direkt bei der Meldung ihres Transportbedarfs anlegen. Die Informationen zum Transportbedarf lassen sich dabei unmittelbar als Parameter bei der Erzeugung des Transportdiensts übergeben. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	&
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF}
+		
+		Die Erzeugung durch die LEA erfordert eine zusätzliche methodenbasierte Schnittstelle zwischen LEA und Transport-Management. Das MTP-Konzept sieht derzeit keine OPC~UA-Methoden vor, auch wenn deren Einsatz für MTP-Dienste bereits diskutiert wurde. Die Methoden zur Erzeugung von Transportdiensten entsprechen jedoch eher einem Service im IT-Sinne als einem Dienst gemäß dem MTP-Konzept. }
+		\\ \hline
+
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Erzeugung durch das Transport-Management}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{ 
+			
+		Das Transport-Management erzeugt neue inaktive Transportdienste selbstständig und unabhängig von konkreten Transportbedarfen der LEAs. Sinnvoll ist hierbei die Erzeugung eines Transportdiensts für jede LEA, die Transportbedarfe melden kann, wobei jeder LEA jeweils ein dedizierter Transportdienst zugeordnet wird. Zur Meldung eines Transportbedarfs startet die LEA den ihr zugeordneten inaktiven Transportdienst, wodurch dieser aktiviert wird und dann einen konkreten Transportauftrag repräsentiert. Das Transport-Management überwacht die LEAs und stellt sicher, dass ihnen jederzeit ein inaktiver Transportdienst zur Meldung von Transportbedarfen zur Verfügung steht. }} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		Die Erzeugung neuer Transportdienste erfolgt durch das Transport-Management, das diese zugleich verwaltet. Die LEAs sind nicht in die Erzeugung eingebunden, sondern melden ausschließlich ihre Transportbedarfe. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		Inaktive Transportdienste müssen bereits im Vorfeld und unabhängig von konkreten Transportbedarfen erzeugt werden, da dem Transport-Management Zeitpunkt und Ursprung zukünftiger Transportbedarfe nicht bekannt sind. Dies führt dazu, dass Transportdienste erzeugt werden, die unter Umständen nie genutzt werden. }
+		\\ \hline
+		
+	\end{longtable}
+\end{footnotesize}
+
+\begin{graybox}
+	\textbf{Designentscheidung:} Für die Erzeugung von Transportdiensten wird die Variante der \textbf{Erzeugung durch das Transport-Management} gewählt. Bei diesem Ansatz beschränkt sich die Interaktion zwischen LEAs und Transport-Management bei der Meldung von Transportbedarfen auf das Starten und Parametrieren eines MTP-basierten Transportdiensts. Dies lässt sich mit bestehenden MTP-Mechanismen umsetzen.
+	Die Erzeugung von Transportdiensten durch LEAs mittels OPC~UA-Methoden entspricht hingegen nicht dem MTP-Konzept. Eine solche Methode bildet keine zustandsbasierte Funktion des Transportsystems ab, sondern vielmehr eine verwaltende Funktion zur Administration von Transportdiensten. Dies widerspricht dem grundlegenden Verständnis von MTP-Diensten.
+\end{graybox}
+
+Bei der Erzeugung von Transportdiensten durch das Transport-Management muss sichergestellt werden, dass LEAs bei Bedarf jederzeit ein Transportdienst zur Meldung von Transportbedarfen zur Verfügung steht. Hierzu enthält jede LEA, die Transportbedarfe melden kann, einen sogenannten Order-Knoten. Dabei handelt es sich \underline{nicht} um einen physischen Transportknoten, sondern um einen rein logischen Knoten zur Meldung von Transportbedarfen.
+Analog zu den physischen Transportknoten ist jeder Order-Knoten durch einen TK-Baustein im LEA-Programm umgesetzt und an einen TK-Proxy im Transport-Management angebunden, der die Interaktion mit Transportdiensten ermöglicht.
+
+Unabhängig von aktuellen Transportbedarfen erzeugt das Transport-Management für jeden vorhandenen Order-Knoten, dessen TK-Proxy noch kein Transportdienst zugeordnet ist, automatisch einen inaktiven Transportdienst und ordnet diesen dem jeweiligen TK-Proxy zu. Diese inaktiven Transportdienste sind bereits vorbereitet, repräsentieren jedoch noch keinen konkreten Transportauftrag.
+
+\subsubsection{DE6 - Bestimmung des nächsten anzufahrenden Transportknotens}
+
+Flexible Transporte erfolgen gemäß Abschnitt~\ref{subsec:ArbeitsweiseMLS} zwischen Transportknoten der LEAs. Während eines Transportprozesses fährt ein AGV nacheinander mehrere Transportknoten an. Der jeweils nächste anzufahrende Transportknoten eines laufenden Transportauftrags kann entweder durch das Transport-Management oder durch die LEAs bestimmt werden. Abbildung~\ref{fig:ErmittlungNaechsterKnoten} sowie Tabelle~\ref{tab:ErmittlungNaechsterKnoten} stellen beide Ansätze dar und bewerten diese.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.8\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/Designentscheidung_ErmittlungNextNode.pdf}}
+	\caption{Möglichkeiten zur Ermittlung des nächsten anzufahrenden Transportknotens}
+	\label{fig:ErmittlungNaechsterKnoten}
+\end{figure}
+
+\pagebreak
+
+% Ermittlung des nächsten anzufahrenden Transportknotens 
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Bewertung der Möglichkeiten zur Ermittlung des nächsten anzufahrenden Transportknotens}
+		\label{tab:ErmittlungNaechsterKnoten}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Transportknotenermittlung durch das Transport-Management}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{ 
+		Das Transport-Management bezieht die Informationen zum jeweils nächsten anzufahrenden Transportknoten LOL-intern aus einem Materialfluss-Management und stellt sie dem entsprechenden Transportdienst bereit. }} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		
+		Die Ermittlung des nächsten anzufahrenden Transportknotens sowie dessen Einstellung am Transportdienst erfolgen vollständig LOL-intern. Die LEAs sind in die Ermittlung des nächsten Transportknotens nicht eingebunden. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		
+		Es muss stets ein Materialfluss-Management im LOL vorhanden sein, auch in einfachen MLS mit definierten Defaultrouten. Zudem muss das Transport-Management alle laufenden Transportdienste überwachen und bei Bedarf die nächsten anzufahrenden Transportknoten konfigurieren. }
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Transportknotenermittlung durch die LEAs }} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{
+			
+		Die LEAs ermitteln den jeweils nächsten anzufahrenden Transportknoten für das AGV, mit dem sie aktuell interagieren. Dieser kann dynamisch beim Materialfluss-Management des LOL angefragt werden. Alternativ werden im Rahmen der LEA-Parametrierung gemäß Artefakt~1 produktspezifische Defaultwerte für den nächsten Transportknoten im \emph{ProductDataSet} der LEA hinterlegt. }} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		
+		LEAs verfügen unmittelbar über die Information, wann eine Interaktion mit einem AGV, etwa eine Übergabe oder Bearbeitung, abgeschlossen ist und somit die Ermittlung des nächsten Transportknotens erforderlich wird. Zudem arbeiten die LEAs weitgehend autark und steuern gemäß DE3 die Transportdienste, wodurch sie auch den nächsten Transportknoten direkt festlegen können. Produktspezifische Defaultrouten sind im \emph{ProductDataSet} hinterlegt und können LEA-intern ohne Einbindung eines Materialfluss-Managements abgerufen werden.   } 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} 
+		Für die dynamische Abfrage des nächsten anzufahrenden Transportknotens ist eine Schnittstelle zwischen LEA und Materialfluss-Management des LOL erforderlich, was den Implementierungs- und Integrationsaufwand der LEAs erhöht. }
+		\\ \hline
+
+
+	\end{longtable}
+\end{footnotesize}
+
+\begin{graybox}
+	\textbf{Designentscheidung:} 
+	Für die Ermittlung des nächsten anzufahrenden Transportknotens wird die Variante der \textbf{Transportknotenermittlung durch die LEAs} gewählt. Ausschlaggebend hierfür ist die weitgehend autarke Arbeitsweise der LEAs. Gemäß Entscheidung DE3 sind diese in der Lage, Transportdienste dezentral zu orchestrieren, um Transportbedarfe zu melden sowie Übergaben, Übernahmen und Bearbeitungen zu koordinieren. Diese Aufgaben erfordern zugleich die Festlegung des nächsten anzufahrenden Transportknotens. Daher ist es sinnvoll, dass die LEAs dessen Ermittlung übernehmen und den Transportdienst entsprechend konfigurieren.
+	Zudem können produktspezifische Defaultwerte für den nächsten Transportknoten im \emph{ProductDataSet} der LEA hinterlegt werden. In eher statischen MLS kann die Ermittlung des nächsten Transportknotens somit vollständig LEA-intern und ohne Einbindung eines Materialfluss-Managements erfolgen.
+\end{graybox}
+
+\section{Transportprozess}
+\label{sec:TransportprozessLA}
+
+Gemäß Abschnitt~\ref{subsec:ArbeitsweiseMLS} umfasst ein Transportprozess den Transport eines LO zwischen einem Start- und Zielknoten einschließlich der Übergaben an beiden Knoten. Zwischen Start- und Zielknoten können beliebig viele Processing-Knoten angefahren werden. Wie Abschnitt~\ref{subsec:ArbeitsweisenÜbersichtLA} zeigt, durchläuft ein Transportauftrag während seiner Ausführung verschiedene Phasen. Diese sind in Abbildung~\ref{fig:Prozessmodell} zu einem Prozessmodell zusammengefasst und werden in den folgenden Abschnitten beschrieben.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/Prozessmodell.pdf}}
+	\caption{Prozessmodell eines Transportprozesses in einer Logistics Area}
+	\label{fig:Prozessmodell}
+\end{figure}
+
+\subsection{Meldung von Transportbedarfen und AGV-Auswahl}
+\label{subsec:MeldungTransportbedarfe}
+
+Zur Meldung eines Transportbedarfs startet eine LEA den inaktiven Transportdienst, welcher ihrem Order-Knoten zugeordnet ist. Dadurch wird dieser aktiviert und repräsentiert fortan den entsprechenden Transportauftrag. Beim Start übermittelt die LEA dem Transportdienst zentrale Metainformationen zum Auftrag. Hierzu zählen insbesondere \emph{ProductionId}, \emph{ProductId} und \emph{LogisticsObjectId}, welche den zugehörigen Verpackungsauftrag sowie das zu transportierende LO eindeutig identifizieren. Diese Informationen sind erforderlich, um LOs im MLS-Kontext nachzuverfolgen und Produktionsprozessen eindeutig zuzuordnen.
+Zusätzlich kann ein benutzerdefinierter \emph{LogisticsObjectStatus} angegeben werden, der den Zustand des LO beschreibt (z.~B. abgefüllt oder bereits palettiert). Diese Information ist insbesondere für bedarfsorientiert arbeitende LEAs relevant, da die Bearbeitung eines LO abhängig von dessen Zustand variieren kann. So kann eine SH beispielsweise leere Oktabins mit einem Folieninlet ausstatten, während sie bereits befüllte Oktabins mit einer Folienhaube versieht. Optional kann ein Transportauftrag zudem als priorisiert gekennzeichnet werden (\emph{IsPriorityOrder}).
+
+
+Neben diesen Metainformationen muss die LEA weitere Angaben bereitstellen, die den Transportprozess charakterisieren. Hierzu zählt die Angabe, ob es sich um einen Push- oder Pull-Transportbedarf gemäß Abschnitt~\ref{subsec:ArbeitsweiseMLS} handelt und welcher Transportknoten als nächstes durch ein AGV angefahren werden soll (\emph{NextNode}). In bestimmten Anwendungsfällen ist zusätzlich eine \emph{FinalTargetNode} anzugeben, die den finalen Zielknoten des Transports definiert. Dies ist insbesondere bei Pull-Transporten erforderlich, damit der Transportprozess an der LEA endet, die ihn beauftragt hat. Bei Push-Transportaufträgen kann die \emph{FinalTargetNode} beispielsweise genutzt werden, um den Lagerort des LO nach Abschluss des Verpackungsprozesses festzulegen.
+
+Durch die Meldung eines Transportbedarfs durch eine LEA wird der Transportdienst in den Status \emph{PushRequested} oder \emph{PullRequested} versetzt, je nachdem ob es sich um einen Push- oder Pull-Transportbedarf handelt. Zudem wird der Transportdienst im Transport-Management mit den übergebenen Informationen aktualisiert. Erkennt das Transport-Management den Status \emph{PushRequested} oder \emph{PullRequested} an einem Transportdienst, wird dessen Zuordnung zum TK-Proxy des Order-Knotens aufgelöst. Der Order-Knoten ist wieder frei und es wird gemäß DE5 in der Folge ein neuer inaktiver Transportdienst im Transport-Management erzeugt und dem TK-Proxy zugeordnet.
+
+Nachdem ein Transportbedarf gemeldet wurde, beginnt das Transport-Management mit der Abarbeitung des laufenden Transportdienstes. Hierzu wird ein entsprechender Transportauftrag dem AGV-System über dessen Adapter übergeben. Der Adapter stellt sicher, dass die proprietäre Auftragsschnittstelle des AGV-Systems auf Basis der bestehenden Auftragsdaten des Transportdienstes korrekt angesprochen wird. Der Flottenmanager des AGV-Systems wählt ein passendes AGV für die Ausführung des Transportauftrags aus und meldet dessen ID über den Adapter zurück an das Transport-Management. Dieses trägt die ID als \emph{ResourceId} am Transportdienst ein.
+
+\subsection{Transport und Anfahren einer LEA}
+\label{subsec:TransportAnfahrenLea}
+
+Ist ein passendes AGV ausgewählt, wird der Transportknoten angefahren, der in der \emph{NextNode}-Variable des Transportdienstes definiert wurde. Der Flottenmanager meldet über den Adapter an das Transport-Management zurück, dass der Transport läuft. Daraufhin ändert das Transport-Management den Status des Transportdienstes auf \emph{Transport}. Während des eigentlichen Transports ist der Transportdienst keinem TK-Proxy zugeordnet, da keine LEA in diesem Status mit dem Transportdienst interagieren muss. 
+
+\pagebreak
+
+Um jede LEA wird ein Anfahrbereich definiert, in den ein AGV ausschließlich mit Zustimmung der LEA einfahren darf, ansonsten muss es außerhalb auf Freigabe warten. Dies verhindert, dass sich zu viele AGVs gleichzeitig in der Nähe einer LEA aufhalten, was zu ungewünschten Betriebszuständen führen kann, wie z.~B. dass das Wegfahren eines AGVs durch ein ankommendes AGV blockiert wird. 
+
+Ist ein AGV am Anfahrbereich einer LEA angekommen, meldet das AGV-System dies über seinen Adapter an das Transport-Management. Daraufhin verbindet das Transport-Management den zugehörigen Transportdienst mit dem TK-Proxy des anzufahrenden Transportknotens. Durch diese Anbindung kann der TK-Baustein des Transportknotens mit dem Transportdienst interagieren und kann somit auch alle bestehenden Daten des Transportdienstes beziehen. 
+
+Nach der Anbindung des Transportdienstes an den TK-Proxy setzt das Transport-Management den Status des Transportdienstes auf \emph{TransportAwaitRequested}. Dieser Status wird von der angebundenen LEA erkannt und signalisiert, dass ein AGV an sie heranfahren möchte. Auf Basis der Daten des Transportdienstes erfolgt anschließend eine Prüfung innerhalb der LEA, ob sie diesen Transportdienst annehmen kann. So kann beispielsweise geprüft werden, ob die LEA den in der \emph{ProductId} kodierten Produkttyp überhaupt verarbeiten kann. Das Ergebnis dieser Prüfung stellt die LEA im Status des Transportdienstes als \emph{TransportAwaited} (akzeptiert) oder \emph{TransportDeclined} (abgelehnt) ein. Im Falle einer Ablehnung trennt das Transport-Management den Transportdienst vom TK-Proxy und gibt je nach Implementierung entweder direkt einen neuen anzufahrenden Transportknoten (\emph{NextNode}) vor oder versetzt den Transportdienst in einen Fehlerzustand, der z.~B. manuell behoben werden muss. Im Falle einer Akzeptanz signalisiert die LEA, dass sie bereit ist, das AGV zu empfangen. Das Transport-Management erkennt den Status \emph{TransportAwaited} und meldet an das AGV-System, dass es mit dem Anfahren beginnen kann. Sobald das AGV an der LEA angekommen ist, meldet das AGV-System dies über seinen Adapter zurück an das Transport-Management, welches daraufhin den Status des Transportdienstes auf \emph{TransportArrived} setzt. 
+
+\subsection{Übergaben, Übernahmen und Bearbeitungen von LOs}
+\label{subsec:UbergabeUebernahmeProcessing}
+
+Ist ein AGV an einer LEA angekommen, folgt je nach Art des Transportknotens eine Übergabe, Übernahme oder Bearbeitung eines LO. Entsprechend setzt die LEA den Transportstatus auf \emph{TransferFromLea}, \emph{TransferToLea} oder \emph{Processing}. Anschließend beginnt die LEA mit dem entsprechenden Prozess. Bei \emph{TransferFromLea} wird ein LO von der LEA auf das AGV übergeben, bei \emph{TransferToLea} wird ein LO vom AGV auf die LEA übergeben und bei \emph{Processing} wird ein LO durch die LEA bearbeitet, während es auf dem AGV verbleibt. Diesen Status meldet das Transport-Management an das AGV-System, welches im Falle von \emph{TransferFromLea} und \emph{TransferToLea} verfügbare Übernahmeeinrichtungen (z.~B. ein Transportband zur Aufnahme eines LO) aktiviert, um den Transfer zu unterstützen. Im Falle von \emph{Processing} verbleibt das AGV an seiner bestehenden Position, um die Bearbeitung nicht zu behindern. 
+
+Ist der Prozess beendet, ermittelt die LEA im Falle von \emph{TransferFromLea} und im Falle von \emph{Processing} den nächsten anzufahrenden Transportknoten aus ihrem internen \emph{ProductDataSet} oder durch Abfrage bei einem Materialfluss-Management im LOL. Anschließend aktualisiert sie die \emph{NextNode} am Transportdienst entsprechend. Zudem kann der \emph{LogisticsObjectStatus} angepasst werden. Im Falle von \emph{TransferToLea} ist die Ermittlung des nächsten anzufahrenden Transportknotens sowie die Aktualisierung der \emph{LogisticsObjectStatus} nicht mehr notwendig, da mit einer Übergabe auf eine LEA definitionsgemäß der Zielknoten erreicht ist und kein weiterer Knoten mehr angefahren wird (siehe auch Abschnitt~\ref{subsec:ArbeitsweiseMLS}). Entsprechend dem durchgeführten Prozess setzt die LEA nach Abschluss den Status des Transportdienstes auf \emph{TransferFromLeaSucceeded}, \emph{TransferToLeaSucceeded} oder \emph{ProcessingSucceeded}.
+
+Das Transport-Management erkennt diesen Status und entkoppelt den Transportdienst vom TK-Proxy des Transportknotens. Im Falle von \emph{TransferFromLeaSucceeded} und \emph{ProcessingSucceeded} meldet das Transport-Management den nächsten anzufahrenden Transportknoten an das AGV-System, damit dieses mit dem Anfahren beginnen kann. Es folgt ein erneuter \emph{Transport und Anfahren einer LEA} (Abschnitt~\ref{subsec:TransportAnfahrenLea}). Im Falle von \emph{TransferToLeaSucceeded} erkennt das Transport-Management, dass der Zielknoten erreicht ist, und beendet den Transportdienst. Zudem meldet es an das AGV-System, dass der Transportprozess abgeschlossen ist, damit das genutzte AGV wieder freigegeben wird und für weitere Transporte eingesetzt werden kann.
+
+\subsection{Umrouten von Transporten}
+\label{subsec:Rerouting}
+
+Während eines laufenden Transports (Status: \emph{Transport}) kann es vorkommen, dass die LEA, zu der transportiert wird, ausfällt oder sich in einem Fehlerzustand befindet. Solche Zustände an den LEAs erkennt das Transport-Management (im Speziellen dessen LEA-Management) anhand des Zustands des LEA-Dienstes. Daraufhin ermittelt das Transport-Management (im Speziellen dessen Order-Management), welche Transportdienste von diesem Fehler betroffen sind, d.~h. welche Transportdienste die fehlerhafte LEA als \emph{NextNode} oder ggf. \emph{FinalTargetNode} eingestellt haben. Alle diese Transportdienste werden daraufhin in den Status \emph{Rerouting} versetzt. Das Transport-Management kann dann, wenn möglich, eine andere LEA ermitteln, zu der der Transportauftrag umgeleitet wird. Dies kann beispielsweise durch eine Benutzereingabe oder durch eine LOL-interne Anfrage am Materialfluss-Management erfolgen. Anschließend aktualisiert das Transport-Management die \emph{NextNodes} bzw. \emph{Final\-Target\-Nodes} am betreffenden Transportdienst und übermittelt dem AGV-System den neuen anzufahrenden Transportknoten. Das AGV-System setzt den Transport fort und meldet dies dem Transport-Management. Das Transport-Management versetzt den Transportdienst anschließend wieder in den Status \emph{Transport}. 
+
+Dieser Vorgang des Umroutens ist ein LOL-interner Prozess und wird daher hier \underline{nicht} im Detail beschrieben. Es wird lediglich ein entsprechender Status \emph{Rerouting} im Transportprozess (Abbildung~\ref{fig:Prozessmodell}) vorgesehen, um zu signalisieren, dass ein Dienst umgeroutet werden muss. Zudem wird an der Schnittstelle zwischen den LEAs und dem LEA-Management des Transport-Managements der Zustand des LEA-Dienstes mit übermittelt, um Fehlerfälle zu erkennen.
+
+\subsection{Synchronisation zwischen LEAs und AGV-System}
+\label{subsec:SyncLeaAgv}
+
+Während der Ausführung eines Transportprozesses durchläuft der zugehörige Transportdienst die im Prozessmodell definierten Transportstatus. Jeder Statuswechsel bildet dabei einen Synchronisationspunkt zwischen dem AGV-System und der LEA, an deren Transportknoten der Transportdienst aktuell angebunden ist. Die Synchronisation entsteht dadurch, dass Statusübergänge wechselseitig initiiert werden: teils durch das AGV-System über das Transport-Management (Abbildung~\ref{fig:Prozessmodell}, grüne Kästchen), teils durch die LEA über ihren Transportknoten (Abbildung~\ref{fig:Prozessmodell}, rote Kästchen). Auf diese Weise werden beide Seiten fortlaufend über relevante Ereignisse im Transportablauf informiert. 
+
+Abbildung~\ref{fig:SyncProzessmodell} veranschaulicht diesen Mechanismus anhand eines regulären Transportprozesses von einem Outbound-Knoten zu einem Inbound-Knoten mit zwischenliegendem Processing-Knoten. Die detaillierte Beschreibung der einzelnen Übergänge ist bereits in den Abschnitten~\ref{subsec:MeldungTransportbedarfe} bis \ref{subsec:UbergabeUebernahmeProcessing} erfolgt. Das Prozessmodell bildet damit die Grundlage für eine einheitliche, zustandsbasierte Interaktion zwischen LEAs und AGV-System.
+
+\begin{figure}[H]
+	\centerline{\includegraphics[width=0.75\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/Uebersicht_Prozedurumschaltung.pdf}}
+	\caption{Statuswechsel zur Synchronisation von LEA und AGV-System}
+	\label{fig:SyncProzessmodell}
+\end{figure}
+
+\section{Transport-Management}
+\label{sec:TransportManagementLA}
+
+Dieser Abschnitt beschreibt die MTP-basierten Konzepte zur Umsetzung des vorgestellten Transportkonzepts aufseiten des Transport-Managements. Abschnitt~\ref{subsec:AufbauFunktionTM} stellt den Aufbau und die Funktionsweise des Transport-Managements vor. Abschnitte~\ref{subsec:CharakteristikTransportdienste} und \ref{subsec:SchnittstelleTransportdienst} behandeln Details der im Transport-Management verwalteten Transportdienste und deren Schnittstellen.
+
+\subsection{Aufbau und Funktionsweise}
+\label{subsec:AufbauFunktionTM}
+
+Das Transport-Management dient dazu, Transportbedarfe von den LEAs entgegenzunehmen und diese als Transportaufträge in Form von MTP-Diensten zu verwalten und auszuführen. Im Falle von Übergaben, Übernahmen und Bearbeitungen muss das Transport-Management mit den Transportknoten der LEAs interagieren. Zur Umsetzung dieser Aufgaben stellt das Transport-Management intern ein LEA-Management und ein Order-Management bereit (Abbildung~\ref{fig:ArchitekturLA}). Zudem verfügt das Transport-Management über einen OPC~UA-Server zur Anbindung der LEAs und über AGV-System-Adapter zur Anbindung von AGV-Systemen.
+
+\subsubsection{LEA-Management}
+
+\textbf{Integration und Verwaltung von LEA-Informationen:} Das LEA-Management dient zur MTP-basierten Integration von LEAs inkl. deren Transportknoten und zur konfigurativen Anbindung der LEAs an die TK-Proxies im Order-Management. Hierzu verwaltet es notwendige Informationen zur kommunikationstechnischen Anbindung der LEAs sowie eine Beschreibung aller an einer LEA vorhandenen Transportknoten. 
+
+\textbf{Überwachung auf Störungen in den LEAs:} Weiterhin überwacht das LEA-Management den Zustand der LEA-Dienste und erkennt gestörte LEAs. Diese Informationen übermittelt es Transport-Management-intern an das Order-Management, damit dieses die von den Störungen betroffenen Transportdienste umrouten kann.
+
+\subsubsection{Order-Management}
+
+Im Order-Management erfolgt die Verwaltung und Ausführung aller aktuell in der Logistics Area laufenden Transportaufträge in Form von MTP-Diensten. 
+
+\textbf{Erzeugung von Transportdiensten an Order-Knoten:} Zur Erzeugung dieser Transportdienste überwacht das Transport-Management alle vorhandenen Order-Knoten der angebundenen LEAs. Ist einem Order-Knoten kein Transportdienst zugeordnet, wird automatisch ein neuer inaktiver Transportdienst erzeugt und diesem Order-Knoten zugeordnet. 
+
+\textbf{Ausführung von Transportdiensten mittels AGV-Systemen:} Zur Ausführung der Transportdienste gibt das Order-Management entsprechende Transportaufträge an die unterlagerten AGV-Systeme über deren AGV-System-Adapter weiter. Hierzu wird der als Nächstes auszuführende Transportauftrag nach definierten Kriterien ausgewählt. Diese Auswahl kann sich z.~B. nach dem Auftragseingang oder nach der Priorität der Transportaufträge richten. Ob ein Transportauftrag an ein AGV-System weitergegeben werden kann bzw. an welches, hängt von der Verfügbarkeit, Auslastung und den Fähigkeiten der AGV-Systeme ab. Weiterführende Informationen zur Interaktion zwischen Order-Management und AGV-Systemen über die AGV-System-Adapter werden in Abschnitt~\ref{sec:AgvSystemLA} beschrieben.
+
+\textbf{Anbindung von LEAs mittels TK-Proxies:} Weiterhin stellt das Order-Management TK-Proxies bereit, welche die konfigurative Anbindung und Interaktion von Transportdiensten und TK-Bausteinen in den LEAs ermöglichen. Für jeden Transport- und Order-Knoten der angebundenen LEAs wird ein eigener TK-Proxy angelegt, der den jeweiligen Knoten innerhalb des Order-Managements repräsentiert. Jeder TK-Proxy verfügt über eine eindeutige \emph{ProxyId} zur Identifikation des Proxy und des zugehörigen Transport- bzw. Order-Knotens. Die \emph{ProxyId} wird für den Kommunikationsaufbau zwischen LEA und TK-Proxy (Abschnitt~\ref{subsec:IntegrationLeaTm}), zur Ermittlung des nächsten anzufahrenden Transportknotens (Abschnitt~\ref{subsec:ErmittlungNextNode}) sowie zur internen Zuordnung von Transportdiensten zu TK-Proxies verwendet.
+
+\textbf{TM-interne Zuordnung von Transportdiensten zu TK-Proxies:} An diese TK-Proxies werden Order-Management-intern verschiedene Transportdienste angebunden. An welchem TK-Proxy ein Transportdienst angebunden wird, ist in der \emph{NextNode}-Variable des Transportdienstes hinterlegt. Die TK-Proxies bilden die Schnittstellendaten der angebundenen Transportdienste auf ihre eigene Schnittstelle ab und stellen diese den LEAs im OPC~UA-Server des Transport-Managements bereit. Bei der Zuordnung der Transportdienste zu den TK-Proxies sollte durch das Transport-Management sichergestellt werden, dass Transportdienste nur so lange an einen TK-Proxy angebunden sind, wie diese miteinander interagieren. Anschließend sollte der TK-Proxy wieder für die Anbindung anderer Transportdienste freigegeben werden.
+
+\subsection{Transportdienste}
+\label{subsec:CharakteristikTransportdienste}
+
+Zur MTP-basierten Abstraktion flexibler Transporte wird gemäß Entscheidung DE2 jeder im MLS anstehende Transportauftrag als ein Dienst (Transportdienst) im Sinne des MTP-Konzepts umgesetzt, welcher im Transport-Management ausgeführt wird. Der Begriff \emph{Transportauftrag} folgt hierbei der in Abschnitt~\ref{subsec:AnforderungenLA} beschriebenen Definition. Diese Transportdienste folgen den in \cite{PNO.2025.Part4} definierten Konventionen. Darüber hinaus sind sie jedoch auch durch zwei wesentliche Merkmale charakterisiert, die Transportdienste von konventionellen MTP-Diensten unterscheiden:
+
+\textbf{Dynamische Erzeugung und Löschung:} Transportdienste können dynamisch im Transport-Management erzeugt und gelöscht werden, während konventionelle MTP-Dienste statisch in den PEAs implementiert sind. Dies liegt, wie in DE2 und DE5 erläutert, darin begründet, dass Transportdienste Transportaufträge abbilden, deren Anzahl je nach Transportbedarfen im MLS variieren kann. Das Transport-Management ist somit ähnlich wie die LEAs ein Bereitsteller von MTP-Diensten, allerdings mit der Besonderheit, dass die Anzahl der bereitgestellten Dienste dynamisch variiert.
+
+\textbf{Vereinheitlichung anstatt der Beschreibung in einer MTP-Datei:} Konventionelle MTP-Dienste sind in einer MTP-Datei beschrieben, welche eine Modellierung der Diensteschnittstelle und semantische Modelle verschiedener Aspekte des Dienstes enthält. Für Transportdienste wird keine Modellierung in einer MTP-Datei vorgenommen. Stattdessen wird die Schnittstelle von Transportdiensten in Abschnitt~\ref{subsec:SchnittstelleTransportdienst} fest definiert. Jeder in einem Transport-Management bereitgestellte Transportdienst muss diese Schnittstelle bereitstellen. Dieser Ansatz ist \emph{möglich}, da Transportaufträge immer dieselbe Funktion (= Transport von LOs zwischen definierbaren Transportknoten) abbilden, unabhängig von den im MLS anstehenden Verpackungsprozessen oder den eingesetzten AGV-Systemen. Dieser Ansatz ist \emph{notwendig}, um eine einheitliche Interaktion zwischen den Transportdiensten im Transport-Management und den LEAs zu ermöglichen, unabhängig davon, welche LEA und welches Transport-Management eingesetzt werden. Nur wenn die Schnittstelle der Transportdienste fest vorgegeben ist, kann diese Schnittstelle in den TK-Bausteinen der LEAs zum Zeitpunkt des LEA-Engineerings (ohne Wissen über das eingesetzte Transport-Management oder AGV-System) implementiert und so die dezentrale Orchestrierung der Transportdienste vorbereitet werden. Weiterhin würde sich eine potenzielle MTP-Datei des Transport-Managements durch das dynamische Erzeugen und Löschen von Transportdiensten ständig ändern, was die Wartbarkeit und Nutzbarkeit einer solchen MTP-Datei stark beeinträchtigen würde.
+
+\subsection{Schnittstelle von Transportdiensten}
+\label{subsec:SchnittstelleTransportdienst}
+
+Tabelle~\ref{tab:SchnittstelleTransportdienst} zeigt die im Rahmen dieser Dissertation festgelegte Schnittstelle, die jeder MTP-basierte Transportdienst implementieren muss, um eine einheitliche Interaktion mit LEAs zu ermöglichen. Diese Schnittstelle ist generisch gewählt, sodass sie unabhängig von dem unterlagerten AGV-System verwendet werden kann\footnote{Zukünftig ist zudem denkbar, auch die Transportaufträge anderer Arten flexibler Transportsysteme mit derselben Diensteschnittstelle abzubilden (Ausblickskapitel~\ref{chap:ausblick}).}. Sie setzt sich aus bestehenden Schnittstellendefinitionen gemäß \cite{PNO.2025.Part4} zusammen.
+
+% Schnittstelle Transportdienst
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{E0E0E0}}l |}
+		\caption{MTP-Schnittstelle eines Transportdienstes}
+		\label{tab:SchnittstelleTransportdienst}\\
+		\hline
+
+		% Dienst
+		\multicolumn{3}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Dienst}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Name}}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Art der Schnittstelle}}        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Beschreibung}} 
+		\\ \hline
+
+        \multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} TransportControl}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} ServiceControl}        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF} ServiceControl-Schnittstelle des Transportdienstes  } 
+		\\ \hline
+
+		% Prozedurparameter
+		\multicolumn{3}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Prozedurparameter}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Name}}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Art der Schnittstelle}}        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Beschreibung}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} ProductionId}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} StringServParam}        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF} Identifier des Verpackungsauftrags, zu dem der Transport gehört  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} ProductId}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} DIntServParam}        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF} Identifier des zu verpackenden Produkttyps  } 
+		\\ \hline
+
+        \multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} LogisticsObjectId}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} StringServParam}        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF} Identifier der konkreten verpackten Produktinstanz } 
+		\\ \hline 
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} LogisticsObjectStatus}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} DIntServParam}        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF} Indikator für den aktuellen Verpackungsstatus der Produktinstanz  } 
+		\\ \hline 
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} IsPriorityOrder}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} BinServParam}        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF} Indikator, ob es sich um einen höherpriorisierten Transport handelt  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} NextNode}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} DIntServParam}        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF}  	Identifier des nächsten anzufahrenden Transportknotens  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} FinalTargetNode}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} DIntServParam}        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF}  	Finaler Zielknoten des Produkts, z.~B. die initiierende LEA bei einem Pull-Transportauftrag oder der finale Lagerplatz eines Produkts bei einem Push-Transportauftrag  } 
+		\\ \hline
+
+		% Reportwerte
+		\multicolumn{3}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Reportwerte}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Name}}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Art der Schnittstelle}}        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Beschreibung}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} TransportId}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} StringView }        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF} Identifier des Transportauftrags  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} ResourceId}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} DIntView }        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF}  	Identifier der für den Transport verwendeten Transportressource (z.~B. des verwendeten AGVs) } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} RequestedTimestamp}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} DIntView mit RC\newline  HasTimeFormat (TOD) }        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF} Zeitstempel der Initiierung des Transportauftrags  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} LastUpdated-Timestamp}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} DIntView mit RC\newline  HasTimeFormat (TOD) }        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF} Zeitstempel der letzten Aktualisierung des Transportauftrags  } 
+		\\ \hline
+		
+		\multicolumn{1}{|L{3.5cm}|}{\cellcolor[HTML]{FFFFFF} CompletedTimestamp}        & 
+		\multicolumn{1}{L{4cm}|}{\cellcolor[HTML]{FFFFFF} DIntView mit RC\newline  HasTimeFormat (TOD) }        & 
+		\multicolumn{1}{L{6.95cm}|}{\cellcolor[HTML]{FFFFFF} Zeitstempel der Beendigung des Transportauftrags  } 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{Zustand und Status des Transportdienstes}
+
+Wie alle Dienste gemäß dem MTP-Konzept basieren auch Transportdienste auf dem in \cite{PNO.2025.Part4} standardisierten MTP-Zustandsautomaten (Abbildung~\ref{fig:MtpZA}). Dieser ist geeignet, um den grundlegenden Zustand eines Transportes abzubilden, z.~B. ob dieser gestartet ist, gerade ausgeführt wird, sich in einem Fehlerzustand befindet oder bereits beendet ist. Mit diesem Zustandsautomaten kann über die vorhandene \emph{ServiceControl}-Schnittstelle des Transportdienstes interagiert werden.
+
+Zusätzlich muss gemäß den Abschnitten~\ref{subsec:ArbeitsweisenÜbersichtLA} und \ref{sec:TransportprozessLA} der Status des Transportauftrags am Transportdienst abgebildet werden, welcher genutzt wird, um eine einheitliche zustandsbasierte Interaktion zwischen den LEAs und den Transportdiensten zu ermöglichen. Die Abbildung dieses Status bedarf domänenspezifischer feingranularer Zustände gemäß dem Prozessmodell in Abbildung~\ref{fig:Prozessmodell}. Diese können mit dem standardisierten MTP-Zustandsautomaten \underline{nicht} abgebildet werden und es bedarf einer zusätzlichen Abbildung dieser Transportstatus. Tabelle~\ref{tab:AbbildungTransportstatus} beschreibt bestehende MTP-Konstrukte gemäß \cite{PNO.2025.Part4}, mit denen der Transportstatus abgebildet werden kann, und bewertet deren Vor- und Nachteile. Hierbei werden im Speziellen Parameter, Prozesswerte und Prozeduren betrachtet. Weitere Möglichkeiten wären die Abbildung mittels Reportwerten oder mittels der \emph{ServicePosition}-Variable der \emph{ServiceControl}-Schnittstelle. Letztere dient zur Abbildung des Dienstestatus bei MTP-Diensten, weswegen sie semantisch sehr passend wäre. Allerdings können sowohl Reportwerte als auch die \emph{ServicePosition}-Variable ausschließlich diensteintern und nicht von außen verändert werden. Somit könnten externe Automatisierungssysteme (hier: LEAs) den Transportstatus nicht verändern, was allerdings für eine Synchronisation zwischen LEA und AGV-System erforderlich ist. Diese Varianten sind daher nicht geeignet und werden nicht weiter betrachtet.
+
+% Abbildung Transportstatus
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Möglichkeiten der Abbildung des Status von Transportaufträgen in einem MTP-basierten Transportdienst}
+		\label{tab:AbbildungTransportstatus}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Abbildung mittels Parametern}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Parameter werden genutzt, um den Transportstatus abzubilden.}}
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Parameterwerte können sowohl von einem externen Automatisierungssystem als auch durch die LEA-interne Automatisierung verändert werden. Im Fall des Transportdienstes können also sowohl die LEA (externes System) als auch das Transport-Management (interne Automatisierung) den Parameterwert des Transportstatus verändern. Dies ermöglicht die vorgestellte Arbeitsweise und die damit verbundene Synchronisation zwischen LEAs und AGV-System. Zudem bieten Parameter mittels ihres Apply-Mechanismus die Möglichkeit, Umschaltungen auf einen bestimmten Parameterwert (= Transportstatus) zu erlauben (ApplyEn = TRUE) oder zu verbieten (ApplyEn = FALSE) und so die Umschaltelogik gemäß dem Prozessmodell umzusetzen. } 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Parameter weisen durch ihren Apply-Mechanismus eine etwas umfangreichere Schnittstelle und Umschaltelogik als beispielsweise Prozesswerte auf. Zur Prüfung, ob ein Wechsel auf einen bestimmten Transportstatus erlaubt ist, muss dieser Wert zunächst an der Parameterschnittstelle eingestellt und die \emph{ApplyEn}-Variable ausgelesen werden. Eine direkte Abprüfung \underline{aller} möglichen Statuswechsel ist somit nicht möglich.} 
+		\\ \hline
+
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Abbildung mittels Prozesswerten}} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Prozesswerte werden genutzt, um den Transportstatus abzubilden.}}
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Prozesswerte können sehr einfach, ohne Apply-Mechanismus und ohne großen Aufwand, von diensteextern und -intern gesetzt werden. 	} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Prozesswerte sind dafür konzipiert, Werte zwischen Diensten in eine Richtung (vom Prozesswertausgang zum Prozesswerteingang) zu übertragen. Für eine bidirektionale Interaktion, wie in diesem Fall notwendig, sind zwei Prozesswerte pro Transportdienst notwendig, um sowohl eingehende Transportstatusänderungen von LEAs zu erfassen, als auch den aktuellen Transportstatus an die LEA zu übermitteln. Diese Prozesswerte müssen durch zusätzliche applikative Mechanismen miteinander synchronisiert werden. Es besteht zudem keine native Möglichkeit zur Umsetzung der Umschaltelogik zwischen den Transportstatus gemäß Prozessmodell. } 
+		\\ \hline
+
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Abbildung mittels Prozeduren }} 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Prozeduren werden genutzt, um den Transportstatus abzubilden.}}
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Prozeduren können sowohl durch externe Automatisierungssysteme (hier: LEAs) als auch durch die interne Automatisierung (hier: Transport-Management) verändert werden. Sie bieten zudem mittels Befehlsfreigabelogik (\emph{CommandEn}) einen standardisierten Mechanismus, um die Umschaltelogik zwischen den Transportstatus gemäß dem Prozessmodell umzusetzen, indem nur valide Übergänge zugelassen (Command\-En = TRUE) und alle anderen verriegelt (CommandEn = FALSE) werden. Dabei bildet eine \emph{CommandInfo}-Schnittstelle pro Prozedur ab, welche Befehle für diese Prozedur aktuell erlaubt und welche verriegelt sind. Somit können \underline{alle} aktuell möglichen Statusübergänge direkt ausgelesen werden.} 
+		\\ \hline
+
+		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Umsetzung mittels Prozeduren erfordert einen hohen Implementierungsaufwand im Vergleich zu den beiden anderen Alternativen. Dies betrifft sowohl das Transport-Management (für Transportdienste müssen die entsprechenden Prozeduren umgesetzt werden) als auch die LEAs (für das Wechseln zwischen Transportstatus ist ein Wechsel der aktiven Prozedur und somit ein \emph{Restart} des Transportdienstes notwendig). Dieser Aufwand fällt allerdings nur einmalig bei der Entwicklung der LEA bzw. des Transport-Managements an, nicht beim MLS-Engineering.
+		} 
+		\\ \hline
+		
+
+	\end{longtable}
+\end{footnotesize}
+
+\begin{graybox}
+	\textbf{Designentscheidung:} Es wird die Abbildung des Transportstatus mittels \textbf{Prozeduren} ausgewählt. Diese bieten die Möglichkeit, Änderungen sowohl von Seiten der LEAs als auch aus dem Transport-Management zu initiieren und ermöglichen somit die in Abschnitt~\ref{subsec:SyncLeaAgv} vorgestellte Synchronisation zwischen den LEAs und dem AGV-System. Zudem besteht mit der Befehlsfreigabelogik eine native Möglichkeit, Statusübergänge zu erlauben und zu verriegeln sowie die möglichen Statusübergänge direkt auszulesen. Dies erfordert zwar einen höheren Implementierungsaufwand, aber ermöglicht eine native Umsetzung des Prozessmodells gemäß Abbildung~\ref{fig:Prozessmodell}.
+\end{graybox}
+
+Die den Transportstatus repräsentierenden Prozeduren werden während des Durchlaufs eines Transportdienstes zu gegebenen Zeitpunkten eingestellt. Abbildung~\ref{fig:TransportstatusZA} zeigt, welche Prozeduren gemäß dem hier vorgestellten Transportkonzept in welchen Zuständen des MTP-Zustandsautomaten eines Transportdienstes aktiv sein können. 
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/TransportstatusZA.pdf}}
+	\caption{Einordnung der Transportstatus in den MTP-Zustandsautomaten}
+	\label{fig:TransportstatusZA}
+\end{figure}
+
+Der Transportprozess wird im Zuge der Meldung eines Transportbedarfs von einer LEA gestartet und grundlegend im Zustand EXECUTE des Transportdienstes ausgeführt. Der Transportstatus wird durch die aktuell aktive Prozedur (\emph{ProcedureCur}-Variable der \emph{ServiceControl}-Schnittstelle) abgebildet. Durch einen \emph{Restart} des Transportdienstes mit einer Prozeduränderung kann zwischen den verschiedenen Transportstatus gewechselt werden, ohne den Transportdienst zu beenden. Mithilfe der Befehlsfreigabelogik (\emph{CommandEn}) des MTP-Konzepts werden nur valide Übergänge zwischen den Transportstatus gemäß dem Prozessmodell aus Abbildung~\ref{fig:Prozessmodell} zugelassen und alle anderen verriegelt. Den Transportstatus \emph{Undefined} haben inaktive Transportdienste, die noch nicht gestartet wurden (IDLE). Wird der Transportdienst beendet (COMPLETING, COMPLETED) bleibt der letzte Transportstatus (\emph{TransferToLeaSucceeded}) bestehen. Der Zustand RESETTING wird nie erreicht, da für jeden neuen Transportauftrag ein neuer Transportdienst genutzt wird und nicht ein bestehender Transportdienst zurückgesetzt und wiederverwendet wird. Die weiteren Schleifen des MTP-Zustandsautomaten (Pause-, Hold-, Stop-, Abort-Schleife) können ebenfalls durchlaufen werden. In diesen Fällen bleibt der zuvor anliegende Transportstatus bestehen. Die interne Funktion dieser Schleifen obliegt der Implementierung des Transport-Managements, z.~B. kann im Fehlerfall das AGV stoppen oder an eine sichere Position gesteuert werden. Die aus dem Prozessmodell resultierenden Prozeduren eines Transportdienstes und deren Prozedur-IDs sind in Tabelle~\ref{tab:ProzedurenTransportdienst} dargestellt.
+
+% Prozeduren eines Transportdienst
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{E0E0E0}}l |}
+		\caption{Prozeduren eines Transportdienstes}
+		\label{tab:ProzedurenTransportdienst}\\
+		\hline
+
+		\multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Name}}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Prozedur-ID}}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Beschreibung}} 
+		\\ \hline
+
+		 \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#0}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} Undefined}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  Der Transportdienst ist inaktiv und bildet noch keinen konkreten Transportauftrag ab.  } 
+		\\ \hline
+
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#1}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} PushRequested}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  Eine LEA zeigt einen Transportbedarf aufgrund eines fertiggestellten Logistikobjekts an.  } 
+		\\ \hline
+		
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#2}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} PullRequested}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  Eine LEA zeigt einen Transportbedarf aufgrund eines Materialbedarfs an.  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#3}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} Transport}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  	Ein AGV ist für einen Transportauftrag eingeplant und in Betrieb genommen worden. Es fährt zu dem vorgesehenen nächsten Knotenpunkt.  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#4}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} TransportAwaitRequested}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  	Das AGV befindet sich am Anfahrbereich des nächsten Knotens und fordert die Erlaubnis an, an den Knoten heranzufahren.  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#5}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} TransportAwaited}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  	Ein Transportdienst ist erfolgreich an die Proxy-Schnittstelle einer LEA gekoppelt worden. Die LEA bestätigt den Transportauftrag, der ihrem Knoten zugeordnet ist.  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#6}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} TransportDeclined}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  	Ein Transportdienst wurde an die Proxy-Schnittstelle einer LEA gekoppelt. Die LEA lehnt den Transportauftrag ab, der ihrem Knoten zugeordnet ist.  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#7}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} TransportArrived}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  	Das AGV hat seinen vorgesehenen Zielknoten erreicht und ist bereit, mit der LEA zu interagieren.  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#8}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} TransferFromLea}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  	Ein LO wird von einer LEA auf ein AGV übertragen.  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#9}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} TransferFromLeaSucceeded}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  	Ein LO wurde erfolgreich von einer LEA auf ein AGV übertragen.  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#A}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} Processing}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  	Eine LEA führt einen Bearbeitungsprozess an einem LO durch, das sich auf einem AGV befindet.  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#B}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} ProcessingSucceeded}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  	Ein Bearbeitungsprozess wurde erfolgreich an einem LO durchgeführt, das sich auf einem AGV befindet.  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#C}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} TransferToLea}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  	Ein LO wird von einem AGV auf eine LEA übertragen.  } 
+		\\ \hline
+  
+        \multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#D}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} TransferToLeaSucceeded}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  	Ein LO wurde erfolgreich von einem AGV auf eine LEA übertragen.  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{2cm}|}{\cellcolor[HTML]{FFFFFF} 16\#E}        & 
+		\multicolumn{1}{L{4.3cm}|}{\cellcolor[HTML]{FFFFFF} Rerouting}        & 
+		\multicolumn{1}{L{8.1cm}|}{\cellcolor[HTML]{FFFFFF}  Der Transportdienst muss umgeroutet werden.  } 
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{Parameter und Reportwerte des Transportdienstes}
+
+Transportdienste halten sämtliche für die Ausführung eines Transportprozesses erforderlichen Informationen vor. Dazu zählen neben Transportzustand und Transportstatus insbesondere die Metadaten des Auftrags (\emph{ProductionId}, \emph{ProductId}, \emph{LogisticsObjectId}, \emph{LogisticsObjectStatus}, \emph{IsPriorityOrder}) sowie die Routing-Parameter \emph{NextNode} und \emph{FinalTargetNode}. Diese Werte werden beim Melden eines Transportbedarfs durch die LEA initial gesetzt und im weiteren Prozessverlauf bedarfsgerecht aktualisiert. Insbesondere \emph{NextNode} ist essentiell, da dieser Parameter die schrittweise Wegführung des AGV innerhalb der Logistics Area bestimmt. Bei diesen Variablen handelt es sich um prozessrelevante Parameter, die am Transportdienst durch ein externes System (hier: LEA) eingestellt werden. Sie werden folglich als Prozedurparameter gemäß \cite{PNO.2025.Part4} umgesetzt. So kann neben dem Transport-Management auch stets die LEA, die aktuell an den Transportdienst angebunden ist, diese Informationen auslesen und bei Bedarf verändern.
+
+Ergänzend enthält jeder Transportdienst interne Verwaltungsinformationen, die durch das Transport-Management bereitgestellt, von LEAs jedoch ausschließlich gelesen werden: \emph{TransportId} zur eindeutigen Identifikation des Transportauftrags, \emph{ResourceId} zur Kennzeichnung des zugeordneten AGV sowie die Zeitstempel \emph{RequestedTimestamp}, \emph{LastUpdatedTimestamp} und \emph{CompletedTimestamp}. Da es sich bei all diesen Variablen um Werte handelt, die durch den Transportdienst bereitgestellt werden und von außen, z.~B. durch die LEAs, nicht verändert werden sollen, werden sie als Reportwerte gemäß \cite{PNO.2025.Part4} umgesetzt. 
+
+Dabei wird im Speziellen für die Zeitstempel die Möglichkeit zur Abbildung von Zeiten benötigt, die im heutigen MTP-Konzept nicht existiert. Aufgrund dessen wird im Zuge dieser Dissertation eine neue Rollenklasse \emph{HasTimeFormat} eingeführt. Diese kann der \emph{DIntView}-Schnitt\-stel\-len\-de\-fi\-ni\-ti\-on hinzugefügt werden und signalisiert, dass die DINT-Werte der Schnittstelle in einem Zeitformat interpretiert werden sollen. Neben der \emph{DIntView}-Schnitt\-stel\-len\-de\-fi\-ni\-ti\-on (und deren Ableitung \emph{DIntMon}) kann diese Rollenklasse auch allen weiteren DINT-basierten Schnittstellendefinitionen hinzugefügt werden. Dies sind im Speziellen die \emph{DIntMan}-Schnitt\-stel\-len\-de\-fi\-ni\-ti\-on (inkl. deren Ableitung \emph{DIntManInt}) sowie die \emph{DIntServParam}- und \emph{DIntProcessValueIn}-Schnittstellendefinitionen. 
+
+
+\section{Logistics Equipment Assemblies}
+\label{sec:LogisticsEquipmentAssemblyLA}
+
+Dieser Abschnitt beschreibt die MTP-basierten Konzepte zur Umsetzung des vorgestellten Transportkonzepts aufseiten der LEAs. Abschnitt~\ref{subsec:AufbauFunktionLEA} stellt relevante Bestandteile und die Funktionsweise der LEAs im Kontext flexibler Transporte vor. Die nachfolgenden Abschnitte~\ref{subsec:IntegrationLeaTm} bis \ref{subsec:ErmittlungNextNode} behandeln Detailkonzepte zur LEA-Integration in das Transport-Management, zur dezentralen Orchestrierung von Transportdiensten und zur Ermittlung des nächsten anzufahrenden Knotens durch die LEAs.
+
+\subsection{Aufbau und Funktionsweise}
+\label{subsec:AufbauFunktionLEA}
+
+Im Kontext der Transportkoordination fungieren LEAs als Initiatoren von Transporten, die Transportbedarfe in das System einbringen. Diese Transportbedarfe resultieren in Transportaufträgen im Order-Management des Transport-Managements. Zudem müssen Übergaben, Übernahmen und Bearbeitungen von LOs zwischen LEAs und AGVs koordiniert werden. Hierzu interagiert die LEA mit den Transportdiensten des Transport-Managements.
+
+\subsubsection{Anbindung und Interaktion mit Transportdiensten}
+
+Eine LEA kann zeitgleich mit mehreren verschiedenen Transportdiensten interagieren. Im Speziellen kann jedem vorhandenen Transport- und Order-Knoten ein Transportdienst angebunden werden. Hierzu ist jeder dieser Knoten als ein TK-Baustein im LEA-Dienst umgesetzt. Diese Bausteine dienen dazu, die aktuellen Schnittstellendaten eines TK-Proxies in der LEA bereitzustellen. Im Zuge der Integration der LEAs in das Transport-Management (Abschnitt~\ref{subsec:IntegrationLeaTm}) wird jeder vorhandene TK-Baustein konfigurativ an einen TK-Proxy angebunden. Hierzu sind die TK-Bausteine als OPC~UA-Client-Bausteine gemäß \cite{OPCFoundation.30001} konzipiert, um die Anbindung an die Schnittstellen der TK-Proxies im OPC~UA-Server des Transport-Managements zu ermöglichen. Nach ihrer Anbindung sind die TK-Bausteine in der Lage, mit den TK-Proxies zu interagieren und deren angebundene Transportdienste gemäß dem Prinzip der Dezentralen Orchestrierung zu steuern (Abschnitt~\ref{subsec:DOTransportdienste}). 
+
+Gemäß Abschnitt~\ref{sec:TransportprozessLA} werden Transportdienste während ihrer Ausführung dynamisch an verschiedene TK-Proxies angebunden. Folglich ist ein TK-Baustein in einer LEA zwar stets mit demselben TK-Proxy im Transport-Management verbunden, aber dieser TK-Proxy stellt dem TK-Baustein im Laufe der Zeit verschiedene Transportdienste bereit. Dieser Ansatz unterscheidet sich von den bisherigen statischen Konzepten zur dezentralen Orchestrierung, bei denen ein orchestrierender Dienst stets mit demselben orchestrierten Dienst interagiert \cite{Spaethe.2019,Stutz.SubelServices}. Dies ist allerdings notwendig, um die vorgestellten Interaktionen eines Transportdienstes mit verschiedenen Transportknoten der LEAs zu ermöglichen.
+
+\subsubsection{Ermittlung des nächsten anzufahrenden Transportknotens}
+
+Gemäß DE6 sind die LEAs zudem dafür verantwortlich, den nächsten anzufahrenden Transportknoten für den Transportdienst zu ermitteln, mit dem sie aktuell interagieren (Abschnitt~\ref{subsec:ErmittlungNextNode}). Die \emph{ProxyId} des ermittelten Transportknotens stellen sie anschließend am Parameter \emph{NextNode} des Transportdienstes ein. 
+
+Für die Ermittlung des nächsten Transportknotens können produktspezifische Informationen über den nächsten anzufahrenden Knoten statisch im \emph{Product\-Data\-Set} der LEAs durch ein Parameter-Management des LOL hinterlegt und nach Bedarf genutzt werden. Hierfür werden die Parametrierungskonzepte gemäß Abschnitt~\ref{sec:LeaParameter} genutzt. Alternativ können diese Informationen dynamisch von einem Materialfluss-Management angefragt werden, welches die Informationen über den aktuellen Systemzustand des MLS bei der Knoten-Ermittlung mit einbezieht. In beiden Fällen stellt die LEA den ermittelten nächsten anzufahrenden Transportknoten am \emph{NextNode}-Parameter des Transportdiensts ein.
+
+\subsection{Integration von LEAs in ein Transport-Management}
+\label{subsec:IntegrationLeaTm}
+
+Die Integration von LEAs in ein Transport-Management umfasst drei aufeinander aufbauende Schritte: den Import der LEA-MTPs in das LEA-Management, die automatische Erzeugung der erforderlichen TK-Proxies sowie die Konfiguration der Kommunikationsbeziehungen zwischen TK-Proxies und TK-Bausteinen der LEAs. Abbildung~\ref{fig:Transportknotenanbindung} gibt einen Überblick über den Gesamtprozess, der in den nachfolgenden Unterabschnitten detailliert erläutert wird.
+
+\subsubsection{MTP-Import und Erzeugung von TK-Proxies}
+
+Als Grundlage für die Interaktion zwischen den LEAs und dem Transport-Management gemäß den Abschnitten~\ref{subsec:ArbeitsweisenÜbersichtLA} und \ref{sec:TransportprozessLA} ist die Integration der LEAs in das Transport-Management, im Speziellen in dessen LEA-Management, notwendig. Hierzu werden die LEAs gemäß dem Grundprinzip des MTP-Konzepts \cite{PNO.2025.Part1} (Abschnitt~\ref{subsec:IdeeMTP}) durch den Import ihrer MTP-Dateien automatisiert in das LEA-Management des Transport-Managements integriert. Für diese Integration wird das \emph{TransportSet} als neuer MTP-Aspekt eingeführt, dessen Struktur im nachfolgenden Abschnitt \emph{TransportSet} gezeigt wird. Dieser neue MTP-Aspekt beschreibt die Schnittstellen, welche zur kommunikativen Integration der LEAs an das Transport-Management sowie für deren Konfiguration notwendig sind. Zudem enthält er alle notwendigen Informationen zu den in den LEAs vorhandenen Transportknoten.
+
+\begin{figure}[H]
+	\centerline{\includegraphics[width=0.9\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/ProxyGenerierung.pdf}}
+	\caption{Integration einer LEA in das Transport-Ma\-nage\-ment}
+	\label{fig:Transportknotenanbindung}
+\end{figure}
+
+Nach der Integration einer LEA erzeugt das Transport-Management für jeden vorhandenen Transportknoten einen TK-Proxy. Hierzu nutzt es die Informationen aus dem \emph{TransportSet} der LEA-MTPs. Jeder TK-Proxy erhält eine eindeutige \emph{ProxyId} und stellt die Schnittstellendaten angebundener Transportdienste im OPC~UA-Server des Transport-Managements bereit.
+
+\begin{graybox}
+	\textbf{Hinweis zur Integration von Logistics Lines:} Die Integration von Logistics Lines in das LEA-Management erfolgt durch Integration relevanter Transportknoten der an der Line beteiligten LEAs. Hierzu sind für die Logistics Line relevante Transportknoten der LEAs an der Line-Schnittstelle bereitzustellen. Die Betrachtung des \emph{Transport}-Aspekts in einem Composed-MTP erfolgt im Anhang~\ref{subsec:AnhangComposedMtpTransportAspekt}. Für die Interaktion zwischen Transportdiensten und LEAs dienen auch im Falle von Logistics Lines die in der Line vorhandenen Transportknoten. Die Interaktion mit diesen Transportknoten unterscheidet sich \underline{nicht} von der Interaktion mit Transportknoten von Einzel-LEAs.
+\end{graybox}
+
+\subsubsection{LEA-Konfiguration}
+
+Nach der Integration der LEAs in das Transport-Management sind die TK-Bausteine der LEAs so zu konfigurieren, dass jeder TK-Baustein auf seinen zugehörigen TK-Proxy im Transport-Management zugreifen und diesen ansteuern kann. Hierzu sind zwei Konfigurationsschritte notwendig: Zum einen muss eine Kommunikationsverbindung von der LEA zum OPC~UA-Server des Transport-Managements aufgebaut werden, zum anderen müssen die TK-Bausteine der LEA so konfiguriert werden, dass sie die Schnittstellendaten des richtigen TK-Proxies auslesen bzw. beschreiben. Gemäß DE4 wird diese Konfiguration durch das Transport-Management vorgenommen. 
+
+Zum Aufbau der Kommunikationsverbindung steht in der LEA eine sogenannte \emph{TransportClientManager}-Schnittstelle bereit, mittels derer Verbindungsparameter des Transport-Managements (z.~B. Endpoint-URL, Namespace) an die LEA übergeben werden und der Verbindungsaufbau angestoßen wird. Anschließend baut die LEA auf Basis dieser Angaben ihrerseits eine OPC~UA-Verbindung zum Transport-Management auf.
+
+Zur Anbindung der TK-Bausteine der LEAs zu ihren zugehörigen TK-Proxies im Transport-Management stellt jeder TK-Baustein eine sogenannte \emph{Transport\-Node\-Manager}-Schnittstelle bereit. Über diese Schnittstelle wird durch das Transport-Management die \emph{ProxyId} des zugehörigen TK-Proxies übergeben. In der Folge verbindet sich der TK-Baustein mit dem TK-Proxy. Dabei folgen ausgehend von der \emph{ProxyId} alle Schnittstellendaten des TK-Proxy einem einheitlichen Schema, sodass die TK-Bausteine anhand der \emph{ProxyId} alle notwendigen Adressinformationen (OPC~UA-NodeIds) des TK-Proxy ermitteln können. 
+
+\subsubsection{TransportSet}
+\label{subsubsec:TransportSet}
+
+Zur automatisierten Integration von LEAs und deren Transportknoten in das LEA-Management des Transport-Managements wird ein neuer MTP-Aspekt \emph{TransportSet} eingeführt. Dieser enthält alle notwendigen Modell- und Schnittstellendefinitionen zur Beschreibung der transportrelevanten Informationen einer LEA und deren Transportknoten. Dieser Abschnitt gibt einen Überblick über das \emph{TransportSet}, eine detaillierte Beschreibung erfolgt im Anhang~\ref{subsec:AnhangTransportSet}. 
+
+Zur Erzeugung der notwendigen TK-Proxies im Transport-Management werden die Transportknoten einer LEA im MTP beschrieben. Hierzu wird die abstrakte Modelldefinition \emph{TransportNode} eingeführt, von der konkrete Modelldefinitionen für die verschiedenen Arten von LEA-Transportknoten abgeleitet werden, d.~h. \emph{InboundNode}, \emph{OutboundNode}, \emph{InOutboundNode}, \emph{ProcessingNode} und \emph{OrderNode}. Diese werden direkt unterhalb des \emph{TransportSet} in einer flachen Liste aufgelistet.
+
+Zur kommunikativen Anbindung der LEA und ihrer TK-Bausteine an das Transport-Management werden die \emph{OpcUaTransportClientManager}- und die \emph{TransportNodeManager}-Schnitt\-stel\-len\-de\-fi\-ni\-tio\-nen eingeführt\footnote{Die \emph{OpcUaTransportClientManager}- und \emph{TransportNodeManager}-Schnittstelle können als dynamische Bedienbildelemente in das LEA-Bedienbild eingebunden werden.}. Die \emph{OpcUaTransportClientManager}-Schnittstelle ist von einer abstrakten \emph{TransportClientManager}-Schnitt\-stel\-len\-de\-fi\-ni\-ti\-on abgeleitet und dient der Übergabe aller kommunikationsrelevanten Informationen des Transport-Managements an die LEA, sodass eine (OPC~UA-) Kommunikationsverbindung aufgebaut werden kann. Die \emph{TransportNodeManager}-Schnittstelle dient der konfigurativen Anbindung eines TK-Bausteins an seinen zugehörigen TK-Proxy im Transport-Management. Mittels dieser Schnittstelle wird die eindeutige \emph{ProxyId} des TK-Proxy an den TK-Baustein übergeben.
+
+Jeder \emph{TransportNode}-Modelldefinition ist eine \emph{TransportClientManager}- und eine \emph{TransportNodeManager}-Schnittstelle zugeordnet. Somit ist für das Transport-Management eindeutig erkennbar, welche Schnittstellen es für die Kommunikation zu einem bestimmten Transportknoten einer LEA verwenden muss.
+
+\subsection{Dezentrale Orchestrierung der Transportdienste}
+\label{subsec:DOTransportdienste}
+
+Nachdem die TK-Bausteine einer LEA an die TK-Proxies des Transport-Managements angebunden wurden, können die TK-Bausteine die über die Proxies erreichbaren Transportdienste gemäß DE3 dezentral orchestrieren. Der LEA-Dienst nimmt dabei die Rolle des orchestrierenden (übergeordneten) Dienstes ein; der Transportdienst ist der orchestrierte (unterlagerte) Dienst. Die Umsetzung orientiert sich an den in \cite{Stutz.SubelServices,Spaethe.2019} beschriebenen Ansätzen. Die daraus resultierende Kommunikation zwischen TK-Baustein und Transportdienst wird in Abbildung~\ref{fig:InteraktionLeaTcs} am Beispiel des InOutbound-Knotens einer PAL-LEA veranschaulicht.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.7\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/Interaktion_LEA_TCS.pdf}}
+	\caption{Beispielhafte Interaktion eines Transportdienstes mit einem LEA-Transportknoten über einen TK-Proxy}
+	\label{fig:InteraktionLeaTcs}
+\end{figure}
+
+Solange dem TK-Proxy Transport-Management-intern ein Transportdienst zugeordnet ist (Abschnitt~\ref{subsec:AufbauFunktionTM}), hält der Proxy seine Schnittstellendaten kontinuierlich mit den Schnittstellendaten des Transportdienstes konsistent. Der TK-Baustein der LEA wiederum synchronisiert seine eigene Schnittstelle mit der des TK-Proxy.
+
+Konkret werden vom Transportdienst ausgehende Daten, etwa der aktuelle Transportstatus in Form der \emph{ProcedureCur}-Variable, an den TK-Proxy übertragen und an dessen Schnittstelle im OPC~UA-Server des Transport-Managements bereitgestellt. Der TK-Baustein liest diese Werte per OPC~UA-Read-Operation aus (Abbildung~\ref{fig:InteraktionLeaTcs}, \enquote{Read}). In Gegenrichtung schreibt der TK-Baustein eingehende Daten, etwa den nächsten anzufahrenden Transportknoten als \emph{NextNode.VExt}-Variable, per OPC~UA-Write-Operation in den TK-Proxy, von wo sie Transport-Management-intern an den Transportdienst weitergeleitet werden.
+
+Alle Lese- und Schreibzugriffe werden dabei gebündelt gemäß den \emph{OpcUaReadList}- und \emph{OpcUaWriteList}-Bausteinen aus \cite{OPCFoundation.30001} in je \underline{einer} Lese- und \underline{einer} Schreiboperation ausgeführt. Um dabei versehentliches Überschreiben konsistenter Zustandsdaten zu vermeiden, liest der TK-Baustein vor jeder Schreiboperation zunächst alle schreibbaren Variablen zurück, nimmt die erforderlichen Änderungen vor und schreibt anschließend den vollständigen Variablensatz in einer einzigen Operation zurück (Abbildung~\ref{fig:InteraktionLeaTcs}, \enquote{Read/Write}). 
+
+\subsection{Ermittlung des nächsten anzufahrenden Transportknotens}
+\label{subsec:ErmittlungNextNode}
+
+Die Betrachtungen des Ablaufs von Transportprozessen in den Abschnitten~\ref{subsec:ArbeitsweisenÜbersichtLA} und \ref{sec:TransportprozessLA} zeigen, dass vier Szenarien existieren, in denen eine LEA den nächsten anzufahrenden Transportknoten ermitteln muss. Tabelle~\ref{tab:ErmittlungKnoten} gibt einen Überblick über diese Szenarien (S1 bis S4).
+
+% Szenarien der Ermittlung des nächsten Transportknotens
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Szenarien der Ermittlung des nächsten Transportknotens}
+		\label{tab:ErmittlungKnoten}\\
+		\hline
+
+		\multicolumn{1}{|C{1cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Fall}}        & 
+		\multicolumn{1}{L{2cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Name}}        & 
+		\multicolumn{1}{L{11.5cm}|}{\cellcolor[HTML]{E0E0E0} \textbf{Beschreibung}} 
+		\\ \hline
+
+		\multicolumn{1}{|C{1cm}|}{\cellcolor[HTML]{FFFFFF} S1}        & 
+		\multicolumn{1}{L{2cm}|}{\cellcolor[HTML]{FFFFFF} Push-Auftrag}        & 
+		\multicolumn{1}{L{11.5cm}|}{\cellcolor[HTML]{FFFFFF} Die LEA hat ein LO fertig bearbeitet und initiiert einen Push-Transportauftrag zu dessen Abholung. Der nächste anzufahrende Transportknoten ist ein Knoten an der LEA selbst, wo das LO abgeholt werden soll. Beispiel: PAL hat eine Palette fertiggestellt und ruft ein AGV zu deren Abholung.} 
+		\\ \hline
+
+		\multicolumn{1}{|C{1cm}|}{\cellcolor[HTML]{FFFFFF} S2}        & 
+		\multicolumn{1}{L{2cm}|}{\cellcolor[HTML]{FFFFFF} Pull-Auftrag}        & 
+		\multicolumn{1}{L{11.5cm}|}{\cellcolor[HTML]{FFFFFF} Die LEA hat einen Materialbedarf und initiiert einen Pull-Transportauftrag zur Materialbeschaffung. Der nächste anzufahrende Transportknoten ist der Knoten, von dem Material beschafft werden soll. Beispiel: PAL möchte eine Leerpalette von einem PAS beziehen.} 
+		\\ \hline
+
+		\multicolumn{1}{|C{1cm}|}{\cellcolor[HTML]{FFFFFF} S3}        & 
+		\multicolumn{1}{L{2cm}|}{\cellcolor[HTML]{FFFFFF} LO-Übergabe (Outbound)}        & 
+		\multicolumn{1}{L{11.5cm}|}{\cellcolor[HTML]{FFFFFF} Die LEA übergibt ein LO an einem Outbound- oder InOutbound-Knoten an ein AGV. Der Transportdienst läuft bereits. Der nächste anzufahrende Transportknoten ist an der nächsten LEA, an der das LO bearbeitet oder übergeben werden soll. Beispiel: AGV ist beim PAL angekommen, der PAL übergibt eine Palette und möchte das AGV anschließend zur LABEL-LEA weiterschicken. }
+		\\ \hline
+
+		\multicolumn{1}{|C{1cm}|}{\cellcolor[HTML]{FFFFFF} S4}        & 
+		\multicolumn{1}{L{2cm}|}{\cellcolor[HTML]{FFFFFF} LO-Bearbeitung (Processing)}        & 
+		\multicolumn{1}{L{11.5cm}|}{\cellcolor[HTML]{FFFFFF} Die LEA möchte ein LO, das sich an seinem Processing-Knoten befindet, zum nächsten Transportknoten weiterschicken. Der Transportdienst läuft bereits. Der nächste anzufahrende Transportknoten ist an der nächsten LEA, an der das LO bearbeitet oder übergeben werden soll. Beispiel: Die LABEL-LEA hat eine Kennzeichnung auf einer Palette appliziert und möchte diese zur SH weiterschicken. } 
+		\\ \hline
+		
+	\end{longtable}
+\end{footnotesize}
+
+In Abhängigkeit des vorliegenden Szenarios bestehen unterschiedliche Möglichkeiten zur Ermittlung des nächsten Transportknotens. Abbildung~\ref{fig:ErmittlungNextNode} gibt einen Überblick über diese Möglichkeiten. 
+
+Im Szenario S1 soll ein LO an einem Out\-bound- bzw. InOutbound-Knoten der LEA selbst abgeholt werden. Die \emph{ProxyId} dieses Knotens liegt in der entsprechenden \emph{TransportNodeManager}-Schnittstelle vor und kann LEA-intern ausgelesen werden. Eine weiterführende Ermittlung des nächsten Transportknotens ist nicht notwendig. 
+
+In den Szenarien S2 bis S4 ist der nächste anzufahrende Transportknoten ein Transportknoten einer anderen LEA, dessen \emph{ProxyId} zunächst ermittelt werden muss. Hierzu bestehen wiederum zwei Möglichkeiten. Der nächste Knoten kann aus einem LEA-internen \emph{ProductDataSet} bezogen werden (\textbf{Nutzung statischer Defaultrouten}) oder beim Materialfluss-Management des LOL angefragt werden (\textbf{Dynamische Abfrage des nächsten Knotens}). Welche der beiden Möglichkeiten genutzt werden soll, hängt von der Dynamik der Transporte im Anwendungsfall ab. Werden immer die gleichen Routen abgefahren, bietet sich die Festlegung von Defaultrouten an. In diesem Fall ist kein Materialfluss-Management erforderlich. Gibt es mehrere alternative Routen oder ändern sich die Routen häufig, sind dynamische Abfragen beim Materialfluss-Management sinnvoller. 
+
+\begin{figure}[H]
+	\centerline{\includegraphics[width=1.0\textwidth]{Inhalt/Abbildungen/08_Bereichs-Automatisierung/NextNode.drawio.pdf}}
+	\caption{Fälle der Ermittlung des nächsten anzufahrenden Transportknotens}
+	\label{fig:ErmittlungNextNode}
+\end{figure}
+
+Die Festlegung für eine der beiden Möglichkeiten erfolgt durch die Variable \emph{RoutingMode} vom Datentyp BYTE. Diese Variable ist bei allen LEAs, die das Konzept dieses Artefakts umsetzen, im \emph{ProductDataSet} gemäß Abschnitt~\ref{subsec:Parametrierngsmech} hinterlegt. Um eine eindeutige Identifikation dieser Variable zu gewährleisten, sollte diese stets \emph{RoutingMode} heißen. Tabelle~\ref{tab:RoutingMode} zeigt die Bedeutung dieser Variable.
+
+\pagebreak
+
+% Bedeutung RoutingMode
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}c 
+		>{\columncolor[HTML]{E0E0E0}}l |}
+		\caption{Bedeutung der Variable \emph{RoutingMode}}
+		\label{tab:RoutingMode}\\
+		\hline
+
+		\multicolumn{1}{|C{1cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Wert}}        & 
+		\multicolumn{1}{L{9cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Beschreibung}}        
+		\\ \hline
+
+        \multicolumn{1}{|C{1cm}|}{\cellcolor[HTML]{FFFFFF} 1}        & 
+		\multicolumn{1}{L{9cm}|}{\cellcolor[HTML]{FFFFFF} Nutzung des Defaultwerts für den nächsten anzufahrenden Transportknoten aus dem \emph{ProductDataSet}}        
+		\\ \hline
+  
+        \multicolumn{1}{|C{1cm}|}{\cellcolor[HTML]{FFFFFF} 2}        & 
+		\multicolumn{1}{L{9cm}|}{\cellcolor[HTML]{FFFFFF} Anfrage des nächsten anzufahrenden Transportknotens beim Materialfluss-Management im LOL}        
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
+
+\subsubsection{Nutzung statischer Defaultwerte}
+
+Zur Speicherung der statischen Defaultwerte für den nächsten anzufahrenden Knoten sind die Variablen \emph{DefaultSupplyNode} und \emph{DefaultNextNode} vom Datentyp DINT vorgesehen, die im \emph{ProductDataSet} einer LEA gemäß Abschnitt~\ref{subsec:Parametrierngsmech} hinterlegt sind. Um eine eindeutige Identifikation dieser beiden Variablen zu gewährleisten, sollten diese stets \emph{DefaultSupplyNode} und \emph{DefaultNextNode} heißen. Tabelle~\ref{tab:DefaultNodes} gibt die Bedeutung dieser Variablen an.
+
+% Bedeutung DefaultSupplyNode und DefaultNextNode
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{E0E0E0}}l |}
+		\caption{Bedeutung der Variablen \emph{DefaultSupplyNode} und \emph{DefaultNextNode}}
+		\label{tab:DefaultNodes}\\
+		\hline
+
+		\multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Variable}}        & 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Beschreibung}}        
+		\\ \hline
+
+        \multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} DefaultSupply\-Node}        & 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Diese Variable enthält die \emph{ProxyId} des Transportknotens, von dem eine LEA defaultmäßig Material beziehen soll. Diese Variable ist in allen LEAs enthalten, die in der Lage sind, einen Pull-Auftrag zu initiieren und wird im Szenario S2 verwendet. }        
+		\\ \hline
+  
+        \multicolumn{1}{|L{2.5cm}|}{\cellcolor[HTML]{FFFFFF} DefaultNext\-Node}        & 
+		\multicolumn{1}{L{12.13cm}|}{\cellcolor[HTML]{FFFFFF} Diese Variable enthält die \emph{ProxyId} des Transportknotens, zu dem eine LEA defaultmäßig LOs schickt, die von der LEA fertiggestellt wurden. Diese Variable ist in allen LEAs enthalten, die in der Lage sind, LOs an eine andere LEA weiterzuleiten und wird in den Szenarien S3 und S4 verwendet.}        
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
+
+Diese Variablen werden durch die LEA unter Angabe der \emph{ProductId} und des \emph{LogisticsObjectStatus} aus dem \emph{ProductDataSet} gemäß den Mechanismen aus Abschnitt~\ref{subsec:Parametrierngsmech} bezogen und am \emph{NextNode}-Parameter des Transportdienstes eingestellt. Entsprechend können für verschiedene Produkte und verschiedene Bearbeitungsstatus von LOs unterschiedliche Werte für \emph{DefaultSupplyNodes} und \emph{DefaultNextNodes} vorgesehen werden.
+
+\subsubsection{Nutzung dynamisch ermittelter Werte}
+
+Für die dynamische Ermittlung des nächsten anzufahrenden Transportknotens kann eine LEA eine Anfrage an das Materialfluss-Management des LOL stellen. Für diese Anfrage wird eine neue logistikspezifische Dienst-Bediener-Interaktion (ähnlich den Parameterabfragen in Abschnitt~\ref{sec:LeaParameter}) eingeführt. Diese wird als \emph{TransportNodeRequest} bezeichnet. Der \emph{TransportNodeRequest} ermöglicht, unter Angabe der \emph{TransportId} eines Transportdienstes den nächsten anzufahrenden Transportknoten für das betreffende LO anzufragen. Das Materialfluss-Management des LOL sendet daraufhin den gewünschten nächsten Transportknoten als Antwort zurück. 
+
+\subsubsection{Nutzung der FinalTargetNode}
+
+Schließlich kann auch die im \emph{FinalTargetNode}-Parameter des Transportdienstes angegebene \emph{ProxyId} als nächster (und damit letzter) anzufahrender Transportknoten verwendet werden. Um zu signalisieren, dass diese verwendet werden soll, wird der Wert \enquote{0} übermittelt. Somit wird im Falle der Nutzung statischer Defaultwerte der Wert \enquote{0} als \emph{DefaultNextNode} im \emph{ProductDataSet} hinterlegt, was bedeutet, dass defaultmäßig als nächstes zum \emph{FinalTargetNode} gefahren wird. Im \emph{DefaultSupplyNode} ist die Angabe \enquote{0} nicht zulässig, da ein Knoten, von dem eine LEA Material bezieht, niemals der letzte Transportknoten eines Transportauftrages sein kann. Im Falle der dynamischen Abfrage des nächsten anzufahrenden Transportknotens mittels \emph{TransportNodeRequest} wird der Wert \enquote{0} als Antwort der Anfrage zurückgegeben, wenn der \emph{FinalTargetNode} als nächstes angefahren werden soll.
+
+
+\section{AGV-System}
+\label{sec:AgvSystemLA}
+
+% Grundlegende Aufgabe und Bestandteile
+Wie in der Problemkontextanalyse (Abschnitt~\ref{subsubsec:StrukturTransportsystem}) beschrieben, werden im Rahmen dieser Dissertation AGV-Systeme, bestehend aus einem Flottenmanager und mehreren AGVs, zur Umsetzung flexibler Transporte in der Logistics Area betrachtet. Diese dienen der Ausführung der im Transport-Management verwalteten Transportaufträge. 
+
+\subsubsection{Integration in das Transport-Management}
+
+In einem MLS können verschiedene AGV-Systeme mit verschiedenen technischen Eigenschaften und proprietären Schnittstellen zum Einsatz kommen. Zur Beherrschung dieser technischen Vielfalt wurde das Transport-Management als Abstraktionsschicht zwischen den LEAs und den AGV-Systemen konzipiert. Die Anbindung der AGV-Systeme an das Transport-Management erfolgt über proprietäre Schnittstellen, z.~B. REST- oder MQTT-Schnittstellen. Zur Integration verschiedener AGV-Systeme werden innerhalb des Transport-Managements AGV-System-Adapter vorgesehen, die in der Lage sind, nach unten die proprietären Schnittstellen der AGV-Systeme zu bedienen und nach oben mit einer über die Adapter hinweg einheitlichen Schnittstelle des Transport-Managements zu interagieren. Weitere Adapter sollen mittels eines Plugin-Mechanismus in das Transport-Management integriert werden können, um weitere AGV-Systeme einfach anbinden zu können. Die genaue Implementierung der Adapter und die Definition von deren Schnittstelle zum Transport-Management ist implementierungsspezifisch und wird im Rahmen dieser Dissertation nicht betrachtet.
+
+\subsubsection{Interaktion mit dem Transport-Management}
+
+Für die Ausführung der Transportaufträge müssen die AGV-System-Adapter in der Lage sein, auf Informationen von Transportdiensten im Transport-Management zuzugreifen und diese in passender Weise mit der proprietären Schnittstelle der AGV-Systeme zu synchronisieren. 
+
+% Anforderungen AGV-Systeme
+Um die Interaktion mit dem AGV-System gemäß der vorgestellten Arbeitsweise (Abschnitte~\ref{subsec:ArbeitsweisenÜbersichtLA} und \ref{sec:TransportprozessLA}) zu ermöglichen, muss die proprietäre Schnittstelle eines AGV-Systems für jeden Transportauftrag bestimmte Informationen bereitstellen bzw. verarbeiten können. Tabelle~\ref{tab:AgvSchnittstelle} gibt einen Überblick über diese Informationen. Zudem muss der Flottenmanager des AGV-Systems in der Lage sein, auf Basis der Transportauftragsinformationen, welche er vom Adapter erhält, ein passendes AGV für den Transportauftrag auszuwählen, dieses für den Transportauftrag zu reservieren und gemäß der beschriebenen Arbeitsweise den Transportauftrag auszuführen.
+
+% Schnittstelle AGV-System
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Mindestanforderungen an die Schnittstelle eines AGV-Systems für die Interaktion mit dem Transport-Management}
+		\label{tab:AgvSchnittstelle}\\
+		\hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Vom AGV-System bereitzustellende Informationen}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{E0E0E0} Information }        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{E0E0E0} Weiterverarbeitung } 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{FFFFFF} ID des ausgewählten AGVs }        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{FFFFFF} Diese Information wird als Reportwert \emph{ResourceId} am Transportdienst bereitgestellt.  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{FFFFFF} Indikator, ob das AGV aktuell fährt oder steht }        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{FFFFFF} Auf Basis dieser Information wird der Transportstatus \emph{Transport} durch das Transport-Management gesetzt.  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{FFFFFF} Indikator, ob es Fehler bei der Ausführung des Transportauftrags gibt }        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{FFFFFF} Auf Basis dieser Information kann der Transportdienst in einen Fehlerzustand (HELD, STOPPED, ABORTED) versetzt werden.  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{FFFFFF} Indikator über die Ankunft des AGVs im Anfahrbereich der anzufahrenden LEA}        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{FFFFFF} Auf Basis dieser Information wird der Transportstatus \emph{TransportAwaitRequested} durch das Transport-Management gesetzt.  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{FFFFFF} Indikator über die Ankunft des AGVs an der anzufahrenden LEA}        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{FFFFFF} Auf Basis dieser Information wird der Transportstatus \emph{TransportArrived} durch das Transport-Management gesetzt.  } 
+		\\ \hline
+
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Vom AGV-System zu verarbeitende Informationen}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{E0E0E0} Information }        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{E0E0E0} Weiterverarbeitung } 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{FFFFFF} ProxyId des nächsten anzufahrenden Transportknotens }        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{FFFFFF} Diese Information muss dem AGV als nächstes anzufahrendes Ziel vorgegeben werden.  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{FFFFFF} Indikator, dass ein Transport starten soll }        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{FFFFFF} Mit diesem Indikator wird das AGV zum Losfahren zum nächsten anzufahrenden Transportknoten aufgefordert.  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{FFFFFF} Freigabe, dass ein AGV an eine LEA heranfahren darf }        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{FFFFFF} Mit diesem Indikator wird das AGV dazu aufgefordert, an eine LEA heranzufahren.  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{FFFFFF} Indikator, dass eine Übergabe/Übernahme eines LOs an/von einer LEA stattfindet }        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{FFFFFF} Mit diesem Indikator wird das AGV aufgefordert, seine ggf. vorhandenen Übergabe- bzw. Übernahmeeinrichtungen (z.~B. Förderbänder) zu aktivieren.  } 
+		\\ \hline
+
+		\multicolumn{1}{|L{5cm}|}{\cellcolor[HTML]{FFFFFF} Indikator über die Beendigung des Transportauftrags }        	& 
+		\multicolumn{1}{L{9.63cm}|}{\cellcolor[HTML]{FFFFFF} Mit diesem Indikator wird der Flottenmanager informiert, dass der Transportauftrag beendet ist und aufgefordert, das AGV für zukünftige Transportaufträge wieder freizugeben.  } 
+		\\ \hline
+	
+
+	\end{longtable}
+\end{footnotesize}
+
+
+\section{MTP-Erweiterungen}
+\label{sec:MTPErweiterungenLA}
+
+In den vorangegangenen Abschnitten wurde eine Reihe von Erweiterungen der MTP-Spezifikation identifiziert, die im Kontext der Automatisierung flexibler Transporte in der Logistics Area notwendig sind. Tabelle~\ref{tab:MtpErweiterungenLA} gibt einen Überblick über die hierfür einzuführenden Modell- und Schnittstellendefinitionen. Eine detailliertere Beschreibung erfolgt in den in Tabelle~\ref{tab:MtpErweiterungenLA} angegebenen Anhängen.
+
+% MTP-Erweiterungen LA
+\begin{footnotesize}
+	\begin{longtable}{|
+		>{\columncolor[HTML]{E0E0E0}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l 
+		>{\columncolor[HTML]{FFFFFF}}l |}
+		\caption{Erweiterungen der MTP-Spezifikation für die Automatisierung flexibler Transporte in der Logistics Area}
+		\label{tab:MtpErweiterungenLA}\\
+		\hline
+
+		% Schnittstellendefinitionen
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Schnittstellendefinitionen}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Profil}}        	& 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Definition}} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Beschreibung}} 			& 
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Detail-spezifikation}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: TransportSet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC Transport\-Element}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Basis-Schnittstelle für alle transportrelevanten Schnittstellen }              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: TransportSet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC Transport\-Client\-Manager}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Abstrakte Schnittstelle zur Konfiguration und zum Aufbau einer Kommunikationsverbindung zwischen einer LEA und einem Transport-Management }              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: TransportSet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC OpcUa\-Transport\-Client\-Manager}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Schnittstelle zur Konfiguration und zum Aufbau einer OPC~UA-Verbindung zwischen einer LEA (Client) und einem Transport-Management (Server) }              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: TransportSet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC Transport\-Node\-Manager}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Schnittstelle zur Zuordnung eines TK-Bausteins in der LEA zu einem TK-Proxy im Transport-Management }              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: DataAssemblySet.Time V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} RC Has\-Time\-Format}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Rollenklasse für DINT-basierte Schnittstellen zur Interpretation in einem Zeitformat }              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangDataAssemblySet}}             
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: DataAssemblySet.Time V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC DInt\-View\newline (Erweiterung)}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Erweiterung der bestehenden DIntView-Schnittstelle um die Möglichkeit, die RC HasTimeFormat anzufügen }              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangDataAssemblySet}}             
+		\\ \hline
+
+		% Modelldefinitionen
+		\multicolumn{4}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Modelldefinitionen}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Profil}}        	& 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Definition}} 			& 
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Beschreibung}} 			& 
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{Detail-spezifikation}} 
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: ChoreographySet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} IH Transports}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Instanzhierarchie zur Verwaltung aller transportbezogenen Modelle eines MTP}              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: TransportSet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC Transport\-Set}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} AspektSet, das alle transportrelevanten Modelldefinitionen organisiert}              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+		
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: TransportSet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC Transport\-Node}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Abstraktes Modell für einen Transportknoten einer LEA}              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: TransportSet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC Inbound\-Node}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Modell für einen Inbound-Knoten einer LEA}              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: TransportSet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC Outbound\-Node}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Modell für einen Outbound-Knoten einer LEA}              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: TransportSet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC InOutbound\-Node}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Modell für einen InOutbound-Knoten einer LEA}              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: TransportSet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC Processing\-Node}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Modell für einen Processing-Knoten einer LEA}              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: TransportSet.Base V2.0.0 }                    & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC Order\-Node}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Modell für einen Order-Knoten einer LEA}              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangTransportSet}}             
+		\\ \hline
+ 
+		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: ServiceSet.Logistics V2.0.0 }         & 
+		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC Transport\-Node\-Request}              &      
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Modell einer LEA-Anfrage nach dem nächsten anzufahrenden Transportknoten}              &     
+		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangServiceSet}}             
+		\\ \hline
+
+	\end{longtable}
+\end{footnotesize}
+
+Über diese Modell- und Schnittstellendefinitionen hinaus wird eine neue Bibliothek (\emph{SUCL MTPTransportSUCLib}) für die transportrelevanten Modelldefinitionen eingeführt (Anhang~\ref{subsec:AnhangTransportSet}). Für die \emph{RC HasTimeFormat} wird eine neue Bibliothek (\emph{RCL MTPDataAssemblyRCLib}) eingeführt (Anhang~\ref{subsec:AnhangDataAssemblySet}).
+
+

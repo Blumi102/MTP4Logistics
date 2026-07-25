@@ -169,6 +169,7 @@
 ### MTP Specification Part 1
 
 - Citation key: `PNO.2025.Part1`
+- Shorthand: `MTP Specification Part 1`
 - Authors: PROFIBUS Nutzerorganisation e.V., NAMUR and ZVEI
 - Year: 2025
 - Title: Module Type Package Specification - Part 1: General Concept, Interfaces and Models
@@ -199,6 +200,7 @@
 ### MTP Specification Part 4
 
 - Citation key: `PNO.2025.Part4`
+- Shorthand: `MTP Specification Part 4`
 - Authors: PROFIBUS Nutzerorganisation e.V., NAMUR and ZVEI
 - Year: 2025
 - Title: Module Type Package Specification - Part 4: Automation Services and Process Values
@@ -269,6 +271,7 @@
 ### OPC 30001
 
 - Citation key: `OPCFoundation.30001`
+- Shorthand: `OPC 30001`
 - Authors: OPC Foundation and PLCopen
 - Year: 2023
 - Title: OPC 30001 - OPC UA Client Function Blocks for IEC 61131-3
@@ -306,6 +309,30 @@
 - Year: 2018
 - Title: MAXOLUTION Mobile Systeme - Katalog 2018
 - URL: https://download.sew-eurodrive.com/download/pdf/24784125.pdf
+
+### Spaethe, 2019
+
+- Citation key: `Spaethe.2019`
+- Shorthand: `Spa19`
+- Authors: Fabian Spaethe
+- Year: 2019
+- Title: Konzeptionierung eines Plug and Play Mechanismuses für die Zero Engineering Integration von Modulen
+- Type: Master's Thesis
+- Institution: Hochschule Karlsruhe
+- Address: Karlsruhe
+
+### Stutz et al., 2020
+
+- Citation key: `Stutz.SubelServices`
+- Shorthand: `SMS+20`
+- Authors: Andreas Stutz, Mathias Maurmaier, Fabian Spaethe, Padraig Hill
+- Year: 2020
+- Title: Einführung, Entwicklung und Anwendung von sub-elementaren Services für modulare Anlagen
+- Pages: 809--822
+- Booktitle: VDI-Bericht 2375 - Automation 2020
+- Publisher: VDI-Verlag
+- Address: Düsseldorf
+- DOI: 10.51202/9783181023754-809
 
 ### Stutz et al., 2021
 
@@ -346,6 +373,18 @@
 - Type: PhD Thesis
 - Institution: Helmut-Schmidt-Universität Hamburg, Institut für Automatisierungstechnik
 - Address: Hamburg
+
+### VDI/VDMA 5100-1, 2016
+
+- Citation key: `VDIVDMA.2016`
+- Shorthand: `VDI/VDMA 5100-1`
+- Authors: Verein Deutscher Ingenieure and Verband Deutscher Maschinen- und Anlagenbau
+- Year: 2016
+- Title: VDI/VDMA 5100-1: Systemarchitektur für die Intralogistik (SAIL) - Grundlagen
+- Number: 5100-1
+- Publisher: DIN Media
+- Address: Berlin
+- URL: https://www.dinmedia.de/de/technische-regel/vdi-vdma-5100-blatt-1/251310961
 
 ### Wieringa, 2014
 
