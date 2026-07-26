@@ -1,17 +1,17 @@
-## 9.2 MTP Extension of the HMISet
+## 8.2 MTP Extension of the HMISet
 This chapter specifies all identified extensions of the *HMISet* and integrates them into the existing [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2).
 
-### 9.2.1 Overview
-Two model definitions, *SUC PictureFrame* and *SUC ReferencedPicture*, are required for HMI modeling in choreographed logistics lines. As shown in [Figure 9.3](#figure-93-extension-of-the-hmiset-for-representing-line-hmis), these definitions, together with all other model definitions for HMI modeling, are organized in *SUCL MTPHMISUCLib*. In MTP modeling, any number of *ReferencedPictures* can be inserted into the instance hierarchy of the *HMISet*, similar to *Pictures* according to [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). Any number of instances of *SUC PictureFrame* can be added to the *Pictures* or *SemanticGroups* modeled in the MTP, similar to *VisualObjects* according to [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). The model definitions of *SUC HMISet*, *SUC Picture*, and *SUC SemanticGroup* must therefore be extended to allow subordinate *ReferencedPictures* and *PictureFrames*, respectively. *SUC PictureFrame* and *SUC ReferencedPicture* use *RC HasExternalMtpContext*, specified in [RC HasExternalMtpContext](./09-01_Manifest.md#specification-of-the-role-class-hasexternalmtpcontext), to reference external objects from other MTP files. The new and extended model definitions are specified in detail in [Model Definitions](#922-model-definitions) and are assigned to the new profile *ModuleTypePackage:HMISet.Composed V2.0.0*.[^1]
+### 8.2.1 Overview
+Two model definitions, *SUC PictureFrame* and *SUC ReferencedPicture*, are required for HMI modeling in choreographed logistics lines. As shown in [Figure 8.3](#figure-83-extension-of-the-hmiset-for-representing-line-hmis), these definitions, together with all other model definitions for HMI modeling, are organized in *SUCL MTPHMISUCLib*. In MTP modeling, any number of *ReferencedPictures* can be inserted into the instance hierarchy of the *HMISet*, similar to *Pictures* according to [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). Any number of instances of *SUC PictureFrame* can be added to the *Pictures* or *SemanticGroups* modeled in the MTP, similar to *VisualObjects* according to [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). The model definitions of *SUC HMISet*, *SUC Picture*, and *SUC SemanticGroup* must therefore be extended to allow subordinate *ReferencedPictures* and *PictureFrames*, respectively. *SUC PictureFrame* and *SUC ReferencedPicture* use *RC HasExternalMtpContext*, specified in [RC HasExternalMtpContext](./08-01_Manifest.md#specification-of-the-role-class-hasexternalmtpcontext), to reference external objects from other MTP files. The new and extended model definitions are specified in detail in [Model Definitions](#822-model-definitions) and are assigned to the new profile *ModuleTypePackage:HMISet.Composed V2.0.0*.[^1]
 
-##### Figure 9.3: Extension of the HMISet for Representing Line HMIs
+##### Figure 8.3: Extension of the HMISet for Representing Line HMIs
 ![Extension of the HMISet for Representing Line HMIs](./images/02_HMISet.drawio.svg)
 
-### 9.2.2 Model Definitions
+### 8.2.2 Model Definitions
 #### Specification of the System Unit Class PictureFrame
-*SUC PictureFrame* ([Table 9.5](#table-95-model-definition-of-suc-pictureframe)) enables the embedding of a referenced picture into another picture. For this purpose, the picture to be displayed in the *PictureFrame* is referenced by means of *PictureLink* using the ID link mechanism according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). The *PictureFrame* itself can be placed in a picture of *SUC Picture* or, if applicable, in a contained *SUC SemanticGroup*, analogous to a *VisualObject* according to [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). The size and position of the *PictureFrame* are defined by the variables *Width*, *Height*, *X*, *Y*, and *ZIndex*.[^2] If a picture modeled in another MTP is to be displayed in the *PictureFrame*, e.g., a picture of a logistics line, *RC HasExternalMtpContext* must additionally be annotated as an SRC. This enables the referenced MTP file to be addressed by entering a *ContextLink*.
+*SUC PictureFrame* ([Table 8.5](#table-85-model-definition-of-suc-pictureframe)) enables the embedding of a referenced picture into another picture. For this purpose, the picture to be displayed in the *PictureFrame* is referenced by means of *PictureLink* using the ID link mechanism according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). The *PictureFrame* itself can be placed in a picture of *SUC Picture* or, if applicable, in a contained *SUC SemanticGroup*, analogous to a *VisualObject* according to [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). The size and position of the *PictureFrame* are defined by the variables *Width*, *Height*, *X*, *Y*, and *ZIndex*.[^2] If a picture modeled in another MTP is to be displayed in the *PictureFrame*, e.g., a picture of a logistics line, *RC HasExternalMtpContext* must additionally be annotated as an SRC. This enables the referenced MTP file to be addressed by entering a *ContextLink*.
 
-##### Table 9.5: Model Definition of *SUC PictureFrame*
+##### Table 8.5: Model Definition of *SUC PictureFrame*
 
 <table>
 	<tr>
@@ -127,9 +127,9 @@ Two model definitions, *SUC PictureFrame* and *SUC ReferencedPicture*, are requi
 </table>
 
 #### Extension of the System Unit Class Picture
-*SUC Picture* ([Table 9.6](#table-96-model-definition-of-suc-picture)) is the base class for modeling a picture. This model definition is already defined in [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2) and is extended here by the capability to include *PictureFrames*.
+*SUC Picture* ([Table 8.6](#table-86-model-definition-of-suc-picture)) is the base class for modeling a picture. This model definition is already defined in [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2) and is extended here by the capability to include *PictureFrames*.
 
-##### Table 9.6: Model Definition of *SUC Picture*
+##### Table 8.6: Model Definition of *SUC Picture*
 
 <table>
 	<tr>
@@ -227,9 +227,9 @@ Two model definitions, *SUC PictureFrame* and *SUC ReferencedPicture*, are requi
 </table>
 
 #### Extension of the System Unit Class SemanticGroup
-*SUC SemanticGroup* ([Table 9.7](#table-97-model-definition-of-suc-semanticgroup)) is used to mark semantically related elements in HMIs. This model definition is already defined in [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2) and is extended in this work by the capability to include *PictureFrames*.
+*SUC SemanticGroup* ([Table 8.7](#table-87-model-definition-of-suc-semanticgroup)) is used to mark semantically related elements in HMIs. This model definition is already defined in [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2) and is extended in this work by the capability to include *PictureFrames*.
 
-##### Table 9.7: Model Definition of *SUC SemanticGroup*
+##### Table 8.7: Model Definition of *SUC SemanticGroup*
 
 <table>
 	<tr>
@@ -319,9 +319,9 @@ Two model definitions, *SUC PictureFrame* and *SUC ReferencedPicture*, are requi
 
 #### Specification of the System Unit Class ReferencedPicture
 
-*SUC ReferencedPicture* ([Table 9.8](#table-98-model-definition-of-suc-referencedpicture)) enables the embedding of a referenced picture or an entire picture hierarchy from another LEA MTP into the local picture hierarchy, for example by embedding the pictures of the individual LEAs of a logistics line into the corresponding Composed MTP. For this purpose, *RC HasExternalMtpContext* is annotated as an SRC. By entering a *ContextLink*, it enables a reference to the MTP file that contains the referenced picture or referenced picture hierarchy. When a single picture is embedded, the specific picture to be embedded is referenced via *PictureLink* using the ID link mechanism according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). When an entire picture hierarchy is embedded, the variable *PictureLink* is left empty. In both cases, the variable *HierarchyLevel* is used to position the referenced picture or referenced picture hierarchy within the local picture hierarchy.
+*SUC ReferencedPicture* ([Table 8.8](#table-88-model-definition-of-suc-referencedpicture)) enables the embedding of a referenced picture or an entire picture hierarchy from another LEA MTP into the local picture hierarchy, for example by embedding the pictures of the individual LEAs of a logistics line into the corresponding Composed MTP. For this purpose, *RC HasExternalMtpContext* is annotated as an SRC. By entering a *ContextLink*, it enables a reference to the MTP file that contains the referenced picture or referenced picture hierarchy. When a single picture is embedded, the specific picture to be embedded is referenced via *PictureLink* using the ID link mechanism according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). When an entire picture hierarchy is embedded, the variable *PictureLink* is left empty. In both cases, the variable *HierarchyLevel* is used to position the referenced picture or referenced picture hierarchy within the local picture hierarchy.
 
-##### Table 9.8: Model Definition of *SUC ReferencedPicture*
+##### Table 8.8: Model Definition of *SUC ReferencedPicture*
 
 <table>
 	<tr>
@@ -414,9 +414,9 @@ Two model definitions, *SUC PictureFrame* and *SUC ReferencedPicture*, are requi
 
 #### Extension of the System Unit Class HMISet
 
-*SUC HMISet* ([Table 9.9](#table-99-model-definition-of-suc-hmiset)) is the base class for modeling all picture-related information of an MTP. This model definition is already defined in [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2) and is extended in this work by the capability to include *ReferencedPictures*.
+*SUC HMISet* ([Table 8.9](#table-89-model-definition-of-suc-hmiset)) is the base class for modeling all picture-related information of an MTP. This model definition is already defined in [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2) and is extended in this work by the capability to include *ReferencedPictures*.
 
-##### Table 9.9: Model Definition of *SUC HMISet*
+##### Table 8.9: Model Definition of *SUC HMISet*
 
 <table>
 	<tr>

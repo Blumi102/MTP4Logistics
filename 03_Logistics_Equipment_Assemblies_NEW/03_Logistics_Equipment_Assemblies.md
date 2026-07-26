@@ -1,6 +1,8 @@
 ## 3 MTP-Based Automation of Logistics Equipment Assemblies
 
-This chapter presents the MTP-based automation and integration of Logistics Equipment Assemblies (LEAs) as the first artifact of this dissertation. Parts of these concepts were published in [[BFS+22]](../98_References/README.md#blumenstein-et-al-2022-atp) and [[BGB+23]](../98_References/README.md#blumenstein-et-al-moprolog); parametrization mechanisms were additionally investigated in a student thesis [[BJF+23]](../98_References/README.md#blumenstein-et-al-automationlol). The GitHub repository accompanying this dissertation [[Blu26]](../98_References/README.md#blumenstein-github) provides detailed specifications of the introduced MTP extensions and a more thorough description of their application to a palletizer LEA and a stretch-hooding LEA.
+This chapter presents the MTP-based automation and integration of Logistics Equipment Assemblies (LEAs). Parts of these concepts were published in [[BFS+22]](../98_References/README.md#blumenstein-et-al-2022-atp) and [[BGB+23]](../98_References/README.md#blumenstein-et-al-moprolog); parametrization mechanisms were additionally investigated in a student thesis [[BJF+23]](../98_References/README.md#blumenstein-et-al-automationlol). 
+
+X provides detailed specifications of the introduced MTP extensions and a more thorough description of their application to a palletizer LEA and a stretch-hooding LEA.
 
 ### 3.1 Artifact Overview
 

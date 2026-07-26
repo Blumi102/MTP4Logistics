@@ -1,10 +1,10 @@
-## 10.2 Application Example: Stretch Hood LEA
+## 7.2 Application Example: Stretch Hood LEA
 To illustrate the concepts described in the dissertation for LEA automation, this section presents an exemplary application of these concepts to a Stretch Hood LEA (SH), which can operate in either CES-based or SES-based mode.
 
-### 10.2.1 Service Specification
-[Table 10.2](#table-102-profile-of-an-exemplary-stretch-hood-service) provides an overview of the SH service, including its procedures, parameters, report values, and process values.
+### 7.2.1 Service Specification
+[Table 7.2](#table-72-profile-of-an-exemplary-stretch-hood-service) provides an overview of the SH service, including its procedures, parameters, report values, and process values.
 
-##### Table 10.2: Profile of an Exemplary Stretch Hood Service
+##### Table 7.2: Profile of an Exemplary Stretch Hood Service
 
 <table>
   <tr>
@@ -144,10 +144,10 @@ To illustrate the concepts described in the dissertation for LEA automation, thi
   </tr>
 </table>
 
-### 10.2.2 Mode of Operation
-The mode of operation of the two CES procedures is similar to that of the PAL service. Therefore, this section focuses on the SES procedure of the SH service (16#3). It follows the SES operation described in the dissertation and is illustrated in [Figure 10.4](#figure-104-mode-of-operation-of-an-exemplary-stretch-hood-service-in-ses-mode).
+### 7.2.2 Mode of Operation
+The mode of operation of the two CES procedures is similar to that of the PAL service. Therefore, this section focuses on the SES procedure of the SH service (16#3). It follows the SES operation described in the dissertation and is illustrated in [Figure 7.4](#figure-74-mode-of-operation-of-an-exemplary-stretch-hood-service-in-ses-mode).
 
-##### Figure 10.4: Mode of Operation of an Exemplary Stretch Hood Service in SES Mode
+##### Figure 7.4: Mode of Operation of an Exemplary Stretch Hood Service in SES Mode
 ![Mode of Operation of an Exemplary Stretch Hood Service in SES Mode](./images/Arbeitsweise_SES_SH.png)
 
 Initially, the service is in the IDLE state. Pre-population of the *ProductDataSet* and *PackagingDataSet* via the corresponding *ArrayServParam* interfaces is possible. In addition, the LEA must be loaded with the desired film type, and its ID must be set at the design-specific parameter *FoilTypeId*. Using this ID, the associated packaging-specific parameters can be selected from the *PackagingDataSet* or requested from the LOL's parameter management.
@@ -156,11 +156,11 @@ Before the service is started, the desired procedure must also be selected (here
 
 The service then transitions back to the PAUSED state and waits for the next incoming LO. If no further LOs are to be processed, the service can be terminated via a *Complete* command and reset to IDLE via a *Reset* command.
 
-### 10.2.3 HMI Screen
-[Figure 10.5](#figure-105-hmi-screen-of-a-stretch-hooding-and-film-lining-lea) shows the HMI screen of the SH. It enables the entry of order-specific parameters, control of the LEA service, and the display of report values and process values via dynamic HMI objects in accordance with [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). In addition, it contains an image of the SH as a static HMI object. This image is stored in the MTP attachment of the SH as shown in [Figure 10.6](#figure-106-image-file-of-a-stretch-hood-lea-within-the-mtp). Since no suitable ECLASS reference exists for stretch hood machines, the reference "90900001" is used. A LOL integrating this LEA must therefore use the image provided in the MTP attachment.
+### 7.2.3 HMI Screen
+[Figure 7.5](#figure-75-hmi-screen-of-a-stretch-hooding-and-film-lining-lea) shows the HMI screen of the SH. It enables the entry of order-specific parameters, control of the LEA service, and the display of report values and process values via dynamic HMI objects in accordance with [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). In addition, it contains an image of the SH as a static HMI object. This image is stored in the MTP attachment of the SH as shown in [Figure 7.6](#figure-76-image-file-of-a-stretch-hood-lea-within-the-mtp). Since no suitable ECLASS reference exists for stretch hood machines, the reference "90900001" is used. A LOL integrating this LEA must therefore use the image provided in the MTP attachment.
 
-##### Figure 10.5: HMI Screen of a Stretch Hooding and Film Lining LEA
+##### Figure 7.5: HMI Screen of a Stretch Hooding and Film Lining LEA
 ![HMI Screen of a Stretch Hooding and Film Lining LEA](./images/HMI_SH_PVs.png)
 
-##### Figure 10.6: Image File of a Stretch Hood LEA Within the MTP
+##### Figure 7.6: Image File of a Stretch Hood LEA Within the MTP
 ![Image File of a Stretch Hood LEA Within the MTP](./images/MTP_HMI_SH.png)

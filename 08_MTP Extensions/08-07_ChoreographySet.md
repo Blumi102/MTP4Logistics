@@ -1,10 +1,10 @@
-## 9.7 MTP Specification of the ChoreographySet
+## 8.7 MTP Specification of the ChoreographySet
 This chapter specifies the *ChoreographySet* as a new aspect of the MTP specification that contains all elements identified for the MTP-based implementation of Automation Service Choreographies.
  
-### 9.7.1 Overview
-A series of new model and DataAssembly definitions is required to represent choreography-relevant information in the MTP of a LEA. [Figure 9.18](#figure-918-specification-of-the-choreographyset-for-implementing-choreography-based-logistics-lines) provides an overview of these newly specified definitions.
+### 8.7.1 Overview
+A series of new model and DataAssembly definitions is required to represent choreography-relevant information in the MTP of a LEA. [Figure 8.18](#figure-818-specification-of-the-choreographyset-for-implementing-choreography-based-logistics-lines) provides an overview of these newly specified definitions.
 
-##### Figure 9.18: Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines
+##### Figure 8.18: Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines
 ![Specification of the ChoreographySet for Implementing Choreography-Based Logistics Lines](./images/07_ChoreographySet.drawio.svg)
 
 #### DataAssembly definitions
@@ -12,18 +12,18 @@ On the DataAssembly definition side, *SUC ChoreographyParticipantManager* is int
 
 For individual values exchanged and processed within a choreography, *SUC UnionElement*, derived from *SUC DataAssembly* [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1), is introduced to display a value with configurable data type. For the communication variant of active writing, *SUC WritableUnionElements*, derived from *SUC UnionElement*, is additionally provided[^1] and enables write access to a value with configurable data type. 
 
-These DataAssembly definitions are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [DataAssembly definitions](#972-dataassembly-definitions). 
+These DataAssembly definitions are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [DataAssembly definitions](#872-dataassembly-definitions). 
 
 #### Model Definitions
-On the model definition side, *SUC ChoreographySet* is introduced as a new aspect set for organizing all choreography-related models and is derived from the abstract *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). The *ChoreographySet* always contains exactly one IE of *SUC ChoreographyParticipant*, derived from *SUC LinkedObject* ([MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1)). It indicates that a LEA has the capability to participate in a choreography and is linked to a *ChoreographyParticipantManager* interface. The input list and output list of the choreography participant are represented by the subordinate *SUC InputList* and *SUC OutputList*. These lists contain any number of IEs of *SUC InputElemente* and *SUC OutputElement*. They are derived from *SUC LinkedObject* and represent incoming or outgoing system variables. *SUC FixedInputElement*, *SUC ConfigurableInputElement*, *SUC WritableInputElement*, *SUC FixedOutputElement*, and *SUC ConfigurableOutputElement* are provided as concrete derivations of *SUC InputElemente* and *SUC OutputElement*. Almost all *InputElements* and *OutputElements* are linked to a *UnionElement* interface via LinkedObject relations. An exception is formed by *WritableInputElements*, each of which is assigned to a *WritableUnionElement* interface. In the case of *ConfigurableInputElements* and *ConfigurableOutpuElements*, an ID link relation to a *CommunicationManager* interface also exists, which handles value transfer in the sense of configurable communication. The model definitions are organized in the newly introduced library *SUCL MTPChoreographySUCLib*. The detailed specification is provided in [Model Definitions](#973-model-definitions).
+On the model definition side, *SUC ChoreographySet* is introduced as a new aspect set for organizing all choreography-related models and is derived from the abstract *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). The *ChoreographySet* always contains exactly one IE of *SUC ChoreographyParticipant*, derived from *SUC LinkedObject* ([MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1)). It indicates that a LEA has the capability to participate in a choreography and is linked to a *ChoreographyParticipantManager* interface. The input list and output list of the choreography participant are represented by the subordinate *SUC InputList* and *SUC OutputList*. These lists contain any number of IEs of *SUC InputElemente* and *SUC OutputElement*. They are derived from *SUC LinkedObject* and represent incoming or outgoing system variables. *SUC FixedInputElement*, *SUC ConfigurableInputElement*, *SUC WritableInputElement*, *SUC FixedOutputElement*, and *SUC ConfigurableOutputElement* are provided as concrete derivations of *SUC InputElemente* and *SUC OutputElement*. Almost all *InputElements* and *OutputElements* are linked to a *UnionElement* interface via LinkedObject relations. An exception is formed by *WritableInputElements*, each of which is assigned to a *WritableUnionElement* interface. In the case of *ConfigurableInputElements* and *ConfigurableOutpuElements*, an ID link relation to a *CommunicationManager* interface also exists, which handles value transfer in the sense of configurable communication. The model definitions are organized in the newly introduced library *SUCL MTPChoreographySUCLib*. The detailed specification is provided in [Model Definitions](#873-model-definitions).
 
 All model and DataAssembly definitions required for the *ChoreographySet* are assigned to the new profile *ModuleTypePackage:ChoreographySet.Base V2.0.0*.[^2]
 
-### 9.7.2 DataAssembly definitions
+### 8.7.2 DataAssembly definitions
 #### Specification of the System Unit Class UnionElement
-*SUC UnionElement* ([Table 9.43](#table-943-dataassembly-definition-of-suc-unionelement)) is used to display the value of an *InputElement* or an *OutputElement*. Accordingly, a *UnionElement* interface is assigned to these model definitions via a LinkedObject relation.
+*SUC UnionElement* ([Table 8.43](#table-843-dataassembly-definition-of-suc-unionelement)) is used to display the value of an *InputElement* or an *OutputElement*. Accordingly, a *UnionElement* interface is assigned to these model definitions via a LinkedObject relation.
 
-##### Table 9.43: DataAssembly definition of *SUC UnionElement*
+##### Table 8.43: DataAssembly definition of *SUC UnionElement*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -57,9 +57,9 @@ All model and DataAssembly definitions required for the *ChoreographySet* are as
 The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to display the desired value. The variable *DataType* indicates which data type is currently active and which of the previously mentioned variables is therefore to be interpreted. *UnionElement* can thus display only one value of one defined data type at a time. *VQC* provides information about the quality and trustworthiness of the displayed value.
 
 #### Specification of the System Unit Class WritableUnionElement
-*SUC WritableUnionElement* ([Table 9.44](#table-944-dataassembly-definition-of-suc-writableunionelement)) is derived from *UnionElement* and is used to write a value into a *WritableInputElement*. Accordingly, a *WritableUnionElement* interface is always assigned to a *WritableInputElement* via a LinkedObject relation. 
+*SUC WritableUnionElement* ([Table 8.44](#table-844-dataassembly-definition-of-suc-writableunionelement)) is derived from *UnionElement* and is used to write a value into a *WritableInputElement*. Accordingly, a *WritableUnionElement* interface is always assigned to a *WritableInputElement* via a LinkedObject relation. 
 
-##### Table 9.44: DataAssembly definition of *SUC WritableUnionElement*
+##### Table 8.44: DataAssembly definition of *SUC WritableUnionElement*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -93,9 +93,9 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to dis
 The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to enter the desired value. The variable *DataType* indicates which data type is currently active and which of the previously mentioned variables is to be used in the LEA program. *WritableUnionElement* thus accepts only one value of one defined data type at a time. *VQC* can be used to transmit information about the quality and trustworthiness of the entered value.
 
 #### Specification of the System Unit Class ChoreographyElement
-*SUC ChoreographyElement* ([Table 9.45](#table-945-dataassembly-definition-of-suc-choreographyelement)) is an abstract class derived from *SUC DataAssembly* specified in [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3). The choreography-relevant DataAssembly definitions *ChoreographyParticipantManager* and *CommunicationManager* are derived from *ChoreographyElement*.
+*SUC ChoreographyElement* ([Table 8.45](#table-845-dataassembly-definition-of-suc-choreographyelement)) is an abstract class derived from *SUC DataAssembly* specified in [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3). The choreography-relevant DataAssembly definitions *ChoreographyParticipantManager* and *CommunicationManager* are derived from *ChoreographyElement*.
 
-##### Table 9.45: DataAssembly definition of *SUC ChoreographyElement*
+##### Table 8.45: DataAssembly definition of *SUC ChoreographyElement*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -121,9 +121,9 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 </table>
 
 #### Specification of the System Unit Class ChoreographyParticipantManager
-*SUC ChoreographyParticipantManager* ([Table 9.46](#table-946-dataassembly-definition-of-suc-choreographyparticipantmanager)) is derived from *SUC ChoreographyElement* and is used to configure the configurable logic of a choreography participant. In addition, it provides information for type, version, and instance verification of choreographed logistics lines, see also [Workflows](./09-01_Manifest.md#913-workflows). This DataAssembly definition is assigned to an *SUC ChoreographyParticipant* in the *ChoreographySet* via a LinkedObject relation.
+*SUC ChoreographyParticipantManager* ([Table 8.46](#table-846-dataassembly-definition-of-suc-choreographyparticipantmanager)) is derived from *SUC ChoreographyElement* and is used to configure the configurable logic of a choreography participant. In addition, it provides information for type, version, and instance verification of choreographed logistics lines, see also [Workflows](./08-01_Manifest.md#813-workflows). This DataAssembly definition is assigned to an *SUC ChoreographyParticipant* in the *ChoreographySet* via a LinkedObject relation.
 
-##### Table 9.46: DataAssembly definition of *SUC ChoreographyParticipantManager*
+##### Table 8.46: DataAssembly definition of *SUC ChoreographyParticipantManager*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -239,9 +239,9 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 </table>
 
 #### Specification of the System Unit Class CommunicationManager
-*SUC CommunicationManager* ([Table 9.47](#table-947-dataassembly-definition-of-suc-communicationmanager)) is an abstract class derived from *SUC ChoreographyElement*. It is to be understood as a generic DataAssembly definition for configuring the configurable communication of a choreography participant. To use this DataAssembly definition, a concrete manager for a specific communication technology must be derived from it. So far, only *OpcUaClientServerManager* has been implemented for configuring OPC UA Client/Server connections; additional derivations can be developed in the future. The derivations of *SUC CommunicationManager* are assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation (variable *ManagerLink*). In addition, each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*.
+*SUC CommunicationManager* ([Table 8.47](#table-847-dataassembly-definition-of-suc-communicationmanager)) is an abstract class derived from *SUC ChoreographyElement*. It is to be understood as a generic DataAssembly definition for configuring the configurable communication of a choreography participant. To use this DataAssembly definition, a concrete manager for a specific communication technology must be derived from it. So far, only *OpcUaClientServerManager* has been implemented for configuring OPC UA Client/Server connections; additional derivations can be developed in the future. The derivations of *SUC CommunicationManager* are assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation (variable *ManagerLink*). In addition, each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*.
 
-##### Table 9.47: DataAssembly definition of *SUC CommunicationManager*
+##### Table 8.47: DataAssembly definition of *SUC CommunicationManager*
 
 <table>
 	<tr>
@@ -331,9 +331,9 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 </table>
 
 #### Specification of the System Unit Class OpcUaClientServerManager
-*SUC OpcUaClientServerManager* ([Table 9.48](#table-948-dataassembly-definition-of-suc-opcuaclientservermanager)) is derived from the abstract *SUC CommunicationManager*. It is used to configure OPC UA Client/Server communication of a LEA with other LEAs participating in a choreography. *SUC OpcUaClientServerManager* is assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation (variable *ManagerLink*). Each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*. In the case of *OpcUaClientServerManager*, these communication elements are the *UaReader* and *UaWriter* managed by the *CommunicationManager*, which are referenced via their index. The *UaReader* are each assigned to a *ConfigurableInputElement*, and the *UaWriter* are each assigned to a *ConfigurableOutputElement*. For the communication variant of active writing, *SUC OpcUaClientServerManager* manages the existing *ValueFields* of a LEA that can be written by other LEAs. 
+*SUC OpcUaClientServerManager* ([Table 8.48](#table-848-dataassembly-definition-of-suc-opcuaclientservermanager)) is derived from the abstract *SUC CommunicationManager*. It is used to configure OPC UA Client/Server communication of a LEA with other LEAs participating in a choreography. *SUC OpcUaClientServerManager* is assigned to the model definitions of *SUC ConfigurableInputElements* and *SUC ConfigurableOutputElements* in the *ChoreographySet* via an ID link relation (variable *ManagerLink*). Each model definition specifies a *ManagerIndex* that refers to a concrete communication element within the *CommunicationManager*. In the case of *OpcUaClientServerManager*, these communication elements are the *UaReader* and *UaWriter* managed by the *CommunicationManager*, which are referenced via their index. The *UaReader* are each assigned to a *ConfigurableInputElement*, and the *UaWriter* are each assigned to a *ConfigurableOutputElement*. For the communication variant of active writing, *SUC OpcUaClientServerManager* manages the existing *ValueFields* of a LEA that can be written by other LEAs. 
 
-##### Table 9.48: DataAssembly definition of *SUC OpcUaClientServerManager*
+##### Table 8.48: DataAssembly definition of *SUC OpcUaClientServerManager*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>&#9654; Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -476,11 +476,11 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 </table>
 
 
-### 9.7.3 Model Definitions
+### 8.7.3 Model Definitions
 #### Specification of the Instance Hierarchy Choreography
-*IH Choreography* ([Table 9.49](#table-949-model-definition-of-ih-choreography)) is the entry point for the choreography-related information model in the instance hierarchy of an MTP.
+*IH Choreography* ([Table 8.49](#table-849-model-definition-of-ih-choreography)) is the entry point for the choreography-related information model in the instance hierarchy of an MTP.
 
-##### Table 9.49: Model Definition of *IH Choreography*
+##### Table 8.49: Model Definition of *IH Choreography*
 
 <table>
 	<tr>
@@ -531,9 +531,9 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 </table>
 
 #### Specification of the System Unit Class Library MTPChoreographySUCLib
-*SUCL MTPChoreographySUCLib* ([Table 9.50](#table-950-library-definition-of-sucl-mtpchoreographysuclib)) contains the System Unit Classes of the *ChoreographySet* of a Module Type Package.
+*SUCL MTPChoreographySUCLib* ([Table 8.50](#table-850-library-definition-of-sucl-mtpchoreographysuclib)) contains the System Unit Classes of the *ChoreographySet* of a Module Type Package.
 
-##### Table 9.50: Library Definition of *SUCL MTPChoreographySUCLib*
+##### Table 8.50: Library Definition of *SUCL MTPChoreographySUCLib*
 
 <table>
 	<tr>
@@ -577,10 +577,10 @@ The variables *VReal*, *VDInt*, *VDWord*, *VBool*, and *VString* are used to ent
 </table>
 
 #### Specification of the System Unit Class ChoreographySet
-The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-choreographyset)), as a new aspect set of the MTP specification, is derived from *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) and organizes all model definitions required to describe a LEA as a participant in a choreography.
+The *SUC ChoreographySet* ([Table 8.51](#table-851-model-definition-of-suc-choreographyset)), as a new aspect set of the MTP specification, is derived from *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) and organizes all model definitions required to describe a LEA as a participant in a choreography.
 
 
-##### Table 9.51: Model Definition of *SUC ChoreographySet*
+##### Table 8.51: Model Definition of *SUC ChoreographySet*
 
 <table>
 	<tr>
@@ -666,9 +666,9 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class ChoreographyParticipant
-*SUC ChoreographyParticipant* ([Table 9.52](#table-952-model-definition-of-suc-choreographyparticipant)) describes a LEA as a choreography participant. The DataAssembly definition *SUC ChoreographyParticipantManager* is assigned to this model definition via a LinkedObject relation.
+*SUC ChoreographyParticipant* ([Table 8.52](#table-852-model-definition-of-suc-choreographyparticipant)) describes a LEA as a choreography participant. The DataAssembly definition *SUC ChoreographyParticipantManager* is assigned to this model definition via a LinkedObject relation.
 
-##### Table 9.52: Model Definition of *SUC ChoreographyParticipant*
+##### Table 8.52: Model Definition of *SUC ChoreographyParticipant*
 
 <table>
 	<tr>
@@ -754,9 +754,9 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class InputList
-*SUC InputList* ([Table 9.53](#table-953-model-definition-of-suc-inputlist)) organizes all incoming system variables relevant to the configurable logic of a choreography participant. The MTP of a choreography participant always contains exactly one *InputList*.
+*SUC InputList* ([Table 8.53](#table-853-model-definition-of-suc-inputlist)) organizes all incoming system variables relevant to the configurable logic of a choreography participant. The MTP of a choreography participant always contains exactly one *InputList*.
 
-##### Table 9.53: Model Definition of *SUC InputList*
+##### Table 8.53: Model Definition of *SUC InputList*
 
 <table>
 	<tr>
@@ -842,9 +842,9 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class InputElement
-*SUC InputElement* ([Table 9.54](#table-954-model-definition-of-suc-inputelement)) describes an incoming system variable relevant to the configurable logic of a choreography participant. This may be a statically defined internal process variable of the participant or a process variable received by the participant from another participant.
+*SUC InputElement* ([Table 8.54](#table-854-model-definition-of-suc-inputelement)) describes an incoming system variable relevant to the configurable logic of a choreography participant. This may be a statically defined internal process variable of the participant or a process variable received by the participant from another participant.
 
-##### Table 9.54: Model Definition of *SUC InputElement*
+##### Table 8.54: Model Definition of *SUC InputElement*
 
 <table>
 	<tr>
@@ -930,9 +930,9 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class FixedInputElement
-*SUC FixedInputElement* ([Table 9.55](#table-955-model-definition-of-suc-fixedinputelement)) is derived from *SUC InputElement* and describes a statically defined incoming system variable provided by the choreography participant itself. A *FixedInputElement* is assigned to a *UnionElement* interface via a LinkedObject relation.
+*SUC FixedInputElement* ([Table 8.55](#table-855-model-definition-of-suc-fixedinputelement)) is derived from *SUC InputElement* and describes a statically defined incoming system variable provided by the choreography participant itself. A *FixedInputElement* is assigned to a *UnionElement* interface via a LinkedObject relation.
 
-##### Table 9.55: Model Definition of *SUC FixedInputElement*
+##### Table 8.55: Model Definition of *SUC FixedInputElement*
 
 <table>
 	<tr>
@@ -1018,9 +1018,9 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class ConfigurableInputElement
-*SUC ConfigurableInputElement* ([Table 9.56](#table-956-model-definition-of-suc-configurableinputelement)) is derived from *SUC InputElement* and describes a configurable incoming system variable received by the choreography participant from another choreography participant. A *ConfigurableInputElement* is assigned to a derivation of the *CommunicationManager* interface via an ID link relation using the variable *ManagerLink*. A *ManagerIndex* is used to refer to a specific communication element within the *CommunicationManager*. In this way, the communication is configured such that the required system variable is exchanged. The interpretation of *ManagerIndex* depends on the derivation of *CommunicationManager* used. In the case of *OpcUaClientServerManager*, this is the index of the reader used.
+*SUC ConfigurableInputElement* ([Table 8.56](#table-856-model-definition-of-suc-configurableinputelement)) is derived from *SUC InputElement* and describes a configurable incoming system variable received by the choreography participant from another choreography participant. A *ConfigurableInputElement* is assigned to a derivation of the *CommunicationManager* interface via an ID link relation using the variable *ManagerLink*. A *ManagerIndex* is used to refer to a specific communication element within the *CommunicationManager*. In this way, the communication is configured such that the required system variable is exchanged. The interpretation of *ManagerIndex* depends on the derivation of *CommunicationManager* used. In the case of *OpcUaClientServerManager*, this is the index of the reader used.
 
-##### Table 9.56: Model Definition of *SUC ConfigurableInputElement*
+##### Table 8.56: Model Definition of *SUC ConfigurableInputElement*
 
 <table>
 	<tr>
@@ -1112,9 +1112,9 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class WritableInputElement
-*SUC WritableInputElement* ([Table 9.57](#table-957-model-definition-of-suc-writableinputelement)) is derived from *SUC InputElement* and describes an incoming system variable into which values can be written by another choreography participant. A *WritableInputElement* is assigned to a *WritableUnionElement* DataAssembly definition via a LinkedObject relation.
+*SUC WritableInputElement* ([Table 8.57](#table-857-model-definition-of-suc-writableinputelement)) is derived from *SUC InputElement* and describes an incoming system variable into which values can be written by another choreography participant. A *WritableInputElement* is assigned to a *WritableUnionElement* DataAssembly definition via a LinkedObject relation.
 
-##### Table 9.57: Model Definition of *SUC WritableInputElement*
+##### Table 8.57: Model Definition of *SUC WritableInputElement*
 
 <table>
 	<tr>
@@ -1206,9 +1206,9 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class OutputList
-*SUC OutputList* ([Table 9.58](#table-958-model-definition-of-suc-outputlist)) organizes all outgoing system variables relevant to the configurable logic of a choreography participant. The MTP of a choreography participant always contains exactly one *OutputList*.
+*SUC OutputList* ([Table 8.58](#table-858-model-definition-of-suc-outputlist)) organizes all outgoing system variables relevant to the configurable logic of a choreography participant. The MTP of a choreography participant always contains exactly one *OutputList*.
 
-##### Table 9.58: Model Definition of *SUC OutputList*
+##### Table 8.58: Model Definition of *SUC OutputList*
 
 <table>
 	<tr>
@@ -1294,9 +1294,9 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class OutputElement
-*SUC OutputElement* ([Table 9.59](#table-959-model-definition-of-suc-outputelement)) describes an outgoing system variable relevant to the configurable logic of a choreography participant. This may be a statically defined internal process variable of the participant or a configurable process variable sent by the participant to another participant. An *OutputElement* is always assigned to a *UnionElement* interface via a LinkedObject relation.
+*SUC OutputElement* ([Table 8.59](#table-859-model-definition-of-suc-outputelement)) describes an outgoing system variable relevant to the configurable logic of a choreography participant. This may be a statically defined internal process variable of the participant or a configurable process variable sent by the participant to another participant. An *OutputElement* is always assigned to a *UnionElement* interface via a LinkedObject relation.
 
-##### Table 9.59: Model Definition of *SUC OutputElement*
+##### Table 8.59: Model Definition of *SUC OutputElement*
 
 <table>
 	<tr>
@@ -1382,9 +1382,9 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class FixedOutputElement
-*SUC FixedOutputElement* ([Table 9.60](#table-960-model-definition-of-suc-fixedoutputelement)) is derived from *SUC OutputElement* and describes a statically defined outgoing system variable provided by the internal program of the choreography participant.
+*SUC FixedOutputElement* ([Table 8.60](#table-860-model-definition-of-suc-fixedoutputelement)) is derived from *SUC OutputElement* and describes a statically defined outgoing system variable provided by the internal program of the choreography participant.
 
-##### Table 9.60: Model Definition of *SUC FixedOutputElement*
+##### Table 8.60: Model Definition of *SUC FixedOutputElement*
 
 <table>
 	<tr>
@@ -1470,9 +1470,9 @@ The *SUC ChoreographySet* ([Table 9.51](#table-951-model-definition-of-suc-chore
 </table>
 
 #### Specification of the System Unit Class ConfigurableOutputElement
-*SUC ConfigurableOutputElement* ([Table 9.61](#table-961-model-definition-of-suc-configurableoutputelement)) is derived from *SUC OutputElement* and describes a configurable outgoing system variable sent by the choreography participant to another choreography participant. A *ConfigurableOutputElement* is assigned to a derivation of the *CommunicationManager* interface via an ID link relation using the variable *ManagerLink*. A *ManagerIndex* is used to refer to a specific communication element within the *CommunicationManager*. In this way, the communication is configured such that the required system variable is exchanged. The interpretation of *ManagerIndex* depends on the derivation of *CommunicationManager* used. In the case of *OpcUaClientServerManager*, this is the index of the writer used.
+*SUC ConfigurableOutputElement* ([Table 8.61](#table-861-model-definition-of-suc-configurableoutputelement)) is derived from *SUC OutputElement* and describes a configurable outgoing system variable sent by the choreography participant to another choreography participant. A *ConfigurableOutputElement* is assigned to a derivation of the *CommunicationManager* interface via an ID link relation using the variable *ManagerLink*. A *ManagerIndex* is used to refer to a specific communication element within the *CommunicationManager*. In this way, the communication is configured such that the required system variable is exchanged. The interpretation of *ManagerIndex* depends on the derivation of *CommunicationManager* used. In the case of *OpcUaClientServerManager*, this is the index of the writer used.
 
-##### Table 9.61: Model Definition of *SUC ConfigurableOutputElement*
+##### Table 8.61: Model Definition of *SUC ConfigurableOutputElement*
 
 <table>
 	<tr>

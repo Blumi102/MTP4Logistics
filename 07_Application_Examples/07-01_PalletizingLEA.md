@@ -1,10 +1,10 @@
-## 10.1 Application Example: Palletizing LEA
+## 7.1 Application Example: Palletizing LEA
 To illustrate the concepts described in the dissertation for LEA automation, this section presents an exemplary application of these concepts to a Palletizing LEA (PAL) that follows a CES-based mode of operation.
 
-### 10.1.1 Service Specification
-[Table 10.1](#table-101-profile-of-an-exemplary-palletizing-service) provides an overview of the PAL service, including its procedures, parameters, report values, and process values.
+### 7.1.1 Service Specification
+[Table 7.1](#table-71-profile-of-an-exemplary-palletizing-service) provides an overview of the PAL service, including its procedures, parameters, report values, and process values.
 
-##### Table 10.1: Profile of an Exemplary Palletizing Service
+##### Table 7.1: Profile of an Exemplary Palletizing Service
 
 <table>
   <tr>
@@ -149,19 +149,19 @@ To illustrate the concepts described in the dissertation for LEA automation, thi
   </tr>
 </table>
 
-### 10.1.2 Mode of Operation
-The mode of operation of the PAL service follows the CES operation described in the dissertation and is illustrated in [Figure 10.1](#figure-101-mode-of-operation-of-an-exemplary-palletizing-service-in-ces-mode).
+### 7.1.2 Mode of Operation
+The mode of operation of the PAL service follows the CES operation described in the dissertation and is illustrated in [Figure 7.1](#figure-71-mode-of-operation-of-an-exemplary-palletizing-service-in-ces-mode).
 
-##### Figure 10.1: Mode of Operation of an Exemplary Palletizing Service in CES Mode
+##### Figure 7.1: Mode of Operation of an Exemplary Palletizing Service in CES Mode
 ![Mode of Operation of an Exemplary Palletizing Service in CES Mode](./images/Arbeitsweise_CES_PAL.png)
 
 Initially, the service is in the IDLE state. Pre-population of the *ProductDataSet* and *PackagingDataSet* via the corresponding *ArrayServParam* interfaces is possible. Before the service is started, the desired procedure must also be selected and all required order-specific parameters must be set, i.e., the *ProductionId*, the *ProductId*, the *BagQuantity* (for procedure 16#2 only), and the *PalletQuantity* (for procedure 16#3 only). Based on the configured *ProductId*, the product-specific parameter set to be used is then determined from the *ProductDataSet* or by querying the LOL, and selected for processing. Using the *PackagingId* contained in the selected product-specific parameter set, the packaging-specific parameter set to be used is determined and selected in the same manner. The PAL service can then be started, and all bags belonging to the order are palletized in the EXECUTE state according to the packing pattern stored in the product parameter set. The palletizing operation is terminated when the number of bags configured via *BagQuantity* is reached (applies to procedure 16#2), when the number of pallets configured via *PalletQuantity* is reached (applies to procedure 16#3), or when the palletizing operation is ended by a *Complete* command (applies to procedure 16#1). The service can be reset to IDLE via a *Reset* command.
 
-### 10.1.3 HMI Screen
-[Figure 10.2](#figure-102-hmi-screen-of-a-palletizing-lea) shows the HMI screen of the PAL. It enables the entry of order-specific parameters, control of the LEA service, and the display of report values and process values via dynamic HMI objects in accordance with [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). In addition, it contains an image of the PAL as a static HMI object. This image is stored in the MTP attachment of the PAL as shown in [Figure 10.3](#figure-103-image-file-of-a-palletizing-lea-within-the-mtp). It is assigned the ECLASS reference "36521201", which corresponds to the semantic reference for a palletizer. A LOL integrating this LEA can therefore decide whether to use the image from the MTP attachment or an image of a palletizer that may be available in its graphics library.
+### 7.1.3 HMI Screen
+[Figure 7.2](#figure-72-hmi-screen-of-a-palletizing-lea) shows the HMI screen of the PAL. It enables the entry of order-specific parameters, control of the LEA service, and the display of report values and process values via dynamic HMI objects in accordance with [MTP Specification Part 2](../98_References/README.md#mtp-specification-part-2). In addition, it contains an image of the PAL as a static HMI object. This image is stored in the MTP attachment of the PAL as shown in [Figure 7.3](#figure-73-image-file-of-a-palletizing-lea-within-the-mtp). It is assigned the ECLASS reference "36521201", which corresponds to the semantic reference for a palletizer. A LOL integrating this LEA can therefore decide whether to use the image from the MTP attachment or an image of a palletizer that may be available in its graphics library.
 
-##### Figure 10.2: HMI Screen of a Palletizing LEA
+##### Figure 7.2: HMI Screen of a Palletizing LEA
 ![HMI Screen of a Palletizing LEA](./images/HMI_PAL_PVs.png)
 
-##### Figure 10.3: Image File of a Palletizing LEA Within the MTP
+##### Figure 7.3: Image File of a Palletizing LEA Within the MTP
 ![Image File of a Palletizing LEA Within the MTP](./images/MTP_HMI_PAL.png)

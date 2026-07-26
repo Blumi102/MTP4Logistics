@@ -1,12 +1,12 @@
-## 10.7 Evaluation Example: PLC-Based Emulation
+## 7.7 Evaluation Example: PLC-Based Emulation
 
 This section describes the third evaluation example: a complete PLC-based emulation of a Modular Logistics System (MLS) without physical hardware. It demonstrates the combined application of all three artefacts — LEA automation, Logistics Line choreography, and AGV transport integration — and evaluates their interaction in a realistic system context. The evaluation follows the Design Science Research methodology [[PTR+07]](../98_References/README.md#peffers-et-al-2007) [[HMP+04]](../98_References/README.md#hevner-et-al-2004) [[Wie14]](../98_References/README.md#wieringa-2014) [[NAM21]](../98_References/README.md#namur-processnet-vdma-und-zvei-2021).
 
-### 10.7.1 Use Case
+### 7.7.1 Use Case
 
-The MLS serves two packaging processes — bag filling and octabin filling — executed concurrently. [Figure 10.27](#figure-1027-pLC-based-emulation-of-a-modular-logistics-system-evaluation-example-3) shows the system layout, transport nodes, and possible material flows.
+The MLS serves two packaging processes — bag filling and octabin filling — executed concurrently. [Figure 7.27](#figure-727-pLC-based-emulation-of-a-modular-logistics-system-evaluation-example-3) shows the system layout, transport nodes, and possible material flows.
 
-##### Figure 10.27: PLC-Based Emulation of a Modular Logistics System (Evaluation Example 3)
+##### Figure 7.27: PLC-Based Emulation of a Modular Logistics System (Evaluation Example 3)
 ![PLC-Based Emulation of a Modular Logistics System](./images/Emulation_Anwendungsbeispiel.svg)
 
 **Bag filling process:** A Logistics Line of three CES-based LEAs — a Form-Fill-Seal machine (FFS), a Conveyor (CONV), and a Palletizer (PAL) — processes packaging orders from the LOL. Two SES-based Pallet Supply LEAs (PAS1, PAS2) provide different pallet types on demand. An SES-based Foil Supply (FOS) optionally applies a foil layer to empty pallets. After palletizing, one of two SES-based Stretch Hood Machines (SH1, SH2) applies a stretch hood for load securing. A Labeller (LABEL) provides final pallet identification. Finished pallets are transported to a Stock (STOCK) LEA.
@@ -15,11 +15,11 @@ The MLS serves two packaging processes — bag filling and octabin filling — e
 
 This example intentionally combines order-oriented and demand-oriented single LEAs, order-oriented and demand-oriented Logistics Lines, and shared LEAs used across both packaging processes — covering the full diversity of MLS configurations analyzed in this dissertation.
 
-### 10.7.2 Implementation
+### 7.7.2 Implementation
 
 The emulation is implemented using SIMATIC S7-PLCSIM Advanced and TIA Portal V18. Each LEA is represented by a virtual SIMATIC S7-1500 controller that executes the LEA's automation software and communicates via OPC UA exactly as a real controller would. Physical logistics objects are modelled virtually: LO handovers within Logistics Lines are realized through binary process value interconnections; in the Logistics Area, a virtual LO is represented by its transporting AGV.
 
-Each emulated LEA consists of a simplified function block emulating the LEA's logistics function (native software), surrounded by an MTP service implementation following the CES or SES concept. Blue LEAs in [Figure 10.27](#figure-1027-pLC-based-emulation-of-a-modular-logistics-system-evaluation-example-3) operate in CES mode; red LEAs operate in SES mode. LEA parameterization follows the structured parameter set concept using *ProductDataSet* and *PackagingDataSet*.
+Each emulated LEA consists of a simplified function block emulating the LEA's logistics function (native software), surrounded by an MTP service implementation following the CES or SES concept. Blue LEAs in [Figure 7.27](#figure-727-pLC-based-emulation-of-a-modular-logistics-system-evaluation-example-3) operate in CES mode; red LEAs operate in SES mode. LEA parameterization follows the structured parameter set concept using *ProductDataSet* and *PackagingDataSet*.
 
 The two Logistics Lines are composed using the choreography concept with External Lead Services (LEADBag for the bag filling line; LEADOct for the octabin filling line). The CES-based bag filling line follows the same start-up and completion logic as the BASF demonstrator. The SES-based octabin filling line starts up and then waits in PAUSED state; upon arrival of a logistics object, the OFill switches to EXECUTE, processes the LO using its LO-specific order data received during handover, passes the LO with its metadata to CONV2, and so on. Multiple LOs of different types can be processed consecutively while the line remains in EXECUTE.
 
@@ -33,7 +33,7 @@ Flexible transports are coordinated using a simplified AGV emulation and a Trans
 | AGV Emulation | .NET backend, Angular frontend |
 | Choreography Configurator | NestJS/Angular [[Kem22]](../98_References/README.md#kempin-2022) |
 
-### 10.7.3 Test Scenarios
+### 7.7.3 Test Scenarios
 
 Ten test scenarios were successfully executed:
 
@@ -48,7 +48,7 @@ Ten test scenarios were successfully executed:
 9. **Octabin filling with dynamic routes** (Product ID 4): PAS1 → OAU → SH2 (foil inlay) → Logistics Line (octabin) → SH1 (stretch hood) → LABEL → STOCK.
 10. **Parallel bag and octabin filling**: combinations of scenarios 6+8, 7+9, and 7+8 were executed concurrently.
 
-### 10.7.4 Findings
+### 7.7.4 Findings
 
 **Practical applicability:** The tests confirm the practical applicability of CES- and SES-based LEA automation including structured parameterization, choreography-based Logistics Line automation, and MTP-based AGV transport integration. In particular, the SES principle is demonstrated at scale: SH1 and SH2 receive pallets of different types and states, identify each logistics object, and process it according to its *ProductId* and *LogisticsObjectStatus*. Above all, this evaluation example demonstrates the combined use of all three artefacts in a realistic, multi-process MLS.
 
