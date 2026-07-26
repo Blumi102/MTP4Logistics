@@ -149,7 +149,7 @@ Construction-specific parameters are typically few in number, independent of any
 
 ### 3.4 Report Values
 
-The report value concept defined in [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) is suitable for production-adjacent logistics without conceptual changes. Extensions are limited to new data types: *StructView* and *ArrayView* interfaces are introduced as new derivations of *SUC IndicatorElement* (defined in [[MTP Part 3]](../98_References/README.md#mtp-specification-part-3)) to enable reporting of structured and array-typed values (e.g., the parameter sets currently stored in the LEA). Freezing semantics and the optional *MissedValueFlag* from [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) are adopted for these new types; for array types, all array elements are frozen simultaneously.
+The report value concept defined in [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) is suitable for production-related logistics without conceptual changes. Extensions are limited to new data types: *StructView* and *ArrayView* interfaces are introduced as new derivations of *SUC IndicatorElement* (defined in [[MTP Part 3]](../98_References/README.md#mtp-specification-part-3)) to enable reporting of structured and array-typed values (e.g., the parameter sets currently stored in the LEA). Freezing semantics and the optional *MissedValueFlag* from [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) are adopted for these new types; for array types, all array elements are frozen simultaneously.
 
 ### 3.5 Process Values
 
@@ -157,7 +157,7 @@ The process value concept from [[MTP Part 4]](../98_References/README.md#mtp-spe
 
 ### 3.6 Operator Displays
 
-The LOL provides an operator display integrating the displays of all LEAs. For production-adjacent logistics, machine-oriented displays are customary — in contrast to the P&ID-style displays targeted by [[MTP Part 2]](../98_References/README.md#mtp-specification-part-2). [Figure 3.9](#figure-39-operator-display-of-a-palletizer-lea) shows an example display for a palletizer LEA.
+The LOL provides an operator display integrating the displays of all LEAs. For production-related logistics, machine-oriented displays are customary — in contrast to the P&ID-style displays targeted by [[MTP Part 2]](../98_References/README.md#mtp-specification-part-2). [Figure 3.9](#figure-39-operator-display-of-a-palletizer-lea) shows an example display for a palletizer LEA.
 
 ##### Figure 3.9: Operator Display of a Palletizer LEA
 ![Operator Display of a Palletizer LEA](./images/Example_HMI_PAL.png)
@@ -237,9 +237,9 @@ This mechanism has been adopted into the *ModuleTypePackage:HMISet.Base V2.0.0* 
 
 ### 3.7 Complexity Reduction of Interfaces
 
-The interface definitions of [[MTP Part 3]](../98_References/README.md#mtp-specification-part-3) and [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) are designed for a wide range of process-industry use cases — from laboratory to production scale. While this breadth is necessary for process engineering applications, many of these interface variables are irrelevant in production-adjacent logistics, where operating conditions are more constrained. To reduce implementation effort without modifying the existing MTP interfaces, complexity can be reduced by specifying fixed default values for variables that are not needed in LEA automation.
+The interface definitions of [[MTP Part 3]](../98_References/README.md#mtp-specification-part-3) and [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) are designed for a wide range of process-industry use cases — from laboratory to production scale. While this breadth is necessary for process engineering applications, many of these interface variables are irrelevant in production-related logistics, where operating conditions are more constrained. To reduce implementation effort without modifying the existing MTP interfaces, complexity can be reduced by specifying fixed default values for variables that are not needed in LEA automation.
 
-[Figure 3.11](#figure-311-complexity-reduction-of-the-parameterelement-interface) illustrates this principle using the *ParameterElement* interface from [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4), which is part of every MTP parameter interface. In process engineering, parameters can be operated in a mode that differs from the mode of the superimposed service. In production-adjacent logistics, however, parameters always share the operation mode of their service. Setting the variable `Sync` to `true` by default makes a large number of dependent variables irrelevant, reducing the active interface from 23 to 10 variables.
+[Figure 3.11](#figure-311-complexity-reduction-of-the-parameterelement-interface) illustrates this principle using the *ParameterElement* interface from [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4), which is part of every MTP parameter interface. In process engineering, parameters can be operated in a mode that differs from the mode of the superimposed service. In production-related logistics, however, parameters always share the operation mode of their service. Setting the variable `Sync` to `true` by default makes a large number of dependent variables irrelevant, reducing the active interface from 23 to 10 variables.
 
 ##### Figure 3.11: Complexity Reduction of the *ParameterElement* Interface
 ![Complexity Reduction of the ParameterElement Interface](./images/Reduction_Sync.png)
