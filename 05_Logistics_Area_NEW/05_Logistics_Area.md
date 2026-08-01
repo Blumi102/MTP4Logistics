@@ -1,15 +1,15 @@
-# 7 Logistics Area
+# 5 MTP-based automation of flexible transport in Logistics Areas
 
 This chapter presents the concept for MTP-based automation of flexible transport in Logistics Areas (LA). The central artifact is the **Transport Management** — a LOL-level component that coordinates transport orders between Logistics Equipment Assemblies (LEAs) and Automated Guided Vehicle (AGV) systems. The concept builds on prior work on MTP-based LEAs [[BHF+23]](../98_References/README.md#blumenstein-et-al-2023) [[BGB+23]](../98_References/README.md#blumenstein-et-al-moprolog) and is implemented as a reference application [[Blu26]](../98_References/README.md#blumenstein-github).
 
-## 7.1 Artifact Overview
+## 5.1 Artifact Overview
 
-### 7.1.1 Architecture
+### 5.1.1 Architecture
 
-##### Figure 7.1: Architecture Overview of the Logistics Area Concept
+##### Figure 5.1: Architecture Overview of the Logistics Area Concept
 ![Architecture Overview of the Logistics Area Concept](./images/Architektur_Uebersicht.svg)
 
-[Figure 7.1](#figure-71-architecture-overview-of-the-logistics-area-concept) shows the overall architecture. At the LOL level, the Transport Management acts as the central coordination component. It integrates LEAs via their MTP files and manages all active transport orders. AGV systems are connected to the Transport Management via AGV system adapters that bridge proprietary AGV interfaces to a uniform internal interface.
+[Figure 5.1](#figure-51-architecture-overview-of-the-logistics-area-concept) shows the overall architecture. At the LOL level, the Transport Management acts as the central coordination component. It integrates LEAs via their MTP files and manages all active transport orders. AGV systems are connected to the Transport Management via AGV system adapters that bridge proprietary AGV interfaces to a uniform internal interface.
 
 Each LEA exposes one or more **transport nodes** that define the physical interaction points with AGVs:
 
@@ -24,73 +24,73 @@ The Transport Management contains two sub-components:
 - **LEA-Management**: imports LEA MTPs, generates TK-Proxies, and configures communication between TK-Proxies and TK-Bausteine in the LEAs.
 - **Order-Management**: creates, manages, and deletes transport services based on active transport orders.
 
-### 7.1.2 Working Principle
+### 5.1.2 Working Principle
 
-##### Figure 7.2: Working Principle of the Logistics Area Concept
+##### Figure 5.2: Working Principle of the Logistics Area Concept
 ![Working Principle of the Logistics Area Concept](./images/ArbeitsweiseLA.svg)
 
-The working principle is illustrated in [Figure 7.2](#figure-72-working-principle-of-the-logistics-area-concept). A LEA detects a transport need (e.g., a completed pallet ready for pickup) and signals this through its transport node. The Transport Management creates a transport service for this order. An AGV is assigned and dispatched to the first transport node. At each node, the LEA orchestrates the transport service — it confirms arrival, coordinates handover or processing, and determines the next node to approach. This continues until the LO reaches its final destination and the transport service is closed.
+The working principle is illustrated in [Figure 5.2](#figure-52-working-principle-of-the-logistics-area-concept). A LEA detects a transport need (e.g., a completed pallet ready for pickup) and signals this through its transport node. The Transport Management creates a transport service for this order. An AGV is assigned and dispatched to the first transport node. At each node, the LEA orchestrates the transport service — it confirms arrival, coordinates handover or processing, and determines the next node to approach. This continues until the LO reaches its final destination and the transport service is closed.
 
-## 7.2 Design Decisions
+## 5.2 Design Decisions
 
 Six architectural design decisions shape the concept:
 
 - **DE1 — Indirect LEA–AGV interaction**: LEAs do not communicate directly with AGV systems. All coordination is mediated through the Transport Management to decouple LEAs from proprietary AGV interfaces.
 
-##### Figure 7.3: Design Decision DE1 — Abstraction Level of the Transport Management
+##### Figure 5.3: Design Decision DE1 — Abstraction Level of the Transport Management
 ![Design Decision DE1 — Abstraction Level of the Transport Management](./images/Designentscheidung_Abstraktionslevel.svg)
 
 - **DE2 — One transport service per transport order**: Each active transport order is represented as one dynamically created MTP service instance. Services are created when an order is initiated and deleted when it completes.
 
-##### Figure 7.4: Design Decision DE2 — Transport Service per Order
+##### Figure 5.4: Design Decision DE2 — Transport Service per Order
 ![Design Decision DE2 — Transport Service per Order](./images/Designentscheidung_ErzeugungTransportdienste.svg)
 
 - **DE3 — Decentralized orchestration**: LEAs act as the orchestrating (superior) services; transport services in the Transport Management are the orchestrated (subordinate) services. LEAs control transport service execution via their TK-Bausteine.
 
-##### Figure 7.5: Design Decision DE3 — Abstraction of the Transport Management
+##### Figure 5.5: Design Decision DE3 — Abstraction of the Transport Management
 ![Design Decision DE3 — Abstraction of the Transport Management](./images/Designentscheidung_AbstraktionTM.svg)
 
 - **DE4 — TK-Proxy configuration by the Transport Management**: After integrating a LEA via MTP import, the Transport Management configures each TK-Baustein in the LEA by assigning it the ProxyId of its corresponding TK-Proxy. This enables the TK-Baustein to establish a direct OPC UA connection to the proxy.
 
-##### Figure 7.6: Design Decision DE4 — Association between TK-Proxy and TK-Baustein
+##### Figure 5.6: Design Decision DE4 — Association between TK-Proxy and TK-Baustein
 ![Design Decision DE4 — Association between TK-Proxy and TK-Baustein](./images/Designentscheidung_Assoziation.svg)
 
 - **DE5 — Transport services created by the Transport Management**: Transport services are created and managed by the Transport Management (Order-Management), not by the LEAs. LEAs only signal transport needs; the Transport Management creates and assigns services.
 
-##### Figure 7.7: Design Decision DE5 — Configuration of Transport Service Creation
+##### Figure 5.7: Design Decision DE5 — Configuration of Transport Service Creation
 ![Design Decision DE5 — Configuration of Transport Service Creation](./images/Designentscheidung_KonfigurationDO.svg)
 
 - **DE6 — Next node determined by the LEA**: The LEA that currently controls a transport service determines the next transport node to approach and writes it to the *NextNode* parameter of the transport service.
 
-##### Figure 7.8: Design Decision DE6 — Determination of the Next Node
+##### Figure 5.8: Design Decision DE6 — Determination of the Next Node
 ![Design Decision DE6 — Determination of the Next Node](./images/Designentscheidung_ErmittlungNextNode.svg)
 
-## 7.3 Transport Process
+## 5.3 Transport Process
 
-##### Figure 7.9: Transport Process Model
+##### Figure 5.9: Transport Process Model
 ![Transport Process Model](./images/Prozessmodell.svg)
 
-[Figure 7.9](#figure-79-transport-process-model) shows the complete transport process. The process follows these steps:
+[Figure 5.9](#figure-59-transport-process-model) shows the complete transport process. The process follows these steps:
 
 1. **Order initiation**: A LEA signals a transport need. The Transport Management creates a transport service and assigns it an initial *NextNode* and *FinalTargetNode*. An AGV is dispatched.
 2. **Transit**: The AGV travels to the target node. The Transport Management monitors AGV status via the AGV system adapter.
 3. **Arrival at node**: When the AGV enters the approach zone, the transport service status transitions to *TransportAwaitRequested*. The Transport Management binds the transport service to the TK-Proxy of the target node. The TK-Baustein in the corresponding LEA becomes aware of the approaching AGV.
 4. **Node confirmation or rejection**: The LEA either accepts (*TransportAwaited*) or rejects (*TransportDeclined*) the assignment. On rejection, the Transport Management unbinds the service from the proxy; on acceptance, the AGV is allowed to proceed to the node.
 5. **AGV arrival and handover/processing**: When the AGV reaches the node (*TransportArrived*), the LEA orchestrates handover (transfer from/to LEA) or processing on the AGV. The appropriate transport status is set for each phase.
-6. **Next node determination**: After completing the interaction, the LEA determines the next transport node (see [Section 7.5.3](#determination-of-the-next-transport-node)) and writes the ProxyId to *NextNode*. The Transport Management unbinds the service from the current proxy and dispatches the AGV to the next node.
+6. **Next node determination**: After completing the interaction, the LEA determines the next transport node (see [Section 5.5.3](#determination-of-the-next-transport-node)) and writes the ProxyId to *NextNode*. The Transport Management unbinds the service from the current proxy and dispatches the AGV to the next node.
 7. **Transport completion**: When the AGV reaches the *FinalTargetNode* and the final interaction is complete, the transport service is closed.
 
 **Rerouting**: If a LEA fault is detected, the Transport Management sets the transport service status to *Rerouting* (16#E) and calculates an alternative route.
 
-## 7.4 Transport Management
+## 5.4 Transport Management
 
-### 7.4.1 LEA-Management
+### 5.4.1 LEA-Management
 
-The LEA-Management integrates LEAs into the Transport Management by importing their MTP files. For each transport node described in the LEA's *TransportSet* (see [Section 7.5.2](#transportset)), the LEA-Management generates a **TK-Proxy** — a proxy object in the Transport Management that represents the transport node. Each TK-Proxy receives a unique integer **ProxyId**. The TK-Proxies expose the interface data of their bound transport services via an OPC UA server in the Transport Management.
+The LEA-Management integrates LEAs into the Transport Management by importing their MTP files. For each transport node described in the LEA's *TransportSet* (see [Section 5.5.2](#transportset)), the LEA-Management generates a **TK-Proxy** — a proxy object in the Transport Management that represents the transport node. Each TK-Proxy receives a unique integer **ProxyId**. The TK-Proxies expose the interface data of their bound transport services via an OPC UA server in the Transport Management.
 
 After proxy generation, the Transport Management configures the TK-Bausteine in the LEA: it transmits OPC UA connection parameters (*TransportClientManager* interface) and assigns each TK-Baustein the ProxyId of its corresponding TK-Proxy (*TransportNodeManager* interface).
 
-### 7.4.2 Order-Management
+### 5.4.2 Order-Management
 
 The Order-Management creates and manages transport services. Each transport order is mapped to one MTP service instance. Services are created dynamically when a transport need is detected and deleted when the order is complete.
 
@@ -98,7 +98,7 @@ The Order-Management creates and manages transport services. Each transport orde
 
 The interface of a transport service comprises the following parameters and report values:
 
-##### Table 7.1: Interface of a Transport Service
+##### Table 5.1: Interface of a Transport Service
 
 <table>
   <tr>
@@ -181,17 +181,17 @@ The existing MTP specification does not support time values. This dissertation i
 
 #### Transport Status via Procedures
 
-Transport status is represented using MTP procedures rather than parameters or process values. This enables bidirectional status control with command-enable logic. [Figure 7.10](#figure-710-transport-status-via-procedures) shows the procedure state machine extended with logistics-specific transport statuses.
+Transport status is represented using MTP procedures rather than parameters or process values. This enables bidirectional status control with command-enable logic. [Figure 5.10](#figure-510-transport-status-via-procedures) shows the procedure state machine extended with logistics-specific transport statuses.
 
-##### Figure 7.10: Transport Status via Procedures
+##### Figure 5.10: Transport Status via Procedures
 ![Transport Status via Procedures](./images/TransportstatusZA.svg)
 
-##### Figure 7.11: Overview of Procedure Switching
+##### Figure 5.11: Overview of Procedure Switching
 ![Overview of Procedure Switching](./images/Uebersicht_Prozedurumschaltung.svg)
 
-The transport statuses correspond to procedure identifiers. [Table 7.2](#table-72-transport-status-procedures) lists all 15 transport procedure states.
+The transport statuses correspond to procedure identifiers. [Table 5.2](#table-52-transport-status-procedures) lists all 15 transport procedure states.
 
-##### Table 7.2: Transport Status Procedures
+##### Table 5.2: Transport Status Procedures
 
 <table>
   <tr>
@@ -276,9 +276,9 @@ The transport statuses correspond to procedure identifiers. [Table 7.2](#table-7
   </tr>
 </table>
 
-## 7.5 Logistics Equipment Assemblies
+## 5.5 Logistics Equipment Assemblies
 
-### 7.5.1 Structure and Interaction with Transport Services
+### 5.5.1 Structure and Interaction with Transport Services
 
 In the transport coordination context, LEAs act as initiators of transport orders. Each transport node in a LEA is implemented as a **TK-Baustein** (transport node building block) in the LEA service. A TK-Baustein is an OPC UA client block [[OPC 30001]](../98_References/README.md#opc-30001) that connects to the OPC UA server of the Transport Management and accesses the interface data of its assigned TK-Proxy.
 
@@ -286,17 +286,17 @@ After binding, the TK-Baustein can read the current transport status (*Procedure
 
 Although each TK-Baustein is persistently bound to the same TK-Proxy, the proxy may present different transport services over time as orders are created and completed. This dynamic binding differs from conventional static decentralized orchestration approaches [[Spa19]](../98_References/README.md#spaethe-2019) [[SMS+20]](../98_References/README.md#stutz-et-al-2020) and is required to support the interaction of one transport service with multiple transport nodes across different LEAs.
 
-##### Figure 7.12: Interaction of a Transport Service with a LEA Transport Node via a TK-Proxy
+##### Figure 5.12: Interaction of a Transport Service with a LEA Transport Node via a TK-Proxy
 ![Interaction of a Transport Service with a LEA Transport Node via a TK-Proxy](./images/Interaktion_LEA_TCS.svg)
 
-##### Figure 7.13: Logical View of Decentralized Orchestration
+##### Figure 5.13: Logical View of Decentralized Orchestration
 ![Logical View of Decentralized Orchestration](./images/DO_LogischeSicht.svg)
 
-### 7.5.2 Integration of LEAs into the Transport Management
+### 5.5.2 Integration of LEAs into the Transport Management
 
-LEA integration into the Transport Management follows three steps, as shown in [Figure 7.14](#figure-714-integration-of-a-lea-into-the-transport-management):
+LEA integration into the Transport Management follows three steps, as shown in [Figure 5.14](#figure-514-integration-of-a-lea-into-the-transport-management):
 
-##### Figure 7.14: Integration of a LEA into the Transport Management
+##### Figure 5.14: Integration of a LEA into the Transport Management
 ![Integration of a LEA into the Transport Management](./images/ProxyGenerierung.svg)
 
 1. **MTP import**: The LEA MTP file is imported into the LEA-Management. The *TransportSet* aspect (see below) contains all transport-relevant information.
@@ -317,11 +317,11 @@ The *TransportSet* is a new MTP aspect (profile) introduced in this dissertation
 
 Each *TransportNode* model definition is associated with exactly one *TransportClientManager* and one *TransportNodeManager* interface, making it unambiguous which interfaces the Transport Management must use for a given transport node.
 
-### 7.5.3 Determination of the Next Transport Node
+### 5.5.3 Determination of the Next Transport Node
 
 According to DE6, the LEA currently bound to a transport service determines the next transport node and writes its ProxyId to the *NextNode* parameter. Four scenarios require this determination:
 
-##### Table 7.3: Scenarios for Next Node Determination
+##### Table 5.3: Scenarios for Next Node Determination
 
 <table>
   <tr>
@@ -351,12 +351,12 @@ According to DE6, the LEA currently bound to a transport service determines the 
   </tr>
 </table>
 
-##### Figure 7.15: Cases for Next Node Determination
+##### Figure 5.15: Cases for Next Node Determination
 ![Cases for Next Node Determination](./images/NextNode.drawio.png)
 
 The *RoutingMode* variable (DINT, stored in the LEA's *ProductDataSet*) controls which method is used:
 
-##### Table 7.4: Meaning of the *RoutingMode* Variable
+##### Table 5.4: Meaning of the *RoutingMode* Variable
 
 <table>
   <tr>
@@ -386,18 +386,18 @@ For S2–S4, static default values can be read from the LEA's *ProductDataSet* u
 
 The *TransportNodeRequest* is a new logistics-specific service-operator interaction introduced in this dissertation. A LEA queries the next transport node from the Materialfluss-Management by providing the *TransportId* of the active transport service. The Materialfluss-Management returns the ProxyId of the next node, or `0` if the *FinalTargetNode* should be approached next.
 
-## 7.6 AGV System
+## 5.6 AGV System
 
-##### Figure 7.16: Classification within the SAIL Architecture
+##### Figure 5.16: Classification within the SAIL Architecture
 ![Classification within the SAIL Architecture](./images/Einorndung_SAIL.svg)
 
-The Transport Management covers the Transport Coordination level of the SAIL architecture [[VDI/VDMA 5100-1]](../98_References/README.md#vdivdma-5100-1-2016), as shown in [Figure 7.16](#figure-716-classification-within-the-sail-architecture). AGV systems — each consisting of a fleet manager and multiple AGVs — execute the transport orders managed by the Transport Management.
+The Transport Management covers the Transport Coordination level of the SAIL architecture [[VDI/VDMA 5100-1]](../98_References/README.md#vdivdma-5100-1-2016), as shown in [Figure 5.16](#figure-516-classification-within-the-sail-architecture). AGV systems — each consisting of a fleet manager and multiple AGVs — execute the transport orders managed by the Transport Management.
 
 Different AGV systems may use different proprietary interfaces (REST, MQTT, etc.). The Transport Management uses **AGV system adapters** to bridge these proprietary interfaces to a uniform internal interface. Additional adapters can be integrated via a plugin mechanism. The internal interface and adapter implementations are system-specific and not further specified in this dissertation.
 
 For each transport order, the AGV system must be capable of providing and processing the following information:
 
-##### Table 7.5: Minimum Interface Requirements for an AGV System
+##### Table 5.5: Minimum Interface Requirements for an AGV System
 
 <table>
   <tr>
@@ -456,11 +456,11 @@ For each transport order, the AGV system must be capable of providing and proces
   </tr>
 </table>
 
-## 7.7 MTP Extensions
+## 5.7 MTP Extensions
 
 The concepts described in this chapter require the following new model and interface definitions, which extend the MTP specification [[MTP Specification Part 1]](../98_References/README.md#mtp-specification-part-1) [[MTP Specification Part 4]](../98_References/README.md#mtp-specification-part-4):
 
-##### Table 7.6: MTP Specification Extensions for Logistics Area Transport Automation
+##### Table 5.6: MTP Specification Extensions for Logistics Area Transport Automation
 
 <table>
   <tr>
