@@ -3,7 +3,7 @@ This chapter specifies all identified extensions of the *Manifest* and integrate
 
 ### 8.1.1 Overview
 #### Extension of the Manifest for Modeling Composed MTPs
-For modeling Composed MTPs two new model definitions *SUC ComposedModuleTypePackage* and *RC HasExternalMtpContext* are required. As shown in [Figure 8.1](#figure-81-extension-of-the-manifest-for-modeling-composed-mtps), the model definition *SUC ComposedModuleTypePackage* is organized in *SUCL MTPSUCLib*. An *IH ModuleTypePackage* may contain either a *SUC ComposedModuleTypePackage* or a *SUC ModuleTypePackage*. In contrast to *SUC ModuleTypePackage*, *SUC ComposedModuleTypePackage* always contains a subordinate *AttachmentSet* but no *DataAssemblySet* or *ServerAssemblySet*. 
+For modeling Composed MTPs two new model definitions *SUC ComposedModuleTypePackage* and *RC HasExternalMtpContext* are required. As shown in [Figure 8.1](#figure-81-extension-of-the-manifest-for-modeling-Composed MTPs), the model definition *SUC ComposedModuleTypePackage* is organized in *SUCL MTPSUCLib*. An *IH ModuleTypePackage* may contain either a *SUC ComposedModuleTypePackage* or a *SUC ModuleTypePackage*. In contrast to *SUC ModuleTypePackage*, *SUC ComposedModuleTypePackage* always contains a subordinate *AttachmentSet* but no *DataAssemblySet* or *ServerAssemblySet*. 
 
 <!-- TODO: Evtl. auf Struktur des AttachementSet verweisen -->
 

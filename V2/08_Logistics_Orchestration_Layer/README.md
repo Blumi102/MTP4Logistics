@@ -46,7 +46,7 @@ The LOL functions shown in Table 8.1 have been derived based on functions of tod
 
 |10) Line Configuration|
 |-|
-|The choreography-based Logistics Line coordination mechanism described in Section 6 requires a configuration of internal rules in each LEA that describe how the LEA should respond to changes in process variables of other LEAs. In order to integrate the choreographed Logistics Line into the LOL like a single MTP service, it is furthermore necessary to combine the MTPs of the individual LEAs into a "Composed-MTP" that describes the interface of the Logistics Line as a whole. In this context, the line configuration functionality of a LOL enables the configuration of the choreography rules and the subsequent creation of a "Composed-MTP".|
+|The choreography-based Logistics Line coordination mechanism described in Section 6 requires a configuration of internal rules in each LEA that describe how the LEA should respond to changes in process variables of other LEAs. In order to integrate the choreographed Logistics Line into the LOL like a single MTP service, it is furthermore necessary to combine the MTPs of the individual LEAs into a "Composed MTP" that describes the interface of the Logistics Line as a whole. In this context, the line configuration functionality of a LOL enables the configuration of the choreography rules and the subsequent creation of a "Composed MTP".|
 
 |11) Transport Management|
 |-|

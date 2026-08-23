@@ -89,7 +89,7 @@ Four types of LEA parameters are distinguished [[BFS+22]](../98_References/READM
 
 #### 3.3.2 Parameter Transfer Mechanisms
 
-Three mechanisms for transferring parameters to an LEA service are identified:
+Three mechanisms for transferring parameters to a LEA service are identified:
 
 ##### Table 3.2: Parameter Transfer Mechanisms
 
@@ -141,7 +141,7 @@ Three mechanisms for transferring parameters to an LEA service are identified:
 ##### MTP implementation:
 
 - **Individual parameters:** This mechanism corresponds to existing MTP parameterization. The *DIntServParam*, *AnaServParam*, *BinServParam*, and *StringServParam* interfaces from [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) are directly applicable; no extension is required.
-- **Single parameter set:** Existing MTP concepts do not provide parameter interfaces for structured data types. Therefore, the *StructServParam* interface ([Table 8.25](../08_MTP%20Extensions/08-04_ServiceSet.md#table-825-dataassembly-definition-of-suc-structservparam)) is newly specified to transfer a parameter set with an LEA-specific structured data type. A method for modeling the required complex data types in the MTP ([Section 8.3.2](../08_MTP%20Extensions/08-03_DataAssemblySet.md#832-dataassembly-definitions)) and in the OPC UA server of a LEA ([Section 8.6](../08_MTP%20Extensions/08-06_ServerAssemblySet.md#86-mtp-extension-of-the-serverassemblyset)) is also described.
+- **Single parameter set:** Existing MTP concepts do not provide parameter interfaces for structured data types. Therefore, the *StructServParam* interface ([Table 8.25](../08_MTP%20Extensions/08-04_ServiceSet.md#table-825-dataassembly-definition-of-suc-structservparam)) is newly specified to transfer a parameter set with a LEA-specific structured data type. A method for modeling the required complex data types in the MTP ([Section 8.3.2](../08_MTP%20Extensions/08-03_DataAssemblySet.md#832-dataassembly-definitions)) and in the OPC UA server of a LEA ([Section 8.6](../08_MTP%20Extensions/08-06_ServerAssemblySet.md#86-mtp-extension-of-the-serverassemblyset)) is also described.
 - **Selection of parameter sets:** For the ID-based selection interface, the *DIntServParam* interface from [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) is reused. For loading parameter sets into LEA-internal array storage, no suitable interface exists in the current MTP concept; the *ArrayServParam* interface ([Table 8.26](../08_MTP%20Extensions/08-04_ServiceSet.md#table-826-dataassembly-definition-of-suc-arrayservparam)) is therefore newly specified. Each array element uses the same LEA-specific structured data type as for single parameter set transfer.
 
 #### 3.3.3 Parameterization Initiation
@@ -228,7 +228,7 @@ For **order-specific** parameters, transfer as individual parameters via existin
 
 To enable the LOL's parameter management to identify the purpose of each interface unambiguously, *FunctionClassificationAttributes* are introduced for parameters, which were previously only defined for services and procedures in [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4). Concrete attributes are specified for *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* ([Section 8.4.1](../08_MTP%20Extensions/08-04_ServiceSet.md#841-overview)).
 
-**Construction-specific parameters** concern the physical setup of an LEA (e.g. the installed filling nozzle type) or its current configuration (e.g. the loaded pallet type). They are independent of any particular order and of whether the LEA operates in CES or SES mode, instead defining fundamental settings for service execution. Since they are typically few in number and set at commissioning time by an operator, they are modeled as configuration parameters per [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) and transferred as individual values via existing interfaces.
+**Construction-specific parameters** concern the physical setup of a LEA (e.g. the installed filling nozzle type) or its current configuration (e.g. the loaded pallet type). They are independent of any particular order and of whether the LEA operates in CES or SES mode, instead defining fundamental settings for service execution. Since they are typically few in number and set at commissioning time by an operator, they are modeled as configuration parameters per [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) and transferred as individual values via existing interfaces.
 
 For LEA types that use a specific packaging material, a construction-specific *DIntServParam* parameter specifies which packaging material (e.g. pallet type) is currently loaded in the LEA. Based on this value, the corresponding packaging-specific information can be retrieved from the LEA-internal *PackagingDataSet* or requested from the LOL. This value is semantically equivalent to the *PackagingId* described above and must be verified against the *PackagingId* required by the selected product parameter set before processing a logistics object. A mismatch means the LEA cannot process the order or must be equipped with different packaging material. To allow unambiguous semantic identification of this parameter, a corresponding *FunctionClassificationAttribute* is introduced ([Section 8.4.1](../08_MTP%20Extensions/08-04_ServiceSet.md#841-overview)).
 
@@ -345,7 +345,7 @@ The interface definitions of [[MTP Part 3]](../98_References/README.md#mtp-speci
 [Figure 3.11](#figure-311-complexity-reduction-of-the-parameterelement-interface) illustrates this principle using the *ParameterElement* interface from [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4), which is part of every MTP parameter interface. In process engineering, parameters can be operated in a mode that differs from the mode of the superimposed service. In production-related logistics, however, parameters always share the operation mode of their service. Setting the variable `Sync` to `true` by default makes a large number of dependent variables irrelevant, reducing the active interface from 23 to 10 variables.
 
 ##### Figure 3.11: Complexity Reduction of the *ParameterElement* Interface
-![Complexity Reduction of the ParameterElement Interface](./images/Reduction_Sync.png)
+![Complexity Reduction of the ParameterElement Interface](./images/Reduction_Sync.svg)
 
 Variables that become irrelevant through this defaulting (shown greyed out in [Figure 3.11](#figure-311-complexity-reduction-of-the-parameterelement-interface)) no longer need to be provided in the OPC UA server of the LEA controller; they are instead set to constant values within the MTP itself. Beyond simplifying the LOL-LEA interface, this yields a significant saving in controller memory: even fixing a single Boolean variable saves more than 100 bytes, since each OPC UA node requires substantial metadata overhead.
 
@@ -434,7 +434,7 @@ This pattern of complexity reduction through default values is applicable to fur
   <tr>
     <td align="left">ModuleTypePackage: ProcessValueSet.ComplexTypes V2.0.0</td>
     <td align="left"><em>SUC ArrayProcessValueOut</em> (<a href="../08_MTP%20Extensions/08-05_ProcessValueSet.md#table-842-dataassembly-definition-of-suc-arrayprocessvalueout">Table 8.42</a>)</td>
-    <td align="left">Providing an LEA-internal array to another LEA</td>
+    <td align="left">Providing a LEA-internal array to another LEA</td>
   </tr>
   <tr>
     <th align="left" colspan="3">Model Definitions</th>

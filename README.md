@@ -3,6 +3,8 @@
 <!-- TODO: Nummerierung der Kapitel im gesamten Repo -->
 <!-- TODO: Navigation im gesamten Repo -->
 <!-- TODO: Bilder übersetzen -->
+<!-- TODO: schauen, was aus dem Anhang noch ins Repo muss -->
+<!-- TODO: Ebenen der Überschriften prüfen und vereinheitlichen -->
 
 # Technical Report
 ## Application and Extension of the Module Type Package Concept for Production-related Logistics

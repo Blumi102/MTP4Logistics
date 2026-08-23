@@ -12,7 +12,7 @@ Für die Automatisierung von Logistics Lines wird gemäß Abschnitt~\ref{subsec:
 
 \textbf{Horizontale Integration von LEAs in eine Logistics Line:} Die horizontalen Interaktionen zwischen LEAs werden mittels eines Choreografie-Konfigurators im LOL konfiguriert, sodass eine choreografierte Logistics Line entsteht. Zur automatisierten Integration der LEAs in den Choreografie-Konfigurator werden in den LEA-MTPs deren verschaltbare Ein- und Ausgänge in Form \textbf{semantischer MTP-Modelle} beschrieben (Abschnitt~\ref{subsec:LeaChoreoModelle}). Auf dieser Basis wird eine Choreografiekonfiguration entworfen und anschließend auf die LEA-Steuerungen übertragen. Für diese Übertragung sind \textbf{MTP-basierte Konfigurationsschnittstellen} in den LEA-Steuerungen vorgesehen und in den LEA-MTPs beschrieben (Abschnitt~\ref{subsec:LeaChoreoSchnittstellen}). Abschnitt~\ref{subsec:ChoreoSet} führt die notwendigen MTP-basierten Schnittstellen und Modelldefinitionen in einem neuen MTP-Aspekt \emph{ChoreographySet} ein.
 
-\textbf{Vertikale Integration von Logistics Lines:} Eine choreografierte Logistics Line als Ganzes kann in einen übergeordneten LOL integriert und automatisiert durch ein Auftrags-Management oder manuell durch einen Operator gesteuert werden. Hierfür stellt sie eine gemeinsame Diensteschnittstelle (\textbf{Line-Schnittstelle}, Abschnitt~\ref{subsec:LineSchnittstelle}) bereit, die die choreografierte Logistics Line integrierbar und ansteuerbar macht, als wäre sie ein einzelner MTP-Dienst. Zudem wird ein Bedienbild zur Bedienung der Logistics Line durch einen Operator bereitgestellt (\textbf{Line-Bedienbild}, Abschnitt~\ref{subsec:LinienBedienbild}). Die Line-Schnittstelle sowie das Line-Bedienbild werden in einem gemeinsamen MTP für die Logistics Line (\textbf{Composed-MTP}, Abschnitt~\ref{subsec:KonzeptComposedMTP}) beschrieben. Abschnitt~\ref{sec:ChoreoVertikal} beschreibt eine Methodik, wie die Schnittstellen einzelner LEAs zu einer Line-Schnittstelle und die Bedienbilder einzelner LEAs zu einem Line-Bedienbild zusammengesetzt werden können. Zudem wird die Modellierung von Line-Schnittstellen und Line-Bedienbildern in Form eines Composed-MTP eingeführt.
+\textbf{Vertikale Integration von Logistics Lines:} Eine choreografierte Logistics Line als Ganzes kann in einen übergeordneten LOL integriert und automatisiert durch ein Auftrags-Management oder manuell durch einen Operator gesteuert werden. Hierfür stellt sie eine gemeinsame Diensteschnittstelle (\textbf{Line-Schnittstelle}, Abschnitt~\ref{subsec:LineSchnittstelle}) bereit, die die choreografierte Logistics Line integrierbar und ansteuerbar macht, als wäre sie ein einzelner MTP-Dienst. Zudem wird ein Bedienbild zur Bedienung der Logistics Line durch einen Operator bereitgestellt (\textbf{Line-Bedienbild}, Abschnitt~\ref{subsec:LinienBedienbild}). Die Line-Schnittstelle sowie das Line-Bedienbild werden in einem gemeinsamen MTP für die Logistics Line (\textbf{Composed MTP}, Abschnitt~\ref{subsec:KonzeptComposedMTP}) beschrieben. Abschnitt~\ref{sec:ChoreoVertikal} beschreibt eine Methodik, wie die Schnittstellen einzelner LEAs zu einer Line-Schnittstelle und die Bedienbilder einzelner LEAs zu einem Line-Bedienbild zusammengesetzt werden können. Zudem wird die Modellierung von Line-Schnittstellen und Line-Bedienbildern in Form eines Composed MTP eingeführt.
 
 \section{Horizontale Integration von Logistics Equipment Assemblies in eine Logistics Line}
 \label{sec:ChoreoHorizontal}
@@ -210,7 +210,7 @@ Zur Abbildung der in den Abschnitten~\ref{subsec:LeaChoreoModelle} und \ref{subs
 \section{Vertikale Integration einer Logistics Line in einen Logistics Orchestration Layer}
 \label{sec:ChoreoVertikal}
 
-Dieser Abschnitt zeigt die vertikale Integration choreografierter Logistics Lines in einen übergeordneten LOL. Hierfür wird eine Methodik zur Zusammenführung der Schnittstellen einzelner LEAs zu einer Line-Schnittstelle (Abschnitt~\ref{subsec:LineSchnittstelle}) und zur Zusammenführung der Bedienbilder einzelner LEAs zu einem Line-Bedienbild (Abschnitt~\ref{subsec:LinienBedienbild}) vorgestellt sowie die Beschreibung von Line-Schnittstellen und Line-Bedienbildern in einem Composed-MTP (Abschnitt~\ref{subsec:KonzeptComposedMTP}) behandelt.
+Dieser Abschnitt zeigt die vertikale Integration choreografierter Logistics Lines in einen übergeordneten LOL. Hierfür wird eine Methodik zur Zusammenführung der Schnittstellen einzelner LEAs zu einer Line-Schnittstelle (Abschnitt~\ref{subsec:LineSchnittstelle}) und zur Zusammenführung der Bedienbilder einzelner LEAs zu einem Line-Bedienbild (Abschnitt~\ref{subsec:LinienBedienbild}) vorgestellt sowie die Beschreibung von Line-Schnittstellen und Line-Bedienbildern in einem Composed MTP (Abschnitt~\ref{subsec:KonzeptComposedMTP}) behandelt.
 
 \subsection{Line-Schnittstelle}
 \label{subsec:LineSchnittstelle}
@@ -309,114 +309,114 @@ Zur Anzeige und manuellen Bedienung der Logistics Line werden die Bedienbilder d
 	\label{fig:HmiLineVariante34}
 \end{figure}
 
-\subsection{Composed-MTP}
+\subsection{Composed MTP}
 \label{subsec:KonzeptComposedMTP}
 
-Zur automatisierten vertikalen Integration einer choreografierten Logistics Line in einen LOL wird ein gemeinsames MTP für die Line eingeführt, welches als \textbf{Composed-MTP} bezeichnet wird. Es dient der Beschreibung der Line-Schnittstelle (Abschnitt~\ref{subsec:LineSchnittstelle}) und des Line-Bedienbilds (Abschnitt~\ref{subsec:LinienBedienbild}). Bei der Integration eines Composed-MTP werden lediglich die für die Line relevanten Informationen der LEAs in den LOL importiert und verarbeitet. Nachfolgend wird zunächst die Grundsatzentscheidung begründet, dass ein Composed-MTP Inhalte anderer MTPs referenziert, anstatt sie nachzumodellieren. Anschließend werden die Struktur, der Referenzierungsmechanismus und die Aspekte eines Composed-MTP sowie notwendige Verifizierungsworkflows vorgestellt.
+Zur automatisierten vertikalen Integration einer choreografierten Logistics Line in einen LOL wird ein gemeinsames MTP für die Line eingeführt, welches als \textbf{Composed MTP} bezeichnet wird. Es dient der Beschreibung der Line-Schnittstelle (Abschnitt~\ref{subsec:LineSchnittstelle}) und des Line-Bedienbilds (Abschnitt~\ref{subsec:LinienBedienbild}). Bei der Integration eines Composed MTP werden lediglich die für die Line relevanten Informationen der LEAs in den LOL importiert und verarbeitet. Nachfolgend wird zunächst die Grundsatzentscheidung begründet, dass ein Composed MTP Inhalte anderer MTPs referenziert, anstatt sie nachzumodellieren. Anschließend werden die Struktur, der Referenzierungsmechanismus und die Aspekte eines Composed MTP sowie notwendige Verifizierungsworkflows vorgestellt.
 
 \subsubsection{Nachmodellierung vs. Referenzierung}
 \label{subsec:AnhangNachmodellierungReferenzierung}
 
-Line-Schnittstelle und Line-Bedienbild, welche im Composed-MTP modelliert werden sollen, setzen sich aus Schnittstellen- und Modellelementen der an der Logistics Line beteiligten LEAs zusammen. Diese sind bereits in den LEA-MTPs modelliert und können im Zuge der Modellierung des Composed-MTP wiederverwendet werden. Hierbei bestehen zwei mögliche Varianten, die in Tabelle~\ref{tab:BewertungReferenzierungComposedMtp} beschrieben und bewertet werden.
+Line-Schnittstelle und Line-Bedienbild, welche im Composed MTP modelliert werden sollen, setzen sich aus Schnittstellen- und Modellelementen der an der Logistics Line beteiligten LEAs zusammen. Diese sind bereits in den LEA-MTPs modelliert und können im Zuge der Modellierung des Composed MTP wiederverwendet werden. Hierbei bestehen zwei mögliche Varianten, die in Tabelle~\ref{tab:BewertungReferenzierungComposedMtp} beschrieben und bewertet werden.
 
-% Bewertung Referenzierung im Composed-MTP
+% Bewertung Referenzierung im Composed MTP
 \begin{footnotesize}
 	\begin{longtable}{|
 		>{\columncolor[HTML]{E0E0E0}}l 
 		>{\columncolor[HTML]{FFFFFF}}l |}
-		\caption{Bewertung von Modellierungsmöglichkeiten für Composed-MTPs}
+		\caption{Bewertung von Modellierungsmöglichkeiten für Composed MTPs}
 		\label{tab:BewertungReferenzierungComposedMtp}\\
 		\hline
  
 		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{1) Nachmodellierung}} 
 		\\ \hline
 
-		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Die für die Line-Schnittstelle und das Line-Bedienbild relevanten Modelle und Schnittstellen der LEA-MTPs werden im Modell des Composed-MTP nachmodelliert. Die ursprünglichen LEA-MTPs werden zur Beschreibung des choreografierten Typs nicht direkt verwendet. }} 
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Die für die Line-Schnittstelle und das Line-Bedienbild relevanten Modelle und Schnittstellen der LEA-MTPs werden im Modell des Composed MTP nachmodelliert. Die ursprünglichen LEA-MTPs werden zur Beschreibung des choreografierten Typs nicht direkt verwendet. }} 
 		\\ \hline
 
 		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
-		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Das Composed-MTP ist dem MTP einer einzelnen LEA sehr ähnlich und kann auf sehr ähnliche Weise in einen übergeordneten LOL integriert werden.} 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Das Composed MTP ist dem MTP einer einzelnen LEA sehr ähnlich und kann auf sehr ähnliche Weise in einen übergeordneten LOL integriert werden.} 
 		\\ \hline
 
 		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
-		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Modellierung des Composed-MTP doppelt sich mit der Modellierung der LEA-MTPs. Es sind Mechanismen notwendig, die sicherstellen, dass die Modellierungen in den LEA-MTPs und in den Composed-MTPs übereinstimmen. Bei Änderungen muss sowohl das LEA-MTP als auch das Composed-MTP angepasst werden.   } 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Die Modellierung des Composed MTP doppelt sich mit der Modellierung der LEA-MTPs. Es sind Mechanismen notwendig, die sicherstellen, dass die Modellierungen in den LEA-MTPs und in den Composed MTPs übereinstimmen. Bei Änderungen muss sowohl das LEA-MTP als auch das Composed MTP angepasst werden.   } 
 		\\ \hline
 
 		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{E0E0E0}\textbf{2) Referenzierung}} 
 		\\ \hline
 
-		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Die LEA-MTPs werden dem Composed-MTP zugänglich gemacht. Aus dem Modell des Composed-MTP heraus wird, wo immer möglich, auf Modelle und Schnittstellen der LEA-MTPs referenziert. Die LEA-MTPs sind somit die Basis für die Beschreibung des choreografierten Typs. }} 
+		\multicolumn{2}{|L{14.8cm}|}{\cellcolor[HTML]{FFFFFF}{Die LEA-MTPs werden dem Composed MTP zugänglich gemacht. Aus dem Modell des Composed MTP heraus wird, wo immer möglich, auf Modelle und Schnittstellen der LEA-MTPs referenziert. Die LEA-MTPs sind somit die Basis für die Beschreibung des choreografierten Typs. }} 
 		\\ \hline
 
 		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Vorteile }        	& 
-		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Nur die Logistics-Line-spezifischen Inhalte werden im Composed-MTP modelliert, es erfolgt keine doppelte Modellierung im Vergleich zu den LEA-MTPs. Zudem kann auf Basis der Paketsignatur der LEA-MTPs sichergestellt werden, dass die referenzierten Modelle und Schnittstellen der LEA-MTPs nicht verändert wurden (Integrität).} 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Nur die Logistics-Line-spezifischen Inhalte werden im Composed MTP modelliert, es erfolgt keine doppelte Modellierung im Vergleich zu den LEA-MTPs. Zudem kann auf Basis der Paketsignatur der LEA-MTPs sichergestellt werden, dass die referenzierten Modelle und Schnittstellen der LEA-MTPs nicht verändert wurden (Integrität).} 
 		\\ \hline
 
 		\multicolumn{1}{|L{1.5cm}|}{\cellcolor[HTML]{FFFFFF} Nachteile }        	& 
-		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Der für diese Variante notwendige Referenzierungsmechanismus ist eine Besonderheit von Composed-MTPs im Vergleich zu MTPs einzelner LEAs. Ein LOL, der LEA-MTPs integrieren kann, kann nicht automatisch auch Composed-MTPs integrieren. Es sind spezielle Integrationsmechanismen notwendig, um die Referenzen aufzulösen.} 
+		\multicolumn{1}{L{13.13cm}|}{\cellcolor[HTML]{FFFFFF} Der für diese Variante notwendige Referenzierungsmechanismus ist eine Besonderheit von Composed MTPs im Vergleich zu MTPs einzelner LEAs. Ein LOL, der LEA-MTPs integrieren kann, kann nicht automatisch auch Composed MTPs integrieren. Es sind spezielle Integrationsmechanismen notwendig, um die Referenzen aufzulösen.} 
 		\\ \hline
 		
 	\end{longtable}
 \end{footnotesize}
 
 \begin{graybox}
-	\textbf{Designentscheidung:} Die Variante der \textbf{Referenzierung} wird als Modellierungsgrundlage für Composed-MTPs gewählt. Die heutige MTP-Spezifikation sieht nur \underline{einen} OPC~UA-Server pro MTP vor \cite{PNO.2025.Part5.1}. In einem Composed-MTP müssen Informationen aus mehreren OPC~UA-Servern mehrerer LEAs bezogen werden. Somit sind für die Integration eines Composed-MTP ohnehin andere Integrationsmechanismen als bei LEA-MTPs notwendig. Daher werden die Vorteile der Referenzierung höher bewertet. 
+	\textbf{Designentscheidung:} Die Variante der \textbf{Referenzierung} wird als Modellierungsgrundlage für Composed MTPs gewählt. Die heutige MTP-Spezifikation sieht nur \underline{einen} OPC~UA-Server pro MTP vor \cite{PNO.2025.Part5.1}. In einem Composed MTP müssen Informationen aus mehreren OPC~UA-Servern mehrerer LEAs bezogen werden. Somit sind für die Integration eines Composed MTP ohnehin andere Integrationsmechanismen als bei LEA-MTPs notwendig. Daher werden die Vorteile der Referenzierung höher bewertet. 
 \end{graybox}
 
 
-\subsubsection{Grundstruktur eines Composed-MTP}
+\subsubsection{Grundstruktur eines Composed MTP}
 
-Abbildung~\ref{fig:ComposedMtpGrundStruktur} zeigt die grundlegende Struktur eines Composed-MTP. 
+Abbildung~\ref{fig:ComposedMtpGrundStruktur} zeigt die grundlegende Struktur eines Composed MTP. 
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.7\textwidth]{Inhalt/Abbildungen/07_Linen-Automatisierung/Composed_MTP3.pdf}}
-	\caption{Grundlegende Struktur eines Composed-MTP}
+	\caption{Grundlegende Struktur eines Composed MTP}
 	\label{fig:ComposedMtpGrundStruktur}
 \end{figure}
 
-Modellierungsgrundlage bilden wie zuvor beschrieben die MTP-Dateien der an der Logistics Line beteiligten LEAs, die einen Großteil der zu modellierenden MTP-Bestandteile bereits enthalten. Um auf MTP-Bestandteile der LEA-MTPs zu referenzieren, werden diese dem Composed-MTP als Anhänge hinzugefügt (Abbildung~\ref{fig:ComposedMtpGrundStruktur}, \enquote{LEA-MTPs}). Aus diesen MTPs sind für die Beschreibung der Line-Schnittstelle und des Line-Bedienbilds notwendigen Bestandteile auszuwählen und in geeigneter Weise zu kombinieren. Hierzu dienen MTP-basierte semantische Modelle in den einzelnen Aspekten des Composed-MTP (Abbildung~\ref{fig:ComposedMtpGrundStruktur}, \enquote{Semantische Modelle}), die den semantischen Modellen eines LEA-MTPs ähneln.
+Modellierungsgrundlage bilden wie zuvor beschrieben die MTP-Dateien der an der Logistics Line beteiligten LEAs, die einen Großteil der zu modellierenden MTP-Bestandteile bereits enthalten. Um auf MTP-Bestandteile der LEA-MTPs zu referenzieren, werden diese dem Composed MTP als Anhänge hinzugefügt (Abbildung~\ref{fig:ComposedMtpGrundStruktur}, \enquote{LEA-MTPs}). Aus diesen MTPs sind für die Beschreibung der Line-Schnittstelle und des Line-Bedienbilds notwendigen Bestandteile auszuwählen und in geeigneter Weise zu kombinieren. Hierzu dienen MTP-basierte semantische Modelle in den einzelnen Aspekten des Composed MTP (Abbildung~\ref{fig:ComposedMtpGrundStruktur}, \enquote{Semantische Modelle}), die den semantischen Modellen eines LEA-MTPs ähneln.
 
 \subsubsection{Referenzierung von Inhalten in den LEA-MTPs}
 
-Die im Anhang des Composed-MTP hinterlegten LEA-MTPs werden gemäß den Mechanismen aus \cite{PNO.2025.Part1} in das \emph{AttachmentSet} des Composed-MTP eingebunden (Abbildung~\ref{fig:ComposedMtpReferenzierung}, grüne Referenz). Um auf konkrete Bestandteile der LEA-MTPs zu referenzieren, wird der in Abbildung~\ref{fig:ComposedMtpReferenzierung} dargestellte Referenzierungsmechanismus eingeführt, welcher zwei Referenzen kombiniert.
+Die im Anhang des Composed MTP hinterlegten LEA-MTPs werden gemäß den Mechanismen aus \cite{PNO.2025.Part1} in das \emph{AttachmentSet} des Composed MTP eingebunden (Abbildung~\ref{fig:ComposedMtpReferenzierung}, grüne Referenz). Um auf konkrete Bestandteile der LEA-MTPs zu referenzieren, wird der in Abbildung~\ref{fig:ComposedMtpReferenzierung} dargestellte Referenzierungsmechanismus eingeführt, welcher zwei Referenzen kombiniert.
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.9\textwidth]{Inhalt/Abbildungen/07_Linen-Automatisierung/Composed_MTP_Referenzierung.pdf}}
-	\caption{Referenzierungsmechanismus eines Composed-MTP}
+	\caption{Referenzierungsmechanismus eines Composed MTP}
 	\label{fig:ComposedMtpReferenzierung}
 \end{figure}
 
-\textbf{1) Kontextzuordnung zu einem LEA-MTP:} Zunächst wird auf die MTP-Datei verwiesen, in welchem sich der zu referenzierende MTP-Bestandteil befindet. Hierzu wird eine neue Rollenklasse \emph{HasExternalMtpContext} eingeführt, die allen Objekten innerhalb eines Composed-MTP zugeordnet wird, die auf externe MTP-Bestandteile eines angehängten LEA-MTPs referenzieren müssen. Diese Rollenklasse nutzt den ID-Link-Mechanismus, um auf das im \emph{AttachmentSet} referenzierte LEA-MTP zu verweisen (Abbildung~\ref{fig:ComposedMtpReferenzierung}, blaue Referenz).
+\textbf{1) Kontextzuordnung zu einem LEA-MTP:} Zunächst wird auf die MTP-Datei verwiesen, in welchem sich der zu referenzierende MTP-Bestandteil befindet. Hierzu wird eine neue Rollenklasse \emph{HasExternalMtpContext} eingeführt, die allen Objekten innerhalb eines Composed MTP zugeordnet wird, die auf externe MTP-Bestandteile eines angehängten LEA-MTPs referenzieren müssen. Diese Rollenklasse nutzt den ID-Link-Mechanismus, um auf das im \emph{AttachmentSet} referenzierte LEA-MTP zu verweisen (Abbildung~\ref{fig:ComposedMtpReferenzierung}, blaue Referenz).
 
 \textbf{2) Referenzieren des MTP-Bestandteils:} Als Grundlage für die Referenzierung eines konkreten externen MTP-Bestandteils werden die bestehenden Referenzierungsmechanismen LinkedObject und ID-Link gemäß \cite{PNO.2025.Part1} sowie der CustomSymbols-Mechanismus gemäß Abschnitt~\ref{subsec:StatHmiObjekte} verwendet. Diese Mechanismen wurden bisher zur Referenzierung von Objekten innerhalb eines MTP genutzt. In Kombination mit der zuvor beschriebenen Kontextzuordnung dienen sie nun auch zur Referenzierung von Objekten anderer MTPs (Abbildung~\ref{fig:ComposedMtpReferenzierung}, rote Referenz). Die Modellierung der LinkedObject-, ID-Link- bzw. CustomSymbols-Referenzen bleibt davon unberührt.
 
 Dieser Referenzierungsmechanismus wird im Folgenden als \textbf{ContextReference}-Me\-cha\-nis\-mus bezeichnet. Eine detaillierte Beschreibung inkl. der Au\-to\-ma\-ti\-on\-ML-spezifischen Modellierung ist im Anhang~\ref{subsec:AnhangReferenzierungsmechanismus} zu finden.
  
-\subsubsection{Aspekte eines Composed-MTP}
+\subsubsection{Aspekte eines Composed MTP}
 
-Ein Composed-MTP besitzt für die semantische Beschreibung der Line-Schnittstelle und des Line-Bedienbilds verschiedene Aspekte, die dem gleichen Grundaufbau folgen wie alle MTPs (Abbildung~\ref{fig:ComposedMtpAspekte}). Den Einstiegspunkt bildet eine Instanzhierarchie \emph{ModuleTypePackage}, die das \emph{Manifest} als Inhaltsverzeichnis des Composed-MTP enthält. Darunter befindet sich ein Element der Modelldefinition \emph{ComposedModuleTypePackage}, die in dieser Dissertation neu eingeführt wird. Im Gegensatz zur Modelldefinition \emph{ModuleTypePackage} gemäß \cite{PNO.2025.Part1} signalisiert diese, dass es sich um ein Composed-MTP handelt und enthält notwendige Informationen für die Typ-, Versions- und Instanzverifikation choreografierter Funktionen (siehe auch nachfolgender Abschnitt \enquote{Verifizierungsworkflows}). 
+Ein Composed MTP besitzt für die semantische Beschreibung der Line-Schnittstelle und des Line-Bedienbilds verschiedene Aspekte, die dem gleichen Grundaufbau folgen wie alle MTPs (Abbildung~\ref{fig:ComposedMtpAspekte}). Den Einstiegspunkt bildet eine Instanzhierarchie \emph{ModuleTypePackage}, die das \emph{Manifest} als Inhaltsverzeichnis des Composed MTP enthält. Darunter befindet sich ein Element der Modelldefinition \emph{ComposedModuleTypePackage}, die in dieser Dissertation neu eingeführt wird. Im Gegensatz zur Modelldefinition \emph{ModuleTypePackage} gemäß \cite{PNO.2025.Part1} signalisiert diese, dass es sich um ein Composed MTP handelt und enthält notwendige Informationen für die Typ-, Versions- und Instanzverifikation choreografierter Funktionen (siehe auch nachfolgender Abschnitt \enquote{Verifizierungsworkflows}). 
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.7\textwidth]{Inhalt/Abbildungen/07_Linen-Automatisierung/Composed_MTP_Aspekte.pdf}}
-	\caption{Aspekte eines Composed-MTP}
+	\caption{Aspekte eines Composed MTP}
 	\label{fig:ComposedMtpAspekte}
 \end{figure}
 
-Im \emph{Manifest} werden die verschiedenen Aspekte des Composed-MTP referenziert, die in jeweils einer separaten Instanzhierarchie organisiert sind. Neben dem \emph{Manifest} ist der \emph{Attachment}-Aspekt in jedem Composed-MTP verpflichtend und enthält die angehängten LEA-MTPs sowie die Choreografiekonfiguration. Daneben können zur Beschreibung der Line-Schnittstelle und des Line-Bedienbilds der \emph{Service}-, der \emph{ProcessValue}- und der \emph{HMI}-Aspekt optional im Composed-MTP enthalten sein.
+Im \emph{Manifest} werden die verschiedenen Aspekte des Composed MTP referenziert, die in jeweils einer separaten Instanzhierarchie organisiert sind. Neben dem \emph{Manifest} ist der \emph{Attachment}-Aspekt in jedem Composed MTP verpflichtend und enthält die angehängten LEA-MTPs sowie die Choreografiekonfiguration. Daneben können zur Beschreibung der Line-Schnittstelle und des Line-Bedienbilds der \emph{Service}-, der \emph{ProcessValue}- und der \emph{HMI}-Aspekt optional im Composed MTP enthalten sein.
 
 \textbf{Modellierung der Line-Schnittstelle:} Die Modellierung der Line-Schnittstelle erfolgt im \emph{Service}- und im \emph{ProcessValue}-Aspekt. Dort werden die Diensteschnittstelle des Lead Service sowie alle ausgewählten Parameter, Reportwerte und Prozesswerte semantisch modelliert. Unter Nutzung des ContextReference-Mechanismus werden die notwendigen MTP-Bestandteile der LEA-MTPs referenziert. Weitere Modell- oder Schnittstellendefinitionen sind nicht erforderlich. 
 
-\textbf{Modellierung des Line-Bedienbilds:} Die Modellierung der Bedienbildhierarchie des Composed-MTP erfolgt im \emph{HMI}-Aspekt. Hierbei ist zwischen den in Abschnitt~\ref{subsec:LinienBedienbild} beschriebenen Varianten der Zusammenführung von Bedienbildern zu unterscheiden. Die Variante 1 (\emph{Zusammenführung von Bedienbildobjekten}) erfolgt unter Nutzung des ContextReference-Mechanismus und erfordert keine weiteren Modell- oder Schnittstellendefinitionen. Für die Variante 2 (\emph{Zusammenführung von Bedienbildern in einem Bedienbild}) wird eine neue Modelldefinition \emph{PictureFrame} eingeführt, welche den ContextReference-Mechanismus zur Referenzierung ganzer Bedienbilder nutzt und diese in einer bestimmten Größe und Ausrichtung auf einem anderen Bedienbild platziert. Für die Varianten 3 und 4 (\emph{Zusammenführung von Bedienbildern in einer Hierarchie} und \emph{Zusammenführung von Bedienbildhierarchien}) wird eine neue Modelldefinition \emph{ReferencedPicture} eingeführt, welche mittels des ContextReference-Mechanismus Bedienbilder bzw. Bedienbildhierarchien referenziert und diese in die Bedienbildhierarchie des Composed-MTP einfügt. 
+\textbf{Modellierung des Line-Bedienbilds:} Die Modellierung der Bedienbildhierarchie des Composed MTP erfolgt im \emph{HMI}-Aspekt. Hierbei ist zwischen den in Abschnitt~\ref{subsec:LinienBedienbild} beschriebenen Varianten der Zusammenführung von Bedienbildern zu unterscheiden. Die Variante 1 (\emph{Zusammenführung von Bedienbildobjekten}) erfolgt unter Nutzung des ContextReference-Mechanismus und erfordert keine weiteren Modell- oder Schnittstellendefinitionen. Für die Variante 2 (\emph{Zusammenführung von Bedienbildern in einem Bedienbild}) wird eine neue Modelldefinition \emph{PictureFrame} eingeführt, welche den ContextReference-Mechanismus zur Referenzierung ganzer Bedienbilder nutzt und diese in einer bestimmten Größe und Ausrichtung auf einem anderen Bedienbild platziert. Für die Varianten 3 und 4 (\emph{Zusammenführung von Bedienbildern in einer Hierarchie} und \emph{Zusammenführung von Bedienbildhierarchien}) wird eine neue Modelldefinition \emph{ReferencedPicture} eingeführt, welche mittels des ContextReference-Mechanismus Bedienbilder bzw. Bedienbildhierarchien referenziert und diese in die Bedienbildhierarchie des Composed MTP einfügt. 
 
-Die AutomationML-spezifische Modellierung der zuvor genannten Aspekte eines Composed-MTP ist im Anhang~\ref{subsec:AnhangComposedMtpAspekte} beschrieben. Weitere Aspekte, z.~B. ein \emph{Text}-Aspekt zur Anzeige Line-spezifischer Texte, ein \emph{Alarm}-Aspekt für Line-spezifische Alarme und Events oder ein \emph{Diagnostics}-Aspekt für Diagnoseinformationen, können zukünftig ergänzt werden. Der \emph{ServerAssembly}-Aspekt und der \emph{DataAssembly}-Aspekt sind im Kontext choreografierter Funktionen nicht im Composed-MTP notwendig, da die betreffenden Informationen bereits in den LEA-MTPs enthalten sind und mittels des ContextReference-Mechanismus referenziert werden.
+Die AutomationML-spezifische Modellierung der zuvor genannten Aspekte eines Composed MTP ist im Anhang~\ref{subsec:AnhangComposedMtpAspekte} beschrieben. Weitere Aspekte, z.~B. ein \emph{Text}-Aspekt zur Anzeige Line-spezifischer Texte, ein \emph{Alarm}-Aspekt für Line-spezifische Alarme und Events oder ein \emph{Diagnostics}-Aspekt für Diagnoseinformationen, können zukünftig ergänzt werden. Der \emph{ServerAssembly}-Aspekt und der \emph{DataAssembly}-Aspekt sind im Kontext choreografierter Funktionen nicht im Composed MTP notwendig, da die betreffenden Informationen bereits in den LEA-MTPs enthalten sind und mittels des ContextReference-Mechanismus referenziert werden.
 
 \subsubsection{Verifizierungsworkflows}
 
-In \cite{PNO.2025.Part1} werden Typ-, Versions- und Instanzverifikationsworkflows als Workflows des \emph{Manifest}-Aspekts beschrieben. Im Rahmen dieser Dissertation werden diese Workflows um die Verifizierung choreografierter Funktionen und Composed-MTPs erweitert. 
+In \cite{PNO.2025.Part1} werden Typ-, Versions- und Instanzverifikationsworkflows als Workflows des \emph{Manifest}-Aspekts beschrieben. Im Rahmen dieser Dissertation werden diese Workflows um die Verifizierung choreografierter Funktionen und Composed MTPs erweitert. 
 
-Für die Typ- und Versionsverifikation werden \textbf{Typ- und Versionsinformationen} der choreografierten Funktion im Composed-MTP hinterlegt und können anschließend im Rahmen der Verifikation mit der tatsächlich auf die LEAs einer Logistics Line geladenen Konfiguration verglichen werden. So wird sichergestellt, dass \textbf{die richtige Choreografiekonfiguration geladen ist}.
+Für die Typ- und Versionsverifikation werden \textbf{Typ- und Versionsinformationen} der choreografierten Funktion im Composed MTP hinterlegt und können anschließend im Rahmen der Verifikation mit der tatsächlich auf die LEAs einer Logistics Line geladenen Konfiguration verglichen werden. So wird sichergestellt, dass \textbf{die richtige Choreografiekonfiguration geladen ist}.
 
-Im Zuge der \textbf{Instanzverifikation} wird für jede notwendige Teilnehmerrolle, welche in einer choreografierten Logistics Line zu besetzen ist, verglichen, ob die in der Planung vorgesehene LEA-Instanz mit der tatsächlich eingebauten LEA-Instanz übereinstimmt. Als Grundlage für diese Verifikation werden die Instanzkennung der LEAs und eine ID für jede Teilnehmerrolle verwendet, die im Composed-MTP festgelegt ist. So wird sichergestellt, dass \textbf{die richtigen LEA-Instanzen in der Logistics Line verwendet werden}.
+Im Zuge der \textbf{Instanzverifikation} wird für jede notwendige Teilnehmerrolle, welche in einer choreografierten Logistics Line zu besetzen ist, verglichen, ob die in der Planung vorgesehene LEA-Instanz mit der tatsächlich eingebauten LEA-Instanz übereinstimmt. Als Grundlage für diese Verifikation werden die Instanzkennung der LEAs und eine ID für jede Teilnehmerrolle verwendet, die im Composed MTP festgelegt ist. So wird sichergestellt, dass \textbf{die richtigen LEA-Instanzen in der Logistics Line verwendet werden}.
 
 \begin{graybox}
 	\textbf{Hinweis:} Die MTP-basierten Verifikationsworkflows prüfen \underline{\textbf{nicht}}, ob eine Choreografie ausführbar ist, oder mit welchen Parametern sie funktioniert. Sie stellen lediglich sicher, dass die richtige Choreografiekonfiguration geladen ist und die richtigen LEA-Instanzen in der Logistics Line verwendet werden.
@@ -570,7 +570,7 @@ In den vorangegangenen Abschnitten wurde eine Reihe von Erweiterungen der MTP-Sp
 
 		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: Manifest.Composed V2.0.0 }                    & 
 		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} SUC Composed\-Module\-Type\-Package}              &      
-		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Basis-Modell für ein Composed-MTP }              &     
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Basis-Modell für ein Composed MTP }              &     
 		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangManifest}}             
 		\\ \hline
 
@@ -629,13 +629,13 @@ In den vorangegangenen Abschnitten wurde eine Reihe von Erweiterungen der MTP-Sp
 
 		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: Manifest.Composed V2.0.0 }                    & 
 		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Typverifikation}              &      
-		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Workflow zur Verifikation des Typs einer auf die LEAs geladenen choreografierten Funktion gegen den in einem Composed-MTP beschriebenen Typ }              &     
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Workflow zur Verifikation des Typs einer auf die LEAs geladenen choreografierten Funktion gegen den in einem Composed MTP beschriebenen Typ }              &     
 		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangManifest}}             
 		\\ \hline
 
 		\multicolumn{1}{|L{3.6cm}|}{\cellcolor[HTML]{FFFFFF} ModuleTypePackage: Manifest.Composed V2.0.0 }                    & 
 		\multicolumn{1}{L{2.8cm}|}{\cellcolor[HTML]{FFFFFF} Versions-verifikation}              &      
-		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Workflow zur Verifikation der Version einer auf die LEAs geladenen choreografierten Funktion gegen die in einem Composed-MTP beschriebene Version }              &  
+		\multicolumn{1}{L{5.43cm}|}{\cellcolor[HTML]{FFFFFF} Workflow zur Verifikation der Version einer auf die LEAs geladenen choreografierten Funktion gegen die in einem Composed MTP beschriebene Version }              &  
 		\multicolumn{1}{L{2.45cm}|}{\cellcolor[HTML]{FFFFFF} Anhang~\ref{subsec:AnhangManifest}}             
 		\\ \hline
 

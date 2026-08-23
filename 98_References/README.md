@@ -27,7 +27,7 @@
 
 - Citation key: `Blumenstein.ETFA`
 - Shorthand: `BSF+22`
-- Authors: Michelle Blumenstein, Andreas Stutz, Alexander Fay, Thomas Barth, Marius Maurmaier
+- Authors: Michelle Blumenstein, Andreas Stutz, Alexander Fay, Mike Barth, Mathias Maurmaier
 - Year: 2022
 - Title: Coordination of Modular Packaging Lines Using Automation Service Choreographies
 - Booktitle: 27th IEEE International Conference on Emerging Technologies and Factory Automation (ETFA)
@@ -338,7 +338,7 @@
 
 - Citation key: `Stutz.2021`
 - Shorthand: `SFB+21`
-- Authors: Andreas Stutz, Alexander Fay, Thomas Barth, Marius Maurmaier
+- Authors: Andreas Stutz, Alexander Fay, Mike Barth, Mathias Maurmaier
 - Year: 2021
 - Title: Software Patterns for the Realization of Automation Service Choreographies
 - Booktitle: 26th IEEE International Conference on Emerging Technologies and Factory Automation (ETFA)
@@ -348,7 +348,7 @@
 
 - Citation key: `Stutz.2022`
 - Shorthand: `SBF+22`
-- Authors: Andreas Stutz, Michelle Blumenstein, Alexander Fay, Thomas Barth, Marius Maurmaier
+- Authors: Andreas Stutz, Michelle Blumenstein, Alexander Fay, Mike Barth, Mathias Maurmaier
 - Year: 2022
 - Title: Anwendung von Automatisierungsdienste-Choreografien zur Koordination modularer Logistiklinien
 - Booktitle: 17. Fachtagung Entwurf komplexer Automatisierungssysteme (EKA)
@@ -357,7 +357,7 @@
 
 - Citation key: `Stutz.2023`
 - Shorthand: `SFB+23`
-- Authors: Andreas Stutz, Alexander Fay, Thomas Barth, Marius Maurmaier
+- Authors: Andreas Stutz, Alexander Fay, Mike Barth, Mathias Maurmaier
 - Year: 2023
 - Title: Automation Service Choreographies using Decentralized Orchestration to Integrate Non-Choreography-Enabled Equipment Assemblies
 - Booktitle: IEEE 21st International Conference on Industrial Informatics (INDIN)

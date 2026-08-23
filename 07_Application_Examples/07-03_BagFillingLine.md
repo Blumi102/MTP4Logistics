@@ -144,3 +144,33 @@ The ability to define constants is used in the case of the bag filling line to d
 > **Best Practices for Choreography Configuration in Logistics Lines:**
 > - The Configurable Communication design pattern fundamentally enables the exchange of all information available in a LEA with other LEAs of a choreographed Logistics Line. However, to enable vendor-neutral interaction between LEAs, variables from the standardized MTP-based LEA interfaces should be exchanged wherever possible.
 > - An exception is the interface of the External Lead. For this, "DoRequest and DoneReply relations" are recommended in accordance with [Stutz 2026](../98_References/README.md#stutz-2026), which enable the merging of different start and end points of a choreography relation across multiple LEA services.
+
+### 7.3.4 Implementation of Choreography Relations using the Models and Interfaces of the ChoreographySet
+
+This section shows how the model and interface definitions introduced in this dissertation are used in combination with the concepts from [[Stu26]](../98_References/README.md#stutz-2026) to implement choreography relations with active reading and active writing. As an example, the relation is considered in which LEA2 should start when LEA1 is in the EXECUTE state.
+
+#### Active Reading
+
+[Figure 7.X](#figure-7x-implementation-of-a-choreography-relation-with-active-reading) shows the implementation of the above relation using the active reading communication variant. The information whether the service of LEA1 is in the EXECUTE state is programmatically stored as a fixed input in the Input List of LEA1. Its value is provided in the OPC UA server as a *UnionElement* interface under a specific Node ID. This interface is represented in the MTP model of LEA1 by a *FixedInputElement* model definition.
+
+##### Figure 7.X: Implementation of a Choreography Relation with Active Reading
+![Implementation of a Choreography Relation with Active Reading](./images/AktivesLesen.svg)
+
+On the side of LEA2, a *UaReader* is provided for reading this information, which is configured via the *OpcUaClientServerManager* interface to the corresponding Node ID and writes the read value to a configurable input in the Input List of LEA2. This configurable input is represented in the MTP as a *ConfigurableInputElement* model definition that contains the necessary information for reading. The *ConfigurableInputElement* is linked to the *OpcUaClientServerManager* interface via a *ManagerLink* and assigned a specific *UaReader* within it via a *ManagerIndex*. Additionally, the name of the *ConfigurableInputElement* corresponds to the index in the Input List of LEA2 to which the *UaReader* should write the read value.
+
+The Output List of LEA2 contains a fixed output that enables starting the LEA2 service. This is represented in the MTP model as a *FixedOutputElement* model definition. The name of the *FixedOutputElement* corresponds to the index of the output in the Output List of LEA2. According to the mechanisms described in [[Stu26]](../98_References/README.md#stutz-2026), the read value of the configurable input is transferred within LEA2 to the value of the fixed output (in this case without preprocessing), and the desired relation is implemented.
+
+#### Active Writing
+
+[Figure 7.Y](#figure-7y-implementation-of-a-choreography-relation-with-active-writing) shows the implementation of the above relation using the active writing communication variant.
+
+##### Figure 7.Y: Implementation of a Choreography Relation with Active Writing
+![Implementation of a Choreography Relation with Active Writing](./images/AktivesSchreiben.svg)
+
+The information whether the service of LEA1 is in the EXECUTE state is programmatically stored as a fixed input in the Input List of LEA1. This is represented in the MTP model of LEA1 as a *FixedInputElement* model definition. According to the mechanisms described in [[Stu26]](../98_References/README.md#stutz-2026), this value is transferred to a configurable output in the Output List of LEA1.
+
+A *UaWriter* of the *OpcUaClientServerManager* interface is assigned to this configurable output, which writes the value to a defined Node ID in the OPC UA server of LEA2. The configurable output is represented in the MTP as a *ConfigurableOutputElement* model definition that contains the necessary information for writing. The *ConfigurableOutputElement* is linked to the *OpcUaClientServerManager* interface via a *ManagerLink* and assigned a specific *UaWriter* within it via a *ManagerIndex*. Additionally, the name of the *ConfigurableOutputElement* corresponds to the index in the Output List of LEA1 from which the *UaWriter* should read the value to be written.
+
+On the side of LEA2, an externally writable *ValueField* is provided, which internally writes its value to a specific position in the Input List. This *ValueField* has a *WritableUnionElement* interface that is provided in the OPC UA server of LEA2 under a specific Node ID. The *UaWriter* of LEA1 is configured to this Node ID. This interface is represented in the MTP model of LEA2 as a *WritableInputElement* model definition.
+
+As in the case of active reading, the Output List of LEA2 contains a fixed output that enables starting the LEA2 service, represented in the MTP by a *FixedOutputElement* model definition. According to the mechanisms described in [[Stu26]](../98_References/README.md#stutz-2026), the value of the writable input is transferred within LEA2 to the value of the fixed output (in this case without preprocessing), and the desired relation is implemented.

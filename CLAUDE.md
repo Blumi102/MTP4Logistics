@@ -33,7 +33,7 @@
 - **Anchor scheme:** Lowercase, spaces replaced by `-`, special characters and dots removed — matches the auto-generated Markdown heading anchor of the `#####` heading
 - **Examples:**
   ```markdown
-  [Figure 9.1](#figure-91-extension-of-the-manifest-for-modeling-composed-mtps)
+  [Figure 9.1](#figure-91-extension-of-the-manifest-for-modeling-Composed MTPs)
   [Table 9.1](#table-91-model-definition-of-suc-composedmoduletypepackage)
   ```
 
