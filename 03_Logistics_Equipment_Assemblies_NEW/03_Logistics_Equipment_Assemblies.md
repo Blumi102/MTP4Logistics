@@ -2,7 +2,7 @@
 
 This chapter presents the MTP-based automation and integration of Logistics Equipment Assemblies (LEAs). Parts of these concepts were published in [[BFS+22]](../98_References/README.md#blumenstein-et-al-2022-atp) and [[BGB+23]](../98_References/README.md#blumenstein-et-al-moprolog); parametrization mechanisms were additionally investigated in student theses [[Jan23]](../98_References/README.md#janzen-2023) and in [[BJF+23]](../98_References/README.md#blumenstein-et-al-automationlol). 
 
- [Sections 7.1](../07_Application_Examples/07-01_PalletizingLEA.md) and [7.2](../07_Application_Examples/07-02_StretchHoodLEA.md) show the application of the described concepts to a palletizer LEA and a stretch-hood LEA. [Chapter 8](../08_MTP%20Extensions/08-00_Intro.md) provides detailed specifications of the introduced MTP extensions.
+ [Sections 6.1](../06_Application_Examples/06-01_PalletizingLEA.md) and [6.2](../06_Application_Examples/06-02_StretchHoodLEA.md) show the application of the described concepts to a palletizer LEA and a stretch-hood LEA. [Chapter 7](../07_MTP%20Extensions/07-00_Intro.md) provides detailed specifications of the introduced MTP extensions.
 
 ### 3.1 Artifact Overview
 
@@ -22,7 +22,7 @@ To accommodate both order-oriented and demand-oriented operation ([Section 2.4](
 - **Cyclic Execution Service (CES)** — for order-oriented operation
 - **Single Execution Service (SES)** — for demand-oriented operation
 
-As a LEA service can either run in CES mode or in SES mode, those execution modes are implemented as separate procedures of the LEA service. A LEA may offer both CES and SES procedures, enabling usage in different MLS contexts, though never both simultaneously. CES and SES procedures are conformant with [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) but carry specific interpretations of the MTP state machine. To allow a LOL to distinguish CES from SES procedures, *FunctionClassificationAttributes* per [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) are specified for both service execution modes ([Section 8.4.1](../08_MTP%20Extensions/08-04_ServiceSet.md#841-overview)).
+As a LEA service can either run in CES mode or in SES mode, those execution modes are implemented as separate procedures of the LEA service. A LEA may offer both CES and SES procedures, enabling usage in different MLS contexts, though never both simultaneously. CES and SES procedures are conformant with [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) but carry specific interpretations of the MTP state machine. To allow a LOL to distinguish CES from SES procedures, *FunctionClassificationAttributes* per [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) are specified for both service execution modes ([Section 7.4.1](../07_MTP%20Extensions/07-04_ServiceSet.md#741-overview)).
 
 #### Cyclic Execution Service (CES)
 
@@ -141,8 +141,8 @@ Three mechanisms for transferring parameters to a LEA service are identified:
 ##### MTP implementation:
 
 - **Individual parameters:** This mechanism corresponds to existing MTP parameterization. The *DIntServParam*, *AnaServParam*, *BinServParam*, and *StringServParam* interfaces from [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) are directly applicable; no extension is required.
-- **Single parameter set:** Existing MTP concepts do not provide parameter interfaces for structured data types. Therefore, the *StructServParam* interface ([Table 8.25](../08_MTP%20Extensions/08-04_ServiceSet.md#table-825-dataassembly-definition-of-suc-structservparam)) is newly specified to transfer a parameter set with a LEA-specific structured data type. A method for modeling the required complex data types in the MTP ([Section 8.3.2](../08_MTP%20Extensions/08-03_DataAssemblySet.md#832-dataassembly-definitions)) and in the OPC UA server of a LEA ([Section 8.6](../08_MTP%20Extensions/08-06_ServerAssemblySet.md#86-mtp-extension-of-the-serverassemblyset)) is also described.
-- **Selection of parameter sets:** For the ID-based selection interface, the *DIntServParam* interface from [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) is reused. For loading parameter sets into LEA-internal array storage, no suitable interface exists in the current MTP concept; the *ArrayServParam* interface ([Table 8.26](../08_MTP%20Extensions/08-04_ServiceSet.md#table-826-dataassembly-definition-of-suc-arrayservparam)) is therefore newly specified. Each array element uses the same LEA-specific structured data type as for single parameter set transfer.
+- **Single parameter set:** Existing MTP concepts do not provide parameter interfaces for structured data types. Therefore, the *StructServParam* interface ([Table 7.25](../07_MTP%20Extensions/07-04_ServiceSet.md#table-725-dataassembly-definition-of-suc-structservparam)) is newly specified to transfer a parameter set with a LEA-specific structured data type. A method for modeling the required complex data types in the MTP ([Section 7.3.2](../07_MTP%20Extensions/07-03_DataAssemblySet.md#732-dataassembly-definitions)) and in the OPC UA server of a LEA ([Section 7.6](../07_MTP%20Extensions/07-06_ServerAssemblySet.md#76-mtp-extension-of-the-serverassemblyset)) is also described.
+- **Selection of parameter sets:** For the ID-based selection interface, the *DIntServParam* interface from [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) is reused. For loading parameter sets into LEA-internal array storage, no suitable interface exists in the current MTP concept; the *ArrayServParam* interface ([Table 7.26](../07_MTP%20Extensions/07-04_ServiceSet.md#table-726-dataassembly-definition-of-suc-arrayservparam)) is therefore newly specified. Each array element uses the same LEA-specific structured data type as for single parameter set transfer.
 
 #### 3.3.3 Parameterization Initiation
 
@@ -198,8 +198,8 @@ Three modes to initiate parameterization are distinguished:
 ##### MTP implementation:
 
 - **LOL-initiated:** The LOL writes parameters to the LEA directly. This corresponds to existing MTP behavior [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4); no extension is required.
-- **LEA-requested:** The LEA detects a missing parameter set and requests it from the LOL. For this *ProductParameterRequest* ([Table 8.32](../08_MTP%20Extensions/08-04_ServiceSet.md#table-832-model-definition-of-suc-productparameterrequest)) and *PackagingParameterRequest* ([Table 8.33](../08_MTP%20Extensions/08-04_ServiceSet.md#table-833-model-definition-of-suc-packagingparameterrequest)) are introduced in this work. Those follow similar mechanism to the MTP *Service Interaction* mechanism. 
-- **Local HMI entry:** An operator enters parameters directly at the LEA HMI. To propagate local changes back to the LOL, *ProductParameterUpdatedInfo* ([Table 8.34](../08_MTP%20Extensions/08-04_ServiceSet.md#table-834-model-definition-of-suc-productparameterupdatedinfo)) and *PackagingParameterUpdatedInfo* ([Table 8.35](../08_MTP%20Extensions/08-04_ServiceSet.md#table-835-model-definition-of-suc-packagingparameterupdatedinfo)) models specified in this work, also based on the MTP *Service Interaction* mechanism [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4).
+- **LEA-requested:** The LEA detects a missing parameter set and requests it from the LOL. For this *ProductParameterRequest* ([Table 7.32](../07_MTP%20Extensions/07-04_ServiceSet.md#table-732-model-definition-of-suc-productparameterrequest)) and *PackagingParameterRequest* ([Table 7.33](../07_MTP%20Extensions/07-04_ServiceSet.md#table-733-model-definition-of-suc-packagingparameterrequest)) are introduced in this work. Those follow similar mechanism to the MTP *Service Interaction* mechanism. 
+- **Local HMI entry:** An operator enters parameters directly at the LEA HMI. To propagate local changes back to the LOL, *ProductParameterUpdatedInfo* ([Table 7.34](../07_MTP%20Extensions/07-04_ServiceSet.md#table-734-model-definition-of-suc-productparameterupdatedinfo)) and *PackagingParameterUpdatedInfo* ([Table 7.35](../07_MTP%20Extensions/07-04_ServiceSet.md#table-735-model-definition-of-suc-packagingparameterupdatedinfo)) models specified in this work, also based on the MTP *Service Interaction* mechanism [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4).
 
 #### 3.3.4 Recommended Parameterization Mechanism
 
@@ -226,21 +226,21 @@ For **order-specific** parameters, transfer as individual parameters via existin
 ##### Figure 3.8: Reporting Parameter Set Changes to the LOL
 ![Reporting Parameter Set Changes to the LOL](./images/Empfohlene_Parametrierung_HMI.svg)
 
-To enable the LOL's parameter management to identify the purpose of each interface unambiguously, *FunctionClassificationAttributes* are introduced for parameters, which were previously only defined for services and procedures in [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4). Concrete attributes are specified for *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* ([Section 8.4.1](../08_MTP%20Extensions/08-04_ServiceSet.md#841-overview)).
+To enable the LOL's parameter management to identify the purpose of each interface unambiguously, *FunctionClassificationAttributes* are introduced for parameters, which were previously only defined for services and procedures in [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4). Concrete attributes are specified for *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* ([Section 7.4.1](../07_MTP%20Extensions/07-04_ServiceSet.md#741-overview)).
 
 **Construction-specific parameters** concern the physical setup of a LEA (e.g. the installed filling nozzle type) or its current configuration (e.g. the loaded pallet type). They are independent of any particular order and of whether the LEA operates in CES or SES mode, instead defining fundamental settings for service execution. Since they are typically few in number and set at commissioning time by an operator, they are modeled as configuration parameters per [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) and transferred as individual values via existing interfaces.
 
-For LEA types that use a specific packaging material, a construction-specific *DIntServParam* parameter specifies which packaging material (e.g. pallet type) is currently loaded in the LEA. Based on this value, the corresponding packaging-specific information can be retrieved from the LEA-internal *PackagingDataSet* or requested from the LOL. This value is semantically equivalent to the *PackagingId* described above and must be verified against the *PackagingId* required by the selected product parameter set before processing a logistics object. A mismatch means the LEA cannot process the order or must be equipped with different packaging material. To allow unambiguous semantic identification of this parameter, a corresponding *FunctionClassificationAttribute* is introduced ([Section 8.4.1](../08_MTP%20Extensions/08-04_ServiceSet.md#841-overview)).
+For LEA types that use a specific packaging material, a construction-specific *DIntServParam* parameter specifies which packaging material (e.g. pallet type) is currently loaded in the LEA. Based on this value, the corresponding packaging-specific information can be retrieved from the LEA-internal *PackagingDataSet* or requested from the LOL. This value is semantically equivalent to the *PackagingId* described above and must be verified against the *PackagingId* required by the selected product parameter set before processing a logistics object. A mismatch means the LEA cannot process the order or must be equipped with different packaging material. To allow unambiguous semantic identification of this parameter, a corresponding *FunctionClassificationAttribute* is introduced ([Section 7.4.1](../07_MTP%20Extensions/07-04_ServiceSet.md#741-overview)).
 
 ### 3.4 Report Values
 
-The report value concept defined in [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) is suitable for production-related logistics without conceptual changes. Extensions are limited to new data types: since the structured data types and arrays introduced in [Section 3.3](#33-parameterization) should also be reportable, e.g., to document the parameter sets currently stored in a LEA, two new interfaces are introduced. Following the MTP convention that report value interfaces are derived from *SUC IndicatorElement* (defined in [[MTP Part 3]](../98_References/README.md#mtp-specification-part-3)), *StructView* ([Table 8.8](../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-88-dataassembly-definition-of-suc-structview)) and *ArrayView* ([Table 8.9](../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-89-dataassembly-definition-of-suc-arrayview)) are specified as new derivations of this base type.
+The report value concept defined in [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) is suitable for production-related logistics without conceptual changes. Extensions are limited to new data types: since the structured data types and arrays introduced in [Section 3.3](#33-parameterization) should also be reportable, e.g., to document the parameter sets currently stored in a LEA, two new interfaces are introduced. Following the MTP convention that report value interfaces are derived from *SUC IndicatorElement* (defined in [[MTP Part 3]](../98_References/README.md#mtp-specification-part-3)), *StructView* ([Table 7.8](../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-78-dataassembly-definition-of-suc-structview)) and *ArrayView* ([Table 7.9](../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-79-dataassembly-definition-of-suc-arrayview)) are specified as new derivations of this base type.
 
 Per [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4), report values can be "frozen", i.e., the current value is retained for a defined period. The optional *MissedValueFlag* signals whether the report value changed at least twice while it was frozen. Both principles are adopted for the new structured and array-typed interfaces. For array types, freezing applies to all array elements simultaneously; individual frozen elements remain accessible by index selection.
 
 ### 3.5 Process Values
 
-The process value concept defined in [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) is suitable for production-related logistics without conceptual changes. Unlike parameters and report values, no need for structured or array-typed process values was identified in MLS automation practice. However, since MTP conventions define process value interfaces for every supported data type, corresponding interface definitions are specified for completeness: *StructProcessValueIn* ([Table 8.39](../08_MTP%20Extensions/08-05_ProcessValueSet.md#table-839-dataassembly-definition-of-suc-structprocessvaluein)), *ArrayProcessValueIn* ([Table 8.40](../08_MTP%20Extensions/08-05_ProcessValueSet.md#table-840-dataassembly-definition-of-suc-arrayprocessvaluein)), and *ArrayProcessValueOut* ([Table 8.42](../08_MTP%20Extensions/08-05_ProcessValueSet.md#table-842-dataassembly-definition-of-suc-arrayprocessvalueout)). The process value output for structured data types corresponds to *StructView* and requires no separate specification.
+The process value concept defined in [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) is suitable for production-related logistics without conceptual changes. Unlike parameters and report values, no need for structured or array-typed process values was identified in MLS automation practice. However, since MTP conventions define process value interfaces for every supported data type, corresponding interface definitions are specified for completeness: *StructProcessValueIn* ([Table 7.39](../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-739-dataassembly-definition-of-suc-structprocessvaluein)), *ArrayProcessValueIn* ([Table 7.40](../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-740-dataassembly-definition-of-suc-arrayprocessvaluein)), and *ArrayProcessValueOut* ([Table 7.42](../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-742-dataassembly-definition-of-suc-arrayprocessvalueout)). The process value output for structured data types corresponds to *StructView* and requires no separate specification.
 
 ### 3.6 Operator Displays
 
@@ -264,57 +264,57 @@ Dynamic display objects can fundamentally be implemented using the mechanisms of
   <tr>
     <td align="left"><em>StructView</em></td>
     <td align="left">Display of (report) values and process value outputs with structured data types</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-88-dataassembly-definition-of-suc-structview">Table 8.8</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-78-dataassembly-definition-of-suc-structview">Table 7.8</a></td>
   </tr>
   <tr>
     <td align="left"><em>ArrayView</em></td>
     <td align="left">Display of (report) values with array data types</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-89-dataassembly-definition-of-suc-arrayview">Table 8.9</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-79-dataassembly-definition-of-suc-arrayview">Table 7.9</a></td>
   </tr>
   <tr>
     <td align="left"><em>StructMan</em></td>
     <td align="left">Operator manipulation of structured-type values</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-810-dataassembly-definition-of-suc-structman">Table 8.10</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-710-dataassembly-definition-of-suc-structman">Table 7.10</a></td>
   </tr>
   <tr>
     <td align="left"><em>StructManInt</em></td>
     <td align="left">Operator or LEA-internal manipulation of structured-type values</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-811-dataassembly-definition-of-suc-structmanint">Table 8.11</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-711-dataassembly-definition-of-suc-structmanint">Table 7.11</a></td>
   </tr>
   <tr>
     <td align="left"><em>ArrayMan</em></td>
     <td align="left">Operator manipulation of array-type values</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-812-dataassembly-definition-of-suc-arrayman">Table 8.12</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-712-dataassembly-definition-of-suc-arrayman">Table 7.12</a></td>
   </tr>
   <tr>
     <td align="left"><em>ArrayManInt</em></td>
     <td align="left">Operator or LEA-internal manipulation of array-type values</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-813-dataassembly-definition-of-suc-arraymanint">Table 8.13</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-713-dataassembly-definition-of-suc-arraymanint">Table 7.13</a></td>
   </tr>
   <tr>
     <td align="left"><em>StructServParam</em></td>
     <td align="left">Display and manipulation of service parameters with structured data types</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-825-dataassembly-definition-of-suc-structservparam">Table 8.25</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-725-dataassembly-definition-of-suc-structservparam">Table 7.25</a></td>
   </tr>
   <tr>
     <td align="left"><em>ArrayServParam</em></td>
     <td align="left">Display and manipulation of service parameters with array data types</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-826-dataassembly-definition-of-suc-arrayservparam">Table 8.26</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-726-dataassembly-definition-of-suc-arrayservparam">Table 7.26</a></td>
   </tr>
   <tr>
     <td align="left"><em>StructProcessValueIn</em></td>
     <td align="left">Display of process value inputs with structured data types</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-05_ProcessValueSet.md#table-839-dataassembly-definition-of-suc-structprocessvaluein">Table 8.39</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-739-dataassembly-definition-of-suc-structprocessvaluein">Table 7.39</a></td>
   </tr>
   <tr>
     <td align="left"><em>ArrayProcessValueIn</em></td>
     <td align="left">Display of process value inputs with array data types</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-05_ProcessValueSet.md#table-840-dataassembly-definition-of-suc-arrayprocessvaluein">Table 8.40</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-740-dataassembly-definition-of-suc-arrayprocessvaluein">Table 7.40</a></td>
   </tr>
   <tr>
     <td align="left"><em>ArrayProcessValueOut</em></td>
     <td align="left">Display of process value outputs with array data types</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-05_ProcessValueSet.md#table-842-dataassembly-definition-of-suc-arrayprocessvalueout">Table 8.42</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-742-dataassembly-definition-of-suc-arrayprocessvalueout">Table 7.42</a></td>
   </tr>
 </table>
 
@@ -368,72 +368,72 @@ In the preceding sections, a number of extensions to the MTP specification were 
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC StructServParam</em> (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-825-dataassembly-definition-of-suc-structservparam">Table 8.25</a>)</td>
+    <td align="left"><em>SUC StructServParam</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-725-dataassembly-definition-of-suc-structservparam">Table 7.25</a>)</td>
     <td align="left">Transfer of service parameters with structured data types</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayServParam</em> (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-826-dataassembly-definition-of-suc-arrayservparam">Table 8.26</a>)</td>
+    <td align="left"><em>SUC ArrayServParam</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-726-dataassembly-definition-of-suc-arrayservparam">Table 7.26</a>)</td>
     <td align="left">Transfer of service parameters with array data types</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>RC LogisticsInteractionExtension</em> (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-827-dataassembly-definition-of-rc-logisticsinteractionextension">Table 8.27</a>)</td>
+    <td align="left"><em>RC LogisticsInteractionExtension</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-727-dataassembly-definition-of-rc-logisticsinteractionextension">Table 7.27</a>)</td>
     <td align="left">Extension of the ServiceControl interface for logistics interaction variables</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC ServiceControl</em> (extension) (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-828-dataassembly-definition-of-suc-servicecontrol">Table 8.28</a>)</td>
+    <td align="left"><em>SUC ServiceControl</em> (extension) (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-728-dataassembly-definition-of-suc-servicecontrol">Table 7.28</a>)</td>
     <td align="left">Extension of the existing ServiceControl interface to allow attachment of <em>RC LogisticsInteractionExtension</em></td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC StructView</em> (<a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-88-dataassembly-definition-of-suc-structview">Table 8.8</a>)</td>
+    <td align="left"><em>SUC StructView</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-78-dataassembly-definition-of-suc-structview">Table 7.8</a>)</td>
     <td align="left">Display of structured values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayView</em> (<a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-89-dataassembly-definition-of-suc-arrayview">Table 8.9</a>)</td>
+    <td align="left"><em>SUC ArrayView</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-79-dataassembly-definition-of-suc-arrayview">Table 7.9</a>)</td>
     <td align="left">Display of array-managed values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC StructMan</em> (<a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-810-dataassembly-definition-of-suc-structman">Table 8.10</a>)</td>
+    <td align="left"><em>SUC StructMan</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-710-dataassembly-definition-of-suc-structman">Table 7.10</a>)</td>
     <td align="left">Operator manipulation of structured-type values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC StructManInt</em> (<a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-811-dataassembly-definition-of-suc-structmanint">Table 8.11</a>)</td>
+    <td align="left"><em>SUC StructManInt</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-711-dataassembly-definition-of-suc-structmanint">Table 7.11</a>)</td>
     <td align="left">Operator or LEA-internal manipulation of structured-type values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayMan</em> (<a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-812-dataassembly-definition-of-suc-arrayman">Table 8.12</a>)</td>
+    <td align="left"><em>SUC ArrayMan</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-712-dataassembly-definition-of-suc-arrayman">Table 7.12</a>)</td>
     <td align="left">Operator manipulation of array-type values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayManInt</em> (<a href="../08_MTP%20Extensions/08-03_DataAssemblySet.md#table-813-dataassembly-definition-of-suc-arraymanint">Table 8.13</a>)</td>
+    <td align="left"><em>SUC ArrayManInt</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-713-dataassembly-definition-of-suc-arraymanint">Table 7.13</a>)</td>
     <td align="left">Operator or LEA-internal manipulation of array-type values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ProcessValueSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC StructProcessValueIn</em> (<a href="../08_MTP%20Extensions/08-05_ProcessValueSet.md#table-839-dataassembly-definition-of-suc-structprocessvaluein">Table 8.39</a>)</td>
+    <td align="left"><em>SUC StructProcessValueIn</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-739-dataassembly-definition-of-suc-structprocessvaluein">Table 7.39</a>)</td>
     <td align="left">Reading a structured-type value from another LEA</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ProcessValueSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayProcessValueIn</em> (<a href="../08_MTP%20Extensions/08-05_ProcessValueSet.md#table-840-dataassembly-definition-of-suc-arrayprocessvaluein">Table 8.40</a>)</td>
+    <td align="left"><em>SUC ArrayProcessValueIn</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-740-dataassembly-definition-of-suc-arrayprocessvaluein">Table 7.40</a>)</td>
     <td align="left">Reading an array managed by another LEA</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ProcessValueSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC OutputElement</em> (<a href="../08_MTP%20Extensions/08-05_ProcessValueSet.md#table-841-dataassembly-definition-of-suc-outputelement">Table 8.41</a>)</td>
+    <td align="left"><em>SUC OutputElement</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-741-dataassembly-definition-of-suc-outputelement">Table 7.41</a>)</td>
     <td align="left">Abstract base for typed process value outputs</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ProcessValueSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayProcessValueOut</em> (<a href="../08_MTP%20Extensions/08-05_ProcessValueSet.md#table-842-dataassembly-definition-of-suc-arrayprocessvalueout">Table 8.42</a>)</td>
+    <td align="left"><em>SUC ArrayProcessValueOut</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-742-dataassembly-definition-of-suc-arrayprocessvalueout">Table 7.42</a>)</td>
     <td align="left">Providing a LEA-internal array to another LEA</td>
   </tr>
   <tr>
@@ -446,49 +446,49 @@ In the preceding sections, a number of extensions to the MTP specification were 
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Base V2.0.0</td>
-    <td align="left"><em>SUC ServiceParameter</em> (extension) (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-829-model-definition-of-suc-serviceparameter">Table 8.29</a>)</td>
+    <td align="left"><em>SUC ServiceParameter</em> (extension) (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-729-model-definition-of-suc-serviceparameter">Table 7.29</a>)</td>
     <td align="left">Extension with <em>FunctionClassificationAttributes</em> for parameters</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC LogisticsInteraction</em> (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-830-model-definition-of-suc-logisticsinteraction">Table 8.30</a>)</td>
+    <td align="left"><em>SUC LogisticsInteraction</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-730-model-definition-of-suc-logisticsinteraction">Table 7.30</a>)</td>
     <td align="left">Aggregation of all logistics-specific LEA requests to the LOL</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC LogisticsQuestion</em> (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-831-model-definition-of-suc-logisticsquestion">Table 8.31</a>)</td>
+    <td align="left"><em>SUC LogisticsQuestion</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-731-model-definition-of-suc-logisticsquestion">Table 7.31</a>)</td>
     <td align="left">Base model for a LEA request to the LOL</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC ProductParameterRequest</em> (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-832-model-definition-of-suc-productparameterrequest">Table 8.32</a>)</td>
+    <td align="left"><em>SUC ProductParameterRequest</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-732-model-definition-of-suc-productparameterrequest">Table 7.32</a>)</td>
     <td align="left">LEA request for product-specific parameters</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC PackagingParameterRequest</em> (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-833-model-definition-of-suc-packagingparameterrequest">Table 8.33</a>)</td>
+    <td align="left"><em>SUC PackagingParameterRequest</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-733-model-definition-of-suc-packagingparameterrequest">Table 7.33</a>)</td>
     <td align="left">LEA request for packaging-specific parameters</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC ProductParameterUpdatedInfo</em> (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-834-model-definition-of-suc-productparameterupdatedinfo">Table 8.34</a>)</td>
+    <td align="left"><em>SUC ProductParameterUpdatedInfo</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-734-model-definition-of-suc-productparameterupdatedinfo">Table 7.34</a>)</td>
     <td align="left">LEA notification to the LOL of a changed product parameter set</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC PackagingParameterUpdatedInfo</em> (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-835-model-definition-of-suc-packagingparameterupdatedinfo">Table 8.35</a>)</td>
+    <td align="left"><em>SUC PackagingParameterUpdatedInfo</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-735-model-definition-of-suc-packagingparameterupdatedinfo">Table 7.35</a>)</td>
     <td align="left">LEA notification to the LOL of a changed packaging parameter set</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>RC HasLogisticsInteraction</em> (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-837-model-definition-of-rc-haslogisticsinteraction">Table 8.37</a>)</td>
+    <td align="left"><em>RC HasLogisticsInteraction</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-737-model-definition-of-rc-haslogisticsinteraction">Table 7.37</a>)</td>
     <td align="left">Association of a <em>LogisticsInteraction</em> to a LEA service</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC Service</em> (extension) (<a href="../08_MTP%20Extensions/08-04_ServiceSet.md#table-838-model-definition-of-suc-service">Table 8.38</a>)</td>
+    <td align="left"><em>SUC Service</em> (extension) (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-738-model-definition-of-suc-service">Table 7.38</a>)</td>
     <td align="left">Extension of the existing Service model to allow attachment of <em>RC HasLogisticsInteraction</em></td>
   </tr>
 </table>
 
-In addition to these definitions, *FunctionClassificationAttributes* are introduced for CES and SES procedures as well as for the parameters *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* ([Section 8.4.1](../08_MTP%20Extensions/08-04_ServiceSet.md#841-overview)). A mechanism for modeling complex data types in an OPC UA server is also specified as a supplementary artifact ([Section 8.6](../08_MTP%20Extensions/08-06_ServerAssemblySet.md#86-mtp-extension-of-the-serverassemblyset)). 
+In addition to these definitions, *FunctionClassificationAttributes* are introduced for CES and SES procedures as well as for the parameters *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* ([Section 7.4.1](../07_MTP%20Extensions/07-04_ServiceSet.md#741-overview)). A mechanism for modeling complex data types in an OPC UA server is also specified as a supplementary artifact ([Section 7.6](../07_MTP%20Extensions/07-06_ServerAssemblySet.md#76-mtp-extension-of-the-serverassemblyset)). 

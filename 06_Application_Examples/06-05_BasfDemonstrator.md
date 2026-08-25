@@ -1,26 +1,26 @@
-## 7.5 Evaluation Example: BASF Demonstrator
+## 6.5 Evaluation Example: BASF Demonstrator
 
 This section describes the first industrial evaluation example, which was carried out at BASF SE in Ludwigshafen. It evaluates CES-based LEA automation and choreography-based Logistics Line automation.
 
-### 7.5.1 Use Case
+### 6.5.1 Use Case
 
 The demonstrator is a laboratory-scale bottle-filling system consisting of three physical LEAs arranged in a Logistics Line: a Labeller (LABEL), a Filler (FILL), and a Capper (CAP). The LABEL prints plastic bottles, the FILL fills them with granulate, and the CAP seals them. The LEAs are rigidly coupled, resulting in a fixed material flow defined by the physical layout. A LOL is provided above the line to offer the necessary orchestration functions for the system.
 
-##### Figure 7.22: BASF Bottle-Filling Laboratory System at BASF SE Ludwigshafen (Evaluation Example 1)
+##### Figure 6.22: BASF Bottle-Filling Laboratory System at BASF SE Ludwigshafen (Evaluation Example 1)
 ![BASF Bottle-Filling Laboratory System at BASF SE Ludwigshafen](./images/BASF_Demo.png)
 
-### 7.5.2 Implementation
+### 6.5.2 Implementation
 
 Each of the three LEAs was already equipped with a Siemens controller (LABEL: SIMATIC S7 CPU 1511-1 PN; FILL: SIMATIC S7 CPU 1516-3 PN/DP; CAP: SIMATIC S7 CPU 1512SP-1 PN) running a native control program for interaction with the respective hardware. As part of this evaluation, an MTP service implementation following the CES-based LEA automation concept was retrofitted around the native software of each module, turning them into LEAs in the sense of this dissertation. All parameters were configured on the basis of individual values, since the LEAs had only a small number of parameters.
 
 The three LEAs were integrated into a Logistics Line using the choreography concept. A Lead Service was implemented in the CAP controller. The MTP service and choreography implementations are based on prototype block libraries from Siemens AG for SIMATIC TIA Portal V17. The choreography library was extended with new function blocks enabling MTP-based choreography configuration.
 
-##### Figure 7.23: Setup of the BASF Demonstrator and Implemented Logistics Process
+##### Figure 6.23: Setup of the BASF Demonstrator and Implemented Logistics Process
 ![Setup of the BASF Demonstrator and Implemented Logistics Process](./images/Basf_Demo_Prozess.svg)
 
 The LOL provides two functions: a choreography configurator and a line HMI screen. The choreography configurator, developed in [[Kem22]](../98_References/README.md#kempin-2022) as a NestJS/Angular application, allows operators to configure and download choreography relations to the LEAs. The line HMI screen was implemented using SIMATIC WinCC Unified.
 
-### 7.5.3 Test Scenarios
+### 6.5.3 Test Scenarios
 
 The following test scenarios were successfully executed at the BASF demonstrator:
 
@@ -33,7 +33,7 @@ The following test scenarios were successfully executed at the BASF demonstrator
 - **Drain:** Triggered by a Complete command at the Lead, the line was drained from front to back (LABEL → FILL → CAP).
 - **Reset, Stop, Abort, Hold, Unhold, Pause, Resume:** All state transitions were successfully propagated across the line in both directions via the choreography.
 
-### 7.5.4 Findings
+### 6.5.4 Findings
 
 **Practical applicability:** The tests confirm the practical applicability of CES-based LEA automation and choreography-based Logistics Line automation.
 

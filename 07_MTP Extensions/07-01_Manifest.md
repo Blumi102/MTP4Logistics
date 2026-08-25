@@ -1,30 +1,30 @@
-﻿## 8.1 MTP Extension of the Manifest
+﻿## 7.1 MTP Extension of the Manifest
 This chapter specifies all identified extensions of the *Manifest* and integrates them into the existing [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1).
 
-### 8.1.1 Overview
+### 7.1.1 Overview
 #### Extension of the Manifest for Modeling Composed MTPs
-For modeling Composed MTPs two new model definitions *SUC ComposedModuleTypePackage* and *RC HasExternalMtpContext* are required. As shown in [Figure 8.1](#figure-81-extension-of-the-manifest-for-modeling-Composed MTPs), the model definition *SUC ComposedModuleTypePackage* is organized in *SUCL MTPSUCLib*. An *IH ModuleTypePackage* may contain either a *SUC ComposedModuleTypePackage* or a *SUC ModuleTypePackage*. In contrast to *SUC ModuleTypePackage*, *SUC ComposedModuleTypePackage* always contains a subordinate *AttachmentSet* but no *DataAssemblySet* or *ServerAssemblySet*. 
+For modeling Composed MTPs two new model definitions *SUC ComposedModuleTypePackage* and *RC HasExternalMtpContext* are required. As shown in [Figure 7.1](#figure-71-extension-of-the-manifest-for-modeling-Composed MTPs), the model definition *SUC ComposedModuleTypePackage* is organized in *SUCL MTPSUCLib*. An *IH ModuleTypePackage* may contain either a *SUC ComposedModuleTypePackage* or a *SUC ModuleTypePackage*. In contrast to *SUC ModuleTypePackage*, *SUC ComposedModuleTypePackage* always contains a subordinate *AttachmentSet* but no *DataAssemblySet* or *ServerAssemblySet*. 
 
 <!-- TODO: Evtl. auf Struktur des AttachementSet verweisen -->
 
-##### Figure 8.1: Extension of the Manifest for Modeling Composed MTPs
+##### Figure 7.1: Extension of the Manifest for Modeling Composed MTPs
 ![Extension of the Manifest for Modeling Composed MTPs](./images/01_Manifest.drawio.svg) 
 
-*RC HasExternalMtpContext* is organized in the newly introduced library *RCL MTPRCLib*. It can be assigned to a *SUC LinkedObject* as an SRC. Thus, *SUC LinkedObject* must be extended to enable this assignment.[^1] These extensions are specified in detail in [Model Definitions](#812-model-definitions) and are assigned to the new profile *ModuleTypePackage:Manifest.Composed V2.0.0*.
+*RC HasExternalMtpContext* is organized in the newly introduced library *RCL MTPRCLib*. It can be assigned to a *SUC LinkedObject* as an SRC. Thus, *SUC LinkedObject* must be extended to enable this assignment.[^1] These extensions are specified in detail in [Model Definitions](#712-model-definitions) and are assigned to the new profile *ModuleTypePackage:Manifest.Composed V2.0.0*.
 
 #### Extension of the Manifest for Verifying Choreographed Functions
-New workflows are required for type, version, and instance verification of choreographed functions and Composed MTPs. These extensions are specified in detail in [Workflows](#813-workflows) and are assigned to the new profile *ModuleTypePackage:Manifest.Composed V2.0.0*.
+New workflows are required for type, version, and instance verification of choreographed functions and Composed MTPs. These extensions are specified in detail in [Workflows](#713-workflows) and are assigned to the new profile *ModuleTypePackage:Manifest.Composed V2.0.0*.
 
-For version verification, the variable *ComposedTypeRevision* of *SUC ComposedModuleTypePackage* is used. This variable has a specific format and interpretation that follow the rules of *Semantic Versioning* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). According to the MTP modeling principles, a defined AttributeType must therefore be assigned to this variable. For this purpose, *AT ComposedTypeRevisionType* is introduced as shown in [Figure 8.2](#figure-82-extension-of-the-manifest-for-verifying-choreographed-functions). It describes the version of the communication-relevant interface content of a choreographed function.[^2] This AT is derived from *AT SemanticVersionAttributeType* and organized in *ATL MTPATLib*. This extension is specified in detail in [Model Definitions](#812-model-definitions) and is assigned to the new profile *ModuleTypePackage:Manifest.Composed V2.0.0*.
+For version verification, the variable *ComposedTypeRevision* of *SUC ComposedModuleTypePackage* is used. This variable has a specific format and interpretation that follow the rules of *Semantic Versioning* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). According to the MTP modeling principles, a defined AttributeType must therefore be assigned to this variable. For this purpose, *AT ComposedTypeRevisionType* is introduced as shown in [Figure 7.2](#figure-72-extension-of-the-manifest-for-verifying-choreographed-functions). It describes the version of the communication-relevant interface content of a choreographed function.[^2] This AT is derived from *AT SemanticVersionAttributeType* and organized in *ATL MTPATLib*. This extension is specified in detail in [Model Definitions](#712-model-definitions) and is assigned to the new profile *ModuleTypePackage:Manifest.Composed V2.0.0*.
 
-##### Figure 8.2: Extension of the Manifest for Verifying Choreographed Functions
+##### Figure 7.2: Extension of the Manifest for Verifying Choreographed Functions
 ![Extension of the Manifest for Verifying Choreographed Functions](./images/01_Manifest_AT.drawio.svg)
 
-### 8.1.2 Model Definitions
+### 7.1.2 Model Definitions
 #### Specification of the System Unit Class ComposedModuleTypePackage
-*SUC ComposedModuleTypePackage* ([Table 8.1](#table-81-model-definition-of-suc-composedmoduletypepackage)) is the entry point to the information model of a Composed MTP. It contains the table of contents of the Composed MTP, from which all contained aspects are referenced according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). A *SUC ComposedModuleTypePackage* always contains an *AttachmentSet* that references the MTP files on which the Composed MTP is based. *SUC ComposedModuleTypePackage* contains AutomationML properties and attributes used for type, version, and instance verification of choreographed types (see [Workflows](#813-workflows), type, version, and instance verification of choreographies). In addition, the variable *Version* specifies the version of the Composed MTP itself. In contrast to *ComposedTypeRevision*, *Version* also indicates non-communication-relevant changes that affect only the Composed MTP itself, for example changes to the HMI of the logistics line.
+*SUC ComposedModuleTypePackage* ([Table 7.1](#table-71-model-definition-of-suc-composedmoduletypepackage)) is the entry point to the information model of a Composed MTP. It contains the table of contents of the Composed MTP, from which all contained aspects are referenced according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). A *SUC ComposedModuleTypePackage* always contains an *AttachmentSet* that references the MTP files on which the Composed MTP is based. *SUC ComposedModuleTypePackage* contains AutomationML properties and attributes used for type, version, and instance verification of choreographed types (see [Workflows](#713-workflows), type, version, and instance verification of choreographies). In addition, the variable *Version* specifies the version of the Composed MTP itself. In contrast to *ComposedTypeRevision*, *Version* also indicates non-communication-relevant changes that affect only the Composed MTP itself, for example changes to the HMI of the logistics line.
 
-##### Table 8.1: Model Definition of *SUC ComposedModuleTypePackage*
+##### Table 7.1: Model Definition of *SUC ComposedModuleTypePackage*
 
 <table>
   <tr>
@@ -133,9 +133,9 @@ For version verification, the variable *ComposedTypeRevision* of *SUC ComposedMo
 </table>
 
 #### Specification of the Attribute Type ComposedTypeRevisionType
-*AT ComposedTypeRevisionType* ([Table 8.2](#table-82-model-definition-of-at-composedtyperevisiontype)) defines the version information of the communication-relevant interface content of a Composed MTP according to the rules of *Semantic Versioning*. This AT is derived from *AT SemanticVersionAttributeType*.
+*AT ComposedTypeRevisionType* ([Table 7.2](#table-72-model-definition-of-at-composedtyperevisiontype)) defines the version information of the communication-relevant interface content of a Composed MTP according to the rules of *Semantic Versioning*. This AT is derived from *AT SemanticVersionAttributeType*.
 
-##### Table 8.2: Model Definition of *AT ComposedTypeRevisionType*
+##### Table 7.2: Model Definition of *AT ComposedTypeRevisionType*
 
 <table>
 	<tr>
@@ -197,9 +197,9 @@ For version verification, the variable *ComposedTypeRevision* of *SUC ComposedMo
 </table>
 
 #### Specification of the Role Class Library MTPRCLib
-*RCL MTPRCLib* ([Table 8.3](#table-83-library-definition-of-rcl-mtprclib)) contains the basic role classes for the *Manifest* of a Module Type Package. 
+*RCL MTPRCLib* ([Table 7.3](#table-73-library-definition-of-rcl-mtprclib)) contains the basic role classes for the *Manifest* of a Module Type Package. 
 
-##### Table 8.3: Library Definition of *RCL MTPRCLib*
+##### Table 7.3: Library Definition of *RCL MTPRCLib*
 
 <table>
 	<tr>
@@ -243,9 +243,9 @@ For version verification, the variable *ComposedTypeRevision* of *SUC ComposedMo
 </table>
 
 #### Specification of the Role Class HasExternalMtpContext
-*RC HasExternalMtpContext* ([Table 8.4](#table-84-model-definition-of-rc-hasexternalmtpcontext)) provides the capability to reference an object from an attached MTP file. For this purpose, the variable *ContextLink* is used to reference the MTP file that contains the object to be referenced by means of the ID link mechanism. To do so, the ID of the *IC AttachmentReference* of the corresponding MTP file is entered in the *ContextLink* variable. The referenced object itself can then be addressed according to the LinkedObject or ID link mechanism defined in [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1), or according to the CustomSymbols mechanism, as if the object was located in the same MTP. *RC HasExternalMtpContext* can be annotated to derivations of *SUC LinkedObject*, *SUC PictureFrame*, and *SUC ReferencedPicture*. 
+*RC HasExternalMtpContext* ([Table 7.4](#table-74-model-definition-of-rc-hasexternalmtpcontext)) provides the capability to reference an object from an attached MTP file. For this purpose, the variable *ContextLink* is used to reference the MTP file that contains the object to be referenced by means of the ID link mechanism. To do so, the ID of the *IC AttachmentReference* of the corresponding MTP file is entered in the *ContextLink* variable. The referenced object itself can then be addressed according to the LinkedObject or ID link mechanism defined in [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1), or according to the CustomSymbols mechanism, as if the object was located in the same MTP. *RC HasExternalMtpContext* can be annotated to derivations of *SUC LinkedObject*, *SUC PictureFrame*, and *SUC ReferencedPicture*. 
 
-##### Table 8.4: Model Definition of *RC HasExternalMtpContext*
+##### Table 7.4: Model Definition of *RC HasExternalMtpContext*
 
 <table>
 	<tr>
@@ -322,7 +322,7 @@ For version verification, the variable *ComposedTypeRevision* of *SUC ComposedMo
 	</tr>
 </table>
 
-### 8.1.3 Workflows
+### 7.1.3 Workflows
 [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) introduces mechanisms for type, version, and instance verification in the MTP context. These mechanisms can be used to verify the types, versions, and instance information of the individual LEAs of a logistics line. This section further shows how these mechanisms can be extended for verifying choreography-based functions and Composed MTPs.
 
 #### Type Verification
@@ -348,5 +348,5 @@ For instance verification of the choreography, the assignments of *RoleIdent* an
 
 
 
-[^1]: [HMISet](./08-02_HMISet.md) also describes that *RC HasExternalMtpContext* can be assigned to *SUC PictureFrame* and *SUC ReferencedPicture*.
+[^1]: [HMISet](./07-02_HMISet.md) also describes that *RC HasExternalMtpContext* can be assigned to *SUC PictureFrame* and *SUC ReferencedPicture*.
 [^2]: *AT ComposedTypeRevisionType* is therefore similar to *AT DeviceRevisionType*. However, while *AT DeviceRevisionType* refers only to the content of the *ServerAssemblySet* of one MTP, *AT ComposedTypeRevisionType* refers to the distributed content of the *ServerAssemblySets* of multiple MTPs.

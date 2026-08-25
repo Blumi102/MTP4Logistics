@@ -43,7 +43,7 @@ To bind the TN Blocks of the LEAs to their corresponding TN Proxies in the Trans
 
 ##### TransportSet
 
-For automated integration of LEAs and their transport nodes into the LEA Management of the Transport Management, a new MTP aspect *TransportSet* is introduced. It contains all necessary model and interface definitions for describing the transport-relevant information of a LEA and its transport nodes. This section provides an overview of the *TransportSet*; a detailed description is provided in [Section 8.8](../08_MTP%20Extensions/08-08_TransportSet.md#88-mtp-specification-of-the-transportset).
+For automated integration of LEAs and their transport nodes into the LEA Management of the Transport Management, a new MTP aspect *TransportSet* is introduced. It contains all necessary model and interface definitions for describing the transport-relevant information of a LEA and its transport nodes. This section provides an overview of the *TransportSet*; a detailed description is provided in [Section 7.8](../07_MTP%20Extensions/07-08_TransportSet.md#78-mtp-specification-of-the-transportset).
 
 To generate the necessary TN Proxies in the Transport Management, the transport nodes of a LEA are described in the MTP. For this, the abstract model definition *TransportNode* is introduced, from which concrete model definitions for the different types of LEA transport nodes are derived: *InboundNode*, *OutboundNode*, *InOutboundNode*, *ProcessingNode*, and *OrderNode*. These are listed in a flat list directly below the *TransportSet*.
 
@@ -151,7 +151,7 @@ These variables are obtained by the LEA from the *ProductDataSet* using *Product
 
 ##### Using Dynamically Determined Values
 
-For dynamically determining the next transport node, a LEA can query the Material Flow Management of the LOL. For this query, a new logistics-specific service interaction is introduced, referred to as *TransportNodeRequest* ([Table 8.36](../08_MTP%20Extensions/08-04_ServiceSet.md#table-836-model-definition-of-suc-transportnoderequest)). The *TransportNodeRequest* enables querying the next transport node for the LO in question by providing the *TransportId* of a transport service. The Material Flow Management of the LOL then returns the desired next transport node as a response.
+For dynamically determining the next transport node, a LEA can query the Material Flow Management of the LOL. For this query, a new logistics-specific service interaction is introduced, referred to as *TransportNodeRequest* ([Table 7.36](../07_MTP%20Extensions/07-04_ServiceSet.md#table-736-model-definition-of-suc-transportnoderequest)). The *TransportNodeRequest* enables querying the next transport node for the LO in question by providing the *TransportId* of a transport service. The Material Flow Management of the LOL then returns the desired next transport node as a response.
 
 ##### Using the FinalTargetNode
 

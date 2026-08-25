@@ -2,7 +2,7 @@
 
 This chapter presents the choreography-based automation and MTP-based integration of Logistics Lines. Existing choreography concepts from [[Stu26]](../98_References/README.md#stutz-2026) and [[SFB+21]](../98_References/README.md#stutz-et-al-2021) are adopted and extended with newly specified MTP concepts. The application of choreography principles to Logistics Line automation was investigated in [[Ort21]](../98_References/README.md#ortmann-2021) and partially published in [[BSF+22]](../98_References/README.md#blumenstein-et-al-2022-etfa), [[BGB+23]](../98_References/README.md#blumenstein-et-al-moprolog), and [[SBF+22]](../98_References/README.md#stutz-et-al-2022). 
 
- [Section 7.3](../07_Application_Examples/07-03_BagFillingLine.md#73-application-example-bag-filling-line) shows the application of the described concepts to a bag-filling Logistics Line. [Section 8.7](../08_MTP%20Extensions/08-07_ChoreographySet.md#87-mtp-specification-of-the-choreographyset) provides detailed specifications of the introduced MTP extensions.
+ [Section 6.3](../06_Application_Examples/06-03_BagFillingLine.md#63-application-example-bag-filling-line) shows the application of the described concepts to a bag-filling Logistics Line. [Section 7.7](../07_MTP%20Extensions/07-07_ChoreographySet.md#77-mtp-specification-of-the-choreographyset) provides detailed specifications of the introduced MTP extensions.
 
 ### 4.1 Artifact Overview
 
@@ -52,7 +52,7 @@ The central *ConfigurableLogic* component controls the execution of the Configur
 
 #### 4.2.5 Configurable Communication
 
-The Configurable Communication components (blue in [Figure 4.3](#figure-43-architecture-of-an-lea-as-a-choreography-participant)) provide configurable data exchange between LEAs within a choreography. The goal is that each LEA receives the LEA-external information it requires for executing the processing functions configured in its Logic List. To enable communication between LEAs from different manufacturers, a standardized communication technology is used. Consistent with existing concepts in the MTP environment, this work employs OPC UA Client/Server. For this communication technology, [[Stu26]](../98_References/README.md#stutz-2026) provides two communication variants — active reading and active writing. In the case of active reading, information is read from another LEA's Input List and transferred into the local Input List. In the case of active writing, information from the local Output List is written into another LEA's Input List. Additionally, active writing can be used according to [[Stu26]](../98_References/README.md#stutz-2026) and [[SFB+23]](../98_References/README.md#stutz-et-al-2023) to integrate non-choreography-enabled equipment via decentralized orchestration. To support all these variants, this work specifies MTP concepts for both active reading and active writing. However, as analyzed in [[Stu26]](../98_References/README.md#stutz-2026), the active reading variant is recommended. Therefore, this variant is particularly focused and also implemented and evaluated as part of the evaluation ([Chapter 7](../07_Application_Examples/07-00_Intro.md)). [Figure 4.5](#figure-45-components-of-the-configurable-communication-software-pattern) shows the components of the design pattern *Configurable Communication* according to [[Stu26]](../98_References/README.md#stutz-2026).
+The Configurable Communication components (blue in [Figure 4.3](#figure-43-architecture-of-an-lea-as-a-choreography-participant)) provide configurable data exchange between LEAs within a choreography. The goal is that each LEA receives the LEA-external information it requires for executing the processing functions configured in its Logic List. To enable communication between LEAs from different manufacturers, a standardized communication technology is used. Consistent with existing concepts in the MTP environment, this work employs OPC UA Client/Server. For this communication technology, [[Stu26]](../98_References/README.md#stutz-2026) provides two communication variants — active reading and active writing. In the case of active reading, information is read from another LEA's Input List and transferred into the local Input List. In the case of active writing, information from the local Output List is written into another LEA's Input List. Additionally, active writing can be used according to [[Stu26]](../98_References/README.md#stutz-2026) and [[SFB+23]](../98_References/README.md#stutz-et-al-2023) to integrate non-choreography-enabled equipment via decentralized orchestration. To support all these variants, this work specifies MTP concepts for both active reading and active writing. However, as analyzed in [[Stu26]](../98_References/README.md#stutz-2026), the active reading variant is recommended. Therefore, this variant is particularly focused and also implemented and evaluated as part of the evaluation ([Chapter 6](../06_Application_Examples/06-00_Intro.md)). [Figure 4.5](#figure-45-components-of-the-configurable-communication-software-pattern) shows the components of the design pattern *Configurable Communication* according to [[Stu26]](../98_References/README.md#stutz-2026).
 
 ##### Figure 4.5: Components of the Configurable Communication Software Pattern
 ![Components of the Configurable Communication Software Pattern](./images/Software_Pattern_Konfigurierbare_Kommunikation_Übersicht.drawio.png)
@@ -134,7 +134,7 @@ MTP-based interfaces for configuring the Configurable Logic and the Configurable
 
 #### 4.2.9 ChoreographySet
 
-To represent the model and interface definitions introduced in [Section 4.2.7](#427-semantic-models-for-lea-integration-into-a-choreography-configurator) and [Section 4.2.8](#428-interfaces-for-configuring-horizontal-interaction), a new MTP aspect *ChoreographySet* is introduced. This section provides an overview of this aspect; a detailed description is given in the [Section 8.7](../08_MTP%20Extensions/08-07_ChoreographySet.md#87-mtp-specification-of-the-choreographyset). For integration into a Choreography Configurator, the Input and Output Lists of a LEA are modeled with the elements described in [Section 4.2.7](#427-semantic-models-for-lea-integration-into-a-choreography-configurator). All Input and Output elements of types *FixedInputElement*, *FixedOutputElement*, *ConfigurableInputElement*, and *ConfigurableOutputElement* are assigned a *UnionElement* interface. Each *WritableInputElement* is assigned a *WritableUnionElement* interface. Configurable Communication is configured via an *OpcUaClientServerManager* interface. This interface contains one *UaReader* per *ConfigurableInputElement* and one *UaWriter* per *ConfigurableOutputElement*, which can be configured according to the choreography configuration to be loaded. Additionally, this interface contains one *ValueField* per *WritableInputElement*, which other LEAs can write to. Configurable Logic is configured via a *ChoreographyParticipantManager* interface, which is assigned to the *ChoreographyParticipant* model definition. The use of the newly introduced MTP interface and model definitions for implementing choreography relations is described in the [Section 7.3.4](../07_Application_Examples/07-03_BagFillingLine.md#734-implementation-of-choreography-relations-using-the-models-and-interfaces-of-the-choreographyset) for the principles of active reading and active writing using OPC UA Client/Server.
+To represent the model and interface definitions introduced in [Section 4.2.7](#427-semantic-models-for-lea-integration-into-a-choreography-configurator) and [Section 4.2.8](#428-interfaces-for-configuring-horizontal-interaction), a new MTP aspect *ChoreographySet* is introduced. This section provides an overview of this aspect; a detailed description is given in the [Section 7.7](../07_MTP%20Extensions/07-07_ChoreographySet.md#77-mtp-specification-of-the-choreographyset). For integration into a Choreography Configurator, the Input and Output Lists of a LEA are modeled with the elements described in [Section 4.2.7](#427-semantic-models-for-lea-integration-into-a-choreography-configurator). All Input and Output elements of types *FixedInputElement*, *FixedOutputElement*, *ConfigurableInputElement*, and *ConfigurableOutputElement* are assigned a *UnionElement* interface. Each *WritableInputElement* is assigned a *WritableUnionElement* interface. Configurable Communication is configured via an *OpcUaClientServerManager* interface. This interface contains one *UaReader* per *ConfigurableInputElement* and one *UaWriter* per *ConfigurableOutputElement*, which can be configured according to the choreography configuration to be loaded. Additionally, this interface contains one *ValueField* per *WritableInputElement*, which other LEAs can write to. Configurable Logic is configured via a *ChoreographyParticipantManager* interface, which is assigned to the *ChoreographyParticipant* model definition. The use of the newly introduced MTP interface and model definitions for implementing choreography relations is described in the [Section 6.3.4](../06_Application_Examples/06-03_BagFillingLine.md#634-implementation-of-choreography-relations-using-the-models-and-interfaces-of-the-choreographyset) for the principles of active reading and active writing using OPC UA Client/Server.
 
 ### 4.3 Vertical Integration of a Logistics Line into a Logistics Orchestration Layer
 
@@ -259,7 +259,7 @@ The Line Interface and Line HMI to be modeled in the Composed MTP are composed o
 
 #### 4.3.6 Referencing Mechanism
 
-The LEA MTPs are stored in a separate folder "MTPs" in the attachment of the Composed MTP and registered in its *AttachmentSet* according to the mechanisms from [[PNO Part 1]](../98_References/README.md#pno-2025-part1) ([Figure 4.15](#figure-415-referencing-mechanism-of-a-composed-mtp), green reference). An *AttachmentGroup* is created for the LEA MTPs. It contains one instance of the *IC AttachmentReference* for each MTP, referencing the respective MTP file. These *AttachmentReferences* simultaneously describe the participant roles that must be filled by LEA instances to implement the choreographed function. The names of the *AttachmentReferences* correspond to *RoleIdents* that are also used for instance verification of choreographed functions ([Section 8.1.3](../08_MTP%20Extensions/08-01_Manifest.md#813-workflows)). According to [[PNO Part 1]](../98_References/README.md#pno-2025-part1), the attribute *refUri* contains the path to the MTP file. The attributes *DocumentType* and *MIMEType* specify the type of the attached document — for Composed MTPs, *DocumentType* is always set to "ModuleTypePackage" and *MIMEType* to "application/mtp".
+The LEA MTPs are stored in a separate folder "MTPs" in the attachment of the Composed MTP and registered in its *AttachmentSet* according to the mechanisms from [[PNO Part 1]](../98_References/README.md#pno-2025-part1) ([Figure 4.15](#figure-415-referencing-mechanism-of-a-composed-mtp), green reference). An *AttachmentGroup* is created for the LEA MTPs. It contains one instance of the *IC AttachmentReference* for each MTP, referencing the respective MTP file. These *AttachmentReferences* simultaneously describe the participant roles that must be filled by LEA instances to implement the choreographed function. The names of the *AttachmentReferences* correspond to *RoleIdents* that are also used for instance verification of choreographed functions ([Section 7.1.3](../07_MTP%20Extensions/07-01_Manifest.md#713-workflows)). According to [[PNO Part 1]](../98_References/README.md#pno-2025-part1), the attribute *refUri* contains the path to the MTP file. The attributes *DocumentType* and *MIMEType* specify the type of the attached document — for Composed MTPs, *DocumentType* is always set to "ModuleTypePackage" and *MIMEType* to "application/mtp".
 
 <!-- TODO: Abbildung anpassen, inkl. AML-Modellierung -->
 ##### Figure 4.15: Referencing Mechanism of a Composed MTP
@@ -338,7 +338,7 @@ In [[PNO Part 1]](../98_References/README.md#pno-2025-part1) type, version, and 
 
 > **Note:** The MTP-based verification workflows do **not** verify whether a choreography is executable or with which parameters it operates correctly. They only verify that the correct choreography configuration is loaded and the correct LEA instances are installed.
 
-For further details on the verification workflows please refer to [Section 8.1.3](../08_MTP%20Extensions/08-01_Manifest.md#813-workflows).
+For further details on the verification workflows please refer to [Section 7.1.3](../07_MTP%20Extensions/07-01_Manifest.md#713-workflows).
 
 ### 4.4 MTP Extensions
 
@@ -357,32 +357,32 @@ In the preceding sections, a number of extensions to the MTP specification were 
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC UnionElement</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-843-dataassembly-definition-of-suc-unionelement">Table 8.43</a>)</td>
+    <td align="left"><em>SUC UnionElement</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-743-dataassembly-definition-of-suc-unionelement">Table 7.43</a>)</td>
     <td align="left">Interface for reading a value with a runtime-selectable data type</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC WritableUnionElement</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-844-dataassembly-definition-of-suc-writableunionelement">Table 8.44</a>)</td>
+    <td align="left"><em>SUC WritableUnionElement</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-744-dataassembly-definition-of-suc-writableunionelement">Table 7.44</a>)</td>
     <td align="left">Interface for writing a value with a runtime-selectable data type</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC ChoreographyElement</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-845-dataassembly-definition-of-suc-choreographyelement">Table 8.45</a>)</td>
+    <td align="left"><em>SUC ChoreographyElement</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-745-dataassembly-definition-of-suc-choreographyelement">Table 7.45</a>)</td>
     <td align="left">Base interface for all interfaces required for choreography configuration</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC ChoreographyParticipantManager</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-846-dataassembly-definition-of-suc-choreographyparticipantmanager">Table 8.46</a>)</td>
+    <td align="left"><em>SUC ChoreographyParticipantManager</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-746-dataassembly-definition-of-suc-choreographyparticipantmanager">Table 7.46</a>)</td>
     <td align="left">Interface for configuring and controlling the execution of Configurable Logic</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC CommunicationManager</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-847-dataassembly-definition-of-suc-communicationmanager">Table 8.47</a>)</td>
+    <td align="left"><em>SUC CommunicationManager</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-747-dataassembly-definition-of-suc-communicationmanager">Table 7.47</a>)</td>
     <td align="left">Base interface for all Configurable Communication configuration interfaces</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC OpcUaClientServerManager</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-848-dataassembly-definition-of-suc-opcuaclientservermanager">Table 8.48</a>)</td>
+    <td align="left"><em>SUC OpcUaClientServerManager</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-748-dataassembly-definition-of-suc-opcuaclientservermanager">Table 7.48</a>)</td>
     <td align="left">Interface for configuring and controlling OPC UA Client/Server-based Configurable Communication</td>
   </tr>
   <tr>
@@ -395,102 +395,102 @@ In the preceding sections, a number of extensions to the MTP specification were 
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>IH Choreography</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-849-model-definition-of-ih-choreography">Table 8.49</a>)</td>
+    <td align="left"><em>IH Choreography</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-749-model-definition-of-ih-choreography">Table 7.49</a>)</td>
     <td align="left">Instance hierarchy for organizing all choreography-related models of an MTP</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC ChoreographySet</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-851-model-definition-of-suc-choreographyset">Table 8.51</a>)</td>
+    <td align="left"><em>SUC ChoreographySet</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-751-model-definition-of-suc-choreographyset">Table 7.51</a>)</td>
     <td align="left">Aspect set organizing all choreography-related model definitions</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC ChoreographyParticipant</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-852-model-definition-of-suc-choreographyparticipant">Table 8.52</a>)</td>
+    <td align="left"><em>SUC ChoreographyParticipant</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-752-model-definition-of-suc-choreographyparticipant">Table 7.52</a>)</td>
     <td align="left">Model describing a LEA as a choreography participant</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC InputList</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-853-model-definition-of-suc-inputlist">Table 8.53</a>)</td>
+    <td align="left"><em>SUC InputList</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-753-model-definition-of-suc-inputlist">Table 7.53</a>)</td>
     <td align="left">Model for the Input List of a LEA</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC OutputList</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-858-model-definition-of-suc-outputlist">Table 8.58</a>)</td>
+    <td align="left"><em>SUC OutputList</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-758-model-definition-of-suc-outputlist">Table 7.58</a>)</td>
     <td align="left">Model for the Output List of a LEA</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC InputElement</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-854-model-definition-of-suc-inputelement">Table 8.54</a>)</td>
+    <td align="left"><em>SUC InputElement</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-754-model-definition-of-suc-inputelement">Table 7.54</a>)</td>
     <td align="left">Model for an element of the Input List</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC OutputElement</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-859-model-definition-of-suc-outputelement">Table 8.59</a>)</td>
+    <td align="left"><em>SUC OutputElement</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-759-model-definition-of-suc-outputelement">Table 7.59</a>)</td>
     <td align="left">Model for an element of the Output List</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC FixedInputElement</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-855-model-definition-of-suc-fixedinputelement">Table 8.55</a>)</td>
+    <td align="left"><em>SUC FixedInputElement</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-755-model-definition-of-suc-fixedinputelement">Table 7.55</a>)</td>
     <td align="left">Fixed input element hard-coded by the LEA program</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC FixedOutputElement</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-860-model-definition-of-suc-fixedoutputelement">Table 8.60</a>)</td>
+    <td align="left"><em>SUC FixedOutputElement</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-760-model-definition-of-suc-fixedoutputelement">Table 7.60</a>)</td>
     <td align="left">Fixed output element hard-coded by the LEA program</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC ConfigurableInputElement</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-856-model-definition-of-suc-configurableinputelement">Table 8.56</a>)</td>
+    <td align="left"><em>SUC ConfigurableInputElement</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-756-model-definition-of-suc-configurableinputelement">Table 7.56</a>)</td>
     <td align="left">Input element for reading a value from another LEA</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC ConfigurableOutputElement</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-861-model-definition-of-suc-configurableoutputelement">Table 8.61</a>)</td>
+    <td align="left"><em>SUC ConfigurableOutputElement</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-761-model-definition-of-suc-configurableoutputelement">Table 7.61</a>)</td>
     <td align="left">Output element for writing a value to another LEA</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ChoreographySet.Base V2.0.0</td>
-    <td align="left"><em>SUC WritableInputElement</em> (<a href="../08_MTP%20Extensions/08-07_ChoreographySet.md#table-857-model-definition-of-suc-writableinputelement">Table 8.57</a>)</td>
+    <td align="left"><em>SUC WritableInputElement</em> (<a href="../07_MTP%20Extensions/07-07_ChoreographySet.md#table-757-model-definition-of-suc-writableinputelement">Table 7.57</a>)</td>
     <td align="left">Passive input element that can be written by another LEA</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: Manifest.Composed V2.0.0</td>
-    <td align="left"><em>SUC ComposedModuleTypePackage</em> (<a href="../08_MTP%20Extensions/08-01_Manifest.md#table-81-model-definition-of-suc-composedmoduletypepackage">Table 8.1</a>)</td>
+    <td align="left"><em>SUC ComposedModuleTypePackage</em> (<a href="../07_MTP%20Extensions/07-01_Manifest.md#table-71-model-definition-of-suc-composedmoduletypepackage">Table 7.1</a>)</td>
     <td align="left">Base model for a Composed MTP; signals a composed type and carries verification metadata</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: Manifest.Composed V2.0.0</td>
-    <td align="left"><em>AT ComposedTypeRevisionType</em> (<a href="../08_MTP%20Extensions/08-01_Manifest.md#table-82-model-definition-of-at-composedtyperevisiontype">Table 8.2</a>)</td>
+    <td align="left"><em>AT ComposedTypeRevisionType</em> (<a href="../07_MTP%20Extensions/07-01_Manifest.md#table-72-model-definition-of-at-composedtyperevisiontype">Table 7.2</a>)</td>
     <td align="left">Attribute type for version information of a choreographed function</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: Manifest.Composed V2.0.0</td>
-    <td align="left"><em>RC HasExternalMtpContext</em> (<a href="../08_MTP%20Extensions/08-01_Manifest.md#table-84-model-definition-of-rc-hasexternalmtpcontext">Table 8.4</a>)</td>
+    <td align="left"><em>RC HasExternalMtpContext</em> (<a href="../07_MTP%20Extensions/07-01_Manifest.md#table-74-model-definition-of-rc-hasexternalmtpcontext">Table 7.4</a>)</td>
     <td align="left">RoleClass indicating that a referenced object originates from an attached LEA MTP</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: HMISet.Composed V2.0.0</td>
-    <td align="left"><em>SUC PictureFrame</em> (<a href="../08_MTP%20Extensions/08-02_HMISet.md#table-85-model-definition-of-suc-pictureframe">Table 8.5</a>)</td>
+    <td align="left"><em>SUC PictureFrame</em> (<a href="../07_MTP%20Extensions/07-02_HMISet.md#table-75-model-definition-of-suc-pictureframe">Table 7.5</a>)</td>
     <td align="left">Model for embedding a display from an attached LEA MTP into another display (display-in-display, Variant 2)</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: HMISet.Composed V2.0.0</td>
-    <td align="left"><em>SUC Picture</em> (extension) (<a href="../08_MTP%20Extensions/08-02_HMISet.md#table-86-model-definition-of-suc-picture">Table 8.6</a>)</td>
+    <td align="left"><em>SUC Picture</em> (extension) (<a href="../07_MTP%20Extensions/07-02_HMISet.md#table-76-model-definition-of-suc-picture">Table 7.6</a>)</td>
     <td align="left">Extension of the existing Picture model to support PictureFrames</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: HMISet.Composed V2.0.0</td>
-    <td align="left"><em>SUC SemanticGroup</em> (extension) (<a href="../08_MTP%20Extensions/08-02_HMISet.md#table-87-model-definition-of-suc-semanticgroup">Table 8.7</a>)</td>
+    <td align="left"><em>SUC SemanticGroup</em> (extension) (<a href="../07_MTP%20Extensions/07-02_HMISet.md#table-77-model-definition-of-suc-semanticgroup">Table 7.7</a>)</td>
     <td align="left">Extension of the existing SemanticGroup model to support PictureFrames</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: HMISet.Composed V2.0.0</td>
-    <td align="left"><em>SUC ReferencedPicture</em> (<a href="../08_MTP%20Extensions/08-02_HMISet.md#table-88-model-definition-of-suc-referencedpicture">Table 8.8</a>)</td>
+    <td align="left"><em>SUC ReferencedPicture</em> (<a href="../07_MTP%20Extensions/07-02_HMISet.md#table-78-model-definition-of-suc-referencedpicture">Table 7.8</a>)</td>
     <td align="left">Model for referencing displays or display hierarchies from attached LEA MTPs into the Composed MTP display hierarchy (Variants 3 and 4)</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: HMISet.Composed V2.0.0</td>
-    <td align="left"><em>SUC HMISet</em> (extension) (<a href="../08_MTP%20Extensions/08-02_HMISet.md#table-89-model-definition-of-suc-hmiset">Table 8.9</a>)</td>
+    <td align="left"><em>SUC HMISet</em> (extension) (<a href="../07_MTP%20Extensions/07-02_HMISet.md#table-79-model-definition-of-suc-hmiset">Table 7.9</a>)</td>
     <td align="left">Extension of the existing HMISet model to support ReferencedPictures</td>
   </tr>
   <tr>
@@ -503,17 +503,17 @@ In the preceding sections, a number of extensions to the MTP specification were 
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: Manifest.Composed V2.0.0</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-01_Manifest.md#type-verification">Type verification</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-01_Manifest.md#type-verification">Type verification</a></td>
     <td align="left">Verifies the type of the choreography configuration loaded on the LEAs against the type described in the Composed MTP</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: Manifest.Composed V2.0.0</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-01_Manifest.md#version-verification">Version verification</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-01_Manifest.md#version-verification">Version verification</a></td>
     <td align="left">Verifies the version of the choreography configuration loaded on the LEAs against the version described in the Composed MTP</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: Manifest.Composed V2.0.0</td>
-    <td align="left"><a href="../08_MTP%20Extensions/08-01_Manifest.md#instance-verification">Instance verification</a></td>
+    <td align="left"><a href="../07_MTP%20Extensions/07-01_Manifest.md#instance-verification">Instance verification</a></td>
     <td align="left">Verifies that the LEA instances installed in the Logistics Line match the planned instances specified in the Composed MTP</td>
   </tr>
 </table>

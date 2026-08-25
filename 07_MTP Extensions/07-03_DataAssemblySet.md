@@ -1,34 +1,34 @@
-## 8.3 MTP Extension of the DataAssemblySet
+## 7.3 MTP Extension of the DataAssemblySet
 This chapter specifies all identified extensions of the *DataAssemblySet* and integrates them into the existing [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3).
 
-### 8.3.1 Overview
+### 7.3.1 Overview
 #### Extension of the IndicatorElements
-For the processing of values with structured and array data types, two DataAssembly definitions *SUC StructView* and *SUC ArrayView* are required for value displays in LEA HMIs and for mapping report values on LEA services. Furthermore, *StructView* is also required for process value outputs of structured data types. As shown in [Figure 8.4](#figure-84-extension-of-the-dataassemblyset-for-implementing-structured-and-array-based-indicatorelements), *SUC StructView* and *SUC ArrayView*, together with all other DataAssembly definitions for report values, are derived from the DataAssembly definition *SUC IndicatorElement* according to [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3) and are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [DataAssembly definitions](#832-dataassembly-definitions). This extension, as a result of this work, has already been adopted into the profile *ModuleTypePackage:DataAssemblySet.ComplexTypes V2.0.0* of the [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3).
+For the processing of values with structured and array data types, two DataAssembly definitions *SUC StructView* and *SUC ArrayView* are required for value displays in LEA HMIs and for mapping report values on LEA services. Furthermore, *StructView* is also required for process value outputs of structured data types. As shown in [Figure 7.4](#figure-74-extension-of-the-dataassemblyset-for-implementing-structured-and-array-based-indicatorelements), *SUC StructView* and *SUC ArrayView*, together with all other DataAssembly definitions for report values, are derived from the DataAssembly definition *SUC IndicatorElement* according to [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3) and are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [DataAssembly definitions](#732-dataassembly-definitions). This extension, as a result of this work, has already been adopted into the profile *ModuleTypePackage:DataAssemblySet.ComplexTypes V2.0.0* of the [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3).
 
-##### Figure 8.4: Extension of the DataAssemblySet for Implementing Structured and Array-Based IndicatorElements
+##### Figure 7.4: Extension of the DataAssemblySet for Implementing Structured and Array-Based IndicatorElements
 ![Extension of the DataAssemblySet for Implementing Structured and Array-Based IndicatorElements](./images/03_IndicatorElement.drawio.svg)
 
 #### Extension of the OperationElements
-For the processing of values with structured and array data types, new DataAssembly definitions *SUC StructMan*, *SUC StructManInt*, *SUC ArrayMan*, and *SUC ArrayManInt* are required for operator-driven value manipulation in LEA HMIs. As shown in [Figure 8.5](#figure-85-extension-of-the-dataassemblyset-for-implementing-structured-and-array-based-operationelements), *SUC StructMan* and *SUC ArrayMan*, together with all other DataAssembly definitions for value manipulation, are derived from the DataAssembly definition *SUC OperationElement* according to [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3). *SUC StructManInt* is derived from *SUC StructMan*, and *SUC ArrayManInt* from *SUC ArrayMan*. All four DataAssembly definitions are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [DataAssembly definitions](#832-dataassembly-definitions). This extension, as a result of this work, has already been adopted into the profile *ModuleTypePackage:DataAssemblySet.ComplexTypes V2.0.0* of the [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3).
+For the processing of values with structured and array data types, new DataAssembly definitions *SUC StructMan*, *SUC StructManInt*, *SUC ArrayMan*, and *SUC ArrayManInt* are required for operator-driven value manipulation in LEA HMIs. As shown in [Figure 7.5](#figure-75-extension-of-the-dataassemblyset-for-implementing-structured-and-array-based-operationelements), *SUC StructMan* and *SUC ArrayMan*, together with all other DataAssembly definitions for value manipulation, are derived from the DataAssembly definition *SUC OperationElement* according to [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3). *SUC StructManInt* is derived from *SUC StructMan*, and *SUC ArrayManInt* from *SUC ArrayMan*. All four DataAssembly definitions are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [DataAssembly definitions](#732-dataassembly-definitions). This extension, as a result of this work, has already been adopted into the profile *ModuleTypePackage:DataAssemblySet.ComplexTypes V2.0.0* of the [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3).
 
-##### Figure 8.5: Extension of the DataAssemblySet for Implementing Structured and Array-Based OperationElements
+##### Figure 7.5: Extension of the DataAssemblySet for Implementing Structured and Array-Based OperationElements
 ![Extension of the DataAssemblySet for Implementing Structured and Array-Based OperationElements](./images/03_OperationElement.drawio.svg)
 
 #### Extension of DINT-Based Interfaces with Time Formats
-Report values in a time format are required, e.g., for the timestamps of a transport service. For this purpose, *RC HasTimeFormat* is introduced. As shown in [Figure 8.6](#figure-86-extension-of-the-dataassemblyset-for-interpreting-dint-values-in-a-time-format), this RC can be added as an SRC to all DINT-based DataAssembly definitions, in particular to *SUC DIntView*, *SUC DIntMan*, *SUC DIntServParam*, and *SUC DIntProcessValueIn*. *RC HasTimeFormat* is organized in the newly introduced *RCL MTPDataAssemblyRCLib*. The detailed specification is provided in [DataAssembly definitions](#832-dataassembly-definitions).
+Report values in a time format are required, e.g., for the timestamps of a transport service. For this purpose, *RC HasTimeFormat* is introduced. As shown in [Figure 7.6](#figure-76-extension-of-the-dataassemblyset-for-interpreting-dint-values-in-a-time-format), this RC can be added as an SRC to all DINT-based DataAssembly definitions, in particular to *SUC DIntView*, *SUC DIntMan*, *SUC DIntServParam*, and *SUC DIntProcessValueIn*. *RC HasTimeFormat* is organized in the newly introduced *RCL MTPDataAssemblyRCLib*. The detailed specification is provided in [DataAssembly definitions](#732-dataassembly-definitions).
 
-*RC HasTimeFormat* uses a new *AT TimeFormatAttributeType* to specify the time format in which a DINT value is to be interpreted. As shown in [Figure 8.6](#figure-86-extension-of-the-dataassemblyset-for-interpreting-dint-values-in-a-time-format), this AT is organized in *ATL MTPDataAssemblyATLib*. The detailed specification is provided in [Model Definitions](#833-model-definitions).
+*RC HasTimeFormat* uses a new *AT TimeFormatAttributeType* to specify the time format in which a DINT value is to be interpreted. As shown in [Figure 7.6](#figure-76-extension-of-the-dataassemblyset-for-interpreting-dint-values-in-a-time-format), this AT is organized in *ATL MTPDataAssemblyATLib*. The detailed specification is provided in [Model Definitions](#733-model-definitions).
 
 These extensions are assigned to the newly introduced profile *ModuleTypePackage:DataAssemblySet.Time V2.0.0*.[^1]
 
-##### Figure 8.6: Extension of the DataAssemblySet for Interpreting DINT Values in a Time Format
+##### Figure 7.6: Extension of the DataAssemblySet for Interpreting DINT Values in a Time Format
 ![Extension of the DataAssemblySet for Interpreting DINT Values in a Time Format](./images/03_TimeFormat.drawio.svg)
 
-### 8.3.2 DataAssembly definitions
+### 7.3.2 DataAssembly definitions
 #### Specification of the System Unit Class StructView
-*SUC StructView* ([Table 8.8](#table-88-dataassembly-definition-of-suc-structview)) is used by a LOL to display a LEA variable of a user-defined structured data type.
+*SUC StructView* ([Table 7.8](#table-78-dataassembly-definition-of-suc-structview)) is used by a LOL to display a LEA variable of a user-defined structured data type.
 
-##### Table 8.8: DataAssembly definition of *SUC StructView*
+##### Table 7.8: DataAssembly definition of *SUC StructView*
 
 <table>
 	<tr>
@@ -125,9 +125,9 @@ These extensions are assigned to the newly introduced profile *ModuleTypePackage
 	</tr>
 </table>
 
-The distinctive feature of this DataAssembly definition is the use of a user-defined structured data type. [Figure 8.7](#figure-87-modeling-of-a-user-defined-data-type) shows how such a data type shall be modeled. For this purpose, the rules for modeling complex data types from [MTP Specification Part 5.1](../98_References/README.md#mtp-specification-part-51) are applied.
+The distinctive feature of this DataAssembly definition is the use of a user-defined structured data type. [Figure 7.7](#figure-77-modeling-of-a-user-defined-data-type) shows how such a data type shall be modeled. For this purpose, the rules for modeling complex data types from [MTP Specification Part 5.1](../98_References/README.md#mtp-specification-part-51) are applied.
 
-##### Figure 8.7: Modeling of a User-Defined Data Type
+##### Figure 7.7: Modeling of a User-Defined Data Type
 ![Modeling of a User-Defined Data Type](./images/03_Complex_Type_Modelling.svg)
 
 The complex data type used must be derived from *AT StructuredDataType* defined in [MTP Specification Part 5.1](../98_References/README.md#mtp-specification-part-51). When this DataAssembly definition is used, a user-defined ATL must be created, here: *CompanyAAttributeTypeLib*. Within this ATL, the structured data type that is later to be used in the IE of *SUC StructView* must be specified. By assigning this user-defined AT to the attribute *VType* of *SUC StructView*, the used structured data type is defined. This data type is then expected in the variable *V*.
@@ -135,9 +135,9 @@ The complex data type used must be derived from *AT StructuredDataType* defined 
 **Note:** If the *StructView* interface is used as a report value, it can be "frozen" by the variable *ReportValueFreeze* at the *ServiceControl* interface according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4). Optionally, it can be extended by a *MissedValue* variable by assigning *RC MissedValueFlag*.
 
 #### Specification of the System Unit Class ArrayView
-*SUC ArrayView* ([Table 8.9](#table-89-dataassembly-definition-of-suc-arrayview)) is used by the LOL to display the value at a specific position of an array located in a LEA.
+*SUC ArrayView* ([Table 7.9](#table-79-dataassembly-definition-of-suc-arrayview)) is used by the LOL to display the value at a specific position of an array located in a LEA.
 
-##### Table 8.9: DataAssembly definition of *SUC ArrayView*
+##### Table 7.9: DataAssembly definition of *SUC ArrayView*
 
 <table>
 	<tr>
@@ -285,9 +285,9 @@ By means of the *OSLevel* variable, it can be defined whether the interface is c
 **Note 2:** If the *ArrayView* interface is used as a report value and several or all values of an array are to be read for documentation purposes, several or all indices between *IndexMin* and *IndexMax* must be entered successively by the LOL at the *ArrayView* interface. The values of the individual array elements can then be stored one after another. This must also work in the frozen state.
 
 #### Specification of the System Unit Class StructMan
-*SUC StructMan* ([Table 8.10](#table-810-dataassembly-definition-of-suc-structman)) is used by the LOL to manipulate a LEA variable of a user-defined structured data type.
+*SUC StructMan* ([Table 7.10](#table-710-dataassembly-definition-of-suc-structman)) is used by the LOL to manipulate a LEA variable of a user-defined structured data type.
 
-##### Table 8.10: DataAssembly definition of *SUC StructMan*
+##### Table 7.10: DataAssembly definition of *SUC StructMan*
 
 <table>
 	<tr>
@@ -413,9 +413,9 @@ By means of the *OSLevel* variable, it can be defined whether the interface is c
 The distinctive feature of this DataAssembly definition is the use of a user-defined structured data type. The modeling and use of such a type have already been described in connection with [SUC StructView](#specification-of-the-system-unit-class-structview) and are applied in the same way for *SUC StructMan*. This data type is then expected behind the variables *VOut*, *VMan*, *VRbk*, and *VFbk*.
 
 #### Specification of the System Unit Class StructManInt
-*SUC StructManInt* ([Table 8.11](#table-811-dataassembly-definition-of-suc-structmanint)) is used to manipulate a LEA variable of a user-defined structured data type within the LEA or by the LOL.
+*SUC StructManInt* ([Table 7.11](#table-711-dataassembly-definition-of-suc-structmanint)) is used to manipulate a LEA variable of a user-defined structured data type within the LEA or by the LOL.
 
-##### Table 8.11: DataAssembly definition of *SUC StructManInt*
+##### Table 7.11: DataAssembly definition of *SUC StructManInt*
 
 <table>
 	<tr>
@@ -579,9 +579,9 @@ The distinctive feature of this DataAssembly definition is the use of a user-def
 The *StructManInt* interface extends the *StructMan* interface by internal value specification and a *SourceMode* according to [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3). If the internal access channel is selected, an internal LEA value is used instead of the external value specification. Apart from that, the function of this interface is identical to that of the *StructMan* interface.
 
 #### Specification of the System Unit Class ArrayMan
-*SUC ArrayMan* ([Table 8.12](#table-812-dataassembly-definition-of-suc-arrayman)) is used by the LOL to manipulate a value at a specific position of an array located in a LEA.
+*SUC ArrayMan* ([Table 7.12](#table-712-dataassembly-definition-of-suc-arrayman)) is used by the LOL to manipulate a value at a specific position of an array located in a LEA.
 
-##### Table 8.12: DataAssembly definition of *SUC ArrayMan*
+##### Table 7.12: DataAssembly definition of *SUC ArrayMan*
 
 <table>
 	<tr>
@@ -751,9 +751,9 @@ The array position to be modified is selected via the variable *IndexSel*. The v
 
 
 #### Specification of the System Unit Class ArrayManInt
-*SUC ArrayManInt* ([Table 8.13](#table-813-dataassembly-definition-of-suc-arraymanint)) is used by the LOL or by LEA-internal logic to manipulate a value at a specific position of an array located in a LEA.
+*SUC ArrayManInt* ([Table 7.13](#table-713-dataassembly-definition-of-suc-arraymanint)) is used by the LOL or by LEA-internal logic to manipulate a value at a specific position of an array located in a LEA.
 
-##### Table 8.13: DataAssembly definition of *SUC ArrayManInt*
+##### Table 7.13: DataAssembly definition of *SUC ArrayManInt*
 
 <table>
 	<tr>
@@ -917,9 +917,9 @@ The array position to be modified is selected via the variable *IndexSel*. The v
 The *ArrayManInt* interface extends the *ArrayMan* interface by internal value specification and a *SourceMode* according to [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3). If the internal access channel is selected, an internal LEA value is used instead of the external value specification. Apart from that, the function of this interface is identical to that of the *ArrayMan* interface.
 
 #### Specification of the Role Class Library MTPDataAssemblyRCLib
-*RCL MTPDataAssemblyRCLib* ([Table 8.14](#table-814-library-definition-of-rcl-mtpdataassemblyrclib)) contains the DataAssembly-related role classes of a Module Type Package.
+*RCL MTPDataAssemblyRCLib* ([Table 7.14](#table-714-library-definition-of-rcl-mtpdataassemblyrclib)) contains the DataAssembly-related role classes of a Module Type Package.
 
-##### Table 8.14: Library Definition of *RCL MTPDataAssemblyRCLib*
+##### Table 7.14: Library Definition of *RCL MTPDataAssemblyRCLib*
 
 <table>
 	<tr>
@@ -963,9 +963,9 @@ The *ArrayManInt* interface extends the *ArrayMan* interface by internal value s
 </table>
 
 #### Specification of the Role Class HasTimeFormat
-*RC HasTimeFormat* ([Table 8.15](#table-815-dataassembly-definition-of-rc-hastimeformat)) indicates that a DINT-based interface is to be interpreted in a time format. This RC can be assigned as an SRC to the DataAssembly definitions *SUC DIntView*, *SUC DIntMan* (incl. its derivation *SUC DIntManInt*), *SUC DIntServParam*, and *SUC DIntProcessValueIn*. *RC HasTimeFormat* provides different formats for interpreting DINT values as time values, encoded in the variable *TimeFormat*. The meaning of the values of this variable is shown in [Table 8.16](#table-816-encoding-of-time-formats).
+*RC HasTimeFormat* ([Table 7.15](#table-715-dataassembly-definition-of-rc-hastimeformat)) indicates that a DINT-based interface is to be interpreted in a time format. This RC can be assigned as an SRC to the DataAssembly definitions *SUC DIntView*, *SUC DIntMan* (incl. its derivation *SUC DIntManInt*), *SUC DIntServParam*, and *SUC DIntProcessValueIn*. *RC HasTimeFormat* provides different formats for interpreting DINT values as time values, encoded in the variable *TimeFormat*. The meaning of the values of this variable is shown in [Table 7.16](#table-716-encoding-of-time-formats).
 
-##### Table 8.15: DataAssembly definition of *RC HasTimeFormat*
+##### Table 7.15: DataAssembly definition of *RC HasTimeFormat*
 
 <table>
 	<tr>
@@ -1027,7 +1027,7 @@ The *ArrayManInt* interface extends the *ArrayMan* interface by internal value s
 		<td align="left">TimeFormat</td>
 		<td align="left">LOL ⟵ LEA</td>
 		<td align="left">BYTE</td>
-		<td align="left">Time format as defined in <a href="#table-816-encoding-of-time-formats">Table 8.16</a></td>
+		<td align="left">Time format as defined in <a href="#table-716-encoding-of-time-formats">Table 7.16</a></td>
 		<td align="left">TimeFormat-AttributeType</td>
 		<td align="left">-</td>
 	</tr>
@@ -1046,7 +1046,7 @@ The *ArrayManInt* interface extends the *ArrayMan* interface by internal value s
 	</tr>
 </table>
 
-##### Table 8.16: Encoding of Time Formats
+##### Table 7.16: Encoding of Time Formats
 
 <table>
 	<tr>
@@ -1077,9 +1077,9 @@ The *ArrayManInt* interface extends the *ArrayMan* interface by internal value s
 </table>
 
 #### Extension of the System Unit Class DIntView
-*SUC DIntView* ([Table 8.17](#table-817-dataassembly-definition-of-suc-dintview)) is used to display DINT values of a LEA. This DataAssembly definition is already specified in [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3) and is extended in this work by the capability to annotate *RC HasTimeFormat* as an SRC.[^2]
+*SUC DIntView* ([Table 7.17](#table-717-dataassembly-definition-of-suc-dintview)) is used to display DINT values of a LEA. This DataAssembly definition is already specified in [MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3) and is extended in this work by the capability to annotate *RC HasTimeFormat* as an SRC.[^2]
 
-##### Table 8.17: DataAssembly definition of *SUC DIntView*
+##### Table 7.17: DataAssembly definition of *SUC DIntView*
 
 <table>
 	<tr>
@@ -1192,11 +1192,11 @@ The *ArrayManInt* interface extends the *ArrayMan* interface by internal value s
 	</tr>
 </table>
 
-### 8.3.3 Model Definitions
+### 7.3.3 Model Definitions
 #### Specification of the Attribute Type TimeFormatAttributeType
-*AT TimeFormatAttributeType* ([Table 8.18](#table-818-model-definition-of-at-timeformatattributetype)) defines the format for interpreting DINT values as time values. This AT is derived from *AT StaticValueAttributeType*.
+*AT TimeFormatAttributeType* ([Table 7.18](#table-718-model-definition-of-at-timeformatattributetype)) defines the format for interpreting DINT values as time values. This AT is derived from *AT StaticValueAttributeType*.
 
-##### Table 8.18: Model Definition of *AT TimeFormatAttributeType*
+##### Table 7.18: Model Definition of *AT TimeFormatAttributeType*
 
 <table>
 	<tr>

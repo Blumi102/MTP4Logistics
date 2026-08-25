@@ -1,13 +1,13 @@
-## 8.8 MTP Specification of the TransportSet
+## 7.8 MTP Specification of the TransportSet
 This chapter specifies the *TransportSet* as a new aspect of the MTP specification that contains all elements identified for the MTP-based implementation of flexible transports.
 
-### 8.8.1 Übersicht
+### 7.8.1 Übersicht
 #### Semantic Description of Transport Services
 For semantic identification of the transport services, a semantic identifier in the form of a *FunctionClassificationAttribute* is defined.[^1] 
 
-[Table 8.62](#table-862-functionclassificationattribute-of-a-transport-service) specifies the corresponding *FunctionClassificationAttribute*. "2.0" denotes the version in major-minor format and shall be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
+[Table 7.62](#table-762-functionclassificationattribute-of-a-transport-service) specifies the corresponding *FunctionClassificationAttribute*. "2.0" denotes the version in major-minor format and shall be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
 
-##### Table 8.62: FunctionClassificationAttribute of a Transport Service
+##### Table 7.62: FunctionClassificationAttribute of a Transport Service
 
 <table>
 	<tr>
@@ -32,22 +32,22 @@ For semantic identification of the transport services, a semantic identifier in 
 </table>
 
 #### Specification of the Transport Aspect
-A series of new model and DataAssembly definitions is required to represent transport-relevant information in the MTP of a LEA. [Figure 8.19](#figure-819-specification-of-the-transportset-for-connecting-flexible-transport-systems-to-leas) provides an overview of these newly specified definitions.
+A series of new model and DataAssembly definitions is required to represent transport-relevant information in the MTP of a LEA. [Figure 7.19](#figure-719-specification-of-the-transportset-for-connecting-flexible-transport-systems-to-leas) provides an overview of these newly specified definitions.
  
-##### Figure 8.19: Specification of the TransportSet for Connecting Flexible Transport Systems to LEAs
+##### Figure 7.19: Specification of the TransportSet for Connecting Flexible Transport Systems to LEAs
 ![Specification of the TransportSet for Connecting Flexible Transport Systems to LEAs](./images/08_TransportSet.drawio.svg)
 
-**DataAssembly definitions** – *SUC TransportClientManager* is introduced as an DataAssembly definition for configuring and establishing a communication link between a LEA and transport management. It is an abstract DataAssembly definition that fundamentally allows the use of different communication technologies through different derivations. For implementation based on OPC UA Client/Server, the derived *SUC OpcUaTransportClientManager* is introduced. In addition, *SUC TransportNodeManager* is introduced as an interface that enables the assignment of a transport node of a LEA to the associated transport node proxy in transport management. A convention in the MTP specifications provides that DataAssembly definitions belonging together in terms of content are derived from a common DataAssembly definition with the suffix **Element*. Accordingly, in this case *SUC TransportElement*, derived from *SUC DataAssembly* ([MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3)), is introduced, from which *SUC TransportClientManager* and *SUC TransportNodeManager* are derived. These DataAssembly definitions are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [DataAssembly definitions](#882-dataassembly-definitions). 
+**DataAssembly definitions** – *SUC TransportClientManager* is introduced as an DataAssembly definition for configuring and establishing a communication link between a LEA and transport management. It is an abstract DataAssembly definition that fundamentally allows the use of different communication technologies through different derivations. For implementation based on OPC UA Client/Server, the derived *SUC OpcUaTransportClientManager* is introduced. In addition, *SUC TransportNodeManager* is introduced as an interface that enables the assignment of a transport node of a LEA to the associated transport node proxy in transport management. A convention in the MTP specifications provides that DataAssembly definitions belonging together in terms of content are derived from a common DataAssembly definition with the suffix **Element*. Accordingly, in this case *SUC TransportElement*, derived from *SUC DataAssembly* ([MTP Specification Part 3](../98_References/README.md#mtp-specification-part-3)), is introduced, from which *SUC TransportClientManager* and *SUC TransportNodeManager* are derived. These DataAssembly definitions are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [DataAssembly definitions](#782-dataassembly-definitions). 
 
-**Model definitions** – *SUC TransportSet* is introduced as a new aspect set for organizing all transport-relevant models and is derived from the abstract *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). The *TransportSet* indicates that a LEA has the capability to be connected to a flexible transport system according to the concepts of this work and contains all model definitions required for this purpose. In particular, this consists of any number of IEs of *SUC TransportNode*. The latter is an abstract class for representing transport nodes and is derived from *SUC LinkedObject*. The concrete derivations provided are *SUC InboundNode*, *SUC OutboundNode*, *SUC InOutboundNode*, *SUC ProcessingNode*, and *SUC OrderNode*. All *TransportNodes* are linked to one *TransportClientManager* interface each by means of an ID link relation and to one *TransportNodeManager* interface by means of LinkedObject relations. The model definitions are organized in the newly introduced library *SUCL MTPTransportSUCLib*. The detailed specification is provided in [Model Definitions](#883-model-definitions). 
+**Model definitions** – *SUC TransportSet* is introduced as a new aspect set for organizing all transport-relevant models and is derived from the abstract *SUC MTPSet* according to [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). The *TransportSet* indicates that a LEA has the capability to be connected to a flexible transport system according to the concepts of this work and contains all model definitions required for this purpose. In particular, this consists of any number of IEs of *SUC TransportNode*. The latter is an abstract class for representing transport nodes and is derived from *SUC LinkedObject*. The concrete derivations provided are *SUC InboundNode*, *SUC OutboundNode*, *SUC InOutboundNode*, *SUC ProcessingNode*, and *SUC OrderNode*. All *TransportNodes* are linked to one *TransportClientManager* interface each by means of an ID link relation and to one *TransportNodeManager* interface by means of LinkedObject relations. The model definitions are organized in the newly introduced library *SUCL MTPTransportSUCLib*. The detailed specification is provided in [Model Definitions](#783-model-definitions). 
 
 All model and DataAssembly definitions required for the *TransportSet* are assigned to the new profile *ModuleTypePackage:TransportSet.Base V2.0.0*.
  
-### 8.8.2 DataAssembly definitions
+### 7.8.2 DataAssembly definitions
 #### Specification of the System Unit Class TransportElement
-*SUC TransportElement* ([Table 8.63](#table-863-dataassembly-definition-of-suc-transportelement)) is an abstract class derived from *SUC DataAssembly*. The transport-relevant DataAssembly definitions *SUC TransportClientManager* and *SUC TransportNodeManager* are derived from *SUC TransportElement*.
+*SUC TransportElement* ([Table 7.63](#table-763-dataassembly-definition-of-suc-transportelement)) is an abstract class derived from *SUC DataAssembly*. The transport-relevant DataAssembly definitions *SUC TransportClientManager* and *SUC TransportNodeManager* are derived from *SUC TransportElement*.
 
-##### Table 8.63: DataAssembly definition of *SUC TransportElement*
+##### Table 7.63: DataAssembly definition of *SUC TransportElement*
 
 <table>
 	<tr>
@@ -137,9 +137,9 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 </table>
 
 #### Specification of the System Unit Class TransportClientManager
-*SUC TransportClientManager* ([Table 8.64](#table-864-dataassembly-definition-of-suc-transportclientmanager)) is derived from *SUC TransportElement* and is an abstract DataAssembly definition for configuring the communication link between a LEA and a flexible transport system. To implement this DataAssembly definition, a concrete manager must be derived from it. So far, only *SUC OpcUaTransportClientManager* has been specified as a derivation. *SUC TransportClientManager*, and thus also its derivations, are assigned to *TransportNode* model definitions in the *TransportSet* via an ID link relation.
+*SUC TransportClientManager* ([Table 7.64](#table-764-dataassembly-definition-of-suc-transportclientmanager)) is derived from *SUC TransportElement* and is an abstract DataAssembly definition for configuring the communication link between a LEA and a flexible transport system. To implement this DataAssembly definition, a concrete manager must be derived from it. So far, only *SUC OpcUaTransportClientManager* has been specified as a derivation. *SUC TransportClientManager*, and thus also its derivations, are assigned to *TransportNode* model definitions in the *TransportSet* via an ID link relation.
 
-##### Table 8.64: DataAssembly definition of *SUC TransportClientManager*
+##### Table 7.64: DataAssembly definition of *SUC TransportClientManager*
 
 <table>
 	<tr>
@@ -229,9 +229,9 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 </table>
 
 #### Specification of the System Unit Class OpcUaTransportClientManager
-*SUC OpcUaTransportClientManager* ([Table 8.65](#table-865-dataassembly-definition-of-suc-opcuatransportclientmanager)) is derived from *SUC TransportClientManager* and is used to configure and establish an OPC UA Client/Server communication link between the LEA and a flexible transport system. In addition, this interface contains the variable *LeaStateCur*, which enables transport management to determine the state of the LEA service. This is used to detect possible faults in the LEA and, if necessary, reroute transport services to this LEA.
+*SUC OpcUaTransportClientManager* ([Table 7.65](#table-765-dataassembly-definition-of-suc-opcuatransportclientmanager)) is derived from *SUC TransportClientManager* and is used to configure and establish an OPC UA Client/Server communication link between the LEA and a flexible transport system. In addition, this interface contains the variable *LeaStateCur*, which enables transport management to determine the state of the LEA service. This is used to detect possible faults in the LEA and, if necessary, reroute transport services to this LEA.
 
-##### Table 8.65: DataAssembly definition of *SUC OpcUaTransportClientManager*
+##### Table 7.65: DataAssembly definition of *SUC OpcUaTransportClientManager*
 
 <table>
 	<tr>
@@ -255,7 +255,7 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 	</tr>
 	<tr>
 		<th align="left">AutomationML Path</th>
-		<td align="left" colspan="5">MTPDataAssemblySUCLib/DataAssembly/TransportElement/TransportClientManager/&#8203;OpcUaTransportClientManager</td>
+		<td align="left" colspan="5">MTPDataAssemblySUCLib/DataAssembly/TransportElement/TransportClientManager/&#7203;OpcUaTransportClientManager</td>
 	</tr>
 	<tr>
 		<th align="left">AutomationML BaseRef</th>
@@ -449,9 +449,9 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 </table>
 
 #### Specification of the System Unit Class TransportNodeManager
-*SUC TransportNodeManager* ([Table 8.66](#table-866-dataassembly-definition-of-suc-transportnodemanager)) is derived from *SUC TransportElement* and is used to assign a transport node proxy to a specific transport node in the LEA. This DataAssembly definition is assigned to a *TransportNode* model definition in the *TransportSet* via a LinkedObject relation.
+*SUC TransportNodeManager* ([Table 7.66](#table-766-dataassembly-definition-of-suc-transportnodemanager)) is derived from *SUC TransportElement* and is used to assign a transport node proxy to a specific transport node in the LEA. This DataAssembly definition is assigned to a *TransportNode* model definition in the *TransportSet* via a LinkedObject relation.
 
-##### Table 8.66: DataAssembly definition of *SUC TransportNodeManager*
+##### Table 7.66: DataAssembly definition of *SUC TransportNodeManager*
 
 <table>
 	<tr>
@@ -636,11 +636,11 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 	</tr>
 </table>
 
-### 8.8.3 Model Definitions
+### 7.8.3 Model Definitions
 #### Specification of the Instance Hierarchy Transports
-*IH Transports* ([Table 8.67](#table-867-model-definition-of-ih-transports)) is the entry point for the transport-related information model in the instance hierarchy of an MTP.
+*IH Transports* ([Table 7.67](#table-767-model-definition-of-ih-transports)) is the entry point for the transport-related information model in the instance hierarchy of an MTP.
 
-##### Table 8.67: Model Definition of *IH Transports*
+##### Table 7.67: Model Definition of *IH Transports*
 
 <table>
 	<tr>
@@ -691,9 +691,9 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 </table>
 
 #### Specification of the System Unit Class Library MTPTransportSUCLib
-*SUCL MTPTransportSUCLib* ([Table 8.68](#table-868-library-definition-of-sucl-mtptransportsuclib)) contains the System Unit Classes of the *TransportSet* of an MTP.
+*SUCL MTPTransportSUCLib* ([Table 7.68](#table-768-library-definition-of-sucl-mtptransportsuclib)) contains the System Unit Classes of the *TransportSet* of an MTP.
 
-##### Table 8.68: Library Definition of *SUCL MTPTransportSUCLib*
+##### Table 7.68: Library Definition of *SUCL MTPTransportSUCLib*
 
 <table>
 	<tr>
@@ -737,9 +737,9 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 </table>
 
 #### Specification of the System Unit Class TransportSet
-*SUC TransportSet* ([Table 8.69](#table-869-model-definition-of-suc-transportset)), as a new aspect set of the MTP specification, contains all model definitions required to describe the transport-relevant information of a LEA.
+*SUC TransportSet* ([Table 7.69](#table-769-model-definition-of-suc-transportset)), as a new aspect set of the MTP specification, contains all model definitions required to describe the transport-relevant information of a LEA.
 
-##### Table 8.69: Model Definition of *SUC TransportSet*
+##### Table 7.69: Model Definition of *SUC TransportSet*
 
 <table>
 	<tr>
@@ -825,9 +825,9 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 </table>
 
 #### Specification of the System Unit Class TransportNode
-*SUC TransportNode* ([Table 8.70](#table-870-model-definition-of-suc-transportnode)) is an abstract model definition for describing a transport node available in a LEA. Currently, five concrete types of transport nodes are derived from this model definition: *SUC InboundNode*, *SUC OutboundNode*, *SUC InOutboundNode*, *SUC ProcessingNode*, and *SUC OrderNode*. A *SUC TransportNode* is assigned to the *TransportNodeManager* DataAssembly definition via a LinkedObject relation, which enables the assignment of the transport node to a transport node proxy in transport management. In addition, *SUC TransportNode* is assigned to the *TransportClientManager* interface, which connects the LEA to transport management. For this assignment, the ID link mechanism and the variable *ClientLink* are used.
+*SUC TransportNode* ([Table 7.70](#table-770-model-definition-of-suc-transportnode)) is an abstract model definition for describing a transport node available in a LEA. Currently, five concrete types of transport nodes are derived from this model definition: *SUC InboundNode*, *SUC OutboundNode*, *SUC InOutboundNode*, *SUC ProcessingNode*, and *SUC OrderNode*. A *SUC TransportNode* is assigned to the *TransportNodeManager* DataAssembly definition via a LinkedObject relation, which enables the assignment of the transport node to a transport node proxy in transport management. In addition, *SUC TransportNode* is assigned to the *TransportClientManager* interface, which connects the LEA to transport management. For this assignment, the ID link mechanism and the variable *ClientLink* are used.
 
-##### Table 8.70: Model Definition of *SUC TransportNode*
+##### Table 7.70: Model Definition of *SUC TransportNode*
 
 <table>
 	<tr>
@@ -913,9 +913,9 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 </table>
 
 #### Specification of the System Unit Class InboundNode
-*SUC InboundNode* ([Table 8.71](#table-871-model-definition-of-suc-inboundnode)) is derived from *SUC TransportNode* and describes a transport node for transferring an LO from a flexible transport system to a LEA.
+*SUC InboundNode* ([Table 7.71](#table-771-model-definition-of-suc-inboundnode)) is derived from *SUC TransportNode* and describes a transport node for transferring an LO from a flexible transport system to a LEA.
 
-##### Table 8.71: Model Definition of *SUC InboundNode*
+##### Table 7.71: Model Definition of *SUC InboundNode*
 
 <table>
 	<tr>
@@ -1001,9 +1001,9 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 </table>
 
 #### Specification of the System Unit Class OutboundNode
-*SUC OutboundNode* ([Table 8.72](#table-872-model-definition-of-suc-outboundnode)) is derived from *SUC TransportNode* and describes a transport node for transferring an LO from a LEA to a flexible transport system.
+*SUC OutboundNode* ([Table 7.72](#table-772-model-definition-of-suc-outboundnode)) is derived from *SUC TransportNode* and describes a transport node for transferring an LO from a LEA to a flexible transport system.
 
-##### Table 8.72: Model Definition of *SUC OutboundNode*
+##### Table 7.72: Model Definition of *SUC OutboundNode*
 
 <table>
 	<tr>
@@ -1089,9 +1089,9 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 </table>
 
 #### Specification of the System Unit Class InOutboundNode
-*SUC InOutboundNode* ([Table 8.73](#table-873-model-definition-of-suc-inoutboundnode)) is derived from *SUC TransportNode* and describes a transport node for transferring LOs between a LEA and a flexible transport system in both directions.
+*SUC InOutboundNode* ([Table 7.73](#table-773-model-definition-of-suc-inoutboundnode)) is derived from *SUC TransportNode* and describes a transport node for transferring LOs between a LEA and a flexible transport system in both directions.
 
-##### Table 8.73: Model Definition of *SUC InOutboundNode*
+##### Table 7.73: Model Definition of *SUC InOutboundNode*
 
 <table>
 	<tr>
@@ -1177,9 +1177,9 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 </table>
 
 #### Specification of the System Unit Class ProcessingNode
-*SUC ProcessingNode* ([Table 8.74](#table-874-model-definition-of-suc-processingnode)) is derived from *SUC TransportNode* and describes a transport node for processing an LO without handing it over from the flexible transport system to a LEA.
+*SUC ProcessingNode* ([Table 7.74](#table-774-model-definition-of-suc-processingnode)) is derived from *SUC TransportNode* and describes a transport node for processing an LO without handing it over from the flexible transport system to a LEA.
 
-##### Table 8.74: Model Definition of *SUC ProcessingNode*
+##### Table 7.74: Model Definition of *SUC ProcessingNode*
 
 <table>
 	<tr>
@@ -1265,9 +1265,9 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 </table>
 
 #### Specification of the System Unit Class OrderNode
-*SUC OrderNode* ([Table 8.75](#table-875-model-definition-of-suc-ordernode)) is derived from *SUC TransportNode* and describes a transport node for reporting transport demands and initiating corresponding transport processes.
+*SUC OrderNode* ([Table 7.75](#table-775-model-definition-of-suc-ordernode)) is derived from *SUC TransportNode* and describes a transport node for reporting transport demands and initiating corresponding transport processes.
 
-##### Table 8.75: Model Definition of *SUC OrderNode*
+##### Table 7.75: Model Definition of *SUC OrderNode*
 
 <table>
 	<tr>

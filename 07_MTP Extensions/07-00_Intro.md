@@ -14,22 +14,22 @@
 <!-- TODO: Referenzierung von Quellen überarbeiten in gleicher Weise, wie bei den Inhaltskapitel. Formatierung in CLAUDE.md hinterlegt. -->
 <!-- TODO: Nummerierung, Kapitel ist nicht mehr die 9, sondern die 8. -->
 
-## 8 Enhancements of the Module Type Package Concept
+## 7 Enhancements of the Module Type Package Concept
 
 ### Content of this Chapter
 
 The Module Type Package concept has originally been developed for process industries. For a purposeful application in the context of production-related logistics, further development is necessary, which is presented in the following sections. In course of this development, care has been taken not to change the state machine or any other existing constructs (DataAssembly definitions, model definitions and mechanisms) of the MTP concept. However, reinterpretations and reasonable specifications of new MTP constructs have been developed. Extensions to the following aspects are described in this repository:
 
-- [Manifest](./08-01_Manifest.md)
-- [HMISet](./08-02_HMISet.md)
-- [DataAssemblySet](./08-03_DataAssemblySet.md)
-- [ServiceSet](./08-04_ServiceSet.md)
-- [ProcessValueSet](./08-05_ProcessValueSet.md)
-- [ServerAssmblySet](./08-06_ServerAssemblySet.md)
-- [ChoreographySet](./08-07_ChoreographySet.md)
-- [TransportSet](./08-08_TransportSet.md)
+- [Manifest](./07-01_Manifest.md)
+- [HMISet](./07-02_HMISet.md)
+- [DataAssemblySet](./07-03_DataAssemblySet.md)
+- [ServiceSet](./07-04_ServiceSet.md)
+- [ProcessValueSet](./07-05_ProcessValueSet.md)
+- [ServerAssmblySet](./07-06_ServerAssemblySet.md)
+- [ChoreographySet](./07-07_ChoreographySet.md)
+- [TransportSet](./07-08_TransportSet.md)
 
-Furthermore, a [Conformity Declaration](./08-09_Conformity_Declaration.md) shows which profiles of the described aspects are needed to implement certain application scesnarios in production-related logistics.
+Furthermore, a [Conformity Declaration](./07-09_Conformity_Declaration.md) shows which profiles of the described aspects are needed to implement certain application scesnarios in production-related logistics.
 
 ### Formal Hints for the Specification Sections
 

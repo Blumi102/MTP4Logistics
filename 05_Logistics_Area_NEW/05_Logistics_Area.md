@@ -2,7 +2,7 @@
 
 This chapter presents the MTP-based automation of flexible transports in Logistics Areas (LA). Parts of these concepts were published in [[BHF+23]](../98_References/README.md#blumenstein-et-al-2023), [[BGB+23]](../98_References/README.md#blumenstein-et-al-moprolog) as well as the student work [[Hen22]](../98_References/README.md#henkel-2022).
 
- [Section 7.4](../07_Application_Examples/07-04_TransportPAL-Label-SH.md) shows the application of the described concepts to a flexible transport between a palletizer, a labeller and a stretch hood machine. [Section 8.8](../08_MTP%20Extensions/08-08_TransportSet.md#88-mtp-specification-of-the-transportset) provides detailed specifications of the introduced MTP extensions.
+ [Section 6.4](../06_Application_Examples/06-04_TransportPAL-Label-SH.md) shows the application of the described concepts to a flexible transport between a palletizer, a labeller and a stretch hood machine. [Section 7.8](../07_MTP%20Extensions/07-08_TransportSet.md#78-mtp-specification-of-the-transportset) provides detailed specifications of the introduced MTP extensions.
 
 ### 5.1 Artifact Overview
 
