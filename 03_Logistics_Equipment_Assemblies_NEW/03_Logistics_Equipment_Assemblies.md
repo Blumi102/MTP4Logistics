@@ -353,7 +353,7 @@ This pattern of complexity reduction through default values is applicable to fur
 
 ### 3.8 Summary of MTP Extensions
 
-[Table 3.5](#table-35-mtp-extensions-for-lea-automation) summarizes the new and extended interface and model definitions introduced by this artifact.
+In the preceding sections, a number of extensions to the MTP specification were identified that are necessary in the context of automating Logistics Equipment Assemblies. [Table 3.5](#table-35-mtp-extensions-for-lea-automation) provides an overview of the model and interface definitions to be introduced. A more detailed description is provided in the specification sections referenced in [Table 3.5](#table-35-mtp-extensions-for-lea-automation).
 
 ##### Table 3.5: MTP Extensions for LEA Automation
 
