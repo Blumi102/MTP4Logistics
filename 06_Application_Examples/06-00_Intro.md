@@ -2,16 +2,9 @@
 
 This chapter provides two types of examples that illustrate the concepts for production-related logistics automation described in the work.
 
-The first type are **theoretical application examples** ([Sections 6.1](06-01_PalletizingLEA.md)–[6.4](06-04_TransportPAL-Label-SH.md)). Each example illustrates exactly one automation concept in isolation using a representative LEA or MLS configuration. They were constructed to demonstrate the concepts and their design decisions, but have not been implemented in a real system.
+The theoretical application examples for the individual artifacts are provided at the end of the respective chapters: [Section 3.9](../03_Logistics_Equipment_Assemblies_NEW/03-09_Application_Example_PalletizingLEA.md) (Palletizing LEA) and [Section 3.10](../03_Logistics_Equipment_Assemblies_NEW/03-10_Application_Example_StretchHoodLEA.md) (Stretch Hood LEA) in [Chapter 3](../03_Logistics_Equipment_Assemblies_NEW/03_Logistics_Equipment_Assemblies.md), [Section 4.5](../04_Logistics_Line_NEW/04-05_Application_Example_BagFillingLine.md) (Bag Filling Line) in [Chapter 4](../04_Logistics_Line_NEW/04_Logistics_Line.md), and [Section 5.8](../05_Logistics_Area_NEW/05-08_Application_Example_TransportPAL-Label-SH.md) (Transport PAL–Label–SH) in [Chapter 5](../05_Logistics_Area_NEW/05_Logistics_Area.md). Each example illustrates exactly one automation concept in isolation using a representative LEA or MLS configuration. They were constructed to demonstrate the concepts and their design decisions, but have not been implemented in a real system.
 
-The second type are **industrial evaluation examples** ([Sections 6.5](06-05_BasfDemonstrator.md)–[6.7](06-07_Emulation.md)). Each example was physically implemented and tested, either at an industrial partner site or in a full PLC-based emulation. In contrast to the theoretical examples, the evaluation examples combine multiple automation concepts — LEA automation, Logistics Line choreography, and AGV-based transport — in a single system, and report findings from actual operation.
-
-### Theoretical Application Examples
-
-- [Section 6.1: Application Example: Palletizing LEA](./06-01_PalletizingLEA.md) — Demonstrates LEA automation using a CES-based palletizing service, including service specification, mode of operation, and HMI screen design.
-- [Section 6.2: Application Example: Stretch Hood LEA](./06-02_StretchHoodLEA.md) — Demonstrates LEA automation using a service that supports both CES-based and SES-based operation, including the demand-driven SES mode of operation.
-- [Section 6.3: Application Example: Bag Filling Line](./06-03_BagFillingLine.md) — Demonstrates Logistics Line automation using a choreography configuration for a three-LEA bag filling line, including vertical integration via a Lead Service and horizontal integration via Configurable Logic and Configurable Communication.
-- [Section 6.4: Application Example: Transport PAL–Label–SH](./06-04_TransportPAL-Label-SH.md) — Demonstrates Logistics Area automation using the transport concept, tracing a push transport order step by step from initiation through AGV transport, processing, and final handover.
+This chapter presents **industrial evaluation examples** ([Sections 6.5](06-05_BasfDemonstrator.md)–[6.7](06-07_Emulation.md)). Each example was physically implemented and tested, either at an industrial partner site or in a full PLC-based emulation. In contrast to the theoretical examples, the evaluation examples combine multiple automation concepts — LEA automation, Logistics Line choreography, and AGV-based transport — in a single system, and report findings from actual operation.
 
 ### Industrial Evaluation Examples
 
