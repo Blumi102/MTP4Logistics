@@ -16,9 +16,9 @@ DataAssembly definitions for process-value outputs of structured data types and 
 
 ### 7.5.2 DataAssembly definitions
 #### Specification of the System Unit Class StructProcessValueIn
-*SUC StructProcessValueIn* ([Table 7.39](#table-739-dataassembly-definition-of-suc-structprocessvaluein)) is used by a LEA to access the value of a variable with a structured data type from another LEA.
+*SUC StructProcessValueIn* ([Table 7.43](#table-743-dataassembly-definition-of-suc-structprocessvaluein)) is used by a LEA to access the value of a variable with a structured data type from another LEA.
 
-##### Table 7.39: DataAssembly definition of *SUC StructProcessValueIn*
+##### Table 7.43: DataAssembly definition of *SUC StructProcessValueIn*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -47,9 +47,9 @@ DataAssembly definitions for process-value outputs of structured data types and 
 The required value is transferred in the variable *V* according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4). The distinctive feature of this DataAssembly definition is the use of a user-defined structured data type. The modeling and use of such a type have already been described in connection with [SUC StructView](./07-03_DataAssemblySet.md#specification-of-the-system-unit-class-structview) and are applied in the same way for *SUC StructProcessValueIn*. This data type is then expected behind the variable *V*.
 
 #### Specification of the System Unit Class ArrayProcessValueIn
-*SUC ArrayProcessValueIn* ([Table 7.40](#table-740-dataassembly-definition-of-suc-arrayprocessvaluein)) is used by a LEA to access a value at a specific position of an array in another LEA.
+*SUC ArrayProcessValueIn* ([Table 7.44](#table-744-dataassembly-definition-of-suc-arrayprocessvaluein)) is used by a LEA to access a value at a specific position of an array in another LEA.
 
-##### Table 7.40: DataAssembly definition of *SUC ArrayProcessValueIn*
+##### Table 7.44: DataAssembly definition of *SUC ArrayProcessValueIn*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -86,9 +86,9 @@ The array position to be displayed is selected via the variable *IndexSel*. The 
 **Note:** This DataAssembly definition differs from all other interfaces derived from the DataAssembly definition *SUC InputElement* because it also includes information flows from the LEA to the LOL. This had not previously been envisaged.
 
 #### Specification of the System Unit Class OutputElement
-*SUC OutputElement* ([Table 7.41](#table-741-dataassembly-definition-of-suc-outputelement)) is an abstract interface from which specific process-value outputs of different data types can be derived. The DataAssembly definition itself serves only an organizational purpose and provides a variable for transmitting a *Worst Quality Code (WQC)*.
+*SUC OutputElement* ([Table 7.45](#table-745-dataassembly-definition-of-suc-outputelement)) is an abstract interface from which specific process-value outputs of different data types can be derived. The DataAssembly definition itself serves only an organizational purpose and provides a variable for transmitting a *Worst Quality Code (WQC)*.
 
-##### Table 7.41: DataAssembly definition of *SUC OutputElement*
+##### Table 7.45: DataAssembly definition of *SUC OutputElement*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -116,9 +116,9 @@ The array position to be displayed is selected via the variable *IndexSel*. The 
 **Note:** For greater clarity in modeling and with regard to possible future developments, MTP standardization should consider explicitly modeling *ProcessValueOutputs* of all MTP data types, including structured and primitive data types, and also deriving them from the newly specified *OutputElement*.
 
 #### Specification of the System Unit Class ArrayProcessValueOut
-*SUC ArrayProcessValueOut* ([Table 7.42](#table-742-dataassembly-definition-of-suc-arrayprocessvalueout)) is used by a LEA to provide the values of a LEA-internal array to another LEA.
+*SUC ArrayProcessValueOut* ([Table 7.46](#table-746-dataassembly-definition-of-suc-arrayprocessvalueout)) is used by a LEA to provide the values of a LEA-internal array to another LEA.
 
-##### Table 7.42: DataAssembly definition of *SUC ArrayProcessValueOut*
+##### Table 7.46: DataAssembly definition of *SUC ArrayProcessValueOut*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>

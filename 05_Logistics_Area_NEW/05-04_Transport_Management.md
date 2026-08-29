@@ -1,18 +1,18 @@
-### 5.4 Transport Management
+## 5.4 Transport Management
 
 This section describes the MTP-based concepts for implementing the presented transport concept on the Transport Management side. [Section 5.4.1](#541-structure-and-operation) presents the structure and operation of the Transport Management. [Sections 5.4.2](#542-transport-services) and [5.4.3](#543-transport-service-interface) cover details of the Transport Services managed in the Transport Management and their interfaces.
 
-#### 5.4.1 Structure and Operation
+### 5.4.1 Structure and Operation
 
 The Transport Management receives transport demands from the LEAs and manages and executes them as transport orders in the form of MTP services. In the case of handovers, pickups, and processing, the Transport Management must interact with the transport nodes of the LEAs. To implement these tasks, the Transport Management internally provides an LEA Management and an Order Management ([Figure 5.1](05_Logistics_Area.md#figure-51-architecture-overview-for-implementing-flexible-transports-in-a-logistics-area)). Additionally, the Transport Management has an OPC UA server for connecting the LEAs and AGV system adapters for connecting AGV systems.
 
-##### LEA Management
+#### LEA Management
 
 **Integration and management of LEA information:** The LEA Management serves for MTP-based integration of LEAs including their transport nodes and for the configurative binding of LEAs to the TN Proxies in the Order Management. For this purpose, it manages the necessary information for the communication connection of the LEAs as well as a description of all transport nodes present at a LEA.
 
 **Monitoring for failures in the LEAs:** Furthermore, the LEA Management monitors the state of the LEA services and detects LEAs with failures. It transmits this information Transport-Management-internally to the Order Management so that it can reroute the Transport Services affected by the failures.
 
-##### Order Management
+#### Order Management
 
 The Order Management handles the management and execution of all transport orders currently running in the Logistics Area in the form of MTP services.
 
@@ -24,7 +24,7 @@ The Order Management handles the management and execution of all transport order
 
 **TM-internal assignment of Transport Services to TN Proxies:** Transport services are bound Order-Management-internally to these TN Proxies. Which TN Proxy a Transport Service is bound to is stored in the *NextNode* variable of the Transport Service. The TN Proxies map the interface data of the bound Transport Services to their own interface and make them available to the LEAs via the OPC UA server of the Transport Management. When assigning Transport Services to TN Proxies, the Transport Management should ensure that Transport Services are only bound to a TN Proxy as long as they interact with each other. Afterwards, the TN Proxy should be released for binding other Transport Services to the respective node.
 
-#### 5.4.2 Transport Services
+### 5.4.2 Transport Services
 
 For the MTP-based abstraction of flexible transports, each transport order pending in the MLS is implemented as a service (Transport Service) in the sense of the MTP concept according to design decision DD2, which is executed in the Transport Management. These Transport Services follow the conventions defined in [[PNO Part 4]](../98_References/README.md#pno-2025-part4). However, they are also characterized by two essential features that distinguish Transport Services from conventional MTP services:
 
@@ -32,7 +32,7 @@ For the MTP-based abstraction of flexible transports, each transport order pendi
 
 **Standardization instead of description in an MTP file:** Conventional MTP services are described in an MTP file containing a modeling of the service interface and semantic models of various aspects of the service. For Transport Services, no modeling in an MTP file is performed. Instead, the interface of Transport Services is defined in [Section 5.4.3](#543-transport-service-interface). Every Transport Service provided in a Transport Management must implement this interface. This approach is *possible* because transport orders always represent the same function (= transport of LOs between definable transport nodes), regardless of the packaging processes pending in the MLS or the AGV systems used. This approach is *necessary* to enable uniform interaction between the Transport Services in the Transport Management and the LEAs, regardless of which LEA and which Transport Management are used. Only when the interface of the Transport Services is predefined can this interface be implemented in the TN Blocks of the LEAs at LEA engineering time (without knowledge of the Transport Management or AGV system used), thus preparing the decentralized orchestration of the Transport Services. Furthermore, a potential MTP file of the Transport Management would constantly change due to the dynamic creation and deletion of Transport Services, which would severely impair the maintainability and usability of such an MTP file.
 
-#### 5.4.3 Transport Service Interface
+### 5.4.3 Transport Service Interface
 
 [Table 5.1](#table-51-mtp-interface-of-a-transport-service) shows the interface defined in this work that every MTP-based Transport Service must implement to enable uniform interaction with LEAs. This interface is generically designed so that it can be used independently of the underlying AGV system. It is composed of existing interface definitions according to [[PNO Part 4]](../98_References/README.md#pno-2025-part4).
 
@@ -130,11 +130,11 @@ For the MTP-based abstraction of flexible transports, each transport order pendi
   </tr>
 </table>
 
-##### Transport Service State and Status
+#### Transport Service State and Status
 
 Like all services according to the MTP concept, Transport Services are based on the MTP state machine standardized in [[PNO Part 4]](../98_References/README.md#pno-2025-part4). This state machine is suitable for representing the basic state of a transport — e.g., whether it has been started, is currently being executed, is in an error state, or has already been completed. The existing *ServiceControl* interface of the Transport Service can be used to interact with this state machine.
 
-Additionally, as described in [Sections 5.1.2](#512-working-principle) and [5.3](#53-transport-process), the status of the transport order must be represented on the Transport Service to enable a uniform state-based interaction between the LEAs and the Transport Services. The domain-specific fine-grained states according to the process model in [Figure 5.9](05-03_Transport_Process.md#figure-59-process-model-of-a-transport-process-in-a-logistics-area) cannot be represented with the standardized MTP state machine and require an additional representation mechanism.
+Additionally, as described in [Sections 5.1.2](#512-working-principle) and [5.3](#53-transport-process), the status of the transport order must be represented on the Transport Service to enable a uniform state-based interaction between the LEAs and the Transport Services. The domain-specific fine-grained states according to the process model in [Figure 5.13](05-03_Transport_Process.md#figure-511-process-model-of-a-transport-process-in-a-logistics-area) cannot be represented with the standardized MTP state machine and require an additional representation mechanism.
 
 **Decision:** The transport status is represented via **procedures** according to [[PNO Part 4]](../98_References/README.md#pno-2025-part4). Each transport status corresponds to a procedure of the Transport Service. Transitions between transport statuses are performed via procedure changes using a *Restart* of the Transport Service.
 
@@ -149,14 +149,14 @@ Additionally, as described in [Sections 5.1.2](#512-working-principle) and [5.3]
 - *Process values:* Simple to set, but designed for unidirectional value transfer. Bidirectional interaction would require two synchronized process values per Transport Service with no native transition logic.
 - *Report values and ServicePosition variable:* Can only be changed service-internally and not by external automation systems, preventing the required synchronization between LEA and AGV system.
 
-The procedures representing the transport status are set at appropriate times during the execution of a Transport Service. [Figure 5.11](#figure-511-mapping-of-transport-statuses-into-the-mtp-state-machine) shows which procedures can be active in which states of the MTP state machine of a Transport Service according to the transport concept presented here.
+The procedures representing the transport status are set at appropriate times during the execution of a Transport Service. [Figure 5.13](#figure-513-mapping-of-transport-statuses-into-the-mtp-state-machine) shows which procedures can be active in which states of the MTP state machine of a Transport Service according to the transport concept presented here.
 
-##### Figure 5.11: Mapping of Transport Statuses into the MTP State Machine
+##### Figure 5.13: Mapping of Transport Statuses into the MTP State Machine
 ![Mapping of Transport Statuses into the MTP State Machine](./images/TransportstatusZA.svg)
 
-The transport process is started by a LEA when reporting a transport demand and is fundamentally executed in the EXECUTE state of the Transport Service. The transport status is represented by the currently active procedure (*ProcedureCur* variable of the *ServiceControl* interface). By performing a *Restart* of the Transport Service with a procedure change, different transport statuses can be switched between without terminating the Transport Service. Using the command-enable logic (*CommandEn*) of the MTP concept, only valid transitions between transport statuses according to the process model from [Figure 5.9](05-03_Transport_Process.md#figure-59-process-model-of-a-transport-process-in-a-logistics-area) are allowed, and all others are locked. Inactive Transport Services that have not yet been started (IDLE) have the transport status *Undefined*. When the Transport Service is completed (COMPLETING, COMPLETED), the last transport status (*TransferToLeaSucceeded*) is retained. The RESETTING state is never reached, since a new Transport Service is used for each new transport order rather than resetting and reusing an existing one. The remaining loops of the MTP state machine (pause, hold, stop, abort loops) can also be traversed. In these cases, the previously active transport status is retained. The internal function of these loops is determined by the Transport Management implementation — for example, in case of an error, the AGV can be stopped or steered to a safe position. The procedures resulting from the process model and their procedure IDs are shown in [Table 5.3](#table-53-procedures-of-a-transport-service).
+The transport process is started by a LEA when reporting a transport demand and is fundamentally executed in the EXECUTE state of the Transport Service. The transport status is represented by the currently active procedure (*ProcedureCur* variable of the *ServiceControl* interface). By performing a *Restart* of the Transport Service with a procedure change, different transport statuses can be switched between without terminating the Transport Service. Using the command-enable logic (*CommandEn*) of the MTP concept, only valid transitions between transport statuses according to the process model from [Figure 5.13](05-03_Transport_Process.md#figure-511-process-model-of-a-transport-process-in-a-logistics-area) are allowed, and all others are locked. Inactive Transport Services that have not yet been started (IDLE) have the transport status *Undefined*. When the Transport Service is completed (COMPLETING, COMPLETED), the last transport status (*TransferToLeaSucceeded*) is retained. The RESETTING state is never reached, since a new Transport Service is used for each new transport order rather than resetting and reusing an existing one. The remaining loops of the MTP state machine (pause, hold, stop, abort loops) can also be traversed. In these cases, the previously active transport status is retained. The internal function of these loops is determined by the Transport Management implementation — for example, in case of an error, the AGV can be stopped or steered to a safe position. The procedures resulting from the process model and their procedure IDs are shown in [Table 5.2](#table-52-procedures-of-a-transport-service).
 
-##### Table 5.3: Procedures of a Transport Service
+##### Table 5.2: Procedures of a Transport Service
 
 <table>
   <tr>
@@ -241,7 +241,7 @@ The transport process is started by a LEA when reporting a transport demand and 
   </tr>
 </table>
 
-##### Parameters and Report Values of the Transport Service
+#### Parameters and Report Values of the Transport Service
 
 Transport services hold all information required for executing a transport process. In addition to transport state and transport status, this includes in particular the order metadata (*ProductionId*, *ProductId*, *LogisticsObjectId*, *LogisticsObjectStatus*, *IsPriorityOrder*) as well as the routing parameters *NextNode* and *FinalTargetNode*. These values are initially set by the LEA when reporting a transport demand and updated as needed during the course of the process. *NextNode* in particular is essential, as this parameter determines the step-by-step routing of the AGV within the Logistics Area. These variables are process-relevant parameters that are set at the Transport Service by an external system (here: LEA). They are therefore implemented as procedure parameters according to [[PNO Part 4]](../98_References/README.md#pno-2025-part4). This allows both the Transport Management and the LEA currently bound to the Transport Service to read and modify this information.
 

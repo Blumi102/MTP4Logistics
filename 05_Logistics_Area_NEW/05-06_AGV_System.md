@@ -1,4 +1,4 @@
-### 5.6 AGV System
+## 5.6 AGV System
 
 In this work AGV systems consisting of a fleet manager and multiple AGVs are considered for implementing flexible transports in Logistics Areas. They serve to execute the transport orders managed in the Transport Management.
 
@@ -10,9 +10,9 @@ In an MLS, different AGV systems with different technical characteristics and pr
 
 For the execution of transport orders, the AGV system adapters must be able to access information from Transport Services in the Transport Management and synchronize it in a suitable manner with the proprietary interface of the AGV systems.
 
-To enable the interaction with the AGV system according to the presented working principle ([Sections 5.1.2](05_Logistics_Area.md#512-working-principle) and [5.3](05-03_Transport_Process.md#53-transport-process)), the proprietary interface of an AGV system must be able to provide or process certain information for each transport order. [Table 5.7](#table-57-minimum-interface-requirements-for-an-agv-system) provides an overview of this information. Additionally, the fleet manager of the AGV system must be able to select a suitable AGV for the transport order based on the transport order information received from the adapter, reserve it for the transport order, and execute the transport order according to the described working principle.
+To enable the interaction with the AGV system according to the presented working principle ([Sections 5.1.2](05_Logistics_Area.md#512-working-principle) and [5.3](05-03_Transport_Process.md#53-transport-process)), the proprietary interface of an AGV system must be able to provide or process certain information for each transport order. [Table 5.6](#table-56-minimum-interface-requirements-for-an-agv-system) provides an overview of this information. Additionally, the fleet manager of the AGV system must be able to select a suitable AGV for the transport order based on the transport order information received from the adapter, reserve it for the transport order, and execute the transport order according to the described working principle.
 
-##### Table 5.7: Minimum Interface Requirements for an AGV System
+##### Table 5.6: Minimum Interface Requirements for an AGV System
 
 <table>
   <tr>

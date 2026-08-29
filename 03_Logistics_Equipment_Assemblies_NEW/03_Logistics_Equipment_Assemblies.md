@@ -4,7 +4,7 @@ This chapter presents the MTP-based automation and integration of Logistics Equi
 
  [Sections 3.9](03-09_Application_Example_PalletizingLEA.md) and [3.10](03-10_Application_Example_StretchHoodLEA.md) show the application of the described concepts to a palletizer LEA and a stretch-hood LEA. [Chapter 7](../07_MTP%20Extensions/07-00_Intro.md) provides detailed specifications of the introduced MTP extensions.
 
-### 3.1 Artifact Overview
+## 3.1 Artifact Overview
 
 The MTP-based automation of LEAs comprises the same building blocks as the automation of PEAs in modular production processes. [Figure 3.1](#figure-31-components-of-lea-automation) gives an overview of these components.
 

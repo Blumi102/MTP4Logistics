@@ -1,9 +1,5 @@
 
-<!-- TODO: Nummerierung von Abbildungen und Tabellen glatt ziehen -->
-<!-- TODO: Referenzen auf Abbildungen und Tabellen glatt ziehen -->
-<!-- TODO: Nummerierung der Sections glatt ziehen -->
-<!-- TODO: Texte lesen -->
-<!-- TODO: Tabellen prüfen -->
+
 <!-- TODO: Tabellenzellen linksbündig -->
 <!-- TODO: Verlinkungen durch Claude prüfen lassen! -->
 <!-- TODO: bei den Specs Labels vergeben, was schon übernommen wurde -->
@@ -15,7 +11,7 @@
 
 ## 7 Enhancements of the Module Type Package Concept
 
-### Content of this Chapter
+#### Content of this Chapter
 
 The Module Type Package concept has originally been developed for process industries. For a purposeful application in the context of production-related logistics, further development is necessary, which is presented in the following sections. In course of this development, care has been taken not to change the state machine or any other existing constructs (DataAssembly definitions, model definitions and mechanisms) of the MTP concept. However, reinterpretations and reasonable specifications of new MTP constructs have been developed. Extensions to the following aspects are described in this repository:
 
@@ -30,7 +26,7 @@ The Module Type Package concept has originally been developed for process indust
 
 Furthermore, a [Conformity Declaration](./07-09_Conformity_Declaration.md) shows which profiles of the described aspects are needed to implement certain application scesnarios in production-related logistics.
 
-### Formal Hints for the Specification Sections
+#### Formal Hints for the Specification Sections
 
 The specifications follow the structure and style of the MTP specification. Each section presents extensions or a new specification of one MTP aspect. Each section begins with an overview of the introduced extensions, including a UML-style class diagram summarizing new model and DataAssembly definitions. This is followed by specification tables for the new definitions and detailed descriptions of new workflows.
 

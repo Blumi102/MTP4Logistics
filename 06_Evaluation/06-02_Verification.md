@@ -1,4 +1,4 @@
-### 6.2 Verification
+## 6.2 Verification
 
 This section verifies the three artifacts against the automation requirements defined in [Section 2.6](../02_Modular_Logistics_System_NEW/02_Modular_Logistics_System.md#26-automation-requirements). For each requirement, the corresponding concept and its demonstration in the evaluation examples are referenced.
 

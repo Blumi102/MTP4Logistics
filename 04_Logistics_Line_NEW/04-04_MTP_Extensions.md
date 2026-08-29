@@ -1,8 +1,8 @@
-### 4.4 MTP Extensions
+## 4.4 MTP Extensions
 
-In the preceding sections, a number of extensions to the MTP specification were identified that are necessary in the context of automating choreographed Logistics Lines. [Table 4.3](#table-43-mtp-specification-extensions-for-logistics-line-automation) provides an overview of the model and interface definitions as well as workflows to be introduced. A more detailed description is provided in the specification sections referenced in [Table 4.3](#table-43-mtp-specification-extensions-for-logistics-line-automation).
+In the preceding sections, a number of extensions to the MTP specification were identified that are necessary in the context of automating choreographed Logistics Lines. [Table 4.4](#table-44-mtp-specification-extensions-for-logistics-line-automation) provides an overview of the model and interface definitions as well as workflows to be introduced. A more detailed description is provided in the specification sections referenced in [Table 4.4](#table-44-mtp-specification-extensions-for-logistics-line-automation).
 
-##### Table 4.3: MTP Specification Extensions for Logistics Line Automation
+##### Table 4.4: MTP Specification Extensions for Logistics Line Automation
 
 <table>
   <tr>

@@ -1,4 +1,4 @@
-### 6.3 Validation
+## 6.3 Validation
 
 This section validates the usefulness of the artifacts in the problem context and their suitability to fulfill the research goal defined in [Section 1](../01_Introduction/01_Introduction.md).
 

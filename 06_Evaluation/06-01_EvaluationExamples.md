@@ -1,4 +1,4 @@
-### 6.1 Evaluation Examples
+## 6.1 Evaluation Examples
 
 The evaluation examples were investigated as controlled experiments (*Single Case Experiments* per [[Wie14]](../98_References/README.md#wieringa-2014), *Controlled Experiments* per [[HMP+04]](../98_References/README.md#hevner-et-al-2004)). Defined test scenarios with specific stimuli were executed on prototypical implementations, and the system reactions were observed and assessed. This allows predictions about artifact performance in real-world contexts, even though the artifacts have not yet been deployed in productive logistics systems [[Wie14]](../98_References/README.md#wieringa-2014).
 

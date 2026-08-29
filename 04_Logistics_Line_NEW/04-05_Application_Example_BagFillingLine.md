@@ -2,9 +2,9 @@
 To illustrate the concepts described in this chapter for Logistics Line automation, this section presents an exemplary application of the choreography concept to the bag filling line of the use case described in [Section 4.2.1](04-02_Horizontal_Integration.md#421-application-example).
 
 ### 4.5.1 Introduction to the Use Case
-The bag filling line consists of three LEAs — a Form-Fill-Seal machine (FFS), a conveyor (CONV), and a palletizer (PAL) — each automated with a service in CES mode in accordance with [Chapter 3](../03_Logistics_Equipment_Assemblies_NEW/03_Logistics_Equipment_Assemblies.md). For simplicity, it is assumed that these services feature exclusively the procedures, parameters, process values, and report values shown in [Table 4.4](#table-44-services-of-the-exemplary-logistics-line-including-their-procedures-parameters-and-process-values).
+The bag filling line consists of three LEAs — a Form-Fill-Seal machine (FFS), a conveyor (CONV), and a palletizer (PAL) — each automated with a service in CES mode in accordance with [Chapter 3](../03_Logistics_Equipment_Assemblies_NEW/03_Logistics_Equipment_Assemblies.md). For simplicity, it is assumed that these services feature exclusively the procedures, parameters, process values, and report values shown in [Table 4.5](#table-45-services-of-the-exemplary-logistics-line-including-their-procedures-parameters-and-process-values).
 
-##### Table 4.4: Services of the Exemplary Logistics Line Including Their Procedures, Parameters, and Process Values
+##### Table 4.5: Services of the Exemplary Logistics Line Including Their Procedures, Parameters, and Process Values
 
 <table>
   <tr>
@@ -55,9 +55,9 @@ The bag filling line consists of three LEAs — a Form-Fill-Seal machine (FFS), 
   </tr>
 </table>
 
-The choreography configuration in terms of Configurable Logic and Configurable Communication depends substantially on the desired behavior of the Logistics Line. [Table 4.5](#table-45-application-scenarios-of-the-exemplary-bag-filling-line) shows exemplary application scenarios that are used as the basis here. In other application contexts, different scenarios and thus a different choreography configuration may be required.
+The choreography configuration in terms of Configurable Logic and Configurable Communication depends substantially on the desired behavior of the Logistics Line. [Table 4.6](#table-46-application-scenarios-of-the-exemplary-bag-filling-line) shows exemplary application scenarios that are used as the basis here. In other application contexts, different scenarios and thus a different choreography configuration may be required.
 
-##### Table 4.5: Application Scenarios of the Exemplary Bag Filling Line
+##### Table 4.6: Application Scenarios of the Exemplary Bag Filling Line
 
 <table>
   <tr>
@@ -90,7 +90,7 @@ The choreography configuration in terms of Configurable Logic and Configurable C
 
 **Lead Service:** As described in [Section 4.3.1](04-03_Vertical_Integration.md#431-line-interface), a Lead Service provides a service interface for the functionality of a Logistics Line, which can be implemented as an Internal Lead or External Lead. In this case, an External Lead is chosen, since none of the three participating services can meaningfully represent the line functionality. Considering Scenario 1 (Start-Up), for example, it becomes clear that the impulse to start up must be given at the PAL service, while the confirmation of a successful start-up is available at the FFS service. An Internal Lead is therefore not suitable. The External Lead Service is chosen to run alongside the *Palletizing* service on the PAL's controller, since these typically serve as the master controllers for logistics lines today. Alternatively, it may also run on a separate controller. The Lead Service is exemplarily equipped with five generic procedures that, in accordance with the behavioral rules of the Configurable Logic, lead to various procedure settings of the Follower Services.
 
-**Parameters:** In addition, the parameters shown in [Table 4.4](#table-44-services-of-the-exemplary-logistics-line-including-their-procedures-parameters-and-process-values) must be configured. It is advisable to configure parameters at as few LEAs as possible in order to simplify the line interface. In the present case, all parameters of the *Palletizing* service and the *Speed* parameter of the *Conveying* service are provided at the line interface. The parameters *ProductId* and *BagQuantity* are passed internally within the choreography from the PAL to the FFS LEA.
+**Parameters:** In addition, the parameters shown in [Table 4.5](#table-45-services-of-the-exemplary-logistics-line-including-their-procedures-parameters-and-process-values) must be configured. It is advisable to configure parameters at as few LEAs as possible in order to simplify the line interface. In the present case, all parameters of the *Palletizing* service and the *Speed* parameter of the *Conveying* service are provided at the line interface. The parameters *ProductId* and *BagQuantity* are passed internally within the choreography from the PAL to the FFS LEA.
 
 **Report Values:** The report values of the Logistics Line are the *BagsCount* and *PalletsCount* report values of the PAL, which provide the number of completed bags and pallets of the Logistics Line respectively.
 

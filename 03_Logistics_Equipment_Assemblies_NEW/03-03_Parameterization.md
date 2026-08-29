@@ -1,6 +1,6 @@
-### 3.3 Parameterization
+## 3.3 Parameterization
 
-#### 3.3.1 Parameter Types
+### 3.3.1 Parameter Types
 
 Four types of LEA parameters are distinguished [[BFS+22]](../98_References/README.md#blumenstein-et-al-2022-atp), [[BGB+23]](../98_References/README.md#blumenstein-et-al-moprolog):
 
@@ -29,7 +29,7 @@ Four types of LEA parameters are distinguished [[BFS+22]](../98_References/READM
   </tr>
 </table>
 
-#### 3.3.2 Parameter Transfer Mechanisms
+### 3.3.2 Parameter Transfer Mechanisms
 
 Three mechanisms for transferring parameters to a LEA service are identified:
 
@@ -86,7 +86,7 @@ Three mechanisms for transferring parameters to a LEA service are identified:
 - **Single parameter set:** Existing MTP concepts do not provide parameter interfaces for structured data types. Therefore, the *StructServParam* interface ([Table 7.25](../07_MTP%20Extensions/07-04_ServiceSet.md#table-725-dataassembly-definition-of-suc-structservparam)) is newly specified to transfer a parameter set with a LEA-specific structured data type. A method for modeling the required complex data types in the MTP ([Section 7.3.2](../07_MTP%20Extensions/07-03_DataAssemblySet.md#732-dataassembly-definitions)) and in the OPC UA server of a LEA ([Section 7.6](../07_MTP%20Extensions/07-06_ServerAssemblySet.md#76-mtp-extension-of-the-serverassemblyset)) is also described.
 - **Selection of parameter sets:** For the ID-based selection interface, the *DIntServParam* interface from [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) is reused. For loading parameter sets into LEA-internal array storage, no suitable interface exists in the current MTP concept; the *ArrayServParam* interface ([Table 7.26](../07_MTP%20Extensions/07-04_ServiceSet.md#table-726-dataassembly-definition-of-suc-arrayservparam)) is therefore newly specified. Each array element uses the same LEA-specific structured data type as for single parameter set transfer.
 
-#### 3.3.3 Parameterization Initiation
+### 3.3.3 Parameterization Initiation
 
 Three modes to initiate parameterization are distinguished:
 
@@ -143,7 +143,7 @@ Three modes to initiate parameterization are distinguished:
 - **LEA-requested:** The LEA detects a missing parameter set and requests it from the LOL. For this *ProductParameterRequest* ([Table 7.32](../07_MTP%20Extensions/07-04_ServiceSet.md#table-732-model-definition-of-suc-productparameterrequest)) and *PackagingParameterRequest* ([Table 7.33](../07_MTP%20Extensions/07-04_ServiceSet.md#table-733-model-definition-of-suc-packagingparameterrequest)) are introduced in this work. Those follow similar mechanism to the MTP *Service Interaction* mechanism. 
 - **Local HMI entry:** An operator enters parameters directly at the LEA HMI. To propagate local changes back to the LOL, *ProductParameterUpdatedInfo* ([Table 7.34](../07_MTP%20Extensions/07-04_ServiceSet.md#table-734-model-definition-of-suc-productparameterupdatedinfo)) and *PackagingParameterUpdatedInfo* ([Table 7.35](../07_MTP%20Extensions/07-04_ServiceSet.md#table-735-model-definition-of-suc-packagingparameterupdatedinfo)) models specified in this work, also based on the MTP *Service Interaction* mechanism [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4).
 
-#### 3.3.4 Recommended Parameterization Mechanism
+### 3.3.4 Recommended Parameterization Mechanism
 
 The previously described mechanisms for parameter transfer and initiation of parameterization can be combined in any way. However, in the following an recommendation is given, of how to use these mechanisms for the different parameter types of LEA services.
 

@@ -2,7 +2,7 @@
 
 ## 2 Modular Logistics Systems
 
-### 2.1 Context: Production-Related Logistics and Packaging Processes
+## 2.1 Context: Production-Related Logistics and Packaging Processes
 
 This work focuses on packaging processes in the process industry as a part of production-related logistics. Production-related logistics encompasses the supply of production processes with raw materials and the packaging of finished products [[NE 171]](../98_References/README.md#namur-ak-419-2020). The core task of packaging processes is the discretization of product streams, e.g., bulk or liquid goods, into individual, uniquely identifiable units referred to as **Logistics Objects (LOs)**, e.g., bags or pallets [[NE 171]](../98_References/README.md#namur-ak-419-2020).
 
@@ -11,7 +11,7 @@ Within the ENPRO 2.0 research project "Modular Production-Related Logistics (MoP
 ##### Figure 2.1: Reference Process Model for Packaging Processes [[GPL23]](../98_References/README.md#gryczycha-et-al-2023)
 ![Reference Process Model for Packaging Processes](./images/Referenzprozessmodell.svg)
 
-### 2.2 Structure of a Modular Logistics System
+## 2.2 Structure of a Modular Logistics System
 
 The goal of the MoProLog project was to implement such production-related logistics processes using modular logistics systems. The fundamental idea of modularization is the decomposition of a system into clearly bounded modules, which can in turn be broken down into sub-modules. This hierarchical decomposition yields a set of **structural levels**. The structural levels described below were developed within the MoProLog project and are partially published in [[BFG+21]](../98_References/README.md#blumenstein-et-al-design-principles).
 
@@ -32,7 +32,7 @@ A LEA may be further subdivided into **Functional Equipment Assemblies (FEAs)**,
 
 > **Scope of this work:** This work deals with the modular automation of MLS and the effortless automation integration of all necessary elements. The integration challenges in MLS automation lie primarily in the interaction of LEAs with each other and with higher-level systems [[NE 171]](../98_References/README.md#namur-ak-419-2020). This work therefore focuses on the automation of LEAs, their interaction in Logistics Lines and Logistics Areas, and their integration into a LOL.
 
-### 2.3 Transport Systems
+## 2.3 Transport Systems
 
 Two types of couplings between LEAs are distinguished in an MLS, each associated with a different transport mechanism:
 
@@ -55,7 +55,7 @@ Transport processes between nodes are initiated by **transport demands**, which 
 
 LEAs use **Order nodes** to indicate, that they have a demand for a push or a pull transport. In contrast to the other transport nodes mentioned above, order node are *virtual* nodes, not *physical* ones.
 
-### 2.4 Operating Modes of LEAs and Logistics Lines
+## 2.4 Operating Modes of LEAs and Logistics Lines
 
 Two fundamental operating modes of LEAs are distinguished [[BFG+21]](../98_References/README.md#blumenstein-et-al-design-principles):
 
@@ -65,7 +65,7 @@ Two fundamental operating modes of LEAs are distinguished [[BFG+21]](../98_Refer
 
 All LEAs within a Logistics Line must operate uniformly in one mode, since the rigid coupling creates strong interdependencies. Consequently, entire Logistics Lines also exhibit an order-oriented or demand-oriented character. A Logistics Area, by contrast, allows a flexible combination of both operating modes, provided that at least one order-oriented LEA or Logistics Line exists to accept packaging orders.
 
-### 2.5 Execution of Logistics Processes
+## 2.5 Execution of Logistics Processes
 
 [Figure 2.4](#figure-24-execution-of-logistics-processes-in-an-mls) illustrates the execution of logistics processes in an MLS, as described in the following.
 
@@ -78,7 +78,7 @@ The order-oriented instance may source material (e.g., empty pallets) from deman
 
 Demand-oriented instances are started without order data. Upon receiving an LO, they identify it and process it according to its individual order data, then hand it back to an AGV for further processing. The maximum number of packaging orders that can be executed in parallel equals the number of order-oriented LEAs and Logistics Lines in the MLS.
 
-### 2.6 Automation Requirements
+## 2.6 Automation Requirements
 
 The automation of an MLS places specific requirements on its constituent elements. The requirements summarized below are derived from [[NE 171]](../98_References/README.md#namur-ak-419-2020) and enriched with findings from the MoProLog project [[BGB+23]](../98_References/README.md#blumenstein-et-al-moprolog).
 

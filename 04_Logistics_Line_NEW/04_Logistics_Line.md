@@ -4,7 +4,7 @@ This chapter presents the choreography-based automation and MTP-based integratio
 
  [Section 4.5](04-05_Application_Example_BagFillingLine.md#45-application-example-bag-filling-line) shows the application of the described concepts to a bag-filling Logistics Line. [Section 7.7](../07_MTP%20Extensions/07-07_ChoreographySet.md#77-mtp-specification-of-the-choreographyset) provides detailed specifications of the introduced MTP extensions.
 
-### 4.1 Artifact Overview
+## 4.1 Artifact Overview
 
 The automation of Logistics Lines follows a choreography-based approach built on the mechanisms described in [[SFB+21]](../98_References/README.md#stutz-et-al-2021) and [[Stu26]](../98_References/README.md#stutz-2026), adapted to the context of production-related logistics and extended with MTP-based interfaces and models for automated integration. A distinction is made between the **horizontal integration** of LEAs within a Logistics Line and the **vertical integration** of a choreographed Logistics Line into a superordinate LOL.
 

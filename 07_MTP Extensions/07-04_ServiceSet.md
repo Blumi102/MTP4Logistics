@@ -3,9 +3,9 @@ This chapter specifies all identified extensions of the *ServiceSet* and integra
 
 ### 7.4.1 Overview
 #### Semantic Description of LEA Services
-To distinguish order-oriented CES and demand-oriented SES procedures for a LOL, a semantic identifier in the form of *FunctionClassificationAttributes* is added to them. [Table 7.17](#table-717-functionclassificationattribute-of-a-cyclic-execution-service-procedure) and [Table 7.18](#table-718-functionclassificationattribute-of-a-single-execution-service-procedure) specify the corresponding *FunctionClassificationAttributes*. "2.0" denotes the version in major-minor format and shall be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
+To distinguish order-oriented CES and demand-oriented SES procedures for a LOL, a semantic identifier in the form of *FunctionClassificationAttributes* is added to them. [Table 7.21](#table-721-functionclassificationattribute-of-a-cyclic-execution-service-procedure) and [Table 7.22](#table-722-functionclassificationattribute-of-a-single-execution-service-procedure) specify the corresponding *FunctionClassificationAttributes*. "2.0" denotes the version in major-minor format and shall be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
 
-##### Table 7.17: FunctionClassificationAttribute of a Cyclic Execution Service Procedure
+##### Table 7.21: FunctionClassificationAttribute of a Cyclic Execution Service Procedure
 
 <table>
 	<tr>
@@ -29,7 +29,7 @@ To distinguish order-oriented CES and demand-oriented SES procedures for a LOL, 
 	</tr>
 </table>
 
-##### Table 7.18: FunctionClassificationAttribute of a Single Execution Service Procedure
+##### Table 7.22: FunctionClassificationAttribute of a Single Execution Service Procedure
 
 <table>
 	<tr>
@@ -56,9 +56,9 @@ To distinguish order-oriented CES and demand-oriented SES procedures for a LOL, 
 #### Semantic Description of Service Parameters
 To enable a semantic description of service parameters, the model definition *ServiceParameter* is extended by the capability to append *FunctionClassificationAttributes*. The detailed specification is provided in [Model Definitions](#743-model-definitions). This extension, as a result of this work, has already been adopted into the base profile *ModuleTypePackage:ServiceSet.Base V2.0.0* of the [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4).
 
-[Table 7.19](#table-719-functionclassificationattribute-of-a-procedure-parameter-for-setting-a-productid) to [Table 7.23](#table-723-functionclassificationattribute-of-a-configuration-parameter-for-accessing-a-packagingdataset) specify *FunctionClassificationAttributes* for the parameters *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* necessary for LEA parameterization. "2.0" denotes the version in major-minor format and shall be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
+[Table 7.23](#table-723-functionclassificationattribute-of-a-procedure-parameter-for-setting-a-productid) to [Table 7.27](#table-727-functionclassificationattribute-of-a-configuration-parameter-for-accessing-a-packagingdataset) specify *FunctionClassificationAttributes* for the parameters *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* necessary for LEA parameterization. "2.0" denotes the version in major-minor format and shall be incremented accordingly when changes are made to the *FunctionClassificationAttributes*.
 
-##### Table 7.19: FunctionClassificationAttribute of a Procedure Parameter for Setting a ProductId
+##### Table 7.23: FunctionClassificationAttribute of a Procedure Parameter for Setting a ProductId
 
 <table>
 	<tr>
@@ -82,7 +82,7 @@ To enable a semantic description of service parameters, the model definition *Se
 	</tr>
 </table>
 
-##### Table 7.20: FunctionClassificationAttribute of a Procedure Parameter for Setting a LogisticsObjectStatus
+##### Table 7.24: FunctionClassificationAttribute of a Procedure Parameter for Setting a LogisticsObjectStatus
 
 <table>
 	<tr>
@@ -106,7 +106,7 @@ To enable a semantic description of service parameters, the model definition *Se
 	</tr>
 </table>
 
-##### Table 7.21: FunctionClassificationAttribute of a Configuration Parameter for Accessing a ProductDataSet
+##### Table 7.25: FunctionClassificationAttribute of a Configuration Parameter for Accessing a ProductDataSet
 
 <table>
 	<tr>
@@ -130,7 +130,7 @@ To enable a semantic description of service parameters, the model definition *Se
 	</tr>
 </table>
 
-##### Table 7.22: FunctionClassificationAttribute of a Procedure Parameter for Setting a PackagingId
+##### Table 7.26: FunctionClassificationAttribute of a Procedure Parameter for Setting a PackagingId
 
 <table>
 	<tr>
@@ -154,7 +154,7 @@ To enable a semantic description of service parameters, the model definition *Se
 	</tr>
 </table>
 
-##### Table 7.23: FunctionClassificationAttribute of a Configuration Parameter for Accessing a PackagingDataSet
+##### Table 7.27: FunctionClassificationAttribute of a Configuration Parameter for Accessing a PackagingDataSet
 
 <table>
 	<tr>
@@ -185,9 +185,9 @@ For the processing of values with structured and array data types, two new DataA
 ![Extension of the ServiceSet for Implementing Structured and Array-Based Service Parameters](./images/04_Parameter.drawio.svg)
 
 #### Specification of the LogisticsInteraction
-In the context of LEA parameterization different requests from a LEA to a LOL are necessary. Those so-called *LogisticsInteractions* are shown in [Table 7.24](#table-724-possible-logistics-interaction-requests-from-a-lea-to-a-lol).
+In the context of LEA parameterization different requests from a LEA to a LOL are necessary. Those so-called *LogisticsInteractions* are shown in [Table 7.28](#table-728-possible-logistics-interaction-requests-from-a-lea-to-a-lol).
 
-##### Table 7.24: Possible Logistics Interaction Requests from a LEA to a LOL
+##### Table 7.28: Possible Logistics Interaction Requests from a LEA to a LOL
 
 <table>
 	<tr>
@@ -225,9 +225,9 @@ These requests are implemented on the basis of *Service Interaction* mechanisms 
 
 ### 7.4.2 DataAssembly definitions
 #### Specification of the System Unit Class StructServParam
-*SUC StructServParam* ([Table 7.25](#table-725-dataassembly-definition-of-suc-structservparam)) is used to transfer parameters of a user-defined structured data type from a LOL to a LEA.
+*SUC StructServParam* ([Table 7.29](#table-729-dataassembly-definition-of-suc-structservparam)) is used to transfer parameters of a user-defined structured data type from a LOL to a LEA.
 
-##### Table 7.25: DataAssembly definition of *SUC StructServParam*
+##### Table 7.29: DataAssembly definition of *SUC StructServParam*
 
 <table>
 	<tr>
@@ -369,9 +369,9 @@ The setting of a parameter of *SUC StructServParam* is performed via the access 
 The distinctive feature of this DataAssembly definition is the use of a user-defined structured data type. The modeling and use of such a type have already been described in connection with [SUC StructView](./07-03_DataAssemblySet.md#specification-of-the-system-unit-class-structview) and are applied in the same way for *SUC StructServParam*. This data type is then expected behind the variables *VExt*, *VInt*, *VOp*, *VReq*, *VOut* and *VFbk*.
 
 #### Specification of the System Unit Class ArrayServParam
-*SUC ArrayServParam* ([Table 7.26](#table-726-dataassembly-definition-of-suc-arrayservparam)) is used by the LOL to write data to an array or read data from an array managed in a LEA.
+*SUC ArrayServParam* ([Table 7.30](#table-730-dataassembly-definition-of-suc-arrayservparam)) is used by the LOL to write data to an array or read data from an array managed in a LEA.
 
-##### Table 7.26: DataAssembly definition of *SUC ArrayServParam*
+##### Table 7.30: DataAssembly definition of *SUC ArrayServParam*
 
 <table>
 	<tr>
@@ -474,9 +474,9 @@ According to the value of the variable *IndexCur*, the array element at the corr
 *VType* defines the data type shared by all array elements. This may be a primitive data type or a user-defined structured data type according to the description of *SUC StructView*.
 
 #### Specification of the Role Class LogisticsInteractionExtension
-*RC LogisticsInteractionExtension* ([Table 7.27](#table-727-dataassembly-definition-of-rc-logisticsinteractionextension)) extends the *ServiceControl* DataAssembly definition according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) by the variables required for logistics interactions. If a *LogisticsInteraction* is provided in the LEA, exactly one *LogisticsInteractionExtension* must be assigned as an SRC to the *ServiceControl* interface; otherwise none.
+*RC LogisticsInteractionExtension* ([Table 7.31](#table-731-dataassembly-definition-of-rc-logisticsinteractionextension)) extends the *ServiceControl* DataAssembly definition according to [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4) by the variables required for logistics interactions. If a *LogisticsInteraction* is provided in the LEA, exactly one *LogisticsInteractionExtension* must be assigned as an SRC to the *ServiceControl* interface; otherwise none.
 
-##### Table 7.27: DataAssembly definition of *RC LogisticsInteractionExtension*
+##### Table 7.31: DataAssembly definition of *RC LogisticsInteractionExtension*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -506,9 +506,9 @@ According to the value of the variable *IndexCur*, the array element at the corr
 A *LogisticsInteraction* follows a principle similar to the *ServiceInteraction* mechanism described in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4). However, for the IDs of the questions, *LogisticsQuestionID*, and answers, *LogisticsAnswerID*, values from the DINT range, instead of DWORD, are used, where the value 0 and negative values may also be valid IDs. The value "-1" indicates that currently no question or answer is pending. By means of *LogisticsQuestionParam1* and *LogisticsQuestionParam2*, analogous to *InteractAddInfo* from [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), additional information can be attached to a request, for example *ProductId* and *LogisticsObjectStatus* for *ProductParameterRequest*. The variable *LogisticsAnswerTimeout* allows entering a time period that specifies how long a LEA should wait for the response of a LOL. After this time has elapsed, the LEA may execute an alternative program flow without the LOL response. Setting the timeout to 0 is interpreted as deactivation of the timeout function.
 
 #### Extension of the System Unit Class ServiceControl
-*SUC ServiceControl* ([Table 7.28](#table-728-dataassembly-definition-of-suc-servicecontrol)) defines the base class for controlling MTP services. This DataAssembly definition has already been defined in the MTP specification and is extended in this work by the capability to connect a RoleClass of type *RC LogisticsInteractionExtension* as an SRC.
+*SUC ServiceControl* ([Table 7.32](#table-732-dataassembly-definition-of-suc-servicecontrol)) defines the base class for controlling MTP services. This DataAssembly definition has already been defined in the MTP specification and is extended in this work by the capability to connect a RoleClass of type *RC LogisticsInteractionExtension* as an SRC.
 
-##### Table 7.28: DataAssembly definition of *SUC ServiceControl*
+##### Table 7.32: DataAssembly definition of *SUC ServiceControl*
 
 <table>
 	<tr><td colspan="6" align="left"><strong>▶ Module Type Package - DataAssembly Definition</strong></td></tr>
@@ -534,9 +534,9 @@ A *LogisticsInteraction* follows a principle similar to the *ServiceInteraction*
 
 ### 7.4.3 Model Definitions
 #### Extension of the System Unit Class ServiceParameter
-*SUC ServiceParameter* ([Table 7.29](#table-729-model-definition-of-suc-serviceparameter)) defines the base class for MTP service parameters of all data types. This model definition has already been defined in the MTP specification and is extended in this work by the attribute *Classification* for representing semantic information in the form of *FunctionClassificationAttributes*.
+*SUC ServiceParameter* ([Table 7.33](#table-733-model-definition-of-suc-serviceparameter)) defines the base class for MTP service parameters of all data types. This model definition has already been defined in the MTP specification and is extended in this work by the attribute *Classification* for representing semantic information in the form of *FunctionClassificationAttributes*.
 
-##### Table 7.29: Model Definition of *SUC ServiceParameter*
+##### Table 7.33: Model Definition of *SUC ServiceParameter*
 
 <table>
 	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
@@ -562,9 +562,9 @@ A *LogisticsInteraction* follows a principle similar to the *ServiceInteraction*
 </table>
 
 #### Specification of the System Unit Class LogisticsInteraction
-*SUC LogisticsInteraction* ([Table 7.30](#table-730-model-definition-of-suc-logisticsinteraction)) organizes all model definitions required for the logistics interaction between a LEA and a LOL. It is derived from *SUC TextDefinition* specified in [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). *SUC LogisticsInteraction* is linked to the model definition *SUC HasLogisticsInteraction* via a *TextRef*. *SUC LogisticsInteraction* follows a principle similar to *SUC ServiceInteraction* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), with the difference that it contains predefined *LogisticsQuestions*, which are specified below.
+*SUC LogisticsInteraction* ([Table 7.34](#table-734-model-definition-of-suc-logisticsinteraction)) organizes all model definitions required for the logistics interaction between a LEA and a LOL. It is derived from *SUC TextDefinition* specified in [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). *SUC LogisticsInteraction* is linked to the model definition *SUC HasLogisticsInteraction* via a *TextRef*. *SUC LogisticsInteraction* follows a principle similar to *SUC ServiceInteraction* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), with the difference that it contains predefined *LogisticsQuestions*, which are specified below.
 
-##### Table 7.30: Model Definition of *SUC LogisticsInteraction*
+##### Table 7.34: Model Definition of *SUC LogisticsInteraction*
 
 <table>
 	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
@@ -590,9 +590,9 @@ A *LogisticsInteraction* follows a principle similar to the *ServiceInteraction*
 </table>
 
 #### Specification of the System Unit Class LogisticsQuestion
-*SUC LogisticsQuestion* ([Table 7.31](#table-731-model-definition-of-suc-logisticsquestion)) is an abstract class derived from *SUC Text* from [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) and represents a logistics-specific question that a LEA can ask a LOL. Five specific questions have so far been derived from *LogisticsQuestion*: *ProductParameterRequest*, *PackagingParameterRequest*, *ProductParameterUpdatedInfo*, *PackagingParameterUpdatedInfo*, and *TransportNodeRequest*. Each of these questions may occur either not at all or exactly once in a LEA.
+*SUC LogisticsQuestion* ([Table 7.35](#table-735-model-definition-of-suc-logisticsquestion)) is an abstract class derived from *SUC Text* from [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1) and represents a logistics-specific question that a LEA can ask a LOL. Five specific questions have so far been derived from *LogisticsQuestion*: *ProductParameterRequest*, *PackagingParameterRequest*, *ProductParameterUpdatedInfo*, *PackagingParameterUpdatedInfo*, and *TransportNodeRequest*. Each of these questions may occur either not at all or exactly once in a LEA.
 
-##### Table 7.31: Model Definition of *SUC LogisticsQuestion*
+##### Table 7.35: Model Definition of *SUC LogisticsQuestion*
 
 <table>
 	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
@@ -618,9 +618,9 @@ A *LogisticsInteraction* follows a principle similar to the *ServiceInteraction*
 </table>
 
 #### Specification of the System Unit Class ProductParameterRequest
-*SUC ProductParameterRequest* ([Table 7.32](#table-732-model-definition-of-suc-productparameterrequest)) is derived from *SUC LogisticsQuestion* and is used to request product-specific parameter sets from a LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC ProductParameterRequest*. Instead, a value in the DINT range is expected as the response. Values greater than or equal to 0 specify the index at which the LOL has written the requested parameter set into the *ProductDataSet* of the LEA. The array limits, minimum and maximum index, must not be exceeded or undershot. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
+*SUC ProductParameterRequest* ([Table 7.36](#table-736-model-definition-of-suc-productparameterrequest)) is derived from *SUC LogisticsQuestion* and is used to request product-specific parameter sets from a LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC ProductParameterRequest*. Instead, a value in the DINT range is expected as the response. Values greater than or equal to 0 specify the index at which the LOL has written the requested parameter set into the *ProductDataSet* of the LEA. The array limits, minimum and maximum index, must not be exceeded or undershot. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
 
-##### Table 7.32: Model Definition of *SUC ProductParameterRequest*
+##### Table 7.36: Model Definition of *SUC ProductParameterRequest*
 
 <table>
 	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
@@ -653,9 +653,9 @@ The standard sequence of a *ProductParameterRequest* is shown in [Figure 7.10](#
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* = 1, the LEA sends a *ProductParameterRequest* to the LOL and transfers *ProductId* as *LogisticsQuestionParam1* and *LogisticsObjectStatus* as *LogisticsQuestionParam2*. The LOL then determines the required parameter set and writes it into the *ProductDataSet* of the LEA via the corresponding *ArrayServParm* interface. If the parameterization is successful, the LOL returns a *LogisticsAnswerID* >= 0, here: *LogisticsAnswerID* = 3, to the LEA, reflecting the index of the *ProductDateSet* to which the new parameter set was written. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "-1", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* and *LogisticsQuestionParam2* are reset.
 
 #### Specification of the System Unit Class PackagingParameterRequest
-*SUC PackagingParameterRequest* ([Table 7.33](#table-733-model-definition-of-suc-packagingparameterrequest)) is derived from *SUC LogisticsQuestion* and is used to request packaging-specific parameter sets from a LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC PackagingParameterRequest*. Instead, a value in the DINT range is expected as the response. Values greater than or equal to 0 specify the index at which the LOL has written the requested parameter set into the *PackagingDataSet* of the LEA. The array limits, minimum and maximum index, must not be exceeded or undershot. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
+*SUC PackagingParameterRequest* ([Table 7.37](#table-737-model-definition-of-suc-packagingparameterrequest)) is derived from *SUC LogisticsQuestion* and is used to request packaging-specific parameter sets from a LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC PackagingParameterRequest*. Instead, a value in the DINT range is expected as the response. Values greater than or equal to 0 specify the index at which the LOL has written the requested parameter set into the *PackagingDataSet* of the LEA. The array limits, minimum and maximum index, must not be exceeded or undershot. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
 
-##### Table 7.33: Model Definition of *SUC PackagingParameterRequest*
+##### Table 7.37: Model Definition of *SUC PackagingParameterRequest*
 
 <table>
 	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
@@ -688,9 +688,9 @@ The standard sequence of a *PackagingParameterRequest* is shown in [Figure 7.11]
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* = 2, the LEA sends a *PackagingParameterRequest* to the LOL and transfers *PackagingId* as *LogisticsQuestionParam1*. The LOL then determines the required parameter set and writes it into the *PackagingDataSet* of the LEA via the corresponding *ArrayServParm* interface. If the parameterization is successful, the LOL returns a *LogisticsAnswerID* >= 0, here: *LogisticsAnswerID* = 2, to the LEA, reflecting the index of the *PackagingDateSet* to which the new parameter set was written. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "-1", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* is reset.
 
 #### Specification of the System Unit Class ProductParameterUpdatedInfo
-*SUC ProductParameterUpdatedInfo* ([Table 7.34](#table-734-model-definition-of-suc-productparameterupdatedinfo)) is derived from *SUC LogisticsQuestion* and is used to inform a LOL that a parameter set in the *ProductDataSet* of a LEA has changed. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC ProductParameterUpdatedInfo*. Instead, the value "1" is expected as confirmation that the LOL has acknowledged the parameter change. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
+*SUC ProductParameterUpdatedInfo* ([Table 7.38](#table-738-model-definition-of-suc-productparameterupdatedinfo)) is derived from *SUC LogisticsQuestion* and is used to inform a LOL that a parameter set in the *ProductDataSet* of a LEA has changed. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC ProductParameterUpdatedInfo*. Instead, the value "1" is expected as confirmation that the LOL has acknowledged the parameter change. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
 
-##### Table 7.34: Model Definition of *SUC ProductParameterUpdatedInfo*
+##### Table 7.38: Model Definition of *SUC ProductParameterUpdatedInfo*
 
 <table>
 	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
@@ -723,9 +723,9 @@ The standard sequence of a *ProductParameterUpdatedInfo* is shown in [Figure 7.1
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* = 3, the LEA sends a *ProductParameterUpdatedInfo* to the LOL and transfers the array index, here: array index = 5, of the changed parameter set in the *ProductDataSet* as *LogisticsQuestionParam1*. The LOL then determines whether the corresponding product parameter data set is also to be adapted in its parameter management, if necessary by user request, and updates the parameter set if required. The LOL acknowledges the parameter change by sending *LogisticsAnswerID* = 1 to the LEA. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "-1", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* is reset.
 
 #### Specification of the System Unit Class PackagingParameterUpdatedInfo
-*SUC PackagingParameterUpdatedInfo* ([Table 7.35](#table-735-model-definition-of-suc-packagingparameterupdatedinfo)) is derived from *SUC LogisticsQuestion* and is used to inform a LOL that a parameter set in the *PackagingDataSet* of a LEA has changed. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC PackagingParameterUpdatedInfo*. Instead, the value "1" is expected as confirmation that the LOL has acknowledged the parameter change. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
+*SUC PackagingParameterUpdatedInfo* ([Table 7.39](#table-739-model-definition-of-suc-packagingparameterupdatedinfo)) is derived from *SUC LogisticsQuestion* and is used to inform a LOL that a parameter set in the *PackagingDataSet* of a LEA has changed. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC PackagingParameterUpdatedInfo*. Instead, the value "1" is expected as confirmation that the LOL has acknowledged the parameter change. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
 
-##### Table 7.35: Model Definition of *SUC PackagingParameterUpdatedInfo*
+##### Table 7.39: Model Definition of *SUC PackagingParameterUpdatedInfo*
 
 <table>
 	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
@@ -758,9 +758,9 @@ The standard sequence of a *PackagingParameterUpdatedInfo* is shown in [Figure 7
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* = 4, the LEA sends a *PackagingParameterUpdatedInfo* to the LOL and transfers the array index, here: array index = 4, of the changed parameter set in the *PackagingDataSet* as *LogisticsQuestionParam1*. The LOL then determines whether the corresponding packaging parameter data set is also to be adapted in its parameter management, if necessary by user request, and updates the parameter set if required. The LOL acknowledges the parameter change by sending *LogisticsAnswerID* = 1 to the LEA. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "-1", indicating that no question and no answer are currently pending. *LogisticsQuestionParam1* is reset.
 
 #### Specification of the System Unit Class TransportNodeRequest
-*SUC TransportNodeRequest* ([Table 7.36](#table-736-model-definition-of-suc-transportnoderequest)) is derived from *SUC LogisticsQuestion* and is used to request the next transport node to be approached from a LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC TransportNodeRequest*. Instead, a value in the DINT range is expected as the response. Values greater than 0 directly specify the ID of the next transport node to be approached. This eliminates the need for a separate parameter interface to configure the next transport node to be approached. Only values corresponding to the ID of a transport node in the respective MLS may be returned as a response. The value "0" indicates that the *FinalTargetNode* specified in the Transport Service interface is to be used as the next transport node. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
+*SUC TransportNodeRequest* ([Table 7.40](#table-740-model-definition-of-suc-transportnoderequest)) is derived from *SUC LogisticsQuestion* and is used to request the next transport node to be approached from a LOL. In contrast to *SUC Question* specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4), no *Answers* are modeled in the MTP for *SUC TransportNodeRequest*. Instead, a value in the DINT range is expected as the response. Values greater than 0 directly specify the ID of the next transport node to be approached. This eliminates the need for a separate parameter interface to configure the next transport node to be approached. Only values corresponding to the ID of a transport node in the respective MLS may be returned as a response. The value "0" indicates that the *FinalTargetNode* specified in the Transport Service interface is to be used as the next transport node. The value "-1" indicates that no answer is yet available. The value "-2" indicates that an error occurred during the request. Other responses are currently neither required nor valid.
 
-##### Table 7.36: Model Definition of *SUC TransportNodeRequest*
+##### Table 7.40: Model Definition of *SUC TransportNodeRequest*
 
 <table>
 	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
@@ -793,9 +793,9 @@ The standard sequence of a *TransportNodeRequest* is shown in [Figure 7.14](#fig
 Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* = 5, the LEA sends a *TransportNodeRequest* to the LOL and transfers the *TransportId* of the associated Transport Service as *LogisticsQuestionParam1*. The LOL then determines the required next transport node. If the next transport node is successfully determined, the LOL returns a *LogisticsAnswerID* >= 0 to the LEA. This response directly reflects the ID of the next transport node to be approached. A *LogisticsAnswerID* = 0 indicates that the *FinalTargetNode* of the Transport Service is to be used. Afterwards, *LogisticsQuestionID* and *LogisticsAnswerID* are set to "-1", indicating that no question or answer is currently pending. *LogisticsQuestionParam1* is reset. The information received about the next transport node is transferred by the LEA to the procedure parameter *NextNode* in the corresponding Transport Service.
 
 #### Specification of the Role Class HasLogisticsInteraction
-*RC HasLogisticsInteraction* ([Table 7.37](#table-737-model-definition-of-rc-haslogisticsinteraction)) is derived from *RC HasTextReference* specified in [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). *SUC HasLogisticsInteraction* is used to assign a *LogisticsInteraction* to the model definition *SUC Service*, specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4). For this purpose, a *SUC LogisticsInteraction* model definition is referenced by means of *TextRef*. If a *LogisticsInteraction* is provided in a LEA, exactly one *SUC HasLogisticsInteraction* must be assigned to the LEA service as a RoleRequirement; otherwise none.
+*RC HasLogisticsInteraction* ([Table 7.41](#table-741-model-definition-of-rc-haslogisticsinteraction)) is derived from *RC HasTextReference* specified in [MTP Specification Part 1](../98_References/README.md#mtp-specification-part-1). *SUC HasLogisticsInteraction* is used to assign a *LogisticsInteraction* to the model definition *SUC Service*, specified in [MTP Specification Part 4](../98_References/README.md#mtp-specification-part-4). For this purpose, a *SUC LogisticsInteraction* model definition is referenced by means of *TextRef*. If a *LogisticsInteraction* is provided in a LEA, exactly one *SUC HasLogisticsInteraction* must be assigned to the LEA service as a RoleRequirement; otherwise none.
 
-##### Table 7.37: Model Definition of *RC HasLogisticsInteraction*
+##### Table 7.41: Model Definition of *RC HasLogisticsInteraction*
 
 <table>
 	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>
@@ -819,9 +819,9 @@ Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* = 5, th
 </table>
 
 #### Extension of the System Unit Class Service
-*SUC Service* ([Table 7.38](#table-738-model-definition-of-suc-service)) defines the base class for modeling MTP services. This model definition has already been defined in the MTP specification and is extended in this work by the capability to connect a RoleClass of *RC HasLogisticsInteraction* as RR.
+*SUC Service* ([Table 7.42](#table-742-model-definition-of-suc-service)) defines the base class for modeling MTP services. This model definition has already been defined in the MTP specification and is extended in this work by the capability to connect a RoleClass of *RC HasLogisticsInteraction* as RR.
 
-##### Table 7.38: Model Definition of *SUC Service*
+##### Table 7.42: Model Definition of *SUC Service*
 
 <table>
 	<tr><td colspan="4" align="left"><strong>▶ Module Type Package - Model Definition</strong></td></tr>

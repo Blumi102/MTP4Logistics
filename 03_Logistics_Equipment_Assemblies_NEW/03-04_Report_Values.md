@@ -1,4 +1,4 @@
-### 3.4 Report Values
+## 3.4 Report Values
 
 The report value concept defined in [[MTP Part 4]](../98_References/README.md#mtp-specification-part-4) is suitable for production-related logistics without conceptual changes. Extensions are limited to new data types: since the structured data types and arrays introduced in [Section 3.3](03-03_Parameterization.md#33-parameterization) should also be reportable, e.g., to document the parameter sets currently stored in a LEA, two new interfaces are introduced. Following the MTP convention that report value interfaces are derived from *SUC IndicatorElement* (defined in [[MTP Part 3]](../98_References/README.md#mtp-specification-part-3)), *StructView* ([Table 7.8](../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-78-dataassembly-definition-of-suc-structview)) and *ArrayView* ([Table 7.9](../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-79-dataassembly-definition-of-suc-arrayview)) are specified as new derivations of this base type.
 

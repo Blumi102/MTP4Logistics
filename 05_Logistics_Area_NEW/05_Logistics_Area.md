@@ -4,11 +4,11 @@ This chapter presents the MTP-based automation of flexible transports in Logisti
 
  [Section 5.8](05-08_Application_Example_TransportPAL-Label-SH.md#58-application-example-transport-pallabelsh) shows the application of the described concepts to a flexible transport between a palletizer, a labeller and a stretch hood machine. [Section 7.8](../07_MTP%20Extensions/07-08_TransportSet.md#78-mtp-specification-of-the-transportset) provides detailed specifications of the introduced MTP extensions.
 
-### 5.1 Artifact Overview
+## 5.1 Artifact Overview
 
 Flexible transports in a Logistics Area require a uniform interaction between LEAs and AGV systems. Since no such approach exists within the MTP ecosystem, this artifact introduces a new concept for automating and integrating flexible transports that aligns with established MTP concepts wherever possible. This section introduces the conceptual building blocks and key terminology of the artifact and relates them to one another. Subsequent sections detail the technical implementation and justify the underlying design decisions. The content is presented from two perspectives: [Section 5.1.1](#511-architecture) describes the key system components of an MLS involved in executing flexible transports. [Section 5.1.2](#512-transport-execution) explains how a transport process is carried out on the basis of these components. Both sections reference the detailed descriptions that follow.
 
-#### 5.1.1 Architecture
+### 5.1.1 Architecture
 
 [Figure 5.1](#figure-51-architecture-overview-for-implementing-flexible-transports-in-a-logistics-area) shows the system components of an MLS for implementing flexible transports in a Logistics Area as well as their interfaces to each other.
 
@@ -23,7 +23,7 @@ Flexible transports in a Logistics Area require a uniform interaction between LE
 
 **Additional LOL functions:** In addition to the Transport Management, a Parameter Management and/or a Material Flow Management can be used to provide static or dynamic route information. The Parameter Management administers product-specific static default routes. The Material Flow Management plans an optimally sequenced set of transport nodes to approach for each transport order, depending on the current state of the MLS and the pending packaging orders.
 
-#### 5.1.2 Working Principle
+### 5.1.2 Working Principle
 
 [Figure 5.2](#figure-52-application-example-illustrating-the-working-principle-of-flexible-transports-in-a-logistics-area) shows an example Logistics Area with a palletizer LEA (PAL), a labeler LEA (LABEL), and a stretch hood machine LEA (SH), including their associated transport and order nodes. Based on this configuration, the basic working principle is explained below.
 

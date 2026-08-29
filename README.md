@@ -1,11 +1,10 @@
 [Next >](./02_Modular_Logistics_System/README.md)
 
-<!-- TODO: Nummerierung der Kapitel im gesamten Repo -->
-<!-- TODO: Nummerierung der Tabellen und Bilder im gesamten Repo -->
+
 <!-- TODO: Navigation im gesamten Repo -->
 <!-- TODO: Bilder übersetzen -->
 <!-- TODO: schauen, was aus dem Anhang noch ins Repo muss -->
-<!-- TODO: Ebenen der Überschriften prüfen und vereinheitlichen -->
+
 <!-- TODO: Bei Intro-Seite jeweils Übersicht über die Unterseiten geben. -->
 
 # Technical Report
