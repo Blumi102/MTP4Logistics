@@ -1,0 +1,50 @@
+@startuml 00_Integration_Node
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**Order Node**\n**PAL (ID: 1)**" as ON order 1
+participant "**InOutbound Node**\n**PAL (ID: 2)**" as ION order 2
+participant "**Processing Node**\n**LABEL (ID: 3)**" as PN order 3
+participant "**Inbound Node**\n**SH1 (ID: 4)**" as IN order 4
+participant "**Transport**\n**Management**" as TCS order 5
+
+activate ON
+activate ION
+activate PN
+activate IN
+activate TCS
+
+
+note over TCS
+Generation of a TN proxy
+for each available
+transport node of the LEAs
+end note
+
+TCS ->> ON : Configuration of TransportNodeManager\ninterfaces (ProxyId = 1)
+ON ->> TCS : Connection establishment to proxy with ID 1
+
+TCS ->> ION : Configuration of TransportNodeManager\ninterfaces (ProxyId = 2)
+ION ->> TCS : Connection establishment to proxy with ID 2
+
+TCS ->> PN : Configuration of TransportNodeManager\ninterfaces (ProxyId = 3)
+PN ->> TCS : Connection establishment to proxy with ID 3
+
+TCS ->> IN : Configuration of\nTransportNodeManager\ninterfaces (ProxyId = 4)
+IN ->> TCS : Connection establishment to\nproxy with ID 4
+
+
+@enduml

@@ -1,0 +1,94 @@
+@startuml Arbeitsweise_SES_SH
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**LOL (Parameter-**\n**Management)**" as PM order 1
+participant "**LOL (Auftrags-**\n**Management)**" as AM order 2
+participant "**SH-Dienst**" as Service order 3
+
+
+activate AM
+activate PM
+activate Service
+
+Service ->> AM: state: IDLE
+PM ->> Service: Optional: Vorbefüllen des ProductDataSet und PackagingDataSet
+
+hnote over Service
+Rüsten der LEA mit dem gewünschten Folientyp
+end note
+
+Service <<- : Parametrierung - FoilTypeId
+
+hnote over Service
+Ermittlung des Verpackungsparametersatzes
+auf Basis der FoilTypeId (gemäß Abschnitt 3.4.4)
+end note
+
+AM ->> Service: Prozedurauswahl (16#3)
+
+Service ->> AM: StartEn = true
+AM ->> Service: cmd: Start
+
+Service ->> AM: state: STARTING, EXECUTE
+Service ->> AM: state: PAUSING, PAUSED
+
+== Für jedes eintreffende LO ==
+
+Service <<- : Eintreffen eines LO
+
+Service ->> AM: state: RESUMING
+
+hnote over Service
+Ermittlung der ProductId und des LogisticsObjectStatus des LO
+end note
+
+hnote over Service
+Ermittlung des Produktparametersatzes auf Basis der 
+vorgegebenen ProductId und des LogisticsObjectStatus (gemäß Abschnitt 3.4.4)
+end note
+
+Service ->> AM: state: EXECUTE
+
+hnote over Service
+Stimmt die PackagingId des Produktparametersatzes 
+mit der eingestellten FoilTypeId überein?
+end note
+
+alt Ja, stimmt überein.
+
+Service ->> Service: Bearbeitung des LO gemäß\nden ermittelten Parametern
+
+else Nein, stimmt nicht überein.
+
+hnote over Service
+Auftrag abweisen, das LO kann nicht bearbeitet werden.
+end note
+
+end 
+
+Service ->> AM: state: PAUSING, PAUSED
+== ==
+
+AM ->> Service: cmd: Complete
+
+Service ->> AM: state: COMPLETING, COMPLETED
+
+AM ->> Service: cmd: Reset
+
+Service ->> AM: state: IDLE
+
+@enduml

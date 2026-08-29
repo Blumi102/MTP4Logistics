@@ -1,0 +1,78 @@
+@startuml Arbeitsweise_CES_PAL
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**LOL (Parameter-**\n**Management)**" as PM order 1
+participant "**LOL (Auftrags-**\n**Management)**" as AM order 2
+participant "**PAL-Dienst**" as Service order 3
+
+
+activate AM
+activate PM
+activate Service
+
+Service ->> AM: state: IDLE
+PM ->> Service: Optional: Vorbefüllen des ProductDataSet und PackagingDataSet
+AM ->> Service: Prozedurauswahl
+
+AM ->> Service: Parametrierung - ProductionId, ProductId,\n(BagQuantity), (PalletQuantity)
+
+hnote over Service
+Ermittlung des Produktparametersatzes
+auf Basis der vorgegebenen ProductId
+(gemäß Abschnitt 3.4.4)
+end note
+
+hnote over Service
+Ermittlung des Verpackungsparametersatzes
+auf Basis der PackagingId im Produktparametersatz
+(gemäß Abschnitt 3.4.4)
+end note
+
+Service ->> AM: StartEn = true
+AM ->> Service: cmd: Start
+
+Service ->> AM: state: STARTING
+Service ->> AM: state: EXECUTE
+
+Service ->> Service: Palettierung aller für den\nAuftrag notwendigen Säcke
+
+alt ProcedureCur = 16#1 (CES_Continuous)
+
+AM ->> Service: cmd: Complete
+
+else ProcedureCur = 16#2 (CES_BagQuantity)
+
+hnote over Service
+BagCount = BagQuantity
+end note
+
+else ProcedureCur = 16#3 (CES_PalletQuantity)
+
+hnote over Service
+PalletCount = PalletQuantity
+end note
+
+end 
+
+Service ->> AM: state: COMPLETING
+Service ->> AM: state: COMPLETED
+
+AM ->> Service: cmd: Reset
+
+Service ->> AM: state: IDLE
+
+@enduml

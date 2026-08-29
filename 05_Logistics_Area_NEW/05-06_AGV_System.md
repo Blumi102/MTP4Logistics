@@ -8,7 +8,7 @@ In an MLS, different AGV systems with different technical characteristics and pr
 
 #### Interaction with the Transport Management
 
-For the execution of transport orders, the AGV system adapters must be able to access information from transport services in the Transport Management and synchronize it in a suitable manner with the proprietary interface of the AGV systems.
+For the execution of transport orders, the AGV system adapters must be able to access information from Transport Services in the Transport Management and synchronize it in a suitable manner with the proprietary interface of the AGV systems.
 
 To enable the interaction with the AGV system according to the presented working principle ([Sections 5.1.2](05_Logistics_Area.md#512-working-principle) and [5.3](05-03_Transport_Process.md#53-transport-process)), the proprietary interface of an AGV system must be able to provide or process certain information for each transport order. [Table 5.7](#table-57-minimum-interface-requirements-for-an-agv-system) provides an overview of this information. Additionally, the fleet manager of the AGV system must be able to select a suitable AGV for the transport order based on the transport order information received from the adapter, reserve it for the transport order, and execute the transport order according to the described working principle.
 
@@ -24,7 +24,7 @@ To enable the interaction with the AGV system according to the presented working
   </tr>
   <tr>
     <td align="left">ID of the selected AGV</td>
-    <td align="left">This information is provided as report value <em>ResourceId</em> on the transport service.</td>
+    <td align="left">This information is provided as report value <em>ResourceId</em> on the Transport Service.</td>
   </tr>
   <tr>
     <td align="left">Indicator whether the AGV is currently moving or stopped</td>
@@ -32,7 +32,7 @@ To enable the interaction with the AGV system according to the presented working
   </tr>
   <tr>
     <td align="left">Indicator whether there are errors in the execution of the transport order</td>
-    <td align="left">Based on this information, the transport service can be set to an error state (HELD, STOPPED, ABORTED).</td>
+    <td align="left">Based on this information, the Transport Service can be set to an error state (HELD, STOPPED, ABORTED).</td>
   </tr>
   <tr>
     <td align="left">Indicator of AGV arrival in the approach area of the target LEA</td>

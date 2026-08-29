@@ -1,0 +1,85 @@
+@startuml 04_Beladung_AGV
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**LEA Service**\n**PAL**" as LEA order 1
+participant "**InOutbound Node**\n**PAL (ID: 2)**" as ION order 2
+participant "**Transport Service**\n**(ID: transA)**" as TOA order 3
+participant "**Transport Management**\n**with**\n**AGV System Adapter**" as TCS order 4
+participant "**AGV**\n**System**" as FMS order 5
+
+activate ION
+activate TCS
+activate TOA
+activate LEA
+activate FMS
+
+note over TOA
+EXECUTE,
+TransportArrived
+end note
+
+TOA -->> ION: ProcedureCur: 16#7\n(TransportArrived)
+ION ->> TOA: ProcedureExt := 16#8\n(TransferFromLea)
+ION ->> TOA: CommandExt := 512 (Restart)
+
+note over TOA
+EXECUTE,
+TransferFromLea
+end note
+
+TOA -->> TCS: ProcedureCur: 16#8\n(TransferFromLea)
+TCS ->> FMS: Activate LO\ntransfer to AGV
+
+ION ->> LEA: Transfer LO to AGV
+
+note over LEA
+Transfer of LO (here: pallet)
+to the AGV
+end note
+
+/note over FMS
+Support LO 
+transfer to AGV
+end note
+
+note over LEA
+Determination of the next
+transport node to approach
+end note
+
+LEA -->> ION: Transfer completed
+LEA -->> ION: Next node ID: 3
+
+
+ION ->> TOA: NextNode := 3\n(Processing Node LABEL)
+ION ->> TOA: ProcedureExt := 16#9\n(TransferFromLeaSucceeded)
+ION ->> TOA: CommandExt := 512 (Restart)
+
+note over TOA
+EXECUTE,
+TransferFromLeaSucceeded
+end note
+
+TOA -->> TCS: ProcedureCur: 16#9\n(TransferFromLeaSucceeded)
+
+TCS ->> FMS: Deactivate LO\ntransfer to AGV
+
+TCS ->> TOA: Detaching from proxy with ID: 2
+note over ION: Transport node\navailable again
+
+
+@enduml

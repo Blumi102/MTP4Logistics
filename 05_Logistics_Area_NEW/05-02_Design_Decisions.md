@@ -32,7 +32,7 @@ This section describes fundamental, interdependent design decisions (DDs) that h
 
 - The selection of a suitable AGV is encapsulated within the MTP service and delegated to the fleet manager, which is specialized for this task.
 - Transport orders are managed as individual MTP services in the Transport Management and made available to the LEAs.
-- Changes within the AGV system (e.g., AGVs being dynamically added or removed) do not affect the MTP transport services of the Transport Management.
+- Changes within the AGV system (e.g., AGVs being dynamically added or removed) do not affect the MTP Transport Services of the Transport Management.
 
 **Excluded alternatives:**
 
@@ -47,7 +47,7 @@ This section describes fundamental, interdependent design decisions (DDs) that h
 
 #### 5.2.3 DD3 — Association Principle between LEA Services and Transport Services
 
-**Decision:** LEA services and transport services are associated via decentralized orchestration ([Figure 5.6](#figure-56-principles-for-associating-lea-services-and-transport-services), middle). LEAs possess the knowledge about transport demands as well as required handovers, pickups, and processing steps, and use this information directly to orchestrate the transport services. To enable this, this work defines a uniform interface and a standardized interaction mechanism for transport services that all transport services must implement. This allows the interface and interaction mechanism to be prepared in the LEA service already during LEA engineering. The additional flexibility of a choreography is therefore not required.
+**Decision:** LEA services and Transport Services are associated via decentralized orchestration ([Figure 5.6](#figure-56-principles-for-associating-lea-services-and-transport-services), middle). LEAs possess the knowledge about transport demands as well as required handovers, pickups, and processing steps, and use this information directly to orchestrate the Transport Services. To enable this, this work defines a uniform interface and a standardized interaction mechanism for Transport Services that all Transport Services must implement. This allows the interface and interaction mechanism to be prepared in the LEA service already during LEA engineering. The additional flexibility of a choreography is therefore not required.
 
 ##### Figure 5.6: Principles for Associating LEA Services and Transport Services
 ![Principles for Associating LEA Services and Transport Services](./images/Designentscheidung_Assoziation.svg)
@@ -55,23 +55,23 @@ This section describes fundamental, interdependent design decisions (DDs) that h
 **Advantages:**
 
 - Decentralized orchestration supports the autonomous working principle of the LEAs, as the knowledge about transport demands and required interactions lies with the LEAs themselves.
-- Lower association effort compared to choreography, since transport services only need to be assigned to prepared interfaces of LEA services, without requiring additional choreography rules to be defined and loaded.
+- Lower association effort compared to choreography, since Transport Services only need to be assigned to prepared interfaces of LEA services, without requiring additional choreography rules to be defined and loaded.
 
 **Excluded alternatives:**
 
 - *Central orchestration:* Would require the LOL (e.g., order management) to possess all relevant information about transport demands, ongoing transports, and active handovers — knowledge that LEAs possess autonomously but that is typically not available at the LOL level.
-- *Choreography:* Would provide additional flexibility for defining interaction rules but introduces higher configuration effort for defining and loading choreography rules, which is not needed given the standardized transport service interface.
+- *Choreography:* Would provide additional flexibility for defining interaction rules but introduces higher configuration effort for defining and loading choreography rules, which is not needed given the standardized Transport Service interface.
 
-From a logical perspective, this decision means that LEA services assume the role of the orchestrating services that control the transport services and are logically superordinate to them ([Figure 5.7](#figure-57-logical-and-technical-views-on-the-connection-of-a-lea-to-the-transport-management), left). From a technical perspective, however, the Transport Management is a cross-LEA instance that imports and processes LEA information. It is therefore by definition a function of the LOL and thus superordinate to the LEA services ([Figure 5.7](#figure-57-logical-and-technical-views-on-the-connection-of-a-lea-to-the-transport-management), right).
+From a logical perspective, this decision means that LEA services assume the role of the orchestrating services that control the Transport Services and are logically superordinate to them ([Figure 5.7](#figure-57-logical-and-technical-views-on-the-connection-of-a-lea-to-the-transport-management), left). From a technical perspective, however, the Transport Management is a cross-LEA instance that imports and processes LEA information. It is therefore by definition a function of the LOL and thus superordinate to the LEA services ([Figure 5.7](#figure-57-logical-and-technical-views-on-the-connection-of-a-lea-to-the-transport-management), right).
 
 ##### Figure 5.7: Logical and Technical Views on the Connection of a LEA to the Transport Management
 ![Logical and Technical Views on the Connection of a LEA to the Transport Management](./images/DO_LogischeSicht.svg)
 
-These two views are addressed by the two main functions of the Transport Management: The LEA Management represents a classical LOL function that imports LEA MTPs and manages and processes their information. The Order Management, on the other hand, serves to provide transport services for decentralized orchestration by the LEAs.
+These two views are addressed by the two main functions of the Transport Management: The LEA Management represents a classical LOL function that imports LEA MTPs and manages and processes their information. The Order Management, on the other hand, serves to provide Transport Services for decentralized orchestration by the LEAs.
 
 #### 5.2.4 DD4 — Configuration of Decentralized Orchestration
 
-**Decision:** The Transport Management configures the decentralized orchestration by binding TN Proxies to the LEAs ([Figure 5.8](#figure-58-options-for-configuring-the-decentralized-orchestration-of-transport-services), right). After the initial binding, LEAs remain permanently connected to the same TN Proxies. The dynamic assignment of different transport services to the proxies occurs exclusively within the Transport Management and requires no reconfiguration of communication connections to the LEAs.
+**Decision:** The Transport Management configures the decentralized orchestration by binding TN Proxies to the LEAs ([Figure 5.8](#figure-58-options-for-configuring-the-decentralized-orchestration-of-transport-services), right). After the initial binding, LEAs remain permanently connected to the same TN Proxies. The dynamic assignment of different Transport Services to the proxies occurs exclusively within the Transport Management and requires no reconfiguration of communication connections to the LEAs.
 
 ##### Figure 5.8: Options for Configuring the Decentralized Orchestration of Transport Services
 ![Options for Configuring the Decentralized Orchestration of Transport Services](./images/Designentscheidung_KonfigurationDO.svg)
@@ -80,32 +80,32 @@ These two views are addressed by the two main functions of the Transport Managem
 
 - The Transport Management, which possesses information about running transport orders, directly configures the binding of TN Proxies to the LEAs (no browsing required).
 - LEAs remain permanently connected to the same TN Proxies, regardless of currently running transport orders.
-- Dynamic assignment of transport services to proxies occurs exclusively within the Transport Management, requiring no reconfiguration of communication connections — leading to a more robust implementation.
+- Dynamic assignment of Transport Services to proxies occurs exclusively within the Transport Management, requiring no reconfiguration of communication connections — leading to a more robust implementation.
 
 **Excluded alternatives:**
 
-- *Browsing of transport services by LEAs:* Industrial control systems used in LEAs are not designed for browsing mechanisms. Additionally, every transport service binding would require a new communication setup.
-- *Configurative binding of transport services (without proxies):* Would still require a new communication setup for each transport service binding, unlike the stable proxy connections.
+- *Browsing of Transport Services by LEAs:* Industrial control systems used in LEAs are not designed for browsing mechanisms. Additionally, every Transport Service binding would require a new communication setup.
+- *Configurative binding of Transport Services (without proxies):* Would still require a new communication setup for each Transport Service binding, unlike the stable proxy connections.
 
 #### 5.2.5 DD5 — Creation of Transport Services
 
-**Decision:** Transport services are created by the Transport Management ([Figure 5.9](#figure-59-options-for-dynamic-creation-of-transport-services), right). The Transport Management independently creates inactive transport services and assigns them to TN Proxies of order nodes, regardless of concrete transport demands from LEAs. To report a transport demand, a LEA starts its assigned inactive transport service, thereby activating it to represent a concrete transport order. The Transport Management monitors the LEAs and ensures that an inactive transport service is always available for reporting transport demands. The interaction between LEAs and Transport Management for reporting transport demands is thus limited to starting and parameterizing an MTP-based transport service — achievable with existing MTP mechanisms.
+**Decision:** Transport services are created by the Transport Management ([Figure 5.9](#figure-59-options-for-dynamic-creation-of-transport-services), right). The Transport Management independently creates inactive Transport Services and assigns them to TN Proxies of order nodes, regardless of concrete transport demands from LEAs. To report a transport demand, a LEA starts its assigned inactive Transport Service, thereby activating it to represent a concrete transport order. The Transport Management monitors the LEAs and ensures that an inactive Transport Service is always available for reporting transport demands. The interaction between LEAs and Transport Management for reporting transport demands is thus limited to starting and parameterizing an MTP-based Transport Service — achievable with existing MTP mechanisms.
 
 ##### Figure 5.9: Options for Dynamic Creation of Transport Services
 ![Options for Dynamic Creation of Transport Services](./images/Designentscheidung_ErzeugungTransportdienste.svg)
 
 **Advantages:**
 
-- The creation of new transport services is performed by the Transport Management, which also manages them. LEAs are not involved in the creation and only report their transport demands.
+- The creation of new Transport Services is performed by the Transport Management, which also manages them. LEAs are not involved in the creation and only report their transport demands.
 - The interaction between LEAs and Transport Management uses established MTP mechanisms (starting and parameterizing services).
 
 **Excluded alternatives:**
 
-- *Creation by LEAs via OPC UA methods:* Would require an additional method-based interface between LEA and Transport Management. Such a method does not represent a state-based function of the transport system but rather an administrative function for managing transport services, which contradicts the fundamental understanding of MTP services.
+- *Creation by LEAs via OPC UA methods:* Would require an additional method-based interface between LEA and Transport Management. Such a method does not represent a state-based function of the transport system but rather an administrative function for managing Transport Services, which contradicts the fundamental understanding of MTP services.
 
 #### 5.2.6 DD6 — Determination of the Next Transport Node
 
-**Decision:** The LEAs determine the next transport node to approach for the AGV they are currently interacting with ([Figure 5.10](#figure-510-options-for-determining-the-next-transport-node), right). LEAs have immediate knowledge of when an interaction with an AGV (e.g., a handover or processing step) is completed and when the next transport node must be determined. According to DD3, LEAs orchestrate the transport services in a decentralized manner, which naturally includes determining the next transport node and configuring the transport service accordingly. Additionally, product-specific default values for the next transport node can be stored in the *ProductDataSet* of the LEA, enabling fully LEA-internal route determination without involving a Material Flow Management in simpler MLS configurations.
+**Decision:** The LEAs determine the next transport node to approach for the AGV they are currently interacting with ([Figure 5.10](#figure-510-options-for-determining-the-next-transport-node), right). LEAs have immediate knowledge of when an interaction with an AGV (e.g., a handover or processing step) is completed and when the next transport node must be determined. According to DD3, LEAs orchestrate the Transport Services in a decentralized manner, which naturally includes determining the next transport node and configuring the Transport Service accordingly. Additionally, product-specific default values for the next transport node can be stored in the *ProductDataSet* of the LEA, enabling fully LEA-internal route determination without involving a Material Flow Management in simpler MLS configurations.
 
 ##### Figure 5.10: Options for Determining the Next Transport Node
 ![Options for Determining the Next Transport Node](./images/Designentscheidung_ErmittlungNextNode.svg)
@@ -118,4 +118,4 @@ These two views are addressed by the two main functions of the Transport Managem
 
 **Excluded alternatives:**
 
-- *Determination by the Transport Management:* Would require a Material Flow Management in the LOL in all cases (even for simple MLS with defined default routes) and would require the Transport Management to continuously monitor all running transport services and configure next nodes.
+- *Determination by the Transport Management:* Would require a Material Flow Management in the LOL in all cases (even for simple MLS with defined default routes) and would require the Transport Management to continuously monitor all running Transport Services and configure next nodes.

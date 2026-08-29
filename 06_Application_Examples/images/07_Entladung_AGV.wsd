@@ -1,0 +1,91 @@
+@startuml 07_Entladung_AGV
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**LEA Service**\n**SH1**" as LEA order 1
+participant "**Inbound Node**\n**SH1 (ID: 4)**" as IN order 2
+participant "**Transport Service**\n**(ID: A)**" as TOA order 3
+participant "**Transport Management**\n**with**\n**AGV System Adapter**" as TCS order 4
+
+participant "**AGV**\n**System**" as FMS order 5
+
+activate IN
+activate TCS
+activate TOA
+activate LEA
+activate FMS
+
+hnote across
+Transport to the next transport node as in Section 6.4.6
+end note
+
+note over TOA
+EXECUTE,
+Transport
+end note
+
+hnote across
+Coupling of the Transport Service to the Inbound Node as in Section 6.4.4
+end hnote
+
+note over TOA
+EXECUTE,
+TransportArrived
+end note
+
+TOA -->> IN: ProcedureCur: 16#7 (TransportArrived)
+IN ->> TOA: ProcedureExt := 16#C (TransferToLea)
+IN ->> TOA: CommandExt := 512 (Restart)
+
+note over TOA
+EXECUTE,
+TransferToLea
+end note
+
+TOA -->> TCS: ProcedureCur = 16#C\n(TransferToLea)
+TCS ->> FMS: Activate\nLO Transfer
+
+IN ->> LEA: Transfer LO\nto LEA
+
+
+
+/note over LEA
+Transfer of the LO
+end note
+
+LEA -->> IN: Transfer\ncompleted
+
+IN ->> TOA: ProcedureExt := 16#D\n(TransferToLeaSucceeded)
+IN ->> TOA: CommandExt := 512 (Restart)
+
+note over TOA
+EXECUTE,
+TransferToLea-
+Succeeded
+end note
+
+TOA -->> TCS: ProcedureCur: 16#D\n(TransferToLeaSucceeded)
+TCS ->> FMS: Deactivate\nLO Transfer
+
+TCS ->> TOA: Detaching from proxy\nwith ID: 4
+
+TCS ->> FMS: Release AGV
+
+TCS ->> TOA: CommandExt := 1024\n(Complete)
+
+destroy TOA
+
+@enduml
