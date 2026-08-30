@@ -199,9 +199,11 @@ The test scenarios shown in [Table 6.2](#table-62-test-scenarios-at-the-moprolog
 
 **Refinements to the transport concept:** Working with the demonstrator revealed the need for refinements to the transport automation concept shown in [Table 6.3](#table-63-refinements-to-artifact-3-based-on-findings-from-the-moprolog-demonstrator). These target more robust, uniform, and simpler implementation (rather than changes to the underlying interaction mechanism) and have already been incorporated into the transport concept in [Chapter 5](../05_Logistics_Area/05_Logistics_Area.md). They are also evaluated in the PLC-based emulation ([Section 6.1.3](#613-plc-based-emulation)).
 
-> ##### Table 6.3: Refinements to Artifact 3 Based on Findings from the MoProLog Demonstrator
+<blockquote>
 
-> <table>
+##### Table 6.3: Refinements to Artifact 3 Based on Findings from the MoProLog Demonstrator
+
+<table>
   <tr>
     <th align="left">Original Concept</th>
     <th align="left">Revised Concept</th>
@@ -228,13 +230,8 @@ The test scenarios shown in [Table 6.2](#table-62-test-scenarios-at-the-moprolog
     <td align="left">In the original concept, the AGV system's request to approach was only signaled implicitly by coupling the transport service to the LEA's transport node; the transport service status did not clearly indicate this request. The new procedure <em>TransportAwaitRequested</em> makes the request explicitly visible.</td>
   </tr>
   <tr>
-    <td align="left">The procedures <em>Takeover</em> and <em>TakeoverSucceeded</em> signaled the transfer of an LO from an LEA to an AGV.</td>
-    <td align="left">The procedures <em>TransferFromLea</em> and <em>TransferFromLeaSucceeded</em> signal the transfer of an LO from an LEA to an AGV.</td>
-    <td align="left">The original procedure names did not clearly describe the direction of the LO transfer. The new names unambiguously describe the transfer direction.</td>
-  </tr>
-  <tr>
-    <td align="left">The procedures <em>Handover</em> and <em>HandoverSucceeded</em> signaled the transfer of an LO from an AGV to an LEA.</td>
-    <td align="left">The procedures <em>TransferToLea</em> and <em>TransferToLeaSucceeded</em> signal the transfer of an LO from an AGV to an LEA.</td>
+    <td align="left">The procedures <em>Takeover</em>/ <em>TakeoverSucceeded</em> and <em>Handover</em>/ <em>HandoverSucceeded</em> signaled LO transfers between LEAs and AGVs.</td>
+    <td align="left">The procedures <em>TransferFromLea</em>/ <em>TransferFromLeaSucceeded</em> (LEA to AGV) and <em>TransferToLea</em>/ <em>TransferToLeaSucceeded</em> (AGV to LEA) signal LO transfers.</td>
     <td align="left">The original procedure names did not clearly describe the direction of the LO transfer. The new names unambiguously describe the transfer direction.</td>
   </tr>
   <tr>
@@ -249,10 +246,11 @@ The test scenarios shown in [Table 6.2](#table-62-test-scenarios-at-the-moprolog
   </tr>
 </table>
 
+</blockquote>
 
 **Retrofitability:** A proprietary logistics machine (BEUMER paletpac) and a proprietary AGV (SEW MAXOLUTION) were given MTP interface wrappers with manageable effort. This keeps the entry barrier for retrofitting existing systems low. Long-term, native LEA software should be redesigned according to MTP concepts to establish a uniform software philosophy and fully exploit the possibilities of software modularization (e.g., reusability of software components).
 
-**Independent parallel development:** The LEA automation software, the AGV system, the Transport Management, and the order/material flow management were developed independently by different project partners. The uniform MTP interfaces nonetheless enabled fast and straightforward commissioning.
+**Independent parallel development:** The LEA automation software, the AGV system, the Transport Management, and the packaging order/ material flow management were developed independently by different project partners. The uniform MTP interfaces nonetheless enabled fast and straightforward commissioning.
 
 ### 6.1.3 PLC-Based Emulation
 
@@ -260,24 +258,32 @@ This section describes the third evaluation example: a comprehensive MLS emulate
 
 #### Use Case
 
-The MLS serves two packaging processes — bag filling and octabin filling — executed concurrently. [Figure 6.6](#figure-66-plc-based-emulation-of-a-modular-logistics-system) shows the system layout, transport nodes, and possible material flows.
+The MLS serves two packaging processes — bag filling and octabin filling — executed concurrently. [Figure 6.6](#figure-66-plc-based-emulation-of-a-modular-logistics-system) shows the system layout, transport nodes, and possible material flows.[^figure-note]
+
+[^figure-note]: For clarity, some material flows in the figure are shown docking at the LEAs rather than at the transport nodes. Nevertheless, all LO handovers and takeovers take place at the transport nodes.
 
 ##### Figure 6.6: PLC-Based Emulation of a Modular Logistics System
 ![PLC-Based Emulation of a Modular Logistics System](./images/Emulation_Anwendungsbeispiel.svg)
 
-**Bag filling process:** A CES-based Logistics Line of three LEAs — a Form-Fill-Seal machine (FFS), a Conveyor (CONV), and a Palletizer (PAL) — processes packaging orders from the LOL. Two SES-based Pallet Supplies (PAS1, PAS2) provide different pallet types on demand. An SES-based Foil Supply (FOS) optionally applies a foil layer. After palletizing, one of two SES-based Stretch Hood Machines (SH1, SH2) applies load securing. A Labeller (LABEL) provides final identification. Finished pallets are transported to a Stock (STOCK) LEA. All LEAs outside the Logistics Line are loosely coupled single LEAs served by an AGV system.
+**Bag filling process:** A CES-based Logistics Line of three LEAs — a Form-Fill-Seal machine (FFS), a Conveyor (CONV), and a Palletizer (PAL) — processes packaging orders from the LOL. Two SES-based Pallet Supplies (PAS1, PAS2) provide different pallet types on demand. An SES-based Foil Supply (FOS) optionally applies a foil layer. After palletizing, one of two SES-based Stretch Hood Machines (SH1, SH2) applies load securing. A Labeller (LABEL) provides final identification. Finished pallets are transported to a Stock (STOCK) LEA, which is also served by the AGV system. The automation of the stock itself is not part of this evaluation example; it is represented in simplified form by an SES-based service. All LEAs outside the Logistics Line are loosely coupled single LEAs operating demand-oriented, with transports carried out by an AGV system.
 
-**Octabin filling process:** A CES-based Octabin Erector (OAU) erects octabins using pallets from the shared PAS LEAs. One of the SH LEAs inserts a foil inlay. An SES-based Logistics Line — Octabin Filler (OFill), Conveyor (CONV2), and Sealing Station (OSeal) — processes octabins demand-oriented as they arrive. Load securing and labelling are performed by the shared SH and LABEL LEAs. The example intentionally combines order-oriented and demand-oriented single LEAs, order-oriented and demand-oriented Logistics Lines, and shared LEAs across both processes, covering the full diversity of MLS configurations analyzed in this dissertation.
+**Octabin filling process:** A CES-based Octabin Assembly Unit (OAU) erects octabins using pallets from the shared PAS LEAs. One of the SH LEAs inserts a foil inlay. An SES-based Logistics Line — Octabin Filler (OFill), Conveyor (CONV2), and Sealing Station (OSeal) — processes octabins demand-oriented as they arrive. Load securing and labelling are performed by the shared SH and LABEL LEAs already introduced for the bag filling process. Finished octabins are transported to the STOCK LEA. The LEAs of the octabin filling Logistics Line are physically coupled; all other LEAs participating in the octabin process are loosely coupled, with transports carried out by the AGV system. 
+
+The example intentionally combines order-oriented and demand-oriented single LEAs, order-oriented and demand-oriented Logistics Lines, and shared LEAs across both processes, covering the full diversity of MLS configurations analyzed in the MoProLog project.
 
 #### Implementation
 
 The emulation uses SIMATIC S7-PLCSIM Advanced and TIA Portal V18. Each LEA runs on a virtual SIMATIC S7-1500 controller that communicates via OPC UA exactly as a real controller would. Since the focus is on communication over MTP interfaces rather than LEA-internal automation, the emulated LEAs do not differ from physical LEAs in this regard. Logistics objects are modeled virtually: handovers within Logistics Lines use binary process value interconnections; in the Logistics Area, a virtual LO is represented by its transporting AGV.
 
-Each emulated LEA consists of a simplified function block emulating the LEA's logistics function, surrounded by an MTP service implementation. Blue LEAs in [Figure 6.6](#figure-66-plc-based-emulation-of-a-modular-logistics-system) operate in CES mode; red LEAs in SES mode. Parameterization follows the structured parameter set concept using *ProductDataSet* and *PackagingDataSet*.
+Each emulated LEA consists of a simplified function block emulating the LEA's logistics function, surrounded by an MTP service implementation. Blue LEAs in [Figure 6.6](#figure-66-plc-based-emulation-of-a-modular-logistics-system) operate in CES mode — they receive packaging orders and execute them cyclically. Red LEAs operate in SES mode — they are activated and parameterized on demand when their functionality is needed. For all LEAs, parameterization follows the structured parameter set concept using *ProductDataSet* and *PackagingDataSet*. Regarding logistics-specific interactions (*LogisticsInteractions*), only the *TransportNodeRequest* was implemented; the *ProductParameterRequest*, *PackagingParameterRequest*, *ProductParameterUpdateInfo*, and *PackagingParameterUpdateInfo* are structurally similar and would work the same way.
 
-The two Logistics Lines use the choreography concept with External Lead Services (LEADBag for bag filling; LEADOct for octabin filling). The CES-based bag filling line follows the same start-up and completion logic as the BASF demonstrator ([Section 6.1.1](#611-basf-demonstrator)). The SES-based octabin filling line starts up and waits in PAUSED state; upon LO arrival, the OFill switches to EXECUTE, processes the LO using its LO-specific order data received during handover, and passes the LO with its metadata (ProductionId, ProductId, LogisticsObjectId, LogisticsObjectStatus) to CONV2. Multiple LOs of different types can be processed consecutively while the line remains in EXECUTE.
+The two Logistics Lines use the choreography concept with External Lead Services (LEADBag for bag filling; LEADOct for octabin filling). The CES-based bag filling line follows the same start-up and completion logic as the BASF demonstrator ([Section 6.1.1](#611-basf-demonstrator)). This Logistics Line was presented and discussed at ACHEMA and Hannover Messe 2022 in a preliminary demonstrator. The SES-based octabin filling line starts up and waits in PAUSED state; upon LO arrival, the OFill switches to EXECUTE, processes the LO using its LO-specific order data received during handover, and passes the LO with its metadata (ProductionId, ProductId, LogisticsObjectId, LogisticsObjectStatus) to CONV2. If another LO has arrived at OFill in the meantime, it remains in EXECUTE; otherwise it returns to PAUSED. The same applies to the handover from CONV2 to OSeal. The External Lead LEADOct remains in EXECUTE as long as any LEA is in EXECUTE. This way, multiple LOs of the same or different types can be processed consecutively while the line remains in EXECUTE. Each LEA processes only one LO at a time; LO-specific order data is passed to the next LEA via process value interconnections, enabling each LEA to determine and apply the appropriate parameters for the current LO.
 
-Flexible transports are coordinated via a simplified AGV emulation and a Transport Management function in the LOL.
+Flexible transports are coordinated via a simplified AGV emulation and a Transport Management function in the LOL. The transport nodes of the LEAs were hard-coded in the Transport Management and not yet integrated via MTPs.
+
+The MTP service implementations are based on a prototype MTP block library and a choreography block library for SIMATIC TIA Portal V18 from Siemens AG. The MTP library was extended with new function blocks enabling structured and array-based parameterization. The choreography library was extended with function blocks for MTP-based choreography configuration. In addition, new function blocks (mainly TN blocks and client blocks for Transport Management integration) were developed based on the concepts of this work.
+
+[Table 6.2](#table-62-lol-functions-in-the-plc-based-emulation) shows the LOL functions foreseen for this evaluation example as well as their implementation.
 
 ##### Table 6.2: LOL Functions in the PLC-Based Emulation
 
@@ -316,23 +322,64 @@ Flexible transports are coordinated via a simplified AGV emulation and a Transpo
 
 #### Test Scenarios
 
-Ten test scenarios were successfully executed:
+The test scenarios shown in [Table 6.4](#table-64-test-scenarios-at-the-plc-based-emulation-evaluation-example-3) have successfully been executed.
 
-1. **Load choreography configurations** for both Logistics Lines; set access modes and close process value interconnections.
-2. **Connect all transport-relevant LEAs** to the Transport Management.
-3. **Set order-independent parameters** (product-specific, packaging-specific, and construction-specific parameter sets).
-4. **Start all SES-based single LEAs**; they wait in PAUSED state for incoming logistics objects.
-5. **Start the SES-based octabin filling Logistics Line**; it starts up and waits in PAUSED state.
-6. **Bag filling with static routes** (Product ID 1): PAS1 -> Logistics Line (bag) -> SH2 -> LABEL -> STOCK.
-7. **Bag filling with dynamic routes** (Product ID 2): PAS2 -> FOS -> Logistics Line (bag) -> SH2 -> LABEL -> STOCK. Choices of PAS2, FOS, and SH2 were determined by querying the material flow management.
-8. **Octabin filling with static routes** (Product ID 3): PAS1 -> OAU -> SH1 (foil inlay) -> Logistics Line (octabin) -> SH1 (stretch hood) -> LABEL -> STOCK.
-9. **Octabin filling with dynamic routes** (Product ID 4): PAS1 -> OAU -> SH2 (foil inlay) -> Logistics Line (octabin) -> SH1 (stretch hood) -> LABEL -> STOCK.
-10. **Parallel bag and octabin filling**: combinations of scenarios 6+8, 7+9, and 7+8 executed concurrently.
+##### Table 6.4: Test Scenarios at the PLC-Based Emulation (Evaluation Example 3)
+
+<table>
+  <tr>
+    <th align="left">Test Scenario</th>
+    <th align="left">Description</th>
+  </tr>
+  <tr>
+    <td align="left">1) Load choreography configurations</td>
+    <td align="left">Previously created choreography configurations were loaded onto both Logistics Lines. Subsequently, access modes of services and parameters were set and process value interconnections were closed.</td>
+  </tr>
+  <tr>
+    <td align="left">2) Connect all transport-relevant LEAs to the Transport Management</td>
+    <td align="left">All LEAs that needed to interact with the AGV system were connected to the Transport Management.</td>
+  </tr>
+  <tr>
+    <td align="left">3) Set order-independent parameters</td>
+    <td align="left">All parameters independent of a specific packaging order were set at the LEAs, including product-specific and packaging-specific parameter sets as well as construction-specific parameters.</td>
+  </tr>
+  <tr>
+    <td align="left">4) Start all SES-based single LEAs</td>
+    <td align="left">All SES-based (demand-oriented) single LEAs were started. They subsequently waited in PAUSED state for incoming logistics objects.</td>
+  </tr>
+  <tr>
+    <td align="left">5) Start the SES-based octabin filling Logistics Line</td>
+    <td align="left">The SES-based (demand-oriented) octabin filling Logistics Line was started. It started up in an orderly manner and subsequently waited in PAUSED state for incoming logistics objects.</td>
+  </tr>
+  <tr>
+    <td align="left">6) Bag filling with static routes</td>
+    <td align="left">A bag filling process was executed using statically predefined transport routes (Product ID 1). A corresponding packaging order was assigned to the bag filling Logistics Line. The route was: PAS1 -> Logistics Line (bag) -> SH2 -> LABEL -> STOCK.</td>
+  </tr>
+  <tr>
+    <td align="left">7) Bag filling with dynamic routes</td>
+    <td align="left">A bag filling process was executed using dynamically determined transport routes (Product ID 2). A corresponding packaging order was assigned to the bag filling Logistics Line. The route was: PAS2 -> FOS -> Logistics Line (bag) -> SH2 -> LABEL -> STOCK. The choices of PAS2 (instead of PAS1), FOS, and SH2 (instead of SH1) were determined by querying the material flow management. Static routes were used for the remaining transports.</td>
+  </tr>
+  <tr>
+    <td align="left">8) Octabin filling with static routes</td>
+    <td align="left">An octabin filling process was executed using statically predefined transport routes (Product ID 3). A corresponding packaging order was assigned to the OAU. The route was: PAS1 -> OAU -> SH1 (foil inlay) -> Logistics Line (octabin) -> SH1 (stretch hood) -> LABEL -> STOCK.</td>
+  </tr>
+  <tr>
+    <td align="left">9) Octabin filling with dynamic routes</td>
+    <td align="left">An octabin filling process was executed using dynamically determined transport routes (Product ID 4). A corresponding packaging order was assigned to the OAU. The route was: PAS1 -> OAU -> SH2 (foil inlay) -> Logistics Line (octabin) -> SH1 (stretch hood) -> LABEL -> STOCK. The choices of PAS1 (instead of PAS2), SH2 (instead of SH1) for the foil inlay, and SH1 (instead of SH2) for the stretch hood were determined by querying the material flow management. Static routes were used for the remaining transports.</td>
+  </tr>
+  <tr>
+    <td align="left">10) Parallel bag and octabin filling</td>
+    <td align="left">Building on the previous scenarios, parallel execution of bag and octabin filling processes was tested: parallel operation with static routes (combination of scenarios 6 and 8), parallel operation with dynamic routes (combination of scenarios 7 and 9), and mixed operation (combination of scenarios 7 and 8). The processes were executed as described in the respective individual scenarios.</td>
+  </tr>
+</table>
 
 #### Findings
 
 **Practical applicability:** The tests confirm the practical applicability of CES- and SES-based LEA automation including structured parameterization, choreography-based Logistics Line automation, and MTP-based AGV transport integration. In particular, the SES principle is demonstrated at scale: SH1 and SH2 receive pallets of different types and states, identify each logistics object, and process it according to its *ProductId* and *LogisticsObjectStatus*. Above all, this example demonstrates the combined use of all three artifacts in a realistic, multi-process MLS.
 
-**System design potential:** Intelligent MLS design based on the presented artifacts can increase system utilization compared to conventional systems. For example, SH1 and SH2 serve both packaging processes — applying stretch hoods for bag pallets, inserting foil inlays for octabins — instead of being dedicated to a single task. AGV-based transport reduces space requirements and increases material flow flexibility, enabling a broader product portfolio on the same system.
+**System design potential:** Intelligent MLS design based on the presented artifacts can increase system utilization compared to conventional systems. For example, SH1 and SH2 serve both packaging processes — applying stretch hoods for bag pallets, inserting foil inlays for octabins — instead of being dedicated to a single task. AGV-based transport reduces space requirements and increases material flow flexibility, enabling a broader product portfolio on the same system. This work explicitly does not consider a design workflow for MLSs. However, the presented artifacts facilitate the design and construction of an MLS tailored to any given product portfolio:
 
-**Enablers for flexible MLS design:** The artifacts enable flexible MLS design because LEAs are parameterizable via standardized interfaces, AGV systems can be integrated without deep knowledge of proprietary AGV automation, material flows are configurable at runtime, and LEAs can be quickly integrated or replaced via MTP-based mechanisms.
+- LEAs are parameterizable via standardized interfaces, enabling the integration of a Parameter Management.
+- Discontinuous conveying technology (here: AGVs) can be integrated via standardized interfaces without deep knowledge of its proprietary automation. This lowers the entry barrier for discontinuous conveying technology, which is essential for building flexible MLSs.
+- Material flows are flexibly configurable, potentially even at runtime, allowing different products to be processed on the same MLS.
+- LEAs can be quickly integrated or replaced via MTP-based mechanisms, enabling MLS scaling and straightforward implementation of redundancy concepts.

@@ -1,6 +1,15 @@
 
 ## 8 References
 
+### AutomationML e.V., 2025
+
+- Citation key: `AutomationMLe.V..2025`
+- Shorthand: `Aut25`
+- Authors: AutomationML e.V.
+- Year: 2025
+- Title: Aml.Engine
+- URL: https://www.nuget.org/packages/Aml.Engine
+
 ### BEUMER Group, 2025
 
 - Citation key: `BEUMERGroup.2025`
@@ -144,6 +153,17 @@
 - Address: Berlin
 - URL: https://www.vde-verlag.de/iec-normen/225580/iec-62714-1-2018.html
 
+### ISO/IEC 29500-2
+
+- Citation key: `ISOIECJTC1InformationtechnologySubcommitteeSC34Documentdescriptionandprocessinglangu.2021`
+- Shorthand: `ISO/IEC 29500-2`
+- Authors: International Organization for Standardization and International Electrotechnical Commission
+- Year: 2021
+- Title: ISO/IEC 29500-2: Document description and processing languages -- Office Open XML file formats -- Part 2: Open packaging conventions
+- Publisher: International Organization for Standardization
+- Address: Genf
+- URL: https://www.iso.org/standard/77818.html
+
 ### Janzen, 2023
 
 - Citation key: `Janzen.2023`
@@ -165,6 +185,15 @@
 - Type: Master's Thesis
 - Institution: University of Applied Sciences Darmstadt
 - Address: Darmstadt
+
+### Microsoft, 2025
+
+- Citation key: `Microsoft.2025`
+- Shorthand: `Mic25`
+- Authors: Microsoft
+- Year: 2025
+- Title: Package Klasse
+- URL: https://learn.microsoft.com/de-de/dotnet/api/system.io.packaging.package?view=net-8.0
 
 ### MTP Specification Part 1
 
