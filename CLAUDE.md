@@ -50,19 +50,19 @@
 
 ## 5. Inline Citations
 
-- **Format:** Markdown link with the BibTeX shorthand in square brackets as display text, linking to the entry in `98_References/README.md`
-- **Syntax:** `[[{shorthand}]](../98_References/README.md#{anchor})`
+- **Format:** Markdown link with the BibTeX shorthand in square brackets as display text, linking to the entry in `08_References/README.md`
+- **Syntax:** `[[{shorthand}]](../08_References/README.md#{anchor})`
 - **Shorthand:** taken from the `shorthand` field of the BibTeX entry (e.g. `NE 171`, `GPL23`, `BFG+21`)
 - **Anchor:** derived from the `### ` heading of the reference entry — lowercase, spaces replaced by `-`, special characters removed
 - **Example:**
   ```markdown
-  [[NE 171]](../98_References/README.md#namur-ak-419-2020)
-  [[BFG+21]](../98_References/README.md#blumenstein-et-al-design-principles)
+  [[NE 171]](../08_References/README.md#namur-ak-419-2020)
+  [[BFG+21]](../08_References/README.md#blumenstein-et-al-design-principles)
   ```
-- Before linking, verify the entry exists in `98_References/README.md`. If missing, add it first using bibliographic data from the `Bib/` folder.
+- Before linking, verify the entry exists in `08_References/README.md`. If missing, add it first using bibliographic data from the `Bib/` folder.
 - If a shorthand is shared by multiple entries (collision), list all affected entries for the user to resolve.
 
-## 6. Reference Entries (`98_References/README.md`)
+## 6. Reference Entries (`08_References/README.md`)
 
 - Each entry is a `### ` heading followed by a bullet list of metadata fields
 - **Heading format:** descriptive title or citation key used in the text (e.g. `### NAMUR AK 4.19, 2020`, `### Blumenstein et al., Design Principles`)

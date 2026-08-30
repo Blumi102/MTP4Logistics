@@ -38,7 +38,7 @@ This section describes fundamental, interdependent design decisions (DDs) that h
 
 - *One service per AGV:* Would require the Transport Management or LEAs to manage AGV properties, occupancies, and states for resource selection — a task the fleet manager is specialized for. Moreover, this approach applies MTP at a level where VDA 5050 is already established.
 
-[Figure 5.5](#figure-55-classification-of-the-transport-management-and-agv-system-in-the-sail-architecture) shows the classification resulting from DD2 into the SAIL architecture [[VDI/VDMA 5050]](../98_References/README.md#vdivdma-2016).
+[Figure 5.5](#figure-55-classification-of-the-transport-management-and-agv-system-in-the-sail-architecture) shows the classification resulting from DD2 into the SAIL architecture [[VDI/VDMA 5050]](../08_References/README.md#vdivdma-2016).
 
 ##### Figure 5.5: Classification of the Transport Management and AGV System in the SAIL Architecture
 ![Classification of the Transport Management and AGV System in the SAIL Architecture](./images/Einorndung_SAIL.svg)

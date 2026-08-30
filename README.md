@@ -5,8 +5,6 @@
 <!-- TODO: Bilder übersetzen -->
 <!-- TODO: schauen, was aus dem Anhang noch ins Repo muss -->
 
-<!-- TODO: Bei Intro-Seite jeweils Übersicht über die Unterseiten geben. -->
-
 # Technical Report
 ## Application and Extension of the Module Type Package Concept for Production-related Logistics
 
@@ -28,7 +26,7 @@ Increasing market volatility, product individualization, and shorter innovation 
 
 ### Problem
 
-Although production-related logistics systems are already modular at the hardware level, proprietary interfaces, extensive manual coordination and engineering processes, and missing integration standards prevent the implementation of flexibility and adaptability goals. According to NAMUR Working Group 4.19 [[NE 171]](98_References/README.md#namur-ak-419-2020), integration costs for logistics modules amount to approximately €156,000 per company per year. This figure is expected to rise significantly in the context of modular production and digitalization.
+Although production-related logistics systems are already modular at the hardware level, proprietary interfaces, extensive manual coordination and engineering processes, and missing integration standards prevent the implementation of flexibility and adaptability goals. According to NAMUR Working Group 4.19 [[NE 171]](08_References/README.md#namur-ak-419-2020), integration costs for logistics modules amount to approximately €156,000 per company per year. This figure is expected to rise significantly in the context of modular production and digitalization.
 
 ### Objective
 
@@ -47,7 +45,7 @@ Based on all those concepts, [Section 9](09_MTP_Enhancements/README.md) gives an
   
 
 ## References
-Please find all references [here](./98_References/README.md).
+Please find all references [here](./08_References/README.md).
 
 ## PDF Document of the Technical Report
 

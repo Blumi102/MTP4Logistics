@@ -1,6 +1,6 @@
 ## 5 MTP-based automation of flexible transport in Logistics Areas
 
-This chapter presents the MTP-based automation of flexible transports in Logistics Areas (LA). Parts of these concepts were published in [[BHF+23]](../98_References/README.md#blumenstein-et-al-2023), [[BGB+23]](../98_References/README.md#blumenstein-et-al-moprolog) as well as the student work [[Hen22]](../98_References/README.md#henkel-2022).
+This chapter presents the MTP-based automation of flexible transports in Logistics Areas (LA). Parts of these concepts were published in [[BHF+23]](../08_References/README.md#blumenstein-et-al-2023), [[BGB+23]](../08_References/README.md#blumenstein-et-al-moprolog) as well as the student work [[Hen22]](../08_References/README.md#henkel-2022).
 
  [Section 5.8](05-08_Application_Example_TransportPAL-Label-SH.md#58-application-example-transport-pallabelsh) shows the application of the described concepts to a flexible transport between a palletizer, a labeller and a stretch hood machine. [Section 7.8](../07_MTP%20Extensions/07-08_TransportSet.md#78-mtp-specification-of-the-transportset) provides detailed specifications of the introduced MTP extensions.
 
@@ -54,4 +54,4 @@ The following sections describe the technical implementation of these concepts. 
 - [Section 5.5 — Logistics Equipment Assemblies](./05-05_Logistics_Equipment_Assemblies.md): Implementation of the LEA system component
 - [Section 5.6 — AGV System](./05-06_AGV_System.md): Implementation of the AGV system component
 - [Section 5.7 — MTP Extensions](./05-07_MTP_Extensions.md): Necessary extensions of the MTP concept for implementing flexible transports in the Logistics Area
-
+- [Section 5.8 — Application Example: Transport PAL–Label–SH](./05-08_Application_Example_TransportPAL-Label-SH.md): Exemplary application of the transport concept for a push transport from a Palletizer via a Labeling Unit to a Stretch Hood Machine
