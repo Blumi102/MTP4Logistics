@@ -9,7 +9,7 @@ This work focuses on packaging processes in the process industry as a part of pr
 Within the ENPRO 2.0 research project "Modular Production-Related Logistics (MoProLog)", process chains of packaging processes were analyzed in collaboration with end users as well as equipment manufacturers and a reference model was derived [[GPL23]](../08_References/README.md#gryczycha-et-al-2023). This model abstracts typical packaging steps, categorized according to whether they contribute to the primary packaging (Consumer Unit), secondary packaging (Trade Unit), or transport packaging (Logistics Unit) [[DIN 55405]](../08_References/README.md#din-55405). A concrete packaging process typically involves only a subset of these steps, as illustrated in [Figure 2.1](#figure-21-reference-process-model-for-packaging-processes).
 
 ##### Figure 2.1: Reference Process Model for Packaging Processes [[GPL23]](../08_References/README.md#gryczycha-et-al-2023)
-<img src="./images/Referenzprozessmodell.svg" alt="Reference Process Model for Packaging Processes" style="max-width: 600px; width: 100%;" />
+<img src="./images/Referenzprozessmodell.svg" alt="Reference Process Model for Packaging Processes" width="600" />
 
 ## 2.2 Structure of a Modular Logistics System
 
@@ -18,7 +18,7 @@ The goal of the MoProLog project was to implement such production-related logist
 [Figure 2.2](#figure-22-structure-of-a-modular-logistics-system) illustrates an exemplary **Modular Logistics System (MLS)**. The structural levels relevant to this work, i.e., Modular Logistics System, Logistics Area, Logistics Line, and Logistics Equipment Assembly, are described in the following.
 
 ##### Figure 2.2: Structure of a Modular Logistics System
-<img src="./images/MLS_Struktur.svg" alt="Structure of a Modular Logistics System" style="max-width: 600px; width: 100%;" />
+<img src="./images/MLS_Struktur.svg" alt="Structure of a Modular Logistics System" width="600" />
 
 **Modular Logistics System (MLS):** The MLS is the highest aggregation level and serves the execution of one or more logistics processes (here: packaging processes) on the basis of packaging orders. It differs from conventional packaging systems through its modular structure. An MLS consists of a Logistics Area and a **Logistics Orchestration Layer (LOL)**, which takes over control, management, and monitoring functions for the entire system.
 
@@ -49,7 +49,7 @@ LEAs expose physical handover points, referred to as **Transport Nodes**, for in
 [Figure 2.3](#figure-23-transport-nodes-and-transports-in-an-exemplary-logistics-system) illustrates the transport nodes of LEAs and the transports between them using an exemplary logistics system.
 
 ##### Figure 2.3: Transport Nodes and Transports in an Exemplary Logistics System
-<img src="./images/Analyse_Logistikbereich.svg" alt="Transport Nodes and Transports in an Exemplary Logistics System" style="max-width: 600px; width: 100%;" />
+<img src="./images/Analyse_Logistikbereich.svg" alt="Transport Nodes and Transports in an Exemplary Logistics System" width="600" />
 
 Transport processes between nodes are initiated by **transport demands**, which a producing LEA signals as a *push demand* (finished LO ready for pickup) or a requesting LEA signals as a *pull demand* (material required). The sequence of transport nodes to be visited by an AGV can be defined either *statically* as a default route or *dynamically* at runtime via material flow management in the LOL.
 
@@ -70,7 +70,7 @@ All LEAs within a Logistics Line must operate uniformly in one mode, since the r
 [Figure 2.4](#figure-24-execution-of-logistics-processes-in-an-mls) illustrates the execution of logistics processes in an MLS, as described in the following.
 
 ##### Figure 2.4: Execution of Logistics Processes in an MLS
-<img src="./images/Arbeitsweise_MLS.svg" alt="Execution of Logistics Processes in an MLS" style="max-width: 600px; width: 100%;" />
+<img src="./images/Arbeitsweise_MLS.svg" alt="Execution of Logistics Processes in an MLS" width="600" />
 
 Each logistics process in an MLS is initiated by a packaging order (e.g., fill and palletize 500 bags onto 10 pallets). Packaging orders are managed by the order management function of the LOL or entered ad hoc via a Human Machine Interface (HMI). To execute an order, the LOL assigns it to an order-oriented LEA or Logistics Line, which then processes all required LOs according to the order data and drives the order forward.
 
