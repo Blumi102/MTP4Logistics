@@ -3,7 +3,7 @@
 As described in [Section 5.1.2](./05_Logistics_Area.md#512-working-principle), a transport process comprises the transport of an LO between a start and target node, including the handovers at both nodes. Any number of processing nodes can be approached between start and target node. During execution, a transport order passes through various phases. These are summarized in the process model shown in [Figure 5.11](#figure-511-process-model-of-a-transport-process-in-a-logistics-area) and described in the following sections.
 
 ##### Figure 5.11: Process Model of a Transport Process in a Logistics Area
-![Process Model of a Transport Process in a Logistics Area](./images/Prozessmodell.svg)
+<img src="./images/Prozessmodell.svg" alt="Process Model of a Transport Process in a Logistics Area" style="max-width: 800px; width: 100%;" />
 
 ### 5.3.1 Reporting Transport Demands and AGV Selection
 
@@ -46,4 +46,4 @@ During the execution of a transport process, the associated Transport Service pa
 [Figure 5.12](#figure-512-status-transitions-for-synchronization-between-lea-and-agv-system) illustrates this mechanism using a regular transport process from an outbound node to an inbound node with an intermediate processing node. The detailed description of the individual transitions has already been provided in [Sections 5.3.1](#531-reporting-transport-demands-and-agv-selection) through [5.3.3](#533-lo-handovers-pickups-and-processing). The process model thus forms the basis for a uniform, state-based interaction between LEAs and AGV system.
 
 ##### Figure 5.12: Status Transitions for Synchronization between LEA and AGV System
-![Status Transitions for Synchronization between LEA and AGV System](./images/Uebersicht_Prozedurumschaltung.svg)
+<img src="./images/Uebersicht_Prozedurumschaltung.svg" alt="Status Transitions for Synchronization between LEA and AGV System" style="max-width: 500px; width: 100%;" />

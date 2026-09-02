@@ -3,7 +3,7 @@
 The LOL provides an operator display for monitoring and manually controlling LEAs, into which the displays of individual LEAs are automatically integrated following the concepts of [[MTP Part 2]](../08_References/README.md#mtp-specification-part-2). While [[MTP Part 2]](../08_References/README.md#mtp-specification-part-2) targets P&ID-style displays, machine-oriented displays are customary in production-related logistics. These displays contain a static representation of the LEA and multiple dynamic display objects for the LEA service, parameters, report values, process values, and further LEA-internal values. [Figure 3.9](#figure-39-operator-display-of-a-palletizer-lea) shows an example display for a palletizer LEA.
 
 ##### Figure 3.9: Operator Display of a Palletizer LEA
-![Operator Display of a Palletizer LEA](./images/Example_HMI_PAL.png)
+<img src="./images/Example_HMI_PAL.png" alt="Operator Display of a Palletizer LEA" style="max-width: 600px; width: 100%;" />
 
 #### Dynamic Display Objects
 
@@ -83,7 +83,7 @@ The subsequent artifacts on the automation of Logistics Lines ([Chapter 4](../04
 Static display objects representing the physical appearance of a LEA are modeled as *VisualObjects* with an ECLASS reference per [[MTP Part 2]](../08_References/README.md#mtp-specification-part-2). The graphic should resemble the real machine as closely as possible to create a recognizable visual relationship between the operator display and the physical equipment. Since a LOL cannot maintain graphics for every possible LEA type, the **CustomSymbols** mechanism is introduced: LEA-specific SVG images are attached to the MTP as file attachments per [[MTP Part 1]](../08_References/README.md#mtp-specification-part-1), organized in a dedicated *AttachmentGroup* named `CustomSymbols`, with an `HMI` subfolder recommended for clarity.
 
 ##### Figure 3.10: LEA Image as a CustomSymbol in a Palletizer MTP
-![LEA Image as a CustomSymbol in a Palletizer MTP](./images/HMI_StatischesBild.drawio.png)
+<img src="./images/HMI_StatischesBild.drawio.png" alt="LEA Image as a CustomSymbol in a Palletizer MTP" style="max-width: 600px; width: 100%;" />
 
 From a modeling perspective, CustomSymbols are treated identically to graphics from the LOL's own library. Each SVG file name is set to the 8-digit numeric ECLASS reference string. The same reference is used in the *VisualObject* definition and for referencing via *AttachmentReference*. This enables the LOL to unambiguously match the graphic to the visual object. 
 

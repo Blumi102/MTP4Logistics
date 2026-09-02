@@ -152,12 +152,12 @@ For **order-specific** parameters, transfer as individual parameters via existin
 **Product- and packaging-specific parameters** are managed by a LOL parameter management system, which maintains a structured database of all required parameters for the products and packaging materials in use. Since these parameter sets are typically large and numerous, parameter set selection from LEA-internal storage is recommended to minimize parameterization and communication effort. [Figure 3.6](#figure-36-recommended-parameterization-mechanism-for-product--and-packaging-specific-parameters) illustrates this mechanism.
 
 ##### Figure 3.6: Recommended Parameterization Mechanism for Product- and Packaging-Specific Parameters
-![Recommended Parameterization Mechanism for Product- and Packaging-Specific Parameters](./images/Empfohlene_Parametrierung_LOL_LEA.svg)
+<img src="./images/Empfohlene_Parametrierung_LOL_LEA.svg" alt="Recommended Parameterization Mechanism for Product- and Packaging-Specific Parameters" style="max-width: 700px; width: 100%;" />
 
 **LEA-internal parameter store:** Two arrays are maintained in the LEA — a *ProductDataSet* for product-specific and a *PackagingDataSet* for packaging-specific parameter sets ([Figure 3.7](#figure-37-structure-of-the-lea-internal-parameter-store)). The elements of each array are from a LEA-specific structured data type. A *ProductDataSet* entry is keyed by *ProductId* and *LogisticsObjectStatus*; a *PackagingDataSet* entry is keyed by *PackagingId*. Product parameter sets contain a *PackagingId* reference that links to the required packaging parameter set.
 
 ##### Figure 3.7: Structure of the LEA-Internal Parameter Store
-![Structure of the LEA-Internal Parameter Store](./images/Product_PackagingDataSet.svg)
+<img src="./images/Product_PackagingDataSet.svg" alt="Structure of the LEA-Internal Parameter Store" style="max-width: 600px; width: 100%;" />
 
 **Filling the arrays** can be done proactively by the LOL (recommended for fixed product portfolios) or on demand via LEA requests at runtime (recommended for frequently changing or large portfolios). In either case, consistency between product and packaging sets must be ensured: whenever a new product parameter set is transferred, the corresponding packaging parameter set must already be present or be transferred alongside it.
 
@@ -166,7 +166,7 @@ For **order-specific** parameters, transfer as individual parameters via existin
 **Local HMI changes** are reported to the LOL via *ProductParameterUpdatedInfo* / *PackagingParameterUpdatedInfo*, specifying the array index of the changed parameter set ([Figure 3.8](#figure-38-reporting-parameter-set-changes-to-the-lol)). The LOL acknowledges receipt and decides whether to adopt the change into its parameter management.
 
 ##### Figure 3.8: Reporting Parameter Set Changes to the LOL
-![Reporting Parameter Set Changes to the LOL](./images/Empfohlene_Parametrierung_HMI.svg)
+<img src="./images/Empfohlene_Parametrierung_HMI.svg" alt="Reporting Parameter Set Changes to the LOL" style="max-width: 600px; width: 100%;" />
 
 To enable the LOL's parameter management to identify the purpose of each interface unambiguously, *FunctionClassificationAttributes* are introduced for parameters, which were previously only defined for services and procedures in [[MTP Part 4]](../08_References/README.md#mtp-specification-part-4). Concrete attributes are specified for *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* ([Section 7.4.1](../07_MTP%20Extensions/07-04_ServiceSet.md#741-overview)).
 
