@@ -15,72 +15,72 @@ In the preceding sections, a number of extensions to the MTP specification were 
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC StructServParam</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-725-dataassembly-definition-of-suc-structservparam">Table 7.25</a>)</td>
+    <td align="left"><em>SUC StructServParam</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-729-dataassembly-definition-of-suc-structservparam">Table 7.29</a>)</td>
     <td align="left">Transfer of service parameters with structured data types</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayServParam</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-726-dataassembly-definition-of-suc-arrayservparam">Table 7.26</a>)</td>
+    <td align="left"><em>SUC ArrayServParam</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-730-dataassembly-definition-of-suc-arrayservparam">Table 7.30</a>)</td>
     <td align="left">Transfer of service parameters with array data types</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>RC LogisticsInteractionExtension</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-727-dataassembly-definition-of-rc-logisticsinteractionextension">Table 7.27</a>)</td>
+    <td align="left"><em>RC LogisticsInteractionExtension</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-731-dataassembly-definition-of-rc-logisticsinteractionextension">Table 7.31</a>)</td>
     <td align="left">Extension of the ServiceControl interface for logistics interaction variables</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC ServiceControl</em> (extension) (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-728-dataassembly-definition-of-suc-servicecontrol">Table 7.28</a>)</td>
+    <td align="left"><em>SUC ServiceControl</em> (extension) (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-732-dataassembly-definition-of-suc-servicecontrol">Table 7.32</a>)</td>
     <td align="left">Extension of the existing ServiceControl interface to allow attachment of <em>RC LogisticsInteractionExtension</em></td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC StructView</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-78-dataassembly-definition-of-suc-structview">Table 7.8</a>)</td>
+    <td align="left"><em>SUC StructView</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-710-dataassembly-definition-of-suc-structview">Table 7.10</a>)</td>
     <td align="left">Display of structured values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayView</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-79-dataassembly-definition-of-suc-arrayview">Table 7.9</a>)</td>
+    <td align="left"><em>SUC ArrayView</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-711-dataassembly-definition-of-suc-arrayview">Table 7.11</a>)</td>
     <td align="left">Display of array-managed values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC StructMan</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-710-dataassembly-definition-of-suc-structman">Table 7.10</a>)</td>
+    <td align="left"><em>SUC StructMan</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-712-dataassembly-definition-of-suc-structman">Table 7.12</a>)</td>
     <td align="left">Operator manipulation of structured-type values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC StructManInt</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-711-dataassembly-definition-of-suc-structmanint">Table 7.11</a>)</td>
+    <td align="left"><em>SUC StructManInt</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-713-dataassembly-definition-of-suc-structmanint">Table 7.13</a>)</td>
     <td align="left">Operator or LEA-internal manipulation of structured-type values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayMan</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-712-dataassembly-definition-of-suc-arrayman">Table 7.12</a>)</td>
+    <td align="left"><em>SUC ArrayMan</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-714-dataassembly-definition-of-suc-arrayman">Table 7.14</a>)</td>
     <td align="left">Operator manipulation of array-type values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: DataAssemblySet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayManInt</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-713-dataassembly-definition-of-suc-arraymanint">Table 7.13</a>)</td>
+    <td align="left"><em>SUC ArrayManInt</em> (<a href="../07_MTP%20Extensions/07-03_DataAssemblySet.md#table-715-dataassembly-definition-of-suc-arraymanint">Table 7.15</a>)</td>
     <td align="left">Operator or LEA-internal manipulation of array-type values</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ProcessValueSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC StructProcessValueIn</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-739-dataassembly-definition-of-suc-structprocessvaluein">Table 7.39</a>)</td>
+    <td align="left"><em>SUC StructProcessValueIn</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-743-dataassembly-definition-of-suc-structprocessvaluein">Table 7.43</a>)</td>
     <td align="left">Reading a structured-type value from another LEA</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ProcessValueSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayProcessValueIn</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-740-dataassembly-definition-of-suc-arrayprocessvaluein">Table 7.40</a>)</td>
+    <td align="left"><em>SUC ArrayProcessValueIn</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-744-dataassembly-definition-of-suc-arrayprocessvaluein">Table 7.44</a>)</td>
     <td align="left">Reading an array managed by another LEA</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ProcessValueSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC OutputElement</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-741-dataassembly-definition-of-suc-outputelement">Table 7.41</a>)</td>
+    <td align="left"><em>SUC OutputElement</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-745-dataassembly-definition-of-suc-outputelement">Table 7.45</a>)</td>
     <td align="left">Abstract base for typed process value outputs</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ProcessValueSet.ComplexTypes V2.0.0</td>
-    <td align="left"><em>SUC ArrayProcessValueOut</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-742-dataassembly-definition-of-suc-arrayprocessvalueout">Table 7.42</a>)</td>
+    <td align="left"><em>SUC ArrayProcessValueOut</em> (<a href="../07_MTP%20Extensions/07-05_ProcessValueSet.md#table-746-dataassembly-definition-of-suc-arrayprocessvalueout">Table 7.46</a>)</td>
     <td align="left">Providing a LEA-internal array to another LEA</td>
   </tr>
   <tr>
@@ -93,47 +93,47 @@ In the preceding sections, a number of extensions to the MTP specification were 
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Base V2.0.0</td>
-    <td align="left"><em>SUC ServiceParameter</em> (extension) (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-729-model-definition-of-suc-serviceparameter">Table 7.29</a>)</td>
+    <td align="left"><em>SUC ServiceParameter</em> (extension) (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-733-model-definition-of-suc-serviceparameter">Table 7.33</a>)</td>
     <td align="left">Extension with <em>FunctionClassificationAttributes</em> for parameters</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC LogisticsInteraction</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-730-model-definition-of-suc-logisticsinteraction">Table 7.30</a>)</td>
+    <td align="left"><em>SUC LogisticsInteraction</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-734-model-definition-of-suc-logisticsinteraction">Table 7.34</a>)</td>
     <td align="left">Aggregation of all logistics-specific LEA requests to the LOL</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC LogisticsQuestion</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-731-model-definition-of-suc-logisticsquestion">Table 7.31</a>)</td>
+    <td align="left"><em>SUC LogisticsQuestion</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-735-model-definition-of-suc-logisticsquestion">Table 7.35</a>)</td>
     <td align="left">Base model for a LEA request to the LOL</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC ProductParameterRequest</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-732-model-definition-of-suc-productparameterrequest">Table 7.32</a>)</td>
+    <td align="left"><em>SUC ProductParameterRequest</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-736-model-definition-of-suc-productparameterrequest">Table 7.36</a>)</td>
     <td align="left">LEA request for product-specific parameters</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC PackagingParameterRequest</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-733-model-definition-of-suc-packagingparameterrequest">Table 7.33</a>)</td>
+    <td align="left"><em>SUC PackagingParameterRequest</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-737-model-definition-of-suc-packagingparameterrequest">Table 7.37</a>)</td>
     <td align="left">LEA request for packaging-specific parameters</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC ProductParameterUpdatedInfo</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-734-model-definition-of-suc-productparameterupdatedinfo">Table 7.34</a>)</td>
+    <td align="left"><em>SUC ProductParameterUpdatedInfo</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-738-model-definition-of-suc-productparameterupdatedinfo">Table 7.38</a>)</td>
     <td align="left">LEA notification to the LOL of a changed product parameter set</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC PackagingParameterUpdatedInfo</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-735-model-definition-of-suc-packagingparameterupdatedinfo">Table 7.35</a>)</td>
+    <td align="left"><em>SUC PackagingParameterUpdatedInfo</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-739-model-definition-of-suc-packagingparameterupdatedinfo">Table 7.39</a>)</td>
     <td align="left">LEA notification to the LOL of a changed packaging parameter set</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>RC HasLogisticsInteraction</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-737-model-definition-of-rc-haslogisticsinteraction">Table 7.37</a>)</td>
+    <td align="left"><em>RC HasLogisticsInteraction</em> (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-741-model-definition-of-rc-haslogisticsinteraction">Table 7.41</a>)</td>
     <td align="left">Association of a <em>LogisticsInteraction</em> to a LEA service</td>
   </tr>
   <tr>
     <td align="left">ModuleTypePackage: ServiceSet.Logistics V2.0.0</td>
-    <td align="left"><em>SUC Service</em> (extension) (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-738-model-definition-of-suc-service">Table 7.38</a>)</td>
+    <td align="left"><em>SUC Service</em> (extension) (<a href="../07_MTP%20Extensions/07-04_ServiceSet.md#table-742-model-definition-of-suc-service">Table 7.42</a>)</td>
     <td align="left">Extension of the existing Service model to allow attachment of <em>RC HasLogisticsInteraction</em></td>
   </tr>
 </table>

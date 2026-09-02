@@ -107,6 +107,17 @@
 - Address: Berlin
 - URL: https://www.dinmedia.de/de/norm/din-55405/222663644
 
+### DIN EN ISO 9000, 2015
+
+- Citation key: `DINNormenausschussQualitatsmanagementStatistikundZertifizierungsgrundlagen.2015`
+- Shorthand: `DIN EN ISO 9000`
+- Authors: Deutsches Institut für Normung
+- Year: 2015
+- Title: DIN EN ISO 9000: Qualitätsmanagementsysteme -- Grundlagen und Begriffe (ISO 9000:2015)
+- Publisher: DIN Media
+- Address: Berlin
+- URL: https://www.dinmedia.de/de/norm/din-en-iso-9000/235671064
+
 ### Gryczycha et al., 2023
 
 - Citation key: `Gryczycha.2023`
@@ -271,6 +282,7 @@
 ### NAMUR NE 184
 
 - Citation key: `NAMURArbeitskreisAK4.1.1.2023`
+- Shorthand: `NAMUR NE 184`
 - Authors: Interessengemeinschaft Automatisierungstechnik der Prozessindustrie
 - Year: 2023
 - Title: NAMUR NE 184: Diagnose und Instandhaltungsfunktionen fuer modulare Prozesseinheiten
@@ -292,6 +304,7 @@
 ### OPC 10000-3
 
 - Citation key: `OPCFoundation.10000-3`
+- Shorthand: `OPC 10000-3`
 - Authors: OPC Foundation
 - Year: 2024
 - Title: OPC 10000-3: UA Part 3: Address Space Model

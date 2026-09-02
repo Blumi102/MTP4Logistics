@@ -34,7 +34,7 @@ The class diagrams follow the style of those in the MTP specification, showing o
 
 The specification tables follow the style of those in the MTP specification. Some have already been adopted in the MTP specification.
 
-The specifications use AutomationML constructs according to [[IEC 62714-1](../08_References/README.md#iec-62714-1)]. The following table provides an overview of common abbreviations used throughout the specification.
+The specifications use AutomationML constructs according to [[IEC 62714-1]](../08_References/README.md#iec-62714-1). The following table provides an overview of common abbreviations used throughout the specification.
 
 | Abbreviation | AutomationML Construct |
 |---|---|

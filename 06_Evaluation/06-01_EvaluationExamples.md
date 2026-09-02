@@ -61,9 +61,9 @@ The LOL provides a choreography configurator (NestJS/Angular application, develo
 
 #### Test Scenarios
 
-The test scenarios shown in [Table 6.1](#table-61-test-scenarios-at-the-basf-logistics-line) have successfully been executed.
+The test scenarios shown in [Table 6.2](#table-62-test-scenarios-at-the-basf-logistics-line) have successfully been executed.
 
-##### Table 6.1: Test Scenarios at the BASF Logistics Line
+##### Table 6.2: Test Scenarios at the BASF Logistics Line
 
 <table>
   <tr>
@@ -174,9 +174,9 @@ Transports were carried out by a MAXO-MS-TV015 AGV from SEW-Eurodrive [[SEW18]](
 
 #### Test Scenarios
 
-The test scenarios shown in [Table 6.2](#table-62-test-scenarios-at-the-moprolog-demonstrator-evaluation-example-2) have successfully been executed.
+The test scenarios shown in [Table 6.3](#table-63-test-scenarios-at-the-moprolog-demonstrator-evaluation-example-2) have successfully been executed.
 
-##### Table 6.2: Test Scenarios at the MoProLog Demonstrator (Evaluation Example 2)
+##### Table 6.3: Test Scenarios at the MoProLog Demonstrator (Evaluation Example 2)
 
 <table>
   <tr>
@@ -197,11 +197,11 @@ The test scenarios shown in [Table 6.2](#table-62-test-scenarios-at-the-moprolog
 
 **Practical applicability:** The tests confirm the practical applicability of CES- and SES-based LEA automation and MTP-based AGV transport integration. Scenario 1 demonstrated transports with predefined material flows and manual packaging order entry for different products; this approach suits systems with low material flow variance during operation or where no dedicated packaging order and material flow management system can or should be provided. Scenario 2 demonstrated transports with runtime-configurable material flows and automated packaging order entry for different products; this approach suits systems with high material flow variance during operation that have dedicated packaging order and material flow management systems.
 
-**Refinements to the transport concept:** Working with the demonstrator revealed the need for refinements to the transport automation concept shown in [Table 6.3](#table-63-refinements-to-artifact-3-based-on-findings-from-the-moprolog-demonstrator). These target more robust, uniform, and simpler implementation (rather than changes to the underlying interaction mechanism) and have already been incorporated into the transport concept in [Chapter 5](../05_Logistics_Area/05_Logistics_Area.md). They are also evaluated in the PLC-based emulation ([Section 6.1.3](#613-plc-based-emulation)).
+**Refinements to the transport concept:** Working with the demonstrator revealed the need for refinements to the transport automation concept shown in [Table 6.4](#table-64-refinements-to-artifact-3-based-on-findings-from-the-moprolog-demonstrator). These target more robust, uniform, and simpler implementation (rather than changes to the underlying interaction mechanism) and have already been incorporated into the transport concept in [Chapter 5](../05_Logistics_Area/05_Logistics_Area.md). They are also evaluated in the PLC-based emulation ([Section 6.1.3](#613-plc-based-emulation)).
 
 <blockquote>
 
-##### Table 6.3: Refinements to Artifact 3 Based on Findings from the MoProLog Demonstrator
+##### Table 6.4: Refinements to Artifact 3 Based on Findings from the MoProLog Demonstrator
 
 <table>
   <tr>
@@ -283,9 +283,9 @@ Flexible transports are coordinated via a simplified AGV emulation and a Transpo
 
 The MTP service implementations are based on a prototype MTP block library and a choreography block library for SIMATIC TIA Portal V18 from Siemens AG. The MTP library was extended with new function blocks enabling structured and array-based parameterization. The choreography library was extended with function blocks for MTP-based choreography configuration. In addition, new function blocks (mainly TN blocks and client blocks for Transport Management integration) were developed based on the concepts of this work.
 
-[Table 6.2](#table-62-lol-functions-in-the-plc-based-emulation) shows the LOL functions foreseen for this evaluation example as well as their implementation.
+[Table 6.5](#table-65-lol-functions-in-the-plc-based-emulation) shows the LOL functions foreseen for this evaluation example as well as their implementation.
 
-##### Table 6.2: LOL Functions in the PLC-Based Emulation
+##### Table 6.5: LOL Functions in the PLC-Based Emulation
 
 <table>
   <tr>
@@ -322,9 +322,9 @@ The MTP service implementations are based on a prototype MTP block library and a
 
 #### Test Scenarios
 
-The test scenarios shown in [Table 6.4](#table-64-test-scenarios-at-the-plc-based-emulation-evaluation-example-3) have successfully been executed.
+The test scenarios shown in [Table 6.6](#table-66-test-scenarios-at-the-plc-based-emulation-evaluation-example-3) have successfully been executed.
 
-##### Table 6.4: Test Scenarios at the PLC-Based Emulation (Evaluation Example 3)
+##### Table 6.6: Test Scenarios at the PLC-Based Emulation (Evaluation Example 3)
 
 <table>
   <tr>

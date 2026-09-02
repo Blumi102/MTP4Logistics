@@ -2,7 +2,7 @@
 
 This chapter presents the MTP-based automation and integration of Logistics Equipment Assemblies (LEAs). Parts of these concepts were published in [[BFS+22]](../08_References/README.md#blumenstein-et-al-2022-atp) and [[BGB+23]](../08_References/README.md#blumenstein-et-al-moprolog); parametrization mechanisms were additionally investigated in student theses [[Jan23]](../08_References/README.md#janzen-2023) and in [[BJF+23]](../08_References/README.md#blumenstein-et-al-automationlol). 
 
- [Sections 3.9](03-09_Application_Example_PalletizingLEA.md) and [3.10](03-10_Application_Example_StretchHoodLEA.md) show the application of the described concepts to a palletizer LEA and a stretch-hood LEA. [Chapter 7](../07_MTP%20Extensions/07-00_Intro.md) provides detailed specifications of the introduced MTP extensions.
+ [Sections 3.9](03-09_Application_Example_PalletizingLEA.md#39-application-example-palletizing-lea) and [3.10](03-10_Application_Example_StretchHoodLEA.md#310-application-example-stretch-hood-lea) show the application of the described concepts to a palletizer LEA and a stretch-hood LEA. [Chapter 7](../07_MTP%20Extensions/07-00_Intro.md#7-enhancements-of-the-module-type-package-concept) provides detailed specifications of the introduced MTP extensions.
 
 ## 3.1 Artifact Overview
 
@@ -15,12 +15,12 @@ The foundation is a **service-based automation** with exactly one MTP service pe
 
 The following sections describe the technical implementation of these concepts.
 
-- [Section 3.2 — Service-Based Automation](./03-02_Service_Based_Automation.md): Service-based automation with one MTP service per LEA
-- [Section 3.3 — Parameterization](./03-03_Parameterization.md): Parameterization mechanisms for LEA services
-- [Section 3.4 — Report Values](./03-04_Report_Values.md): Report values for LEA services
-- [Section 3.5 — Process Values](./03-05_Process_Values.md): Process values for LEA services
-- [Section 3.6 — Operator Displays](./03-06_Operator_Displays.md): LEA operator displays and HMI concepts
-- [Section 3.7 — Complexity Reduction](./03-07_Complexity_Reduction.md): Complexity reduction of MTP interface definitions for the logistics domain
-- [Section 3.8 — MTP Extensions](./03-08_MTP_Extensions.md): Necessary extensions of the MTP concept for LEA automation
-- [Section 3.9 — Application Example: Palletizing LEA](./03-09_Application_Example_PalletizingLEA.md): Application of the described concepts to a palletizer LEA
-- [Section 3.10 — Application Example: Stretch Hood LEA](./03-10_Application_Example_StretchHoodLEA.md): Application of the described concepts to a stretch-hood LEA
+- [Section 3.2 — Service-Based Automation](./03-02_Service_Based_Automation.md#32-service-based-automation): Service-based automation with one MTP service per LEA
+- [Section 3.3 — Parameterization](./03-03_Parameterization.md#33-parameterization): Parameterization mechanisms for LEA services
+- [Section 3.4 — Report Values](./03-04_Report_Values.md#34-report-values): Report values for LEA services
+- [Section 3.5 — Process Values](./03-05_Process_Values.md#35-process-values): Process values for LEA services
+- [Section 3.6 — Operator Displays](./03-06_Operator_Displays.md#36-operator-displays): LEA operator displays and HMI concepts
+- [Section 3.7 — Complexity Reduction](./03-07_Complexity_Reduction.md#37-complexity-reduction-of-interfaces): Complexity reduction of MTP interface definitions for the logistics domain
+- [Section 3.8 — MTP Extensions](./03-08_MTP_Extensions.md#38-mtp-extensions): Necessary extensions of the MTP concept for LEA automation
+- [Section 3.9 — Application Example: Palletizing LEA](./03-09_Application_Example_PalletizingLEA.md#39-application-example-palletizing-lea): Application of the described concepts to a palletizer LEA
+- [Section 3.10 — Application Example: Stretch Hood LEA](./03-10_Application_Example_StretchHoodLEA.md#310-application-example-stretch-hood-lea): Application of the described concepts to a stretch-hood LEA

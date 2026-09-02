@@ -1,12 +1,12 @@
 ## 6.2 Verification
 
-The term *verification* describes, according to [[DIN9000]](../08_References/README.md#din-en-iso-9000-2015), the "confirmation, through the provision of objective evidence, that specified requirements have been fulfilled." It examines, based on identified requirements, whether *artifacts have been developed correctly*.
+The term *verification* describes, according to [[DIN EN ISO 9000]](../08_References/README.md#din-en-iso-9000-2015), the "confirmation, through the provision of objective evidence, that specified requirements have been fulfilled." It examines, based on identified requirements, whether *artifacts have been developed correctly*.
 
 This section verifies the artifacts presented in [Chapter 3](../03_Logistics_Equipment_Assemblies/03_Logistics_Equipment_Assemblies.md) through [Chapter 5](../05_Logistics_Area/05_Logistics_Area.md) against the requirements defined in [Section 2.6](../02_Modular_Logistics_System/02_Modular_Logistics_System.md#26-automation-requirements). For each requirement, it is described to what extent the presented artifacts fulfill the requirement's acceptance criteria, and the fulfillment of the requirement is then assessed.
 
 #### Artifact 1 — LEA Automation
 
-##### Table 6.3: Verification of Artifact 1 Against Requirements
+##### Table 6.7: Verification of Artifact 1 Against Requirements
 
 <table>
   <tr>
@@ -41,7 +41,7 @@ This section verifies the artifacts presented in [Chapter 3](../03_Logistics_Equ
 
 #### Artifact 2 — Logistics Line Automation
 
-##### Table 6.4: Verification of Artifact 2 Against Requirements
+##### Table 6.8: Verification of Artifact 2 Against Requirements
 
 <table>
   <tr>
@@ -75,7 +75,7 @@ This section verifies the artifacts presented in [Chapter 3](../03_Logistics_Equ
 
 #### Artifact 3 — Logistics Area Automation
 
-##### Table 6.5: Verification of Artifact 3 Against Requirements
+##### Table 6.9: Verification of Artifact 3 Against Requirements
 
 <table>
   <tr>

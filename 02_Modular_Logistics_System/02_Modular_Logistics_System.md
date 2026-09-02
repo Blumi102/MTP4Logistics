@@ -1,4 +1,3 @@
-<!-- TODO: Bilder anpassen und übersetzen -->
 
 ## 2 Modular Logistics Systems
 
@@ -6,7 +5,7 @@
 
 This work focuses on packaging processes in the process industry as a part of production-related logistics. Production-related logistics encompasses the supply of production processes with raw materials and the packaging of finished products [[NE 171]](../08_References/README.md#namur-ak-419-2020). The core task of packaging processes is the discretization of product streams, e.g., bulk or liquid goods, into individual, uniquely identifiable units referred to as **Logistics Objects (LOs)**, e.g., bags or pallets [[NE 171]](../08_References/README.md#namur-ak-419-2020).
 
-Within the ENPRO 2.0 research project "Modular Production-Related Logistics (MoProLog)", process chains of packaging processes were analyzed in collaboration with end users as well as equipment manufacturers and a reference model was derived [[GPL23]](../08_References/README.md#gryczycha-et-al-2023). This model abstracts typical packaging steps, categorized according to whether they contribute to the primary packaging (Consumer Unit), secondary packaging (Trade Unit), or transport packaging (Logistics Unit) [[DIN 55405]](../08_References/README.md#din-55405). A concrete packaging process typically involves only a subset of these steps, as illustrated in [Figure 2.1](#figure-21-reference-process-model-for-packaging-processes).
+Within the ENPRO 2.0 research project "Modular Production-Related Logistics (MoProLog)", process chains of packaging processes were analyzed in collaboration with end users as well as equipment manufacturers and a reference model was derived [[GPL23]](../08_References/README.md#gryczycha-et-al-2023). This model abstracts typical packaging steps, categorized according to whether they contribute to the primary packaging (Consumer Unit), secondary packaging (Trade Unit), or transport packaging (Logistics Unit) [[DIN 55405]](../08_References/README.md#din-55405). A concrete packaging process typically involves only a subset of these steps, as illustrated in [Figure 2.1](#figure-21-reference-process-model-for-packaging-processes-gpl23).
 
 ##### Figure 2.1: Reference Process Model for Packaging Processes [[GPL23]](../08_References/README.md#gryczycha-et-al-2023)
 <img src="./images/Referenzprozessmodell.svg" alt="Reference Process Model for Packaging Processes" width="600" />
