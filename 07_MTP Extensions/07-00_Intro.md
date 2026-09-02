@@ -1,10 +1,5 @@
 
-
-<!-- TODO: Tabellenzellen linksbündig -->
-<!-- TODO: Verlinkungen durch Claude prüfen lassen! -->
 <!-- TODO: bei den Specs Labels vergeben, was schon übernommen wurde -->
-<!-- TODO: Interface Definition durch DataSessembly definition ersetzen -->
-<!-- TODO: Prüfen, ob noch etwas deutsches vorhanden ist -->
 <!-- TODO: Durchgängige Nummierierung der Sections, Abbildungen und Tabellen prüfen -->
 <!-- TODO: Claude fragen, ob er Inkonsistenzen in den Dokumenten findet und diese ausgeben lassen. -->
 <!-- TODO: Referenzierung von Quellen überarbeiten in gleicher Weise, wie bei den Inhaltskapitel. Formatierung in CLAUDE.md hinterlegt. -->

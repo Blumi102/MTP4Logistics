@@ -1,12 +1,12 @@
 ## 5.7 MTP Extensions
 
-In the preceding sections, a number of extensions to the MTP specification were identified that are necessary in the context of automating flexible transports in the Logistics Area. [Table 5.7](#table-57-mtp-specification-extensions-for-logistics-area-transport-automation) provides an overview of the model and interface definitions to be introduced, with links to their detailed specifications.
+In the preceding sections, a number of extensions to the MTP specification were identified that are necessary in the context of automating flexible transports in the Logistics Area. [Table 5.7](#table-57-mtp-specification-extensions-for-logistics-area-transport-automation) provides an overview of the model and DataAssembly definitions to be introduced, with links to their detailed specifications.
 
 ##### Table 5.7: MTP Specification Extensions for Logistics Area Transport Automation
 
 <table>
   <tr>
-    <th align="left" colspan="3">Interface Definitions</th>
+    <th align="left" colspan="3">DataAssembly definitions</th>
   </tr>
   <tr>
     <th align="left">Profile</th>

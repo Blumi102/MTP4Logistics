@@ -15,9 +15,9 @@ borderColor #000000
 backgroundColor #E6E6E6
 }
 
-participant "**LOL (Parameter-**\n**Management)**" as PM order 1
-participant "**LOL (Auftrags-**\n**Management)**" as AM order 2
-participant "**SH-Dienst**" as Service order 3
+participant "**LOL (Parameter**\n**Management)**" as PM order 1
+participant "**LOL (Packaging**\n**Order Management)**" as AM order 2
+participant "**SH Service**" as Service order 3
 
 
 activate AM
@@ -25,20 +25,20 @@ activate PM
 activate Service
 
 Service ->> AM: state: IDLE
-PM ->> Service: Optional: Vorbefüllen des ProductDataSet und PackagingDataSet
+PM ->> Service: Optional: Pre-fill ProductDataSet and PackagingDataSet
 
 hnote over Service
-Rüsten der LEA mit dem gewünschten Folientyp
+Set up the LEA with the desired foil type
 end note
 
-Service <<- : Parametrierung - FoilTypeId
+Service <<- : Parameterization - FoilTypeId
 
 hnote over Service
-Ermittlung des Verpackungsparametersatzes
-auf Basis der FoilTypeId (gemäß Abschnitt 3.4.4)
+Determination of the packaging parameter set
+based on the FoilTypeId (according to Section 3.3.4)
 end note
 
-AM ->> Service: Prozedurauswahl (16#3)
+AM ->> Service: Procedure selection (16#3)
 
 Service ->> AM: StartEn = true
 AM ->> Service: cmd: Start
@@ -46,39 +46,39 @@ AM ->> Service: cmd: Start
 Service ->> AM: state: STARTING, EXECUTE
 Service ->> AM: state: PAUSING, PAUSED
 
-== Für jedes eintreffende LO ==
+== For each arriving LO ==
 
-Service <<- : Eintreffen eines LO
+Service <<- : Arrival of an LO
 
 Service ->> AM: state: RESUMING
 
 hnote over Service
-Ermittlung der ProductId und des LogisticsObjectStatus des LO
+Determination of the ProductId and LogisticsObjectStatus of the LO
 end note
 
 hnote over Service
-Ermittlung des Produktparametersatzes auf Basis der 
-vorgegebenen ProductId und des LogisticsObjectStatus (gemäß Abschnitt 3.4.4)
+Determination of the product parameter set based on the
+specified ProductId and LogisticsObjectStatus (according to Section 3.3.4)
 end note
 
 Service ->> AM: state: EXECUTE
 
 hnote over Service
-Stimmt die PackagingId des Produktparametersatzes 
-mit der eingestellten FoilTypeId überein?
+Does the PackagingId of the product parameter set
+match the configured FoilTypeId?
 end note
 
-alt Ja, stimmt überein.
+alt Yes, it matches.
 
-Service ->> Service: Bearbeitung des LO gemäß\nden ermittelten Parametern
+Service ->> Service: Processing of the LO according\nto the determined parameters
 
-else Nein, stimmt nicht überein.
+else No, it does not match.
 
 hnote over Service
-Auftrag abweisen, das LO kann nicht bearbeitet werden.
+Reject order, the LO cannot be processed.
 end note
 
-end 
+end
 
 Service ->> AM: state: PAUSING, PAUSED
 == ==

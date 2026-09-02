@@ -15,9 +15,9 @@ borderColor #000000
 backgroundColor #E6E6E6
 }
 
-participant "**LOL (Parameter-**\n**Management)**" as PM order 1
-participant "**LOL (Auftrags-**\n**Management)**" as AM order 2
-participant "**PAL-Dienst**" as Service order 3
+participant "**LOL (Parameter**\n**Management)**" as PM order 1
+participant "**LOL (Packaging**\n**Order Management)**" as AM order 2
+participant "**PAL Service**" as Service order 3
 
 
 activate AM
@@ -25,21 +25,21 @@ activate PM
 activate Service
 
 Service ->> AM: state: IDLE
-PM ->> Service: Optional: Vorbefüllen des ProductDataSet und PackagingDataSet
-AM ->> Service: Prozedurauswahl
+PM ->> Service: Optional: Pre-fill ProductDataSet and PackagingDataSet
+AM ->> Service: Procedure selection
 
-AM ->> Service: Parametrierung - ProductionId, ProductId,\n(BagQuantity), (PalletQuantity)
+AM ->> Service: Parameterization - ProductionId, ProductId,\n(BagQuantity), (PalletQuantity)
 
 hnote over Service
-Ermittlung des Produktparametersatzes
-auf Basis der vorgegebenen ProductId
-(gemäß Abschnitt 3.4.4)
+Determination of the product parameter set
+based on the specified ProductId
+(according to Section 3.3.4)
 end note
 
 hnote over Service
-Ermittlung des Verpackungsparametersatzes
-auf Basis der PackagingId im Produktparametersatz
-(gemäß Abschnitt 3.4.4)
+Determination of the packaging parameter set
+based on the PackagingId in the product parameter set
+(according to Section 3.3.4)
 end note
 
 Service ->> AM: StartEn = true
@@ -48,7 +48,7 @@ AM ->> Service: cmd: Start
 Service ->> AM: state: STARTING
 Service ->> AM: state: EXECUTE
 
-Service ->> Service: Palettierung aller für den\nAuftrag notwendigen Säcke
+Service ->> Service: Palletizing all bags\nrequired for the order
 
 alt ProcedureCur = 16#1 (CES_Continuous)
 
@@ -66,7 +66,7 @@ hnote over Service
 PalletCount = PalletQuantity
 end note
 
-end 
+end
 
 Service ->> AM: state: COMPLETING
 Service ->> AM: state: COMPLETED

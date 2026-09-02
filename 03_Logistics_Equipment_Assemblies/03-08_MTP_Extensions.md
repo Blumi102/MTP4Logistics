@@ -1,12 +1,12 @@
 ## 3.8 MTP Extensions
 
-In the preceding sections, a number of extensions to the MTP specification were identified that are necessary in the context of automating Logistics Equipment Assemblies. [Table 3.5](#table-35-mtp-extensions-for-lea-automation) provides an overview of the model and interface definitions to be introduced. A more detailed description is provided in the specification sections referenced in [Table 3.5](#table-35-mtp-extensions-for-lea-automation).
+In the preceding sections, a number of extensions to the MTP specification were identified that are necessary in the context of automating Logistics Equipment Assemblies. [Table 3.5](#table-35-mtp-extensions-for-lea-automation) provides an overview of the model and DataAssembly definitions to be introduced. A more detailed description is provided in the specification sections referenced in [Table 3.5](#table-35-mtp-extensions-for-lea-automation).
 
 ##### Table 3.5: MTP Extensions for LEA Automation
 
 <table>
   <tr>
-    <th align="left" colspan="3">Interface Definitions</th>
+    <th align="left" colspan="3">DataAssembly definitions</th>
   </tr>
   <tr>
     <th align="left">Profile</th>

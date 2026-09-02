@@ -21,7 +21,7 @@ Based on the findings of this work, [Table 7.80](#table-780-profiles-to-be-imple
 		<td align="center">&times;</td>
 	</tr>
 	<tr>
-		<td align="left">ModuleTypePackage:Manifest.Composed (neu)</td>
+		<td align="left">ModuleTypePackage:Manifest.Composed (new)</td>
 		<td align="center"></td>
 		<td align="center">&times;</td>
 		<td align="center"></td>
@@ -54,7 +54,7 @@ Based on the findings of this work, [Table 7.80](#table-780-profiles-to-be-imple
 		<td align="center">&times;</td>
 	</tr>
 	<tr>
-		<td align="left">ModuleTypePackage:HMISet.Composed (neu)</td>
+		<td align="left">ModuleTypePackage:HMISet.Composed (new)</td>
 		<td align="center"></td>
 		<td align="center">&times;</td>
 		<td align="center"></td>
@@ -69,13 +69,13 @@ Based on the findings of this work, [Table 7.80](#table-780-profiles-to-be-imple
 		<td align="center">&times;</td>
 	</tr>
 	<tr>
-		<td align="left">ModuleTypePackage:DataAssemblySet. ComplexTypes (neu)</td>
+		<td align="left">ModuleTypePackage:DataAssemblySet. ComplexTypes (new)</td>
 		<td align="center">&times;</td>
 		<td align="center">&times;</td>
 		<td align="center">&times;</td>
 	</tr>
 	<tr>
-		<td align="left">ModuleTypePackage:DataAssemblySet. Time (neu)</td>
+		<td align="left">ModuleTypePackage:DataAssemblySet. Time (new)</td>
 		<td align="center">(&times;)</td>
 		<td align="center">(&times;)</td>
 		<td align="center">&times;</td>
@@ -90,13 +90,13 @@ Based on the findings of this work, [Table 7.80](#table-780-profiles-to-be-imple
 		<td align="center">&times;</td>
 	</tr>
 	<tr>
-		<td align="left">ModuleTypePackage:ServiceSet. ComplexTypes (neu)</td>
+		<td align="left">ModuleTypePackage:ServiceSet. ComplexTypes (new)</td>
 		<td align="center">&times;</td>
 		<td align="center">&times;</td>
 		<td align="center">&times;</td>
 	</tr>
 	<tr>
-		<td align="left">ModuleTypePackage:ServiceSet.Logistics (neu)</td>
+		<td align="left">ModuleTypePackage:ServiceSet.Logistics (new)</td>
 		<td align="center">&times;</td>
 		<td align="center">&times;</td>
 		<td align="center">&times;</td>
@@ -111,7 +111,7 @@ Based on the findings of this work, [Table 7.80](#table-780-profiles-to-be-imple
 		<td align="center">(&times;)</td>
 	</tr>
 	<tr>
-		<td align="left">ModuleTypePackage:ProcessValueSet. ComplexTypes (neu)</td>
+		<td align="left">ModuleTypePackage:ProcessValueSet. ComplexTypes (new)</td>
 		<td align="center">(&times;)</td>
 		<td align="center">(&times;)</td>
 		<td align="center">(&times;)</td>

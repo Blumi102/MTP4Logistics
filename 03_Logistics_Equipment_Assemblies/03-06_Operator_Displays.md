@@ -7,9 +7,9 @@ The LOL provides an operator display for monitoring and manually controlling LEA
 
 #### Dynamic Display Objects
 
-Dynamic display objects can fundamentally be implemented using the mechanisms of [[MTP Specification Part 2]](../08_References/README.md#mtp-specification-part-2). For displaying and manipulating LEA-internal variables, the interface definitions from [[MTP Specification Part 3]](../08_References/README.md#mtp-specification-part-3) and [[MTP Specification Part 4]](../08_References/README.md#mtp-specification-part-4) are used. In addition, interface definitions for variables with structured and array-based data types are introduced, following the same principles as the interfaces already defined in the MTP specification for primitive data types. [Table 3.4](#table-34-new-interface-definitions-for-dynamic-display-objects) summarizes these newly introduced interfaces:
+Dynamic display objects can fundamentally be implemented using the mechanisms of [[MTP Specification Part 2]](../08_References/README.md#mtp-specification-part-2). For displaying and manipulating LEA-internal variables, the DataAssembly definitions from [[MTP Specification Part 3]](../08_References/README.md#mtp-specification-part-3) and [[MTP Specification Part 4]](../08_References/README.md#mtp-specification-part-4) are used. In addition, DataAssembly definitions for variables with structured and array-based data types are introduced, following the same principles as the interfaces already defined in the MTP specification for primitive data types. [Table 3.4](#table-34-new-interface-definitions-for-dynamic-display-objects) summarizes these newly introduced interfaces:
 
-##### Table 3.4: New Interface Definitions for Dynamic Display Objects
+##### Table 3.4: New DataAssembly definitions for Dynamic Display Objects
 
 <table>
   <tr>

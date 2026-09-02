@@ -142,7 +142,7 @@ The ability to define constants is used in the case of the bag filling line to d
 
 ### 4.5.4 Implementation of Choreography Relations using the Models and Interfaces of the ChoreographySet
 
-This section shows how the model and interface definitions introduced in this work are used in combination with the concepts from [[Stu26]](../08_References/README.md#stutz-2026) to implement choreography relations with active reading and active writing. As an example, the relation is considered in which LEA2, e.g., FFS, shall start when LEA1, e.g., CONV, is in the EXECUTE state.
+This section shows how the model and DataAssembly definitions introduced in this work are used in combination with the concepts from [[Stu26]](../08_References/README.md#stutz-2026) to implement choreography relations with active reading and active writing. As an example, the relation is considered in which LEA2, e.g., FFS, shall start when LEA1, e.g., CONV, is in the EXECUTE state.
 
 #### Active Reading
 
