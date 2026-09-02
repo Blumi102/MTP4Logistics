@@ -13,7 +13,7 @@ Flexible transports in a Logistics Area require a uniform interaction between LE
 [Figure 5.1](#figure-51-architecture-overview-for-implementing-flexible-transports-in-a-logistics-area) shows the system components of an MLS for implementing flexible transports in a Logistics Area as well as their interfaces to each other.
 
 ##### Figure 5.1: Architecture Overview for Implementing Flexible Transports in a Logistics Area
-<img src="./images/Architektur_Uebersicht.svg" alt="Architecture Overview for Implementing Flexible Transports in a Logistics Area" style="max-width: 700px; width: 100%;" />
+<img src="./images/Architektur_Uebersicht.svg" alt="Architecture Overview for Implementing Flexible Transports in a Logistics Area" width="700" />
 
 **Transport Management ([Section 5.3](#53-transport-management)):** A central component is the Transport Management, which receives transport demands from LEAs, manages them as transport orders, and coordinates their execution via connected AGV systems. The transport orders are represented as **MTP Transport Services** that are dynamically created, executed, and terminated by the Transport Management. For this purpose, the Transport Management comprises an Order Management for the management and execution of transport orders and an LEA Management for the integration and management of LEAs.
 
@@ -28,7 +28,7 @@ Flexible transports in a Logistics Area require a uniform interaction between LE
 [Figure 5.2](#figure-52-application-example-illustrating-the-working-principle-of-flexible-transports-in-a-logistics-area) shows an example Logistics Area with a palletizer LEA (PAL), a labeler LEA (LABEL), and a stretch hood machine LEA (SH), including their associated transport and order nodes. Based on this configuration, the basic working principle is explained below.
 
 ##### Figure 5.2: Application Example Illustrating the Working Principle of Flexible Transports in a Logistics Area
-<img src="./images/ArbeitsweiseLA.svg" alt="Application Example Illustrating the Working Principle of Flexible Transports in a Logistics Area" style="max-width: 600px; width: 100%;" />
+<img src="./images/ArbeitsweiseLA.svg" alt="Application Example Illustrating the Working Principle of Flexible Transports in a Logistics Area" width="600" />
 
 **Reporting transport demands and AGV selection ([Section 5.3.1](./05-03_Transport_Process.md#531-reporting-transport-demands-and-agv-selection)):** An inactive Transport Service is initially bound to the TN Proxy of the PAL's order node ([Figure 5.2](#figure-52-application-example-illustrating-the-working-principle-of-flexible-transports-in-a-logistics-area), (1)). To report a transport demand — e.g., for the removal of a completed pallet — the PAL parametrizes and starts this service via the TN Block of the order node. It sets its own InOutbound node as the next transport node to approach (*NextNode*) and starts the Transport Service in the *PushRequested* status. The Transport Management then decouples the started Transport Service from the TN Proxy of the order node and binds a new inactive Transport Service for future demands. Based on the started Transport Service, the Transport Management provides a transport order to the AGV system, whereupon the fleet manager selects a suitable AGV.
 

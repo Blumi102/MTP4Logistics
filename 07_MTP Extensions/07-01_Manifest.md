@@ -8,7 +8,7 @@ For modeling Composed MTPs two new model definitions *SUC ComposedModuleTypePack
 <!-- TODO: Evtl. auf Struktur des AttachementSet verweisen -->
 
 ##### Figure 7.1: Extension of the Manifest for Modeling Composed MTPs
-<img src="./images/01_Manifest.drawio.svg" alt="Extension of the Manifest for Modeling Composed MTPs" style="max-width: 800px; width: 100%;" />
+<img src="./images/01_Manifest.drawio.svg" alt="Extension of the Manifest for Modeling Composed MTPs" width="800" />
 
 *RC HasExternalMtpContext* is organized in the newly introduced library *RCL MTPRCLib*. It can be assigned to a *SUC LinkedObject* as an SRC. Thus, *SUC LinkedObject* must be extended to enable this assignment.[^1] These extensions are specified in detail in [Model Definitions](#712-model-definitions) and are assigned to the new profile *ModuleTypePackage:Manifest.Composed V2.0.0*.
 
@@ -18,7 +18,7 @@ New workflows are required for type, version, and instance verification of chore
 For version verification, the variable *ComposedTypeRevision* of *SUC ComposedModuleTypePackage* is used. This variable has a specific format and interpretation that follow the rules of *Semantic Versioning* according to [MTP Specification Part 1](../08_References/README.md#mtp-specification-part-1). According to the MTP modeling principles, a defined AttributeType must therefore be assigned to this variable. For this purpose, *AT ComposedTypeRevisionType* is introduced as shown in [Figure 7.2](#figure-72-extension-of-the-manifest-for-verifying-choreographed-functions). It describes the version of the communication-relevant interface content of a choreographed function.[^2] This AT is derived from *AT SemanticVersionAttributeType* and organized in *ATL MTPATLib*. This extension is specified in detail in [Model Definitions](#712-model-definitions) and is assigned to the new profile *ModuleTypePackage:Manifest.Composed V2.0.0*.
 
 ##### Figure 7.2: Extension of the Manifest for Verifying Choreographed Functions
-<img src="./images/01_Manifest_AT.drawio.svg" alt="Extension of the Manifest for Verifying Choreographed Functions" style="max-width: 300px; width: 100%;" />
+<img src="./images/01_Manifest_AT.drawio.svg" alt="Extension of the Manifest for Verifying Choreographed Functions" width="300" />
 
 ### 7.1.2 Model Definitions
 #### Specification of the System Unit Class ComposedModuleTypePackage

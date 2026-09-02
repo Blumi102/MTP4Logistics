@@ -7,12 +7,12 @@ The Line Interface exposes the functionality of a choreographed Logistics Line t
 The interface of each LEA service according to [Chapter 3](../03_Logistics_Equipment_Assemblies/03_Logistics_Equipment_Assemblies.md#3-mtp-based-automation-of-logistics-equipment-assemblies) consists of the components shown in [Figure 4.8](#figure-48-components-of-an-lea-service-interface). Exactly one *ServiceControl* interface is a mandatory component of every MTP service according to [[PNO Part 4]](../08_References/README.md#pno-2025-part4). It provides access to the service's underlying state machine and its procedures. As optional components, the service interface also contains any number of parameters, report values, and process values, for which interfaces of various data types are defined in [[PNO Part 4]](../08_References/README.md#pno-2025-part4) and in [Chapter 3](../03_Logistics_Equipment_Assemblies/03_Logistics_Equipment_Assemblies.md#3-mtp-based-automation-of-logistics-equipment-assemblies).
 
 ##### Figure 4.8: Components of a LEA Service Interface
-<img src="./images/LEA_Schnittstelle.svg" alt="Components of a LEA Service Interface" style="max-width: 300px; width: 100%;" />
+<img src="./images/LEA_Schnittstelle.svg" alt="Components of a LEA Service Interface" width="300" />
 
 The Line Interface is a combination of the interfaces of multiple LEA services participating in the choreography. However, not all interface components of the individual LEA services are adopted into the Line Interface. A portion of the LEA service interfaces is controlled by choreography-internal logic and is therefore not accessible from outside. [Figure 4.9](#figure-49-components-of-the-line-interface-of-a-choreographed-logistics-line) shows an example of how a Line Interface can be composed.
 
 ##### Figure 4.9: Components of the Line Interface of a Choreographed Logistics Line
-<img src="./images/Linien_Schnittstelle.svg" alt="Components of the Line Interface of a Choreographed Logistics Line" style="max-width: 600px; width: 100%;" />
+<img src="./images/Linien_Schnittstelle.svg" alt="Components of the Line Interface of a Choreographed Logistics Line" width="600" />
 
 #### Service and procedure interfaces
 
@@ -33,7 +33,7 @@ All parameters available at the Line Interface must be controllable by automated
 For visualization and manual operation of the Logistics Line, the operator displays of the individual LEAs are combined into a Line HMI. Four different variants for this combination are distinguished according to [Table 4.2](#table-42-variants-for-combining-lea-operator-displays-into-a-line-hmi), which can also be combined with each other. To illustrate these variants, [Figure 4.10](#figure-410-individual-operator-displays-of-three-leas) shows the operator displays of three example LEAs, and the subsequent [Figures 4.11](#figure-411-line-hmi-combination-variant-1) through [4.13](#figure-413-line-hmi-combination-variants-3-and-4) show the resulting Line HMIs using the four presented combination variants.
 
 ##### Figure 4.10: Individual Operator Displays of Three LEAs
-<img src="./images/Line_HMI_LEAs_Einzeln.svg" alt="Individual Operator Displays of Three LEAs" style="max-width: 600px; width: 100%;" />
+<img src="./images/Line_HMI_LEAs_Einzeln.svg" alt="Individual Operator Displays of Three LEAs" width="600" />
 
 ##### Table 4.2: Variants for Combining LEA Operator Displays into a Line HMI
 
@@ -61,13 +61,13 @@ For visualization and manual operation of the Logistics Line, the operator displ
 </table>
 
 ##### Figure 4.11: Line HMI Combination Variant 1
-<img src="./images/Line_HMI_Variante_1.svg" alt="Line HMI Combination Variant 1" style="max-width: 600px; width: 100%;" />
+<img src="./images/Line_HMI_Variante_1.svg" alt="Line HMI Combination Variant 1" width="600" />
 
 ##### Figure 4.12: Line HMI Combination Variant 2
-<img src="./images/Line_HMI_Variante_2.svg" alt="Line HMI Combination Variant 2" style="max-width: 600px; width: 100%;" />
+<img src="./images/Line_HMI_Variante_2.svg" alt="Line HMI Combination Variant 2" width="600" />
 
 ##### Figure 4.13: Line HMI Combination Variants 3 and 4
-<img src="./images/Line_HMI_Variante_3_4.svg" alt="Line HMI Combination Variants 3 and 4" style="max-width: 450px; width: 100%;" />
+<img src="./images/Line_HMI_Variante_3_4.svg" alt="Line HMI Combination Variants 3 and 4" width="450" />
 
 ### 4.3.3 Composed MTP
 
@@ -117,7 +117,7 @@ The Line Interface and Line HMI to be modeled in the Composed MTP are composed o
 [Figure 4.14](#figure-414-basic-structure-of-a-composed-mtp) shows the basic structure of a Composed MTP. As described above, the MTP files of the LEAs participating in the Logistics Line form the modeling basis, as they already contain a large portion of the MTP components to be modeled. To reference MTP components of the LEA MTPs, these are added to the Composed MTP as attachments ([Figure 4.14](#figure-414-basic-structure-of-a-composed-mtp), "LEA MTPs"). From these MTPs, the components necessary for describing the Line Interface and the Line HMI must be selected and combined in a suitable manner. For this purpose, MTP-based semantic models in the individual aspects of the Composed MTP ([Figure 4.14](#figure-414-basic-structure-of-a-composed-mtp), "Semantic Models") are used, which resemble the semantic models of a LEA MTP.
 
 ##### Figure 4.14: Basic Structure of a Composed MTP
-<img src="./images/Composed_MTP3.svg" alt="Basic Structure of a Composed MTP" style="max-width: 450px; width: 100%;" />
+<img src="./images/Composed_MTP3.svg" alt="Basic Structure of a Composed MTP" width="450" />
 
 ### 4.3.6 Referencing Mechanism
 
@@ -125,7 +125,7 @@ The LEA MTPs are stored in a separate folder "MTPs" in the attachment of the Com
 
 <!-- TODO: Abbildung anpassen, inkl. AML-Modellierung -->
 ##### Figure 4.15: Referencing Mechanism of a Composed MTP
-<img src="./images/Composed_MTP_Referenzierung.svg" alt="Referencing Mechanism of a Composed MTP" style="max-width: 600px; width: 100%;" />
+<img src="./images/Composed_MTP_Referenzierung.svg" alt="Referencing Mechanism of a Composed MTP" width="600" />
 
 To reference specific components of the attached LEA MTPs, two references are required as shown in [Figure 4.15](#figure-415-referencing-mechanism-of-a-composed-mtp):
 
@@ -149,28 +149,28 @@ The *Manifest* references the various aspects of the Composed MTP, each organize
 The *ServerAssembly* and *DataAssembly* aspects are not required in the Composed MTP, as the relevant information is already contained in the LEA MTPs and is accessed via the ContextReference mechanism. Additional aspects (e.g., *Text*, *Alarm*, *Diagnostics*) may be added in the future.
 
 ##### Figure 4.16: Aspects of a Composed MTP
-<img src="./images/Composed_MTP_Aspekte.svg" alt="Aspects of a Composed MTP" style="max-width: 450px; width: 100%;" />
+<img src="./images/Composed_MTP_Aspekte.svg" alt="Aspects of a Composed MTP" width="450" />
 
 #### Manifest
 
 [Figure 4.17](#figure-417-structure-of-the-manifest-of-a-composed-mtp) shows the structure of the *Manifest* of a Composed MTP. The *Manifest* is organized under a *ModuleTypePackage* instance hierarchy according to [[PNO Part 1]](../08_References/README.md#pno-2025-part1). Below it, an instance of the newly specified *SUC ComposedModuleTypePackage* signals that this is a Composed MTP and contains the information necessary for type, version, and instance verification of composed functions. Under this instance, instances for all aspects contained in the Composed MTP are organized, each referencing its corresponding instance hierarchy via an *IC AspectSetReference*.
 
 ##### Figure 4.17: Structure of the Manifest of a Composed MTP
-<img src="./images/Composed_MTP_Manifest.png" alt="Structure of the Manifest of a Composed MTP" style="max-width: 400px; width: 100%;" />
+<img src="./images/Composed_MTP_Manifest.png" alt="Structure of the Manifest of a Composed MTP" width="400" />
 
 #### ServiceSet
 
 [Figure 4.18](#figure-418-structure-of-the-serviceset-of-a-composed-mtp) shows the structure of the *ServiceSet* of a Composed MTP. This aspect semantically describes the components of the Line Interface. A service for the overall functionality of the Logistics Line is created as an instance of the *SUC Service* according to [[PNO Part 4]](../08_References/README.md#pno-2025-part4). Below it, all procedures available at the Logistics Line are modeled as instances of the *SUC Procedure*. These procedures are assigned the procedure parameters, report values, and process values present at the Line Interface as instances of the *SUC ProcedureParameter*, *SUC ReportValue*, *SUC ProcessValueIn*, or *SUC ProcessValueOut*. In addition to the procedures, all selected configuration parameters are modeled below the *Service* as instances of the *SUC ConfigurationParameter*. To enable communication with the Line Interface, the corresponding *DataAssemblies* from the LEA MTPs are assigned to this model. Based on these, all communication-relevant information can be obtained from the *ServerAssemblySets* of the LEA MTPs. The *DataAssemblies* are referenced using the ContextReference mechanism in combination with the LinkedObject mechanism.
 
 ##### Figure 4.18: Structure of the ServiceSet of a Composed MTP
-<img src="./images/Composed_MTP_ServiceSet.png" alt="Structure of the ServiceSet of a Composed MTP" style="max-width: 550px; width: 100%;" />
+<img src="./images/Composed_MTP_ServiceSet.png" alt="Structure of the ServiceSet of a Composed MTP" width="550" />
 
 #### ProcessValueSet
 
 [Figure 4.19](#figure-419-structure-of-the-processvalueset-of-a-composed-mtp) shows the structure of the *ProcessValueSet* of a Composed MTP. This aspect semantically describes the process values of the Line Interface. All process values selected for the Line Interface are modeled as instances of the *SUC ProcessValueIn* or *SUC ProcessValueOut*. This enables a semantic description of the process values. As with the *ServiceSet* components, the corresponding *DataAssemblies* from the LEA MTPs are referenced using the ContextReference mechanism in combination with the LinkedObject mechanism.
 
 ##### Figure 4.19: Structure of the ProcessValueSet of a Composed MTP
-<img src="./images/Composed_MTP_ProcessValueSet.png" alt="Structure of the ProcessValueSet of a Composed MTP" style="max-width: 500px; width: 100%;" />
+<img src="./images/Composed_MTP_ProcessValueSet.png" alt="Structure of the ProcessValueSet of a Composed MTP" width="500" />
 
 #### HMISet
 
@@ -181,14 +181,14 @@ Complete LEA displays can also be integrated into the Line HMI. For this purpose
 In addition to the Line HMI, the *HMISet* instance hierarchy can contain references to displays of the individual LEAs. For this purpose, the newly introduced *SUC ReferencedPicture* is used. It employs the ContextReference mechanism in combination with the ID-Link mechanism and enables inserting displays or entire display hierarchies from the LEA MTPs into the Composed MTP's display hierarchy. To **insert a single display**, the *ReferencedPicture* references the display to be inserted via the ID-Link mechanism. To **insert an entire display hierarchy**, the ID-Link reference is left empty — in this case, the complete display hierarchy of the referenced MTP is inserted at the position of the *ReferencedPicture*.
 
 ##### Figure 4.20: Modeling of a Line HMI in the HMISet and AttachmentSet of a Composed MTP
-<img src="./images/Composed_MTP_HMISet.png" alt="Modeling of a Line HMI in the HMISet and AttachmentSet of a Composed MTP" style="max-width: 600px; width: 100%;" />
+<img src="./images/Composed_MTP_HMISet.png" alt="Modeling of a Line HMI in the HMISet and AttachmentSet of a Composed MTP" width="600" />
 
 #### AttachmentSet
 
 [Figure 4.21](#figure-421-structure-of-the-attachmentset-of-a-composed-mtp) shows the structure of the *AttachmentSet* of a Composed MTP. This aspect semantically describes the attachments of the Composed MTP. The *AttachmentSet* instance hierarchy contains all LEA MTPs attached to the Composed MTP, organized under a common *AttachmentGroup*. Additionally, the choreography configuration of the Logistics Line is stored in the attachment of the Composed MTP, so it can be loaded onto the LEAs during commissioning. Further attachments can include, for example, CustomSymbols used in the Line HMI or other line-specific documents.
 
 ##### Figure 4.21: Structure of the AttachmentSet of a Composed MTP
-<img src="./images/Composed_MTP_AttachmentSet.png" alt="Structure of the AttachmentSet of a Composed MTP" style="max-width: 450px; width: 100%;" />
+<img src="./images/Composed_MTP_AttachmentSet.png" alt="Structure of the AttachmentSet of a Composed MTP" width="450" />
 
 ### 4.3.8 Verification Workflows
 

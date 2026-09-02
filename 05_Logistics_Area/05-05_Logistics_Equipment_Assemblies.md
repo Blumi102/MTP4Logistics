@@ -23,7 +23,7 @@ For determining the next transport node ([Section 5.5.4](#554-determination-of-t
 The integration of LEAs into a Transport Management comprises three sequential steps: importing the LEA MTPs into the LEA Management, automatically generating the required TN Proxies, and configuring the communication relationships between TN Proxies and TN Blocks of the LEAs. [Figure 5.14](#figure-514-integration-of-a-lea-into-the-transport-management) provides an overview of the overall process, which is described in detail in the following subsections.
 
 ##### Figure 5.14: Integration of a LEA into the Transport Management
-<img src="./images/ProxyGenerierung.svg" alt="Integration of a LEA into the Transport Management" style="max-width: 550px; width: 100%;" />
+<img src="./images/ProxyGenerierung.svg" alt="Integration of a LEA into the Transport Management" width="550" />
 
 #### MTP Import and Generation of TN Proxies
 
@@ -56,7 +56,7 @@ Each *TransportNode* model definition is associated with one *TransportClientMan
 After the TN Blocks of a LEA have been bound to the TN Proxies of the Transport Management, the TN Blocks can decentrally orchestrate the Transport Services reachable via the proxies according to DD3. The LEA service assumes the role of the orchestrating (superordinate) service; the Transport Service is the orchestrated (subordinate) service. The implementation follows the approaches described in [[Spa19]](../08_References/README.md#spaethe-2019) and [[SMS+20]](../08_References/README.md#stutz-et-al-2020). The resulting communication between TN Block and Transport Service is illustrated in [Figure 5.15](#figure-515-interaction-of-a-transport-service-with-a-lea-transport-node-via-a-tn-proxy) using the example of the InOutbound node of a PAL LEA.
 
 ##### Figure 5.15: Interaction of a Transport Service with a LEA Transport Node via a TN Proxy
-<img src="./images/Interaktion_LEA_TCS.svg" alt="Interaction of a Transport Service with a LEA Transport Node via a TN Proxy" style="max-width: 500px; width: 100%;" />
+<img src="./images/Interaktion_LEA_TCS.svg" alt="Interaction of a Transport Service with a LEA Transport Node via a TN Proxy" width="500" />
 
 As long as a Transport Service is assigned to the TN Proxy Transport-Management-internally ([Section 5.4.1](05-04_Transport_Management.md#541-structure-and-operation)), the proxy continuously keeps its interface data consistent with the interface data of the Transport Service. The TN Block of the LEA in turn synchronizes its own interface with that of the TN Proxy.
 
@@ -101,7 +101,7 @@ The analysis of transport process execution in [Sections 5.1.2](05_Logistics_Are
 Depending on the scenario, different approaches exist for determining the next transport node. [Figure 5.16](#figure-516-cases-for-determining-the-next-transport-node) provides an overview of these approaches.
 
 ##### Figure 5.16: Cases for Determining the Next Transport Node
-<img src="./images/NextNode.drawio.svg" alt="Cases for Determining the Next Transport Node" style="max-width: 650px; width: 100%;" />
+<img src="./images/NextNode.drawio.svg" alt="Cases for Determining the Next Transport Node" width="650" />
 
 In scenario S1, an LO is to be picked up at an Outbound or InOutbound node of the LEA itself. The *ProxyId* of this node is available in the corresponding *TransportNodeManager* interface and can be read LEA-internally. No further determination of the next transport node is necessary.
 

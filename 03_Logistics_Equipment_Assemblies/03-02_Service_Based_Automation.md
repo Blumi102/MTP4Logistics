@@ -16,10 +16,10 @@ The CES is designed to accept a single packaging order and then process all LOs 
 [Figure 3.2](#figure-32-mtp-state-machine-interpretation-for-a-ces-procedure) shows the interpretation of the MTP state machine main loop for a procedure in CES mode. The state of a CES procedure represents the state of the LEA, not the processing state of an individual LO ([Figure 3.2](#figure-32-mtp-state-machine-interpretation-for-a-ces-procedure), orange boxes). LO processing takes place within the EXECUTE state ([Figure 3.2](#figure-32-mtp-state-machine-interpretation-for-a-ces-procedure), green arrows). [Figure 3.3](#figure-33-interaction-of-a-ces-service-with-the-lol) illustrates the interaction with the LOL during a service run.
 
 ##### Figure 3.2: MTP State Machine Interpretation for a CES Procedure
-<img src="./images/CES_ZA.svg" alt="MTP State Machine Interpretation for a CES Procedure" style="max-width: 600px; width: 100%;" />
+<img src="./images/CES_ZA.svg" alt="MTP State Machine Interpretation for a CES Procedure" width="600" />
 
 ##### Figure 3.3: Interaction of a CES Service with the LOL
-<img src="./images/Arbeitsweise_CES.svg" alt="Interaction of a CES Service with the LOL" style="max-width: 300px; width: 100%;" />
+<img src="./images/Arbeitsweise_CES.svg" alt="Interaction of a CES Service with the LOL" width="300" />
 
 Like any MTP service, a LEA service in CES mode begins its execution in the IDLE state. In this state, all order data required for execution are transferred to the service by an order management system in the LOL or by an operator. No re-parameterization is foreseen during subsequent execution under normal operating conditions. The order data are assigned via parameterization as described in [Section 3.3](03-03_Parameterization.md#33-parameterization). After the CES procedure has signaled start-readiness (*StartEn = true*), a *Start* command can be issued and the LEA ramps up through STARTING. In the subsequent EXECUTE state, LOs are processed cyclically based on the previously configured order data, so that all LOs of the order are handled in the same way. Depending on whether a continuous or self-completing CES procedure is used, processing is ended by a *Complete* command or upon a defined condition (e.g., a specified number of processed LOs). In COMPLETING, any LOs still in processing are finished and the LEA is emptied. The COMPLETED state signals that processing has fully concluded. A *Reset* command returns the procedure to IDLE, where it can accept a new order. The pause, hold, stop, and abort loops can be traversed according to the conventions described in [[MTP Part 4]](../08_References/README.md#mtp-specification-part-4).
 
@@ -30,10 +30,10 @@ The SES is designed to process LOs in different ways according to their individu
 [Figure 3.4](#figure-34-mtp-state-machine-interpretation-for-an-ses-procedure) shows the interpretation of the main loop and pause loop of the MTP state machine for a procedure in SES mode. The orange-marked states represent the current state of the LEA, analogous to CES procedures. The green-marked states, by contrast, represent the processing state of an LO that may currently be present in the LEA. [Figure 3.5](#figure-35-interaction-of-an-ses-service-with-the-lol) shows the LOL interaction during a service run.
 
 ##### Figure 3.4: MTP State Machine Interpretation for an SES Procedure
-<img src="./images/SES_ZA.svg" alt="MTP State Machine Interpretation for an SES Procedure" style="max-width: 600px; width: 100%;" />
+<img src="./images/SES_ZA.svg" alt="MTP State Machine Interpretation for an SES Procedure" width="600" />
 
 ##### Figure 3.5: Interaction of an SES Service with the LOL
-<img src="./images/Arbeitsweise_SES.svg" alt="Interaction of an SES Service with the LOL" style="max-width: 400px; width: 100%;" />
+<img src="./images/Arbeitsweise_SES.svg" alt="Interaction of an SES Service with the LOL" width="400" />
 
 A LEA service in SES mode also begins its execution in the IDLE state. In this state, a subset of the necessary parameters can be transferred to the service using the parameterization mechanisms described in [Section 3.3](03-03_Parameterization.md#33-parameterization). At this point, however, it is not yet known which LOs will arrive at the SES or in which order. Therefore, only parameters that are independent of the type and processing state of the LO to be handled can be transferred at this stage, e.g., configuration parameters relating to the structural setup of the LEA. In addition, parameter sets for various LO types and processing states can already be passed to the SES procedure, to be selected later when a corresponding LO arrives.
 

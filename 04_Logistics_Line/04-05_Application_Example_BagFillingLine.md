@@ -99,7 +99,7 @@ The choreography configuration in terms of Configurable Logic and Configurable C
 **HMI Screens:** The line HMI screen is composed of three LEA images as CustomSymbols, which are obtained from the LEA MTPs using the ContextReference mechanism in combination with the CustomSymbols mechanism. In addition, dynamic *VisualObjects* are provided for the *ServiceControl* interfaces of the Lead Service and the three LEA services, as well as for the parameters and report values of the line interface. These reference the associated *DataAssemblies* in the attached LEA MTPs via *RC HasExternalMtpContext*. [Figure 4.22](#figure-422-exemplary-line-hmi-screen-of-a-bag-filling-line) shows the line HMI screen. In addition, the three HMI screens of the individual LEAs are incorporated into the HMI screen hierarchy of the Logistics Line via *ReferencedPicture*.
 
 ##### Figure 4.22: Exemplary Line HMI Screen of a Bag Filling Line
-<img src="../04_Logistics_Line/images/Line_STARTING_RV2.png" alt="Exemplary Line HMI Screen of a Bag Filling Line" style="max-width: 600px; width: 100%;" />
+<img src="../04_Logistics_Line/images/Line_STARTING_RV2.png" alt="Exemplary Line HMI Screen of a Bag Filling Line" width="600" />
 
 The elements of the line interface and line HMI screen described above are represented in a Composed MTP in accordance with the mechanisms described in [Section 4.3.3](04-03_Vertical_Integration.md#433-composed-mtp).
 
@@ -109,7 +109,7 @@ Procedural, parametrizing, and interlocking relations, as well as constants, are
 **Procedural Relations:** [Figure 4.23](#figure-423-exemplary-procedural-relations-of-a-bag-filling-line) shows an exemplary excerpt from a matrix describing the procedural relations between the LEAs of the bag filling line, specifically the relations between FFS and CONV.
 
 ##### Figure 4.23: Exemplary Procedural Relations of a Bag Filling Line
-<img src="../04_Logistics_Line/images/Proz_Relationen.svg" alt="Exemplary Procedural Relations of a Bag Filling Line" style="max-width: 500px; width: 100%;" />
+<img src="../04_Logistics_Line/images/Proz_Relationen.svg" alt="Exemplary Procedural Relations of a Bag Filling Line" width="500" />
 
 The rows represent the system variables that the *Conveying* service can make available to other services. The columns represent the choreography interface of the *BagFilling* service, which can be actuated based on the variables of other LEAs. The markings within the matrix represent the behavioral rules of the Configurable Logic. For example, the rule highlighted in green indicates that the EXECUTE state of the *Conveying* service triggers the *Start* command at the *BagFilling* service. This rule contributes to the orderly start-up of the line (Scenario 1). In such a direct relation, a system variable of one service has an immediate effect on the interface of another service. In the case of Scenario 3 "Exception Handling" ([Figure 4.23](#figure-423-exemplary-procedural-relations-of-a-bag-filling-line), red markings), it additionally occurs that two system variables act upon the same variable of the choreography interface. In this case, pre-processing of the system variables is required ([Figure 4.23](#figure-423-exemplary-procedural-relations-of-a-bag-filling-line), "Pre-processing"), the result of which is written to the choreography interface. In this case, the pre-processing is a logical OR ("O"). All other arithmetic and logical functions can likewise be used for such pre-processing. As demonstrated here using the *Conveying* and *BagFilling* services as an example, all other behavioral rules between the three services of the bag filling line and the External Lead can be configured in the same way.
 
@@ -118,21 +118,21 @@ Furthermore, it must be specified how the procedure setting of the External Lead
 **Parametrizing Relations:** [Figure 4.24](#figure-424-exemplary-parametrizing-relations-of-a-bag-filling-line) shows an exemplary excerpt from a matrix describing the parametrizing relations between the LEAs of the bag filling line, specifically the relations between PAL and FFS.
 
 ##### Figure 4.24: Exemplary Parametrizing Relations of a Bag Filling Line
-<img src="../04_Logistics_Line/images/Param_Relationen.svg" alt="Exemplary Parametrizing Relations of a Bag Filling Line" style="max-width: 300px; width: 100%;" />
+<img src="../04_Logistics_Line/images/Param_Relationen.svg" alt="Exemplary Parametrizing Relations of a Bag Filling Line" width="300" />
 
 As described in [Section 4.5.2](#452-choreography-configuration--vertical-integration), the *BagFilling* service obtains the parameters it requires (i.e., *ProductId* and *BagQuantity*) from the PAL. In the present case, no pre-processing is required for this.
 
 **Interlocking Relations:** [Figure 4.25](#figure-425-exemplary-interlocking-relations-of-a-bag-filling-line) shows an exemplary excerpt from a matrix describing the interlocking relations between the LEAs of the bag filling line, specifically the relations between PAL and CONV.
 
 ##### Figure 4.25: Exemplary Interlocking Relations of a Bag Filling Line
-<img src="../04_Logistics_Line/images/Interlock_Relationen.svg" alt="Exemplary Interlocking Relations of a Bag Filling Line" style="max-width: 350px; width: 100%;" />
+<img src="../04_Logistics_Line/images/Interlock_Relationen.svg" alt="Exemplary Interlocking Relations of a Bag Filling Line" width="350" />
 
 In the present use case, the available process values for transmitting the clearance signals are forwarded as interlocking relations without pre-processing.
 
 **Constants:** [Figure 4.26](#figure-426-exemplary-constants-of-a-bag-filling-line) shows an exemplary excerpt from a matrix describing the definition of constants for the bag filling line.
 
 ##### Figure 4.26: Exemplary Constants of a Bag Filling Line
-<img src="../04_Logistics_Line/images/Const_Relationen.svg" alt="Exemplary Constants of a Bag Filling Line" style="max-width: 600px; width: 100%;" />
+<img src="../04_Logistics_Line/images/Const_Relationen.svg" alt="Exemplary Constants of a Bag Filling Line" width="600" />
 
 The ability to define constants is used in the case of the bag filling line to define the operation mode of the LEA services in accordance with [Section 4.3.1](04-03_Vertical_Integration.md#431-line-interface). For the three LEA services *BagFilling*, *Conveying*, and *Palletizing*, the *Access Mode* variable is set to a constant value of "1". The LEA controller interprets this as the *Automatic Internal* operation mode. For the Lead Service, the *Access Mode* is set to a constant value of "2". The LEA controller interprets this as the *Operator* operation mode. Furthermore, constants can be used, for example, to set parameters such as the *Speed* variable of the CONV to a constant value. Additionally, clearance signals can be permanently set to TRUE when a LEA, as in the example of the PAL, is located at the end of the Logistics Line and does not need to wait for clearance from a downstream LEA.
 
@@ -149,7 +149,7 @@ This section shows how the model and interface definitions introduced in this wo
 [Figure 4.27](#figure-427-implementation-of-a-choreography-relation-with-active-reading) shows the implementation of the above relation using the active reading communication variant. The information whether the service of LEA1 is in the EXECUTE state is programmatically stored as a fixed input in the Input List of LEA1. Its value is provided in the OPC UA server as a *UnionElement* interface under a specific Node ID. This interface is represented in the MTP model of LEA1 by a *FixedInputElement* model definition.
 
 ##### Figure 4.27: Implementation of a Choreography Relation with Active Reading
-<img src="../04_Logistics_Line/images/AktivesLesen.svg" alt="Implementation of a Choreography Relation with Active Reading" style="max-width: 700px; width: 100%;" />
+<img src="../04_Logistics_Line/images/AktivesLesen.svg" alt="Implementation of a Choreography Relation with Active Reading" width="700" />
 
 On the side of LEA2, a *UaReader* is provided for reading this information, which is configured via the *OpcUaClientServerManager* interface to the corresponding Node ID and writes the read value to a configurable input in the Input List of LEA2. This configurable input is represented in the MTP as a *ConfigurableInputElement* model definition that contains the necessary information for reading. The *ConfigurableInputElement* is linked to the *OpcUaClientServerManager* interface via a *ManagerLink* and assigned a specific *UaReader* within it via a *ManagerIndex*. Additionally, the name of the *ConfigurableInputElement* corresponds to the index in the Input List of LEA2 to which the *UaReader* should write the read value.
 
@@ -160,7 +160,7 @@ The Output List of LEA2 contains a fixed output that enables starting the LEA2 s
 [Figure 4.28](#figure-428-implementation-of-a-choreography-relation-with-active-writing) shows the implementation of the above relation using the active writing communication variant.
 
 ##### Figure 4.28: Implementation of a Choreography Relation with Active Writing
-<img src="../04_Logistics_Line/images/AktivesSchreiben.svg" alt="Implementation of a Choreography Relation with Active Writing" style="max-width: 700px; width: 100%;" />
+<img src="../04_Logistics_Line/images/AktivesSchreiben.svg" alt="Implementation of a Choreography Relation with Active Writing" width="700" />
 
 The information whether the service of LEA1 is in the EXECUTE state is programmatically stored as a fixed input in the Input List of LEA1. This is represented in the MTP model of LEA1 as a *FixedInputElement* model definition. According to the mechanisms described in [[Stu26]](../08_References/README.md#stutz-2026), this value is transferred to a configurable output in the Output List of LEA1.
 

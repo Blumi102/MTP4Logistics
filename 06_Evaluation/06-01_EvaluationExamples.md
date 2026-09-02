@@ -44,14 +44,14 @@ This section describes the first evaluation example, carried out at BASF SE in L
 [Figure 6.1](#figure-61-basf-bottle-filling-laboratory-system-at-basf-se-ludwigshafen) shows a laboratory-scale bottle-filling system. Three physical LEAs are arranged in a Logistics Line: a Labeller (LABEL), a Filler (FILL), and a Capper (CAP). The LABEL prints plastic bottles, the FILL fills them with granulate, and the CAP seals them. The LEAs are rigidly coupled, so the material flow is fixed by the physical layout. A LOL provides orchestration functions for the system.
 
 ##### Figure 6.1: BASF Bottle-Filling Laboratory System at BASF SE Ludwigshafen
-<img src="./images/BASF_Demo.png" alt="BASF Bottle-Filling Laboratory System at BASF SE Ludwigshafen" style="max-width: 500px; width: 100%;" />
+<img src="./images/BASF_Demo.png" alt="BASF Bottle-Filling Laboratory System at BASF SE Ludwigshafen" width="500" />
 
 #### Implementation
 
 [Figure 6.2](#figure-62-setup-of-the-basf-demonstrator-and-implemented-logistics-process) shows the automation architecture. The system had been planned and physically built prior to this work. Each module was equipped with a Siemens controller (LABEL: SIMATIC S7 CPU 1511-1 PN; FILL: SIMATIC S7 CPU 1516-3 PN/DP; CAP: SIMATIC S7 CPU 1512SP-1 PN) running a native control program for sensor and actuator interaction.
 
 ##### Figure 6.2: Setup of the BASF Demonstrator and Implemented Logistics Process
-<img src="./images/Basf_Demo_Prozess.svg" alt="Setup of the BASF Demonstrator and Implemented Logistics Process" style="max-width: 600px; width: 100%;" />
+<img src="./images/Basf_Demo_Prozess.svg" alt="Setup of the BASF Demonstrator and Implemented Logistics Process" width="600" />
 
 As part of this evaluation, an MTP service implementation following the CES concept ([Chapter 3](../03_Logistics_Equipment_Assemblies/03_Logistics_Equipment_Assemblies.md)) was retrofitted around the native software of each module, turning them into LEAs. All three LEAs were automated according to the CES principle as described in [Chapter 3](../03_Logistics_Equipment_Assemblies/03_Logistics_Equipment_Assemblies.md). Parameterization used single values only (no parameter sets), as the LEAs just had few parameters.
 
@@ -154,17 +154,17 @@ This section describes the second evaluation example, carried out at BEUMER Grou
 [Figure 6.3](#figure-63-moprolog-demonstrator-at-beumer-group-in-beckum) shows the demonstrator comprising three physical LEAs in a Logistics Area: a Palletizer (PAL), a Pallet Supply (PAS), and a Foil Supply (FOS). The PAL receives empty pallets from the PAS and palletizes bags according to a predefined pattern. If required, the FOS applies a foil sheet to the empty pallet beforehand. Finished pallets are transported to one of two handover positions representing virtual Stretch Hood Machines (SH1, SH2). The stretch hood machines are implemented as emulations only; the physical process ends when the pallet has been transported to one of the two handover positions, where the AGV is manually unloaded. Transports between the LEAs and to the handover positions are carried out by an AGV system consisting of a fleet manager (controlling a single AGV) and a Transport Management function in the LOL. The LOL also provides all other necessary orchestration functions for the MLS. [Figure 6.4](#figure-64-structure-of-the-moprolog-demonstrator) shows the implemented process, the MLS components, and the available transport nodes in the system.
 
 ##### Figure 6.3: MoProLog Demonstrator at BEUMER Group in Beckum
-<img src="./images/MoProLog_Demo.png" alt="MoProLog Demonstrator at BEUMER Group in Beckum" style="max-width: 600px; width: 100%;" />
+<img src="./images/MoProLog_Demo.png" alt="MoProLog Demonstrator at BEUMER Group in Beckum" width="600" />
 
 ##### Figure 6.4: Structure of the MoProLog Demonstrator
-<img src="./images/MoProLog_Demo_Prozess.svg" alt="Structure of the MoProLog Demonstrator" style="max-width: 500px; width: 100%;" />
+<img src="./images/MoProLog_Demo_Prozess.svg" alt="Structure of the MoProLog Demonstrator" width="500" />
 
 #### Implementation
 
 The three physical LEAs were based on the BEUMER paletpac palletizer [[BEU25]](../08_References/README.md#beumer-group-2025), modularized at hardware and software level into three independent LEAs. Each LEA was equipped with a Siemens controller (PAL and PAS: SIMATIC S7 CPU 1512SP-1 PN; FOS: SIMATIC S7 CPU 1510SP-1 PN).
 
 ##### Figure 6.5: Structure of the LEA Services in the MoProLog Demonstrator
-<img src="./images/MoProLog_Implementierung.svg" alt="Structure of the LEA Services in the MoProLog Demonstrator" style="max-width: 350px; width: 100%;" />
+<img src="./images/MoProLog_Implementierung.svg" alt="Structure of the LEA Services in the MoProLog Demonstrator" width="350" />
 
 The automation software of each LEA ([Figure 6.5](#figure-65-structure-of-the-lea-services-in-the-moprolog-demonstrator)) consists of a native software layer (part of the paletpac software for sensor and actuator interaction), surrounded by an MTP service implementation and Transport Node function blocks for decentralized orchestration of transport services according to [Chapter 5](../05_Logistics_Area/05_Logistics_Area.md). Each MTP service contained packaging functionality connected to the native software via a coordinated proprietary interface, controlling palletizing, pallet supply, or foil sheet application respectively. The *ProductDataSet* and *PackagingDataSet* of the LEAs were filled manually in this case, not via *ArrayServParam* interfaces. The MTP service implementations are based on a prototype MTP function block library for SIMATIC TIA Portal V17 from Siemens AG, extended with new function blocks (mainly Transport Node blocks and client blocks for Transport Management integration) developed on the basis of the concepts of this work.
 
@@ -263,7 +263,7 @@ The MLS serves two packaging processes — bag filling and octabin filling — e
 [^figure-note]: For clarity, some material flows in the figure are shown docking at the LEAs rather than at the transport nodes. Nevertheless, all LO handovers and takeovers take place at the transport nodes.
 
 ##### Figure 6.6: PLC-Based Emulation of a Modular Logistics System
-<img src="./images/Emulation_Anwendungsbeispiel.svg" alt="PLC-Based Emulation of a Modular Logistics System" style="max-width: 750px; width: 100%;" />
+<img src="./images/Emulation_Anwendungsbeispiel.svg" alt="PLC-Based Emulation of a Modular Logistics System" width="750" />
 
 **Bag filling process:** A CES-based Logistics Line of three LEAs — a Form-Fill-Seal machine (FFS), a Conveyor (CONV), and a Palletizer (PAL) — processes packaging orders from the LOL. Two SES-based Pallet Supplies (PAS1, PAS2) provide different pallet types on demand. An SES-based Foil Supply (FOS) optionally applies a foil layer. After palletizing, one of two SES-based Stretch Hood Machines (SH1, SH2) applies load securing. A Labeller (LABEL) provides final identification. Finished pallets are transported to a Stock (STOCK) LEA, which is also served by the AGV system. The automation of the stock itself is not part of this evaluation example; it is represented in simplified form by an SES-based service. All LEAs outside the Logistics Line are loosely coupled single LEAs operating demand-oriented, with transports carried out by an AGV system.
 

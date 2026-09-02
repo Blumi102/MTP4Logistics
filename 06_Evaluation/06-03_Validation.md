@@ -11,7 +11,7 @@ According to [Chapter 1](../README.md#1-purpose-of-this-repository), the problem
 A direct comparison of the engineering and coordination effort between a conventionally engineered and an MTP-based engineered modular production-related logistics system is not possible within the scope of this work. Therefore, a descriptive validation in the sense of an *Informed Argument* per [[HMP+04]](../08_References/README.md#hevner-et-al-2004) is employed. Existing knowledge is used to develop a well-founded argument for the usefulness of the artifacts. [Figure 6.7](#figure-67-validation-strategy) shows an overview of the validation steps.
 
 ##### Figure 6.7: Validation Strategy
-<img src="./images/Validierungsstrategie.svg" alt="Validation Strategy" style="max-width: 700px; width: 100%;" />
+<img src="./images/Validierungsstrategie.svg" alt="Validation Strategy" width="700" />
 
 The fundamental assumption is that the MTP concept is suitable for reducing engineering and coordination effort (A). Existing MTP-based systems reveal prerequisites that must be met to achieve this reduction (B). It is then assumed that a reduction of engineering and coordination effort also applies to MLS if these prerequisites are met for the domain of production-related logistics (C). Therefore, these prerequisites are assessed in the MLS context (D). From the successful assessment, it is concluded that the artifacts described in this work can reduce engineering and coordination effort for MLS (E). These steps are described in detail below.
 

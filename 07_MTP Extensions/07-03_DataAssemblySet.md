@@ -6,13 +6,13 @@ This chapter specifies all identified extensions of the *DataAssemblySet* and in
 For the processing of values with structured and array data types, two DataAssembly definitions *SUC StructView* and *SUC ArrayView* are required for value displays in LEA HMIs and for mapping report values on LEA services. Furthermore, *StructView* is also required for process value outputs of structured data types. As shown in [Figure 7.4](#figure-74-extension-of-the-dataassemblyset-for-implementing-structured-and-array-based-indicatorelements), *SUC StructView* and *SUC ArrayView*, together with all other DataAssembly definitions for report values, are derived from the DataAssembly definition *SUC IndicatorElement* according to [MTP Specification Part 3](../08_References/README.md#mtp-specification-part-3) and are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [DataAssembly definitions](#732-dataassembly-definitions). This extension, as a result of this work, has already been adopted into the profile *ModuleTypePackage:DataAssemblySet.ComplexTypes V2.0.0* of the [MTP Specification Part 3](../08_References/README.md#mtp-specification-part-3).
 
 ##### Figure 7.4: Extension of the DataAssemblySet for Implementing Structured and Array-Based IndicatorElements
-<img src="./images/03_IndicatorElement.drawio.svg" alt="Extension of the DataAssemblySet for Implementing Structured and Array-Based IndicatorElements" style="max-width: 400px; width: 100%;" />
+<img src="./images/03_IndicatorElement.drawio.svg" alt="Extension of the DataAssemblySet for Implementing Structured and Array-Based IndicatorElements" width="400" />
 
 #### Extension of the OperationElements
 For the processing of values with structured and array data types, new DataAssembly definitions *SUC StructMan*, *SUC StructManInt*, *SUC ArrayMan*, and *SUC ArrayManInt* are required for operator-driven value manipulation in LEA HMIs. As shown in [Figure 7.5](#figure-75-extension-of-the-dataassemblyset-for-implementing-structured-and-array-based-operationelements), *SUC StructMan* and *SUC ArrayMan*, together with all other DataAssembly definitions for value manipulation, are derived from the DataAssembly definition *SUC OperationElement* according to [MTP Specification Part 3](../08_References/README.md#mtp-specification-part-3). *SUC StructManInt* is derived from *SUC StructMan*, and *SUC ArrayManInt* from *SUC ArrayMan*. All four DataAssembly definitions are organized in *SUCL MTPDataAssemblySUCLib*. The detailed specification is provided in [DataAssembly definitions](#732-dataassembly-definitions). This extension, as a result of this work, has already been adopted into the profile *ModuleTypePackage:DataAssemblySet.ComplexTypes V2.0.0* of the [MTP Specification Part 3](../08_References/README.md#mtp-specification-part-3).
 
 ##### Figure 7.5: Extension of the DataAssemblySet for Implementing Structured and Array-Based OperationElements
-<img src="./images/03_OperationElement.drawio.svg" alt="Extension of the DataAssemblySet for Implementing Structured and Array-Based OperationElements" style="max-width: 600px; width: 100%;" />
+<img src="./images/03_OperationElement.drawio.svg" alt="Extension of the DataAssemblySet for Implementing Structured and Array-Based OperationElements" width="600" />
 
 #### Extension of DINT-Based Interfaces with Time Formats
 Report values in a time format are required, e.g., for the timestamps of a Transport Service. For this purpose, *RC HasTimeFormat* is introduced. As shown in [Figure 7.6](#figure-76-extension-of-the-dataassemblyset-for-interpreting-dint-values-in-a-time-format), this RC can be added as an SRC to all DINT-based DataAssembly definitions, in particular to *SUC DIntView*, *SUC DIntMan*, *SUC DIntServParam*, and *SUC DIntProcessValueIn*. *RC HasTimeFormat* is organized in the newly introduced *RCL MTPDataAssemblyRCLib*. The detailed specification is provided in [DataAssembly definitions](#732-dataassembly-definitions).
@@ -22,7 +22,7 @@ Report values in a time format are required, e.g., for the timestamps of a Trans
 These extensions are assigned to the newly introduced profile *ModuleTypePackage:DataAssemblySet.Time V2.0.0*.[^1]
 
 ##### Figure 7.6: Extension of the DataAssemblySet for Interpreting DINT Values in a Time Format
-<img src="./images/03_TimeFormat.drawio.svg" alt="Extension of the DataAssemblySet for Interpreting DINT Values in a Time Format" style="max-width: 600px; width: 100%;" />
+<img src="./images/03_TimeFormat.drawio.svg" alt="Extension of the DataAssemblySet for Interpreting DINT Values in a Time Format" width="600" />
 
 ### 7.3.2 DataAssembly definitions
 #### Specification of the System Unit Class StructView
@@ -128,7 +128,7 @@ These extensions are assigned to the newly introduced profile *ModuleTypePackage
 The distinctive feature of this DataAssembly definition is the use of a user-defined structured data type. [Figure 7.7](#figure-77-modeling-of-a-user-defined-data-type) shows how such a data type shall be modeled. For this purpose, the rules for modeling complex data types from [MTP Specification Part 5.1](../08_References/README.md#mtp-specification-part-51) are applied.
 
 ##### Figure 7.7: Modeling of a User-Defined Data Type
-<img src="./images/03_Complex_Type_Modelling.svg" alt="Modeling of a User-Defined Data Type" style="max-width: 900px; width: 100%;" />
+<img src="./images/03_Complex_Type_Modelling.svg" alt="Modeling of a User-Defined Data Type" width="900" />
 
 The complex data type used must be derived from *AT StructuredDataType* defined in [MTP Specification Part 5.1](../08_References/README.md#mtp-specification-part-51). When this DataAssembly definition is used, a user-defined ATL must be created, here: *CompanyAAttributeTypeLib*. Within this ATL, the structured data type that is later to be used in the IE of *SUC StructView* must be specified. By assigning this user-defined AT to the attribute *VType* of *SUC StructView*, the used structured data type is defined. This data type is then expected in the variable *V*.
 
