@@ -1,8 +1,5 @@
 
 <!-- TODO: bei den Specs Labels vergeben, was schon übernommen wurde -->
-<!-- TODO: Durchgängige Nummierierung der Sections, Abbildungen und Tabellen prüfen -->
-<!-- TODO: Claude fragen, ob er Inkonsistenzen in den Dokumenten findet und diese ausgeben lassen. -->
-<!-- TODO: Referenzierung von Quellen überarbeiten in gleicher Weise, wie bei den Inhaltskapitel. Formatierung in CLAUDE.md hinterlegt. -->
 
 ## 7 Enhancements of the Module Type Package Concept
 

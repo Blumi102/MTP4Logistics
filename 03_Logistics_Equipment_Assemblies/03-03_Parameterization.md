@@ -80,7 +80,7 @@ Three mechanisms for transferring parameters to a LEA service are identified:
   </tr>
 </table>
 
-##### MTP implementation:
+#### MTP implementation:
 
 - **Individual parameters:** This mechanism corresponds to existing MTP parameterization. The *DIntServParam*, *AnaServParam*, *BinServParam*, and *StringServParam* interfaces from [[MTP Specification Part 4]](../08_References/README.md#mtp-specification-part-4) are directly applicable; no extension is required.
 - **Single parameter set:** Existing MTP concepts do not provide parameter interfaces for structured data types. Therefore, the *StructServParam* interface ([Table 7.29](../07_MTP%20Extensions/07-04_ServiceSet.md#table-729-dataassembly-definition-of-suc-structservparam)) is newly specified to transfer a parameter set with a LEA-specific structured data type. A method for modeling the required complex data types in the MTP ([Section 7.3.2](../07_MTP%20Extensions/07-03_DataAssemblySet.md#732-dataassembly-definitions)) and in the OPC UA server of a LEA ([Section 7.6](../07_MTP%20Extensions/07-06_ServerAssemblySet.md#76-mtp-extension-of-the-serverassemblyset)) is also described.
@@ -137,7 +137,7 @@ Three modes to initiate parameterization are distinguished:
   </tr>
 </table>
 
-##### MTP implementation:
+#### MTP implementation:
 
 - **LOL-initiated:** The LOL writes parameters to the LEA directly. This corresponds to existing MTP behavior [[MTP Specification Part 4]](../08_References/README.md#mtp-specification-part-4); no extension is required.
 - **LEA-requested:** The LEA detects a missing parameter set and requests it from the LOL. For this *ProductParameterRequest* ([Table 7.36](../07_MTP%20Extensions/07-04_ServiceSet.md#table-736-model-definition-of-suc-productparameterrequest)) and *PackagingParameterRequest* ([Table 7.37](../07_MTP%20Extensions/07-04_ServiceSet.md#table-737-model-definition-of-suc-packagingparameterrequest)) are introduced in this work. Those follow similar mechanism to the MTP *Service Interaction* mechanism. 

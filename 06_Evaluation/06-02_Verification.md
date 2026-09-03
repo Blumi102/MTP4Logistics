@@ -85,12 +85,12 @@ This section verifies the artifacts presented in [Chapter 3](../03_Logistics_Equ
   </tr>
   <tr>
     <td align="left"><strong>REQ-LA-1</strong> — Standardized Interaction Between LEAs and AGV Systems</td>
-    <td align="left">A Transport Management mediates between LEAs and AGV systems via MTP Transport Services. The interaction mechanism supports push and pull demands, all identified transport node types, and both static and dynamic routing (<a href="../05_Logistics_Area/05_Logistics_Area.md">Sections 5.1</a>–<a href="../05_Logistics_Area/05-05_LEAs.md">5.5</a>).</td>
+    <td align="left">A Transport Management mediates between LEAs and AGV systems via MTP Transport Services. The interaction mechanism supports push and pull demands, all identified transport node types, and both static and dynamic routing (<a href="../05_Logistics_Area/05_Logistics_Area.md">Sections 5.1</a>–<a href="../05_Logistics_Area/05-05_Logistics_Equipment_Assemblies.md">5.5</a>).</td>
     <td align="left">Demonstrated in MoProLog (physical AGV, static and dynamic routing) and PLC-based Emulation (emulated AGV, all transport node types, both routing modes).</td>
   </tr>
   <tr>
     <td align="left"><strong>REQ-LA-2</strong> — Standardized Interface for Coupling of AGV System to LEAs</td>
-    <td align="left">TN Blocks in the LEA programs and TN Proxies in the Transport Management provide a uniform OPC UA-based coupling interface (<a href="../05_Logistics_Area/05-05_LEAs.md">Section 5.5</a>).</td>
+    <td align="left">TN Blocks in the LEA programs and TN Proxies in the Transport Management provide a uniform OPC UA-based coupling interface (<a href="../05_Logistics_Area/05-05_Logistics_Equipment_Assemblies.md">Section 5.5</a>).</td>
     <td align="left">Coupling interface used in MoProLog and PLC-based Emulation. Independent development of Transport Management and LEA software confirms interface standardization.</td>
   </tr>
   <tr>

@@ -1,8 +1,7 @@
 [Next >](./02_Modular_Logistics_System/README.md)
 
 
-<!-- TODO: Navigation im gesamten Repo -->
-<!-- TODO: schauen, was aus dem Anhang noch ins Repo muss -->
+<!-- TODO: In Website umwandeln -->
 
 # Technical Report
 ## Application and Extension of the Module Type Package Concept for Production-related Logistics

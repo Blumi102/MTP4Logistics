@@ -20,6 +20,8 @@ For determining the next transport node ([Section 5.5.4](#554-determination-of-t
 
 ### 5.5.2 Integration of LEAs into the Transport Management
 
+<!-- TODO: ggf. TransportSet Composed MTP ergänzen. -->
+
 The integration of LEAs into a Transport Management comprises three sequential steps: importing the LEA MTPs into the LEA Management, automatically generating the required TN Proxies, and configuring the communication relationships between TN Proxies and TN Blocks of the LEAs. [Figure 5.14](#figure-514-integration-of-a-lea-into-the-transport-management) provides an overview of the overall process, which is described in detail in the following subsections.
 
 ##### Figure 5.14: Integration of a LEA into the Transport Management
