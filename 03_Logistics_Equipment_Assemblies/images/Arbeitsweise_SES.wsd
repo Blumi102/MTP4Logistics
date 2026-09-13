@@ -1,0 +1,40 @@
+@startuml Arbeitsweise_SES
+
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+participant "**Logistics**\n**Orchestration Layer**" as LOL order 1
+participant "**Single Execution**\n**Service**" as SES order 2
+
+LOL <<- SES: state:IDLE
+LOL ->> SES: Parameterization (if necessary)
+LOL <<- SES: StartEn = True
+LOL ->> SES: cmd:Start
+LOL <<- SES: state:STARTING
+LOL <<- SES: state:PAUSING
+LOL <<- SES: state:PAUSED
+
+== For each LO ==
+SES <<-? : ProductId\nLogisticsObjectStatus
+LOL <<- SES: state:RESUMING
+LOL ->> SES: Parameterization (if necessary)
+LOL <<- SES: state:EXECUTE
+activate SES
+LOL <<- SES: state:PAUSING
+deactivate SES
+LOL <<- SES: state:PAUSED
+
+== ==
+LOL ->> SES: cmd:Complete
+LOL <<- SES: state:COMPLETING
+LOL <<- SES: state:COMPLETED
+
+@enduml

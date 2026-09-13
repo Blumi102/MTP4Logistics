@@ -1,0 +1,103 @@
+@startuml Empfohlene_Parametrierung_LOL_LEA
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**LOL (Order**\n**Management)**" as AM order 1
+participant "**LOL (Transport**\n**Management)**" as TM order 2
+participant "**LOL (Parameter**\n**Management)**" as PM order 3
+participant "**LEA Service**" as Service order 4
+
+
+activate AM
+activate TM
+activate PM
+activate Service
+
+PM ->> Service: Optional: Pre-filling of the ProductDataSet\nand PackagingDataSet
+
+...
+
+alt CES Procedure
+AM ->> Service: ProductId, (LogisticsObjectStatus)
+
+else SES Procedure
+TM ->> Service: ProductId, LogisticsObjectStatus
+end
+
+hnote over Service
+Is a matching parameter set for the ProductId
+and, if applicable, LogisticsObjectStatus available in the ProductDataSet?
+end hnote
+
+alt Yes, available
+hnote over Service
+Selection of the product parameter set
+end hnote
+
+else No, not available
+PM <<- Service: ProductParameterRequest:\nProductId = X;LogisticsObjectStatus = Y
+
+note over PM
+Selection of the matching
+parameter set
+end note
+
+PM ->> Service: Transmission of the parameter set\nto the ArrayServParam interface\nof the ProductDataSet
+
+hnote over Service
+Selection of the product parameter set
+end hnote
+
+end
+
+
+hnote over Service
+Identification of the PackagingId from the
+product parameter set
+end hnote
+
+hnote over Service
+Is a matching parameter set for the
+PackagingId available in the PackagingDataSet?
+end hnote
+
+alt Yes, available
+hnote over Service
+Selection of the packaging parameter set
+end hnote
+
+else No, not available
+PM <<- Service: PackagingParameterRequest: PackagingId = Z
+
+note over PM
+Selection of the matching
+parameter set
+end note
+
+PM ->> Service: Transmission of the parameter set\nto the ArrayServParam interface\nof the PackagingDataSet
+
+hnote over Service
+Selection of the packaging parameter set
+end hnote
+
+end 
+
+
+
+
+
+
+@enduml

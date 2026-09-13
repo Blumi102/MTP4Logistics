@@ -1,0 +1,46 @@
+@startuml 00_Integration_LEA
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**PAL**" as PAL order 1
+participant "**LABEL**" as LABEL order 3
+participant "**SH1**" as SH order 4
+participant "**Transport**\n**Management**" as TCS order 5
+
+activate PAL
+activate LABEL
+activate SH
+activate TCS
+
+PAL -->> TCS: Integration of PAL MTP
+LABEL -->> TCS: Integration of LABEL MTP
+SH -->> TCS: Integration of SH MTP
+
+note over TCS
+Reading all transport-
+relevant information
+end note
+
+TCS ->> PAL : Configuration of OpcUaTransportClient interface
+PAL ->> TCS : Connection establishment to OPC UA server
+
+TCS ->> LABEL : Configuration of OpcUaTransportClient interface
+LABEL ->> TCS : Connection establishment to OPC UA server
+
+TCS ->> SH : Configuration of OpcUaTransportClient interface
+SH ->> TCS : Connection establishment to OPC UA server
+
+@enduml

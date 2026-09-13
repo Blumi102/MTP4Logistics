@@ -1,0 +1,58 @@
+@startuml 01_Transport_Initiierung
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**LEA Service**\n**PAL**" as PAL order 1
+participant "**Order Node**\n**PAL (ID: 1)**" as ON order 2
+participant "**InOutbound Node**\n**PAL (ID: 2)**" as ION order 3
+participant "**Transport**\n**Management**" as TCS order 4
+participant "**Transport Service**\n**(ID: transA)**" as TOA order 5
+participant "**Transport Service**\n**(ID: transB)**" as TOB order 6
+
+activate PAL
+activate ON
+activate ION
+activate TCS
+
+ON -->> TCS: No Transport Service assigned
+
+TCS ->> TOA: Creation
+activate TOA
+
+note over TOA: IDLE,\nUndefined
+
+TCS ->> TOA: Binding to\nproxy with ID: 1
+
+PAL ->> ON: Demand for\npush transport
+
+ON ->> TOA: NextNode := 2 (InOutbound Node PAL)
+ON ->> TOA: ProcedureExt := 16#1 (PushRequested)
+ON ->> TOA: CommandExt := 4 (Start)
+
+note over TOA: EXECUTE,\nPushRequested
+
+TOA -->> TCS: ProcedureCur: 16#1\n(PushRequested)
+TCS ->> TOA: Detaching from proxy\nwith ID: 1
+
+ON -->> TCS: No Transport Service assigned
+
+TCS ->> TOB: Creation
+activate TOB
+note over TOB: IDLE,\nUndefined
+
+TCS ->> TOB: Binding to\nproxy with ID: 1
+
+@enduml

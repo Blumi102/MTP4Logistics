@@ -1,0 +1,99 @@
+@startuml 06_Transport_Processing
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**LEA Service**\n**LABEL**" as LEA order 1
+participant "**Processing Node**\n**LABEL (ID: 3)**" as PN order 2
+participant "**Transport Service**\n**(ID: transA)**" as TOA order 3
+participant "**Transport Management**\n**with**\n**AGV System Adapter**" as TCS order 4
+
+participant "**AGV**\n**System**" as FMS order 5
+
+activate LEA
+activate PN
+activate TCS
+activate TOA
+activate FMS
+
+group FOR EACH processing node to approach
+
+hnote across
+Transport to the next transport node as in Section 6.4.6
+end note
+
+note over TOA
+EXECUTE,
+Transport
+end note
+
+hnote across
+Coupling of the Transport Service to the processing node as in Section 6.4.4
+end note
+
+note over TOA
+EXECUTE,
+TransportArrived
+end note
+
+TOA -->> PN: ProcedureCur: 16#7\n(TransportArrived)
+
+PN ->> TOA: ProcedureExt := 16#A\n(Processing)
+PN ->> TOA: CommandExt := 512 (Restart)
+
+note over TOA
+EXECUTE,
+Processing
+end note
+
+TOA -->> TCS: ProcedureCur = 16#A\n(Processing)
+TCS ->> FMS: Maintain AGV in\nfixed position
+
+
+PN ->> LEA: Process LO
+
+
+
+/note over LEA
+Processing of the
+LO on the AGV
+(here: labeling)
+end note
+
+note over LEA
+Determination of the next
+transport node to approach
+end note
+
+LEA -->> PN: Processing completed
+LEA -->> PN: Next node ID: 4
+
+PN ->> TOA: NextNode := 4\n(Inbound Node of SH1)
+PN ->> TOA: ProcedureExt := 16#B\n(ProcessingSucceeded)
+PN ->> TOA: CommandExt := 512 (Restart)
+
+note over TOA
+EXECUTE,
+ProcessingSucceeded
+end note
+
+TOA -->> TCS: ProcedureCur:\nProcessingSucceeded
+
+TCS ->> TOA: Detaching from proxy with ID: 3
+note over PN: Transport node\navailable again
+
+end group
+
+@enduml

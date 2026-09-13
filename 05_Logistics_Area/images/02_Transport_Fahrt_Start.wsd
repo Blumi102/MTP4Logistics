@@ -1,0 +1,59 @@
+@startuml 02_Transport_Fahrt_Start
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+
+participant "**Transport Service**\n**(ID: transA)**" as TOA order 1
+participant "**Transport Management**\n**with**\n**AGV System Adapter**" as TCS order 2
+participant "**AGV**\n**System**" as FMS order 3
+
+
+activate TCS
+activate TOA
+activate FMS
+
+note over TOA
+EXECUTE,
+PushRequested
+end note
+
+TOA -->> TCS: ProcedureCur: 16#1 (PushRequested)
+
+TCS ->> FMS: Drive to transport node with ID: 2
+
+note over FMS
+Selection of an AGV
+end note
+
+FMS ->> TCS: Resource = 'agv3'
+TCS ->> TOA: ResourceId := 'agv3'
+
+FMS ->> TCS: Transport is being executed
+TCS ->> TOA: ProcedureExt := 16#3 (Transport)
+TCS ->> TOA: CommandExt := 512 (Restart)
+
+note over TOA
+EXECUTE,
+Transport
+end note
+
+/note over FMS
+Coordination of the selected AGV
+to the InOutbound Node of the PAL
+end note
+
+
+@enduml

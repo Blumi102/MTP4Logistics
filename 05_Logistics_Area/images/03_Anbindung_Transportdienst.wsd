@@ -1,0 +1,95 @@
+@startuml 03_Anbindung_Transportdienst
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**InOutbound Node**\n**PAL (ID: 2)**" as ION order 1
+participant "**Transport Service**\n**(ID: transA)**" as TOA order 3
+participant "**Transport Management**\n**with**\n**AGV System Adapter**" as Adapter order 4
+participant "**AGV**\n**System**" as FMS order 5
+
+
+activate ION
+activate Adapter
+activate TOA
+activate FMS
+
+note over TOA
+EXECUTE,
+Transport
+end note
+
+/note over FMS
+AGV is in the approach
+area of the InOutbound
+Node of the PAL
+end note
+
+FMS ->> Adapter: Imminent arrival\nat start node
+
+Adapter ->> TOA: Binding to proxy\nwith ID: 2
+
+note over ION: Connected to\nTransport Service\n(ID: transA)
+
+Adapter ->> TOA: ProcedureExt := 16#4\n(TransportAwaitRequested)
+Adapter ->> TOA: CommandExt := 512 (Restart)
+
+note over TOA
+EXECUTE,
+TransportAwait-
+Requested
+end note
+
+TOA -->> Adapter : ProcedureCur: 16#4\n(TransportAwaitRequested)
+
+
+TOA -->> ION: ProcedureCur: 16#4\n(TransportAwaitRequested)
+
+
+note over ION
+Verification of
+Transport Service
+end note
+
+
+ION ->> TOA: ProcedureExt := 16#5\n(TransportAwaited)
+ION ->> TOA: CommandExt := 512\n(Restart)
+
+note over TOA
+EXECUTE,
+TransportAwaited
+end note
+
+TOA -->> Adapter: ProcedureCur: 16#5\n(TransportAwaited)
+Adapter ->> FMS: Permission to\napproach\nthe start node
+
+note over FMS
+    AGV approaching
+    the InOutbound
+    Node
+end note
+
+FMS ->> Adapter: Arrival at\nstart node
+Adapter ->> TOA: ProcedureExt := 16#7\n(TransportArrived)
+Adapter ->> TOA: CommandExt := 512 (Restart)
+
+note over TOA
+EXECUTE,
+TransportArrived
+end note
+
+
+
+@enduml

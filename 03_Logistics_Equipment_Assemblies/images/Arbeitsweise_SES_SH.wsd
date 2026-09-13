@@ -1,0 +1,94 @@
+@startuml Arbeitsweise_SES_SH
+skinparam backgroundColor #FFFFFF
+
+skinparam sequence {
+ArrowColor #8A0808
+LifeLineBorderColor #8A0808
+
+ParticipantBorderColor #8A0808
+ParticipantBackgroundColor #585858
+ParticipantFontColor #FFFFFF
+}
+
+skinparam note {
+borderColor #000000
+backgroundColor #E6E6E6
+}
+
+participant "**LOL (Parameter**\n**Management)**" as PM order 1
+participant "**LOL (Packaging**\n**Order Management)**" as AM order 2
+participant "**SH Service**" as Service order 3
+
+
+activate AM
+activate PM
+activate Service
+
+Service ->> AM: state: IDLE
+PM ->> Service: Optional: Pre-fill ProductDataSet and PackagingDataSet
+
+hnote over Service
+Set up the LEA with the desired foil type
+end note
+
+Service <<- : Parameterization - FoilTypeId
+
+hnote over Service
+Determination of the packaging parameter set
+based on the FoilTypeId (according to Section 3.3.4)
+end note
+
+AM ->> Service: Procedure selection (16#3)
+
+Service ->> AM: StartEn = true
+AM ->> Service: cmd: Start
+
+Service ->> AM: state: STARTING, EXECUTE
+Service ->> AM: state: PAUSING, PAUSED
+
+== For each arriving LO ==
+
+Service <<- : Arrival of an LO
+
+Service ->> AM: state: RESUMING
+
+hnote over Service
+Determination of the ProductId and LogisticsObjectStatus of the LO
+end note
+
+hnote over Service
+Determination of the product parameter set based on the
+specified ProductId and LogisticsObjectStatus (according to Section 3.3.4)
+end note
+
+Service ->> AM: state: EXECUTE
+
+hnote over Service
+Does the PackagingId of the product parameter set
+match the configured FoilTypeId?
+end note
+
+alt Yes, it matches.
+
+Service ->> Service: Processing of the LO according\nto the determined parameters
+
+else No, it does not match.
+
+hnote over Service
+Reject order, the LO cannot be processed.
+end note
+
+end
+
+Service ->> AM: state: PAUSING, PAUSED
+== ==
+
+AM ->> Service: cmd: Complete
+
+Service ->> AM: state: COMPLETING, COMPLETED
+
+AM ->> Service: cmd: Reset
+
+Service ->> AM: state: IDLE
+
+@enduml
