@@ -1,3 +1,5 @@
+[< Previous](05_Logistics_Area.md) | [Home](../README.md) | [Next >](05-03_Transport_Process.md)
+
 ## 5.2 Design Decisions
 
 This section describes fundamental, interdependent design decisions (DDs) that have significantly shaped the development of the architecture presented in [Section 5.1.1](05_Logistics_Area.md#511-architecture).
@@ -119,3 +121,8 @@ These two views are addressed by the two main functions of the Transport Managem
 **Excluded alternatives:**
 
 - *Determination by the Transport Management:* Would require a Material Flow Management in the LOL in all cases (even for simple MLS with defined default routes) and would require the Transport Management to continuously monitor all running Transport Services and configure next nodes.
+
+&nbsp;
+
+---
+[< Previous](05_Logistics_Area.md) | [Home](../README.md) | [Next >](05-03_Transport_Process.md)

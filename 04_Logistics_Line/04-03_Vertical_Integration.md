@@ -1,3 +1,5 @@
+[< Previous](04-02_Horizontal_Integration.md) | [Home](../README.md) | [Next >](04-04_MTP_Extensions.md)
+
 ## 4.3 Vertical Integration of a Logistics Line into a Logistics Orchestration Layer
 
 ### 4.3.1 Line Interface
@@ -200,3 +202,8 @@ In [[MTP Specification Part 1]](../08_References/README.md#mtp-specification-par
 > **Note:** The MTP-based verification workflows do **not** verify whether a choreography is executable or with which parameters it operates correctly. They only verify that the correct choreography configuration is loaded and the correct LEA instances are installed.
 
 For further details on the verification workflows please refer to [Section 7.1.3](../07_MTP%20Extensions/07-01_Manifest.md#713-workflows).
+
+&nbsp;
+
+---
+[< Previous](04-02_Horizontal_Integration.md) | [Home](../README.md) | [Next >](04-04_MTP_Extensions.md)

@@ -1,3 +1,4 @@
+[< Previous](../07_MTP%20Extensions/07-09_Conformity_Declaration.md) | [Home](../README.md)
 
 ## 8 References
 
@@ -192,3 +193,8 @@ The following lists referenced online sources and software. These are marked wit
 ### SEW Eurodrive, 2018
 
 [SEW18@] SEW Eurodrive: "MAXOLUTION Mobile Systeme - Katalog 2018". 2018. url: https://download.sew-eurodrive.com/download/pdf/24784125.pdf
+
+&nbsp;
+
+---
+[< Previous](../07_MTP%20Extensions/07-09_Conformity_Declaration.md) | [Home](../README.md)

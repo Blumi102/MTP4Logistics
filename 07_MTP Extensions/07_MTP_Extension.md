@@ -1,3 +1,4 @@
+[< Previous](../06_Evaluation/06-03_Validation.md) | [Home](../README.md) | [Next >](07-01_Manifest.md)
 
 <!-- TODO: bei den Specs Labels vergeben, was schon übernommen wurde -->
 
@@ -43,4 +44,9 @@ The specifications use AutomationML constructs according to [[IEC 62714-1]](../0
 | SRC | SupportedRoleClass |
 | SUC | SystemUnitClass |
 | SUCL | SystemUnitClassLibrary |
+
+&nbsp;
+
+---
+[< Previous](../06_Evaluation/06-03_Validation.md) | [Home](../README.md) | [Next >](07-01_Manifest.md)
 

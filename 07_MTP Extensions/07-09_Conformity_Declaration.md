@@ -1,3 +1,5 @@
+[< Previous](07-08_TransportSet.md) | [Home](../README.md) | [Next >](../08_References/README.md)
+
 ## 7.9 Conformity Declaration for Logistics Equipment Assemblies
 Based on the findings of this work, [Table 7.80](#table-780-profiles-to-be-implemented-for-applying-the-mtp-concept-in-production-related-logistics) provides an overview of the existing and newly introduced profiles required for applying the MTP concept in production-related logistics. A distinction is made between profiles that are generally relevant for LEA automation, profiles that LEAs must fulfill in order to participate in a logistics line, and profiles required for connecting LEAs to flexible transport systems.
 
@@ -134,3 +136,8 @@ Based on the findings of this work, [Table 7.80](#table-780-profiles-to-be-imple
 </table>
 
 It should be noted with regard to this list that this work initially considers the core aspects of Parts 1 to 5 of the MTP specification. Logistics-specific extensions may also arise in further aspects of the MTP specification in the future. For example, it may become necessary to provide alarms at LEA level rather than at service or individual-control level. In addition, logistics-specific diagnostic functions may be required. These aspects should be investigated in future work.
+
+&nbsp;
+
+---
+[< Previous](07-08_TransportSet.md) | [Home](../README.md) | [Next >](../08_References/README.md)

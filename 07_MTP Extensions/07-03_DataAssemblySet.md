@@ -1,3 +1,5 @@
+[< Previous](07-02_HMISet.md) | [Home](../README.md) | [Next >](07-04_ServiceSet.md)
+
 ## 7.3 MTP Extension of the DataAssemblySet
 This chapter specifies all identified extensions of the *DataAssemblySet* and integrates them into the existing [[MTP Specification Part 3]](../08_References/README.md#mtp-specification-part-3).
 
@@ -1261,3 +1263,8 @@ The *ArrayManInt* interface extends the *ArrayMan* interface by internal value s
 
 [^1]: It is recommended to incorporate *RC HasTimeFormat* and the associated *AT TimeFormatAttributeType* into the base profile *ModuleTypePackage:DataAssemblySet.Base* in the future.
 [^2]: Since only the extension of *SUC DIntView* is used in this work, only this case is described here. *SUC DIntMan*, *SUC DIntServParam*, and *SUC DIntProcessValueIn* must be extended in the same way by assigning *RC HasTimeFormat*.
+
+&nbsp;
+
+---
+[< Previous](07-02_HMISet.md) | [Home](../README.md) | [Next >](07-04_ServiceSet.md)

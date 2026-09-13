@@ -1,3 +1,5 @@
+[< Previous](05-05_Logistics_Equipment_Assemblies.md) | [Home](../README.md) | [Next >](05-07_MTP_Extensions.md)
+
 ## 5.6 AGV System
 
 In this work AGV systems consisting of a fleet manager and multiple AGVs are considered for implementing flexible transports in Logistics Areas. They serve to execute the transport orders managed in the Transport Management.
@@ -70,3 +72,8 @@ To enable the interaction with the AGV system according to the presented working
     <td align="left">This indicator informs the fleet manager that the transport order is complete and commands it to release the AGV for future transport orders.</td>
   </tr>
 </table>
+
+&nbsp;
+
+---
+[< Previous](05-05_Logistics_Equipment_Assemblies.md) | [Home](../README.md) | [Next >](05-07_MTP_Extensions.md)

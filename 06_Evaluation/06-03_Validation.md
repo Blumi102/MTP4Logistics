@@ -1,3 +1,5 @@
+[< Previous](06-02_Verification.md) | [Home](../README.md) | [Next >](../07_MTP%20Extensions/07_MTP_Extension.md)
+
 ## 6.3 Validation
 
 The term *validation* describes, according to [[DIN EN ISO 9000]](../08_References/README.md#din-en-iso-9000-2015), the "confirmation, through the provision of objective evidence, that the requirements for a specific intended use or application have been fulfilled." *Validation* in the sense of DSR involves examining whether artifacts are useful for achieving the intended purpose (stakeholder goal) in the intended problem context [[Wie14]](../08_References/README.md#wieringa-2014). It examines whether the *right artifacts have been developed*. While the validity of *verification* depends on the quality of the underlying requirements, the validity of *validation* is independent of the requirements.
@@ -265,3 +267,8 @@ The following sections assess the extent to which the prerequisites for the bene
 Step (D) demonstrated that, with the artifacts described in [Chapter 3](../03_Logistics_Equipment_Assemblies/03_Logistics_Equipment_Assemblies.md) through [Chapter 5](../05_Logistics_Area/05_Logistics_Area.md) and their implementation in the evaluation examples in [Section 6.1](06-01_EvaluationExamples.md), all necessary prerequisites identified in step (B) for the beneficial use of the MTP concept are also met in the domain of production-related logistics. Consequently, it can be expected that, using these artifacts, a reduction of engineering and coordination effort of a similar magnitude as in the process industry (A) can also be achieved in the domain of production-related logistics.
 
 To actually achieve this reduction, it must be ensured that the artifacts developed in this work are applied *correctly*. This requires design rules and engineering methodologies for MLS as well as supporting tools that define the *correct* application of the artifacts and support their practical use. These methodologies, rules, and tools are not the subject of this work but are regarded as future research and development tasks.
+
+&nbsp;
+
+---
+[< Previous](06-02_Verification.md) | [Home](../README.md) | [Next >](../07_MTP%20Extensions/07_MTP_Extension.md)

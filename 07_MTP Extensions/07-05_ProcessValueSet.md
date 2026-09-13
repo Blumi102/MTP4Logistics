@@ -1,3 +1,5 @@
+[< Previous](07-04_ServiceSet.md) | [Home](../README.md) | [Next >](07-06_ServerAssemblySet.md)
+
 ## 7.5 MTP Extension of the ProcessValueSet
 This chapter specifies all identified extensions of the *ProcessValueSet* and integrates them into the existing [[MTP Specification Part 4]](../08_References/README.md#mtp-specification-part-4).
 
@@ -149,3 +151,8 @@ The array position to be displayed is selected via the variable *IndexSel*. The 
 </table>
 
 The DataAssembly definition *SUC ArrayProcessValueOut* corresponds to the DataAssembly definition [SUC ArrayView](./07-03_DataAssemblySet.md#specification-of-the-system-unit-class-arrayview). The only difference is that *SUC ArrayProcessValueOut* does not contain an *OSLevel* variable because it is always controlled by another LEA.
+
+&nbsp;
+
+---
+[< Previous](07-04_ServiceSet.md) | [Home](../README.md) | [Next >](07-06_ServerAssemblySet.md)

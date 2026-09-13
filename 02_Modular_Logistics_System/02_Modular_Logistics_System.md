@@ -1,3 +1,4 @@
+[< Previous](../README.md) | [Home](../README.md) | [Next >](../03_Logistics_Equipment_Assemblies/03_Logistics_Equipment_Assemblies.md)
 
 ## 2 Modular Logistics Systems
 
@@ -106,3 +107,8 @@ The automation of an MLS places specific requirements on its constituent element
 The LOL is responsible for management, coordination, and monitoring functions in the MLS. Which specific functions are required depends on the MLS configuration and the operator's needs. A modular LOL architecture is considered appropriate [[BJF+23]](../08_References/README.md#blumenstein-et-al-automationlol). The LOL shall be able to obtain all information about the LEAs it needs entirely from the LEAs' standardized information models (MTP files), without requiring vendor-specific adaptations.
 
 > **Scope of this work:** This work specifies the automation-relevant concepts, interfaces and information models for LEAs, Logistics Lines, and Logistics Areas. An exemplary LOL implementation is provided in the application examples to demonstrate feasibility; however, generic LOL implementation concepts are outside the scope of this work.
+
+&nbsp;
+
+---
+[< Previous](../README.md) | [Home](../README.md) | [Next >](../03_Logistics_Equipment_Assemblies/03_Logistics_Equipment_Assemblies.md)

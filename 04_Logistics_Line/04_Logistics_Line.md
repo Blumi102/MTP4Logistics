@@ -1,3 +1,5 @@
+[< Previous](../03_Logistics_Equipment_Assemblies/03-10_Application_Example_StretchHoodLEA.md) | [Home](../README.md) | [Next >](04-02_Horizontal_Integration.md)
+
 ## 4 Choreography-Based Automation and MTP-Based Integration of Logistics Lines
 
 This chapter presents the choreography-based automation and MTP-based integration of Logistics Lines. Existing choreography concepts from [[Stu26]](../08_References/README.md#stutz-2026) and [[SFB+21]](../08_References/README.md#stutz-et-al-2021) are adopted and extended with newly specified MTP concepts. The application of choreography principles to Logistics Line automation was investigated in [[Ort21]](../08_References/README.md#ortmann-2021) and partially published in [[BSF+22]](../08_References/README.md#blumenstein-et-al-2022-etfa), [[BGB+23]](../08_References/README.md#blumenstein-et-al-moprolog), and [[SBF+22]](../08_References/README.md#stutz-et-al-2022). 
@@ -18,3 +20,8 @@ The following sections describe the technical implementation of these concepts.
 - [Section 4.3 — Vertical Integration](./04-03_Vertical_Integration.md#43-vertical-integration-of-a-logistics-line-into-a-logistics-orchestration-layer): Vertical integration of a choreographed Logistics Line into a superordinate LOL
 - [Section 4.4 — MTP Extensions](./04-04_MTP_Extensions.md#44-mtp-extensions): Necessary extensions of the MTP concept for Logistics Line automation
 - [Section 4.5 — Application Example: Bag Filling Line](./04-05_Application_Example_BagFillingLine.md#45-application-example-bag-filling-line): Application of the described concepts to a bag-filling Logistics Line
+
+&nbsp;
+
+---
+[< Previous](../03_Logistics_Equipment_Assemblies/03-10_Application_Example_StretchHoodLEA.md) | [Home](../README.md) | [Next >](04-02_Horizontal_Integration.md)

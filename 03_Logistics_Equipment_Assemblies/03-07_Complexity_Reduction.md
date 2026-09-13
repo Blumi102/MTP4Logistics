@@ -1,3 +1,5 @@
+[< Previous](03-06_Operator_Displays.md) | [Home](../README.md) | [Next >](03-08_MTP_Extensions.md)
+
 ## 3.7 Complexity Reduction of Interfaces
 
 The DataAssembly definitions of [[MTP Specification Part 3]](../08_References/README.md#mtp-specification-part-3) and [[MTP Specification Part 4]](../08_References/README.md#mtp-specification-part-4) are designed for a wide range of process-industry use cases — from laboratory to production scale. While this breadth is necessary for process engineering applications, many of these interface variables are irrelevant in production-related logistics, where operating conditions are more constrained. To reduce implementation effort without modifying the existing MTP interfaces, complexity can be reduced by specifying fixed default values for variables that are not needed in LEA automation.
@@ -10,3 +12,8 @@ The DataAssembly definitions of [[MTP Specification Part 3]](../08_References/RE
 Variables that become irrelevant through this defaulting (shown greyed out in [Figure 3.11](#figure-311-complexity-reduction-of-the-parameterelement-interface)) no longer need to be provided in the OPC UA server of the LEA controller; they are instead set to constant values within the MTP itself. Beyond simplifying the LOL-LEA interface, this yields a significant saving in controller memory: even fixing a single Boolean variable saves more than 100 bytes, since each OPC UA node requires substantial metadata overhead.
 
 This pattern of complexity reduction through default values is applicable to further DataAssembly definitions and may be extended as additional LEA types and their specific constraints are analyzed.
+
+&nbsp;
+
+---
+[< Previous](03-06_Operator_Displays.md) | [Home](../README.md) | [Next >](03-08_MTP_Extensions.md)

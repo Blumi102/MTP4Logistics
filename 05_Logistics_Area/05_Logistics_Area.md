@@ -1,3 +1,5 @@
+[< Previous](../04_Logistics_Line/04-05_Application_Example_BagFillingLine.md) | [Home](../README.md) | [Next >](05-02_Design_Decisions.md)
+
 ## 5 MTP-based automation of flexible transport in Logistics Areas
 
 This chapter presents the MTP-based automation of flexible transports in Logistics Areas (LA). Parts of these concepts were published in [[BHF+23]](../08_References/README.md#blumenstein-et-al-2023), [[BGB+23]](../08_References/README.md#blumenstein-et-al-moprolog) as well as the student work [[Hen22]](../08_References/README.md#henkel-2022).
@@ -55,3 +57,8 @@ The following sections describe the technical implementation of these concepts. 
 - [Section 5.6 — AGV System](./05-06_AGV_System.md): Implementation of the AGV system component
 - [Section 5.7 — MTP Extensions](./05-07_MTP_Extensions.md): Necessary extensions of the MTP concept for implementing flexible transports in the Logistics Area
 - [Section 5.8 — Application Example: Transport PAL–Label–SH](./05-08_Application_Example_TransportPAL-Label-SH.md): Exemplary application of the transport concept for a push transport from a Palletizer via a Labeling Unit to a Stretch Hood Machine
+
+&nbsp;
+
+---
+[< Previous](../04_Logistics_Line/04-05_Application_Example_BagFillingLine.md) | [Home](../README.md) | [Next >](05-02_Design_Decisions.md)

@@ -1,3 +1,5 @@
+[< Previous](04-03_Vertical_Integration.md) | [Home](../README.md) | [Next >](04-05_Application_Example_BagFillingLine.md)
+
 ## 4.4 MTP Extensions
 
 In the preceding sections, a number of extensions to the MTP specification were identified that are necessary in the context of automating choreographed Logistics Lines. [Table 4.4](#table-44-mtp-specification-extensions-for-logistics-line-automation) provides an overview of the model and DataAssembly definitions as well as workflows to be introduced. A more detailed description is provided in the specification sections referenced in [Table 4.4](#table-44-mtp-specification-extensions-for-logistics-line-automation).
@@ -177,3 +179,8 @@ In the preceding sections, a number of extensions to the MTP specification were 
 </table>
 
 For the choreography-related model definitions, a new library *SUCL MTPChoreographySUCLib* is introduced. For the *RC HasExternalMtpContext*, a new library *RCL MTPRCLib* is introduced.
+
+&nbsp;
+
+---
+[< Previous](04-03_Vertical_Integration.md) | [Home](../README.md) | [Next >](04-05_Application_Example_BagFillingLine.md)

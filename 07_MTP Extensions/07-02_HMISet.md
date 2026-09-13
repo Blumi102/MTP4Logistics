@@ -1,3 +1,5 @@
+[< Previous](07-01_Manifest.md) | [Home](../README.md) | [Next >](07-03_DataAssemblySet.md)
+
 ## 7.2 MTP Extension of the HMISet
 This chapter specifies all identified extensions of the *HMISet* and integrates them into the existing [[MTP Specification Part 2]](../08_References/README.md#mtp-specification-part-2).
 
@@ -504,3 +506,8 @@ Two model definitions, *SUC PictureFrame* and *SUC ReferencedPicture*, are requi
 
 [^1]: In the context of this work, *SUC PictureFrame* is initially assigned to the profile *ModuleTypePackage:HMISet.Composed V2.0.0* because it is used exclusively to embed external LEA HMIs into a Composed MTP. However, this SUC is also suitable for embedding MTP-internal HMIs in non-composed MTPs. Therefore, if it is adopted into the MTP specification in the future, it appears appropriate to define a separate profile for this SUC.
 [^2]: This *PictureFrame* mechanism may also be useful in non-composed MTPs, for example to embed detail pictures into an overall picture of one PEA or LEA. In that case, *ContextLink* is not required. Within this work, however, *SUC PictureFrame* is considered exclusively in the context of line HMIs in Composed MTPs.
+
+&nbsp;
+
+---
+[< Previous](07-01_Manifest.md) | [Home](../README.md) | [Next >](07-03_DataAssemblySet.md)

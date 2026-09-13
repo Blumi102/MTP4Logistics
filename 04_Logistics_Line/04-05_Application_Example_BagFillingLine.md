@@ -1,3 +1,5 @@
+[< Previous](04-04_MTP_Extensions.md) | [Home](../README.md) | [Next >](../05_Logistics_Area/05_Logistics_Area.md)
+
 ## 4.5 Application Example: Bag Filling Line
 To illustrate the concepts described in this chapter for Logistics Line automation, this section presents an exemplary application of the choreography concept to the bag filling line of the use case described in [Section 4.2.1](04-02_Horizontal_Integration.md#421-application-example).
 
@@ -169,3 +171,8 @@ A *UaWriter* of the *OpcUaClientServerManager* interface is assigned to this con
 On the side of LEA2, an externally writable *ValueField* is provided, which internally writes its value to a specific position in the Input List. This *ValueField* has a *WritableUnionElement* interface that is provided in the OPC UA server of LEA2 under a specific Node ID. The *UaWriter* of LEA1 is configured to this Node ID. This interface is represented in the MTP model of LEA2 as a *WritableInputElement* model definition.
 
 As in the case of active reading, the Output List of LEA2 contains a fixed output that enables starting the LEA2 service, represented in the MTP by a *FixedOutputElement* model definition. According to the mechanisms described in [[Stu26]](../08_References/README.md#stutz-2026), the value of the writable input is transferred within LEA2 to the value of the fixed output (in this case without preprocessing), and the desired relation is implemented.
+
+&nbsp;
+
+---
+[< Previous](04-04_MTP_Extensions.md) | [Home](../README.md) | [Next >](../05_Logistics_Area/05_Logistics_Area.md)

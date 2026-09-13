@@ -1,3 +1,5 @@
+[< Previous](03-05_Process_Values.md) | [Home](../README.md) | [Next >](03-07_Complexity_Reduction.md)
+
 ## 3.6 Operator Displays
 
 The LOL provides an operator display for monitoring and manually controlling LEAs, into which the displays of individual LEAs are automatically integrated following the concepts of [[MTP Specification Part 2]](../08_References/README.md#mtp-specification-part-2). While [[MTP Specification Part 2]](../08_References/README.md#mtp-specification-part-2) targets P&ID-style displays, machine-oriented displays are customary in production-related logistics. These displays contain a static representation of the LEA and multiple dynamic display objects for the LEA service, parameters, report values, process values, and further LEA-internal values. [Figure 3.9](#figure-39-operator-display-of-a-palletizer-lea) shows an example display for a palletizer LEA.
@@ -93,3 +95,8 @@ For selecting the ECLASS number, two cases are distinguished:
 - **A suitable ECLASS exists for the LEA:** The module vendor may still provide a machine-specific graphic in the MTP attachment using the standard ECLASS reference as file name. If the LOL's graphics library does not contain a graphic for the given ECLASS, it falls back to the MTP attachment. If a graphic exists in both the LOL library and the MTP attachment for the same ECLASS, the LOL decides which one to use.
 
 This mechanism has been adopted into the *ModuleTypePackage:HMISet.Base V2.0.0* profile of [[MTP Specification Part 2]](../08_References/README.md#mtp-specification-part-2).
+
+&nbsp;
+
+---
+[< Previous](03-05_Process_Values.md) | [Home](../README.md) | [Next >](03-07_Complexity_Reduction.md)

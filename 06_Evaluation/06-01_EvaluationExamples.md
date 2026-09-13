@@ -1,3 +1,5 @@
+[< Previous](06_Evaluation.md) | [Home](../README.md) | [Next >](06-02_Verification.md)
+
 ## 6.1 Evaluation Examples
 
 The evaluation examples were investigated as controlled experiments (*Single Case Experiments* per [[Wie14]](../08_References/README.md#wieringa-2014), *Controlled Experiments* per [[HMP+04]](../08_References/README.md#hevner-et-al-2004)). Defined test scenarios with specific stimuli were executed on prototypical implementations, and the system reactions were observed and assessed. This allows predictions about artifact performance in real-world contexts, even though the artifacts have not yet been deployed in productive logistics systems [[Wie14]](../08_References/README.md#wieringa-2014).
@@ -383,3 +385,8 @@ The test scenarios shown in [Table 6.6](#table-66-test-scenarios-at-the-plc-base
 - Discontinuous conveying technology (here: AGVs) can be integrated via standardized interfaces without deep knowledge of its proprietary automation. This lowers the entry barrier for discontinuous conveying technology, which is essential for building flexible MLSs.
 - Material flows are flexibly configurable, potentially even at runtime, allowing different products to be processed on the same MLS.
 - LEAs can be quickly integrated or replaced via MTP-based mechanisms, enabling MLS scaling and straightforward implementation of redundancy concepts.
+
+&nbsp;
+
+---
+[< Previous](06_Evaluation.md) | [Home](../README.md) | [Next >](06-02_Verification.md)

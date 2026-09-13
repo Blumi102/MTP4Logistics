@@ -1,3 +1,5 @@
+[< Previous](05-02_Design_Decisions.md) | [Home](../README.md) | [Next >](05-04_Transport_Management.md)
+
 ## 5.3 Transport Process
 
 As described in [Section 5.1.2](./05_Logistics_Area.md#512-working-principle), a transport process comprises the transport of an LO between a start and target node, including the handovers at both nodes. Any number of processing nodes can be approached between start and target node. During execution, a transport order passes through various phases. These are summarized in the process model shown in [Figure 5.11](#figure-511-process-model-of-a-transport-process-in-a-logistics-area) and described in the following sections.
@@ -47,3 +49,8 @@ During the execution of a transport process, the associated Transport Service pa
 
 ##### Figure 5.12: Status Transitions for Synchronization between LEA and AGV System
 <img src="./images/Uebersicht_Prozedurumschaltung.svg" alt="Status Transitions for Synchronization between LEA and AGV System" width="500" />
+
+&nbsp;
+
+---
+[< Previous](05-02_Design_Decisions.md) | [Home](../README.md) | [Next >](05-04_Transport_Management.md)

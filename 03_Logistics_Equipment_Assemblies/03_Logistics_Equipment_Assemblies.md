@@ -1,8 +1,10 @@
+[< Previous](../02_Modular_Logistics_System/02_Modular_Logistics_System.md) | [Home](../README.md) | [Next >](03-02_Service_Based_Automation.md)
+
 ## 3 MTP-Based Automation of Logistics Equipment Assemblies
 
 This chapter presents the MTP-based automation and integration of Logistics Equipment Assemblies (LEAs). Parts of these concepts were published in [[BFS+22]](../08_References/README.md#blumenstein-et-al-2022-atp) and [[BGB+23]](../08_References/README.md#blumenstein-et-al-moprolog); parametrization mechanisms were additionally investigated in student theses [[Jan23]](../08_References/README.md#janzen-2023) and in [[BJF+23]](../08_References/README.md#blumenstein-et-al-automationlol). 
 
- [Sections 3.9](03-09_Application_Example_PalletizingLEA.md#39-application-example-palletizing-lea) and [3.10](03-10_Application_Example_StretchHoodLEA.md#310-application-example-stretch-hood-lea) show the application of the described concepts to a palletizer LEA and a stretch-hood LEA. [Chapter 7](../07_MTP%20Extensions/07-00_Intro.md#7-enhancements-of-the-module-type-package-concept) provides detailed specifications of the introduced MTP extensions.
+ [Sections 3.9](03-09_Application_Example_PalletizingLEA.md#39-application-example-palletizing-lea) and [3.10](03-10_Application_Example_StretchHoodLEA.md#310-application-example-stretch-hood-lea) show the application of the described concepts to a palletizer LEA and a stretch-hood LEA. [Chapter 7](../07_MTP%20Extensions/07_MTP_Extension.md#7-enhancements-of-the-module-type-package-concept) provides detailed specifications of the introduced MTP extensions.
 
 ## 3.1 Artifact Overview
 
@@ -24,3 +26,8 @@ The following sections describe the technical implementation of these concepts.
 - [Section 3.8 — MTP Extensions](./03-08_MTP_Extensions.md#38-mtp-extensions): Necessary extensions of the MTP concept for LEA automation
 - [Section 3.9 — Application Example: Palletizing LEA](./03-09_Application_Example_PalletizingLEA.md#39-application-example-palletizing-lea): Application of the described concepts to a palletizer LEA
 - [Section 3.10 — Application Example: Stretch Hood LEA](./03-10_Application_Example_StretchHoodLEA.md#310-application-example-stretch-hood-lea): Application of the described concepts to a stretch-hood LEA
+
+&nbsp;
+
+---
+[< Previous](../02_Modular_Logistics_System/02_Modular_Logistics_System.md) | [Home](../README.md) | [Next >](03-02_Service_Based_Automation.md)

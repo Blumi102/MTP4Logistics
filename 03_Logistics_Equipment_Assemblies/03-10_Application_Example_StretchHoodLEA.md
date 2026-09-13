@@ -1,3 +1,5 @@
+[< Previous](03-09_Application_Example_PalletizingLEA.md) | [Home](../README.md) | [Next >](../04_Logistics_Line/04_Logistics_Line.md)
+
 ## 3.10 Application Example: Stretch Hood LEA
 To illustrate the concepts for LEA automation described in the previous sections, this section presents an exemplary application of these concepts to a Stretch Hood LEA (SH), which can operate in either CES-based or SES-based mode.
 
@@ -164,3 +166,8 @@ The service then transitions back to the PAUSED state and waits for the next inc
 
 ##### Figure 3.17: Image File of a Stretch Hood LEA Within the MTP
 <img src="./images/MTP_HMI_SH.drawio.svg" alt="Image File of a Stretch Hood LEA Within the MTP" width="300" />
+
+&nbsp;
+
+---
+[< Previous](03-09_Application_Example_PalletizingLEA.md) | [Home](../README.md) | [Next >](../04_Logistics_Line/04_Logistics_Line.md)

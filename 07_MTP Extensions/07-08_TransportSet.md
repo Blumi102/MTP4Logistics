@@ -1,3 +1,5 @@
+[< Previous](07-07_ChoreographySet.md) | [Home](../README.md) | [Next >](07-09_Conformity_Declaration.md)
+
 ## 7.8 MTP Specification of the TransportSet
 This chapter specifies the *TransportSet* as a new aspect of the MTP specification that contains all elements identified for the MTP-based implementation of flexible transports.
 
@@ -1354,3 +1356,8 @@ All model and DataAssembly definitions required for the *TransportSet* are assig
 
 
 [^1]: The *FunctionClassificationAttribute* is not strictly required for the concepts described in this work. However, it may be used in two cases: (1) For POLs that do not support dynamic creation of Transport Services, a static number of Transport Services may be provisioned via a dedicated MTP file integrated into the POL. The *FunctionClassificationAttribute* can then be added to these statically defined Transport Services. (2) If a system uses the MTP model as a dynamically generated model rather than a static MTP file, the *FunctionClassificationAttribute* can likewise be attached to the Transport Services in that model.
+
+&nbsp;
+
+---
+[< Previous](07-07_ChoreographySet.md) | [Home](../README.md) | [Next >](07-09_Conformity_Declaration.md)

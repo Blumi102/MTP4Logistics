@@ -1,3 +1,5 @@
+[< Previous](03-08_MTP_Extensions.md) | [Home](../README.md) | [Next >](03-10_Application_Example_StretchHoodLEA.md)
+
 ## 3.9 Application Example: Palletizing LEA
 To illustrate the concepts for LEA automation described in the previous sections, this section presents an exemplary application of these concepts to a Palletizing LEA (PAL) that follows a CES-based mode of operation.
 
@@ -165,3 +167,8 @@ Initially, the service is in the IDLE state. Pre-configuration of the *ProductDa
 
 ##### Figure 3.14: Image File of a Palletizing LEA Within the MTP
 <img src="./images/MTP_HMI_PAL.drawio.svg" alt="Image File of a Palletizing LEA Within the MTP" width="300" />
+
+&nbsp;
+
+---
+[< Previous](03-08_MTP_Extensions.md) | [Home](../README.md) | [Next >](03-10_Application_Example_StretchHoodLEA.md)

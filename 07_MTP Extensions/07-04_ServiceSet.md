@@ -1,3 +1,5 @@
+[< Previous](07-03_DataAssemblySet.md) | [Home](../README.md) | [Next >](07-05_ProcessValueSet.md)
+
 ## 7.4 MTP Extension of the ServiceSet
 This chapter specifies all identified extensions of the *ServiceSet* and integrates them into the existing [[MTP Specification Part 4]](../08_References/README.md#mtp-specification-part-4).
 
@@ -845,3 +847,8 @@ Via the corresponding *LogisticsQuestionID*, here: *LogisticsQuestionID* = 5, th
 	<tr><th align="left">Allowed Parents</th><td colspan="3" align="left">IH to which an IE of SUC ServiceSet relates via EI of IC AspectSetReference</td></tr>
 	<tr><th align="left">Allowed Children</th><td colspan="3" align="left">[1..*] IEs of SUC Procedure<br>[0..*] IEs of SUC ConfigurationParameter</td></tr>
 </table>
+
+&nbsp;
+
+---
+[< Previous](07-03_DataAssemblySet.md) | [Home](../README.md) | [Next >](07-05_ProcessValueSet.md)

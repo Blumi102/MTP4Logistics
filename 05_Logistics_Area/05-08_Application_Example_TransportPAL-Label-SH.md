@@ -1,3 +1,5 @@
+[< Previous](05-07_MTP_Extensions.md) | [Home](../README.md) | [Next >](../06_Evaluation/06_Evaluation.md)
+
 ## 5.8 Application Example: Transport PAL–Label–SH
 To illustrate the concepts described in this chapter for logistics area automation, this section presents an exemplary application of the transport concept. Therefore, the example already introduced in [Section 5.1.2](05_Logistics_Area.md#512-working-principle) is used. A push transport from a PAL to a SH LEA is carried out with a LABEL LEA visited along the way. [Figure 5.17](#figure-517-example-of-a-push-transport-from-a-palletizer-via-a-labeling-unit-to-a-stretch-hood-machine) shows the LEAs and their transport nodes.
 
@@ -80,3 +82,8 @@ If the approached transport node is a Processing node, the Transport Service is 
 If no (further) Processing node is to be approached, the transport to the last transport node to be visited (target node, here: the Inbound node of SH1) is coordinated following the same principle as described in [Section 5.8.6](#586-travel-to-the-next-node-including-rerouting). When the AGV arrives at the approach area of the transport node, the Transport Service is coupled to the node following the same principle as described in [Section 5.8.4](#584-coupling-the-transport-service-to-the-start-node). The LEA then sets the Transport Service status to *TransferToLea*, and the LO is transferred from the AGV to SH1. The Transport Management reports this status to the AGV system, which activates available transfer mechanisms to support the transfer. After the successful transfer, the LEA sets the Transport Service status to *TransferToLeaSucceeded*. The Transport Management detects this status, recognizes that the target node has been reached, decouples the Transport Service from the *TN Proxy* of the transport node, and completes the Transport Service. It also notifies the AGV system that the transport process is complete, so that the AGV can be released for further transports.
 
 [^1]: In all following sequence diagrams of this section, the individual TN Proxies in the Transport Management are not shown for the sake of clarity.
+
+&nbsp;
+
+---
+[< Previous](05-07_MTP_Extensions.md) | [Home](../README.md) | [Next >](../06_Evaluation/06_Evaluation.md)

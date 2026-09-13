@@ -1,3 +1,5 @@
+[< Previous](05-04_Transport_Management.md) | [Home](../README.md) | [Next >](05-06_AGV_System.md)
+
 ## 5.5 Logistics Equipment Assemblies
 
 This section describes the MTP-based concepts for implementing the presented transport concept on the LEA side. [Section 5.5.1](#551-structure-and-operation) presents the relevant components and operation of the LEAs in the context of flexible transports. The following [Sections 5.5.2](#552-integration-of-leas-into-the-transport-management) through [5.5.4](#554-determination-of-the-next-transport-node) cover detailed concepts for LEA integration into the Transport Management, decentralized orchestration of Transport Services, and determination of the next transport node by the LEAs.
@@ -158,3 +160,8 @@ For dynamically determining the next transport node, a LEA can query the Materia
 #### Using the FinalTargetNode
 
 Finally, the *ProxyId* specified in the *FinalTargetNode* parameter of the Transport Service can also be used as the next (and thus final) transport node to approach. To signal that it should be used, the value "0" is transmitted. Thus, when using static default values, the value "0" is stored as *DefaultNextNode* in the *ProductDataSet*, meaning that by default the *FinalTargetNode* is approached next. The value "0" is not permitted in the *DefaultSupplyNode*, since a node from which a LEA sources material can never be the last transport node of a transport order. When using the dynamic query of the next transport node via *TransportNodeRequest*, the value "0" is returned as the response when the *FinalTargetNode* should be approached next.
+
+&nbsp;
+
+---
+[< Previous](05-04_Transport_Management.md) | [Home](../README.md) | [Next >](05-06_AGV_System.md)

@@ -1,3 +1,5 @@
+[< Previous](03-07_Complexity_Reduction.md) | [Home](../README.md) | [Next >](03-09_Application_Example_PalletizingLEA.md)
+
 ## 3.8 MTP Extensions
 
 In the preceding sections, a number of extensions to the MTP specification were identified that are necessary in the context of automating Logistics Equipment Assemblies. [Table 3.5](#table-35-mtp-extensions-for-lea-automation) provides an overview of the model and DataAssembly definitions to be introduced. A more detailed description is provided in the specification sections referenced in [Table 3.5](#table-35-mtp-extensions-for-lea-automation).
@@ -138,4 +140,9 @@ In the preceding sections, a number of extensions to the MTP specification were 
   </tr>
 </table>
 
-In addition to these definitions, *FunctionClassificationAttributes* are introduced for CES and SES procedures as well as for the parameters *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* ([Section 7.4.1](../07_MTP%20Extensions/07-04_ServiceSet.md#741-overview)). A mechanism for modeling complex data types in an OPC UA server is also specified as a supplementary artifact ([Section 7.6](../07_MTP%20Extensions/07-06_ServerAssemblySet.md#76-mtp-extension-of-the-serverassemblyset)). 
+In addition to these definitions, *FunctionClassificationAttributes* are introduced for CES and SES procedures as well as for the parameters *ProductId*, *LogisticsObjectStatus*, *ProductDataSet*, *PackagingId*, and *PackagingDataSet* ([Section 7.4.1](../07_MTP%20Extensions/07-04_ServiceSet.md#741-overview)). A mechanism for modeling complex data types in an OPC UA server is also specified as a supplementary artifact ([Section 7.6](../07_MTP%20Extensions/07-06_ServerAssemblySet.md#76-mtp-extension-of-the-serverassemblyset)).
+
+&nbsp;
+
+---
+[< Previous](03-07_Complexity_Reduction.md) | [Home](../README.md) | [Next >](03-09_Application_Example_PalletizingLEA.md)

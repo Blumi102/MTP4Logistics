@@ -1,3 +1,5 @@
+[< Previous](07-06_ServerAssemblySet.md) | [Home](../README.md) | [Next >](07-08_TransportSet.md)
+
 ## 7.7 MTP Specification of the ChoreographySet
 This chapter specifies the *ChoreographySet* as a new aspect of the MTP specification that contains all elements identified for the MTP-based implementation of Automation Service Choreographies.
  
@@ -1567,3 +1569,8 @@ The *SUC ChoreographySet* ([Table 7.55](#table-755-model-definition-of-suc-chore
 
 [^1]: This derivation is possible because a write access always includes reading back the written value. A write access is therefore an extension of a read access.
 [^2]: *SUC CommunicationManager* and the derived *SUC OpcUaClientServerManager* can in principle also be used for configurable communication independently of choreographies, for example in decentralized orchestrations. Since such approaches are not yet provided in the MTP specification, these DataAssembly definitions are initially assigned to the *ChoreographySet*. For future cross-cutting use cases, a shift into the *ServerAssemblySet* ([MTP Specification Part 5.1](../08_References/README.md#mtp-specification-part-51)) may be appropriate.
+
+&nbsp;
+
+---
+[< Previous](07-06_ServerAssemblySet.md) | [Home](../README.md) | [Next >](07-08_TransportSet.md)

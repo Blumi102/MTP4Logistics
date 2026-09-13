@@ -1,3 +1,5 @@
+[< Previous](05-03_Transport_Process.md) | [Home](../README.md) | [Next >](05-05_Logistics_Equipment_Assemblies.md)
+
 ## 5.4 Transport Management
 
 This section describes the MTP-based concepts for implementing the presented transport concept on the Transport Management side. [Section 5.4.1](#541-structure-and-operation) presents the structure and operation of the Transport Management. [Sections 5.4.2](#542-transport-services) and [5.4.3](#543-transport-service-interface) cover details of the Transport Services managed in the Transport Management and their interfaces.
@@ -248,3 +250,8 @@ Transport services hold all information required for executing a transport proce
 Additionally, each Transport Service contains internal management information provided by the Transport Management but read-only for LEAs: *TransportId* for uniquely identifying the transport order, *ResourceId* for identifying the assigned AGV, and the timestamps *RequestedTimestamp*, *LastUpdatedTimestamp*, and *CompletedTimestamp*. Since all these variables are values provided by the Transport Service and should not be changed from outside (e.g., by the LEAs), they are implemented as report values according to [[MTP Specification Part 4]](../08_References/README.md#mtp-specification-part-4).
 
 For the timestamps in particular, the ability to represent time values is needed, which does not exist in the current MTP concept. Therefore, a new role class **RC HasTimeFormat** is introduced in this work. This role class can be added to the *DIntView* DataAssembly definition and signals that the DINT values of the interface should be interpreted in a time format. In addition to the *DIntView* DataAssembly definition (and its derivation *DIntMon*), this role class can also be added to all other DINT-based DataAssembly definitions. These are in particular the *DIntMan* DataAssembly definition (including its derivation *DIntManInt*) as well as the *DIntServParam* and *DIntProcessValueIn* DataAssembly definitions.
+
+&nbsp;
+
+---
+[< Previous](05-03_Transport_Process.md) | [Home](../README.md) | [Next >](05-05_Logistics_Equipment_Assemblies.md)

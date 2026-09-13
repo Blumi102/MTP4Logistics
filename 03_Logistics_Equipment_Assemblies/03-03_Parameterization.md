@@ -1,3 +1,5 @@
+[< Previous](03-02_Service_Based_Automation.md) | [Home](../README.md) | [Next >](03-04_Report_Values.md)
+
 ## 3.3 Parameterization
 
 ### 3.3.1 Parameter Types
@@ -173,3 +175,8 @@ To enable the LOL's parameter management to identify the purpose of each interfa
 **Construction-specific parameters** concern the physical setup of a LEA (e.g. the installed filling nozzle type) or its current configuration (e.g. the loaded pallet type). They are independent of any particular order and of whether the LEA operates in CES or SES mode, instead defining fundamental settings for service execution. Since they are typically few in number and set at commissioning time by an operator, they are modeled as configuration parameters per [[MTP Specification Part 4]](../08_References/README.md#mtp-specification-part-4) and transferred as individual values via existing interfaces.
 
 For LEA types that use a specific packaging material, a construction-specific *DIntServParam* parameter specifies which packaging material (e.g. pallet type) is currently loaded in the LEA. Based on this value, the corresponding packaging-specific information can be retrieved from the LEA-internal *PackagingDataSet* or requested from the LOL. This value is semantically equivalent to the *PackagingId* described above and must be verified against the *PackagingId* required by the selected product parameter set before processing a logistics object. A mismatch means the LEA cannot process the order or must be equipped with different packaging material. To allow unambiguous semantic identification of this parameter, a corresponding *FunctionClassificationAttribute* is introduced ([Section 7.4.1](../07_MTP%20Extensions/07-04_ServiceSet.md#741-overview)).
+
+&nbsp;
+
+---
+[< Previous](03-02_Service_Based_Automation.md) | [Home](../README.md) | [Next >](03-04_Report_Values.md)

@@ -1,4 +1,4 @@
-[Next >](./02_Modular_Logistics_System/README.md)
+[Next >](./02_Modular_Logistics_System/02_Modular_Logistics_System.md)
 
 
 <!-- TODO: In Website umwandeln -->
@@ -32,7 +32,7 @@ This work describes an automation concept for modular production-related logisti
 
 ## Structure of the Repository
 
-In [Section 2](02_Modular_Logistics_System/README.md) the structural levels of Modular Logistics Systems are introduced as the application context of this document. [Section 3](03_Logistics_Equipment_Assemblies/README.md) presents an MTP-based automation concept for individual Logistics Equipment Assemblies (LEAs), covering service-based automation, parameterization, process and report values, operator displays, and complexity reduction of interfaces. [Section 4](04_Logistics_Line/README.md) describes a choreography-based automation approach for Logistics Lines, addressing both horizontal integration of LEAs and their vertical integration into a superordinate orchestration layer. In [Section 5](05_Logistics_Area/README.md) an MTP-based automation concept for flexible transports in Logistics Areas is introduced, including transport management, AGV systems, and transport node concepts. [Section 6](06_Evaluation/README.md) evaluates the developed concepts from Sections 3 to 5 through prototypical implementations, requirement verification, and validation of the research goals. Based on all those concepts, [Section 7](07_MTP%20Extensions/README.md) specifies the necessary extensions to the Module Type Package standard in the context of production-related logistics, covering the Manifest, HMISet, DataAssemblySet, ServiceSet, ProcessValueSet, ServerAssemblySet, ChoreographySet, TransportSet, and a Conformity Declaration.
+In [Section 2](02_Modular_Logistics_System/02_Modular_Logistics_System.md) the structural levels of Modular Logistics Systems are introduced as the application context of this document. [Section 3](03_Logistics_Equipment_Assemblies/03_Logistics_Equipment_Assemblies.md) presents an MTP-based automation concept for individual Logistics Equipment Assemblies (LEAs), covering service-based automation, parameterization, process and report values, operator displays, and complexity reduction of interfaces. [Section 4](04_Logistics_Line/04_Logistics_Line.md) describes a choreography-based automation approach for Logistics Lines, addressing both horizontal integration of LEAs and their vertical integration into a superordinate orchestration layer. In [Section 5](05_Logistics_Area/05_Logistics_Area.md) an MTP-based automation concept for flexible transports in Logistics Areas is introduced, including transport management, AGV systems, and transport node concepts. [Section 6](06_Evaluation/06_Evaluation.md) evaluates the developed concepts from Sections 3 to 5 through prototypical implementations, requirement verification, and validation of the research goals. Based on all those concepts, [Section 7](07_MTP%20Extensions/07_MTP_Extension.md) specifies the necessary extensions to the Module Type Package standard in the context of production-related logistics, covering the Manifest, HMISet, DataAssemblySet, ServiceSet, ProcessValueSet, ServerAssemblySet, ChoreographySet, TransportSet, and a Conformity Declaration.
 
 
 <!-- TODO: Link zur Dissertation wird ergänzt, sobald er öffentlich ist. -->
@@ -52,4 +52,7 @@ The current version of the Technical Report can be downloaded as a PDF file [her
 (Release Date: 06 November 2023)
 
 
-[Next >](./02_Modular_Logistics_System/README.md)
+&nbsp;
+
+---
+[Next >](./02_Modular_Logistics_System/02_Modular_Logistics_System.md)

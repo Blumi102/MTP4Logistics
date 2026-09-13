@@ -1,4 +1,6 @@
-﻿## 7.1 MTP Extension of the Manifest
+﻿[< Previous](07_MTP_Extension.md) | [Home](../README.md) | [Next >](07-02_HMISet.md)
+
+## 7.1 MTP Extension of the Manifest
 This chapter specifies all identified extensions of the *Manifest* and integrates them into the existing [[MTP Specification Part 1]](../08_References/README.md#mtp-specification-part-1).
 
 ### 7.1.1 Overview
@@ -348,3 +350,8 @@ For instance verification of the choreography, the assignments of *RoleIdent* an
 
 [^1]: [HMISet](./07-02_HMISet.md) also describes that *RC HasExternalMtpContext* can be assigned to *SUC PictureFrame* and *SUC ReferencedPicture*.
 [^2]: *AT ComposedTypeRevisionType* is therefore similar to *AT DeviceRevisionType*. However, while *AT DeviceRevisionType* refers only to the content of the *ServerAssemblySet* of one MTP, *AT ComposedTypeRevisionType* refers to the distributed content of the *ServerAssemblySets* of multiple MTPs.
+
+&nbsp;
+
+---
+[< Previous](07_MTP_Extension.md) | [Home](../README.md) | [Next >](07-02_HMISet.md)

@@ -1,3 +1,5 @@
+[< Previous](06-01_EvaluationExamples.md) | [Home](../README.md) | [Next >](06-03_Validation.md)
+
 ## 6.2 Verification
 
 The term *verification* describes, according to [[DIN EN ISO 9000]](../08_References/README.md#din-en-iso-9000-2015), the "confirmation, through the provision of objective evidence, that specified requirements have been fulfilled." It examines, based on identified requirements, whether *artifacts have been developed correctly*.
@@ -31,7 +33,7 @@ This section verifies the artifacts presented in [Chapter 3](../03_Logistics_Equ
   </tr>
   <tr>
     <td align="left"><strong>REQ-LEA-4</strong> — Standardized Information Models for Describing LEA Automation</td>
-    <td align="left">All automation-relevant LEA properties are described in MTP files, including extensions for structured and array-based data types (<a href="../03_Logistics_Equipment_Assemblies/03-08_MTP_Extensions.md">Section 3.8</a>, <a href="../07_MTP%20Extensions/07-00_Intro.md">Chapter 7</a>).</td>
+    <td align="left">All automation-relevant LEA properties are described in MTP files, including extensions for structured and array-based data types (<a href="../03_Logistics_Equipment_Assemblies/03-08_MTP_Extensions.md">Section 3.8</a>, <a href="../07_MTP%20Extensions/07_MTP_Extension.md">Chapter 7</a>).</td>
     <td align="left">MTP files for all LEAs of the evaluation examples generated and can be found here: 
     <!-- TODO: Link zu MTP-Dateien ergänzen. -->
     </td>
@@ -103,3 +105,8 @@ This section verifies the artifacts presented in [Chapter 3](../03_Logistics_Equ
 </table>
 
 All eleven requirements are fulfilled by the presented concepts and demonstrated in the evaluation examples.
+
+&nbsp;
+
+---
+[< Previous](06-01_EvaluationExamples.md) | [Home](../README.md) | [Next >](06-03_Validation.md)
