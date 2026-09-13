@@ -1,8 +1,6 @@
 [Next >](./02_Modular_Logistics_System/02_Modular_Logistics_System.md)
 
 
-<!-- TODO: In Website umwandeln -->
-
 # Technical Report
 ## Application and Extension of the Module Type Package Concept for Production-related Logistics
 
@@ -10,7 +8,7 @@
 [Michelle Blumenstein](https://www.researchgate.net/profile/Michelle-Blumenstein), Siemens AG, PhD Candidate at Helmut Schmidt University Hamburg 
 
 ### Version
-Version 3, XX August 2026
+Version 3, 13 September 2026
 
 DOI: XXXX
 
