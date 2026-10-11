@@ -1,0 +1,37 @@
+# Claude Code local settings
+.claude
+
+# Root-level images folder (PowerPoint source files)
+Images/
+
+# Build output (build_pdf.py)
+dissertation.pdf
+_combined.md
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+.python-version
+venv/
+.venv/
+env/
+.env/
+
+# Windows OS files
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS files
+.DS_Store
+.AppleDouble
+._*
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+build_pdf.py

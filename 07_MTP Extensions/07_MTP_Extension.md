@@ -1,7 +1,5 @@
 [< Previous](../06_Evaluation/06-03_Validation.md) | [Home](../README.md) | [Next >](07-01_Manifest.md)
 
-<!-- TODO: bei den Specs Labels vergeben, was schon übernommen wurde -->
-
 ## 7 Enhancements of the Module Type Package Concept
 
 #### Content of this Chapter

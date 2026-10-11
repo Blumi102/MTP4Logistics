@@ -34,8 +34,7 @@ This section verifies the artifacts presented in [Chapter 3](../03_Logistics_Equ
   <tr>
     <td align="left"><strong>REQ-LEA-4</strong> — Standardized Information Models for Describing LEA Automation</td>
     <td align="left">All automation-relevant LEA properties are described in MTP files, including extensions for structured and array-based data types (<a href="../03_Logistics_Equipment_Assemblies/03-08_MTP_Extensions.md">Section 3.8</a>, <a href="../07_MTP%20Extensions/07_MTP_Extension.md">Chapter 7</a>).</td>
-    <td align="left">MTP files for all LEAs of the evaluation examples generated and can be found here: 
-    <!-- TODO: Link zu MTP-Dateien ergänzen. -->
+    <td align="left">MTP files for all LEAs of the evaluation examples generated and can be found here: <a href="../09_Module Type Packages/">09_Module Type Packages</a>.
     </td>
   </tr>
 </table>
@@ -69,8 +68,7 @@ This section verifies the artifacts presented in [Chapter 3](../03_Logistics_Equ
   <tr>
     <td align="left"><strong>REQ-LL-4</strong> — Standardized Information Models for Describing the Choreography-based Automation</td>
     <td align="left">Configuration and integration interfaces are described in the ChoreographySet within MTP files (<a href="../04_Logistics_Line/04-04_MTP_Extensions.md">Section 4.4</a>, <a href="../07_MTP%20Extensions/07-07_ChoreographySet.md">Section 7.7</a>).</td>
-    <td align="left">MTP files with ChoreographySet used by the choreography configurator in BASF line and PLC-based Emulation. Composed MTPs generated for all Logistics Lines of the evaluation examples. MTPs can be found here:
-    <!-- TODO: Link zu MTP-Dateien ergänzen. -->
+    <td align="left">MTP files with ChoreographySet used by the choreography configurator in BASF line and PLC-based Emulation. Composed MTPs generated for all Logistics Lines of the evaluation examples. MTPs can be found here: <a href="../09_Module Type Packages/">09_Module Type Packages</a>
     </td>
   </tr>
 </table>
@@ -98,8 +96,7 @@ This section verifies the artifacts presented in [Chapter 3](../03_Logistics_Equ
   <tr>
     <td align="left"><strong>REQ-LA-3</strong> — Standardized Information Models for Describing Transport-related LEA Information</td>
     <td align="left">Transport-relevant LEA properties are described in a TransportSet within MTP files (<a href="../05_Logistics_Area/05-07_MTP_Extensions.md">Section 5.7</a>, <a href="../07_MTP%20Extensions/07-08_TransportSet.md">Section 7.8</a>).</td>
-    <td align="left"> MTPs with TransportSet generated for LEAs of the PLC-based Emulation. MTP files can be found here: 
-    <!-- TODO: Link zu MTP-Dateien ergänzen. -->
+    <td align="left"> MTPs with TransportSet generated for LEAs of the PLC-based Emulation. MTP files can be found here: <a href="../09_Module Type Packages/">09_Module Type Packages</a>
     </td>
   </tr>
 </table>

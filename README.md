@@ -10,8 +10,6 @@
 ### Version
 Version 3, 13 September 2026
 
-DOI: XXXX
-
 ## 1 Purpose of this Repository
 
 This repository presents the application and extension of the Module Type Package (MTP) concept for production-related logistics. As a conceptual foundation, it introduces the condensed contents of the author's doctoral dissertation. In addition, the repository includes conceptual and practical application examples that demonstrate the developed concepts both argumentatively and through real industrial implementations. Beyond the dissertation contents, the repository contains a standardization proposal for the necessary extensions of the MTP standard in the context of production-related logistics. This proposal is being discussed in the MTP standardization bodies at the PROFIBUS & PROFINET International (PI), and parts of its contents have already been adopted into the MTP standard.
@@ -33,16 +31,15 @@ This work describes an automation concept for modular production-related logisti
 In [Section 2](02_Modular_Logistics_System/02_Modular_Logistics_System.md) the structural levels of Modular Logistics Systems are introduced as the application context of this document. [Section 3](03_Logistics_Equipment_Assemblies/03_Logistics_Equipment_Assemblies.md) presents an MTP-based automation concept for individual Logistics Equipment Assemblies (LEAs), covering service-based automation, parameterization, process and report values, operator displays, and complexity reduction of interfaces. [Section 4](04_Logistics_Line/04_Logistics_Line.md) describes a choreography-based automation approach for Logistics Lines, addressing both horizontal integration of LEAs and their vertical integration into a superordinate orchestration layer. In [Section 5](05_Logistics_Area/05_Logistics_Area.md) an MTP-based automation concept for flexible transports in Logistics Areas is introduced, including transport management, AGV systems, and transport node concepts. [Section 6](06_Evaluation/06_Evaluation.md) evaluates the developed concepts from Sections 3 to 5 through prototypical implementations, requirement verification, and validation of the research goals. Based on all those concepts, [Section 7](07_MTP%20Extensions/07_MTP_Extension.md) specifies the necessary extensions to the Module Type Package standard in the context of production-related logistics, covering the Manifest, HMISet, DataAssemblySet, ServiceSet, ProcessValueSet, ServerAssemblySet, ChoreographySet, TransportSet, and a Conformity Declaration.
 
 
-<!-- TODO: Link zur Dissertation wird ergänzt, sobald er öffentlich ist. -->
-  
-
 ## References
 Please find all references [here](./08_References/README.md).
 
-## PDF Document of the Technical Report
+## PDF Documents
 
 ### Current Version
-The current version of the Technical Report can be downloaded as a PDF file [here](Technical_Report_MTP_Logistics_v2_Submitted.pdf).
+The PDF file of the PhD thesis belonging to this repository will be uploaded here as soon as it is published.
+
+<!-- TODO: Link zur Dissertation wird ergänzt, sobald er öffentlich ist. -->
 
 ### Previous Versions
 - [Version 1](./99_Archive/Technical_Report_MTP_Logistics_v1_Submitted.pdf) (Release Date: 20 September 2022)
