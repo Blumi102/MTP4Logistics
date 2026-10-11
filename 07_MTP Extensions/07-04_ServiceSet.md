@@ -88,7 +88,7 @@ To enable a semantic description of service parameters, the model definition *Se
 
 <table>
 	<tr>
-		<td colspan="2" align="left"><strong>FunctionClassificationAttribute for LogisticsObjectStatussObjectStatus</strong></td>
+		<td colspan="2" align="left"><strong>FunctionClassificationAttribute for LogisticsObjectStatus</strong></td>
 	</tr>
 	<tr>
 		<th align="left">Standard</th>
