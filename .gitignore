@@ -2,7 +2,7 @@
 .claude
 
 # Root-level images folder (PowerPoint source files)
-Images/
+
 
 # Build output (build_pdf.py)
 dissertation.pdf
